@@ -2,16 +2,15 @@
  * The chamber. The only three.js in the project, and the only screen that is
  * not DOM.
  *
- * A stone room, a well of magicka in the middle of it, and a sealed gate at
- * the far wall. Nothing else — no courtyard, no college, nothing outside these
- * four walls, because nothing outside them is ever in frame.
+ * A stone room, magicka welling up out of the floor in the middle of it, and a
+ * sealed gate at the far wall. Nothing else — no courtyard, no college, nothing
+ * outside these four walls, because nothing outside them is ever in frame.
  *
- * The well is painted — a ten-frame sheet stepped by moving a texture offset.
- * Everything else here is still procedural: the stone, the runes and the motes
- * are all drawn into canvases at load, and ASSETS.md lists the plates that will
- * replace them. Every material is stock three.js. There is no custom GLSL
- * anywhere, including the motes, which are animated by writing their buffer
- * attributes from JavaScript each frame.
+ * EVERYTHING IS PROCEDURAL. The stone, the runes and the motes are all drawn
+ * into canvases at load; ASSETS.md lists the plates that will replace them.
+ * Every material is stock three.js, and there is no custom GLSL anywhere —
+ * including the magicka, which is animated by writing its buffer attributes
+ * from JavaScript each frame.
  *
  * The scene renders at roughly a quarter resolution and is scaled up by the
  * browser with `image-rendering: pixelated`, which is where the crunch comes
@@ -41,7 +40,6 @@ import {
   Raycaster,
   RepeatWrapping,
   Scene,
-  SRGBColorSpace,
   Vector2,
   WebGLRenderer,
   FogExp2,
@@ -58,57 +56,17 @@ import { play } from '../lib/sound';
 const INTERNAL_HEIGHT = 260;
 
 /**
- * Motes drifting off the top of the well.
+ * The motes are the magicka, and now they are all of it.
  *
- * The well itself is painted now, so these are no longer the effect — they are
- * the part of it that has to live in three dimensions, carrying the magicka
- * up past the flat sprite and into the dark where the room has depth.
+ * With the painted well gone there is nothing standing in the middle of the
+ * room: the magicka wells straight up out of the floor. Animated point sprites
+ * on a nearest-filtered texture with additive blending, their positions and
+ * colours written from JavaScript each frame — no shader anywhere.
  */
-const MOTE_COUNT = 260;
+const MOTE_COUNT = 900;
 
-/** The painted well: 10 frames, five across and two down. */
-const WELL_SHEET = '/art/well.png';
-const WELL_COLUMNS = 5;
-const WELL_ROWS = 2;
-const WELL_FRAMES = 10;
-/** Frames a second. A hand-painted loop, played at a hand-painted rate. */
-const WELL_FPS = 9;
-/** The sheet, and one cell of it, in whole pixels. */
-const SHEET_WIDTH = 1536;
-const SHEET_HEIGHT = 1024;
-const CELL_WIDTH = Math.floor(SHEET_WIDTH / WELL_COLUMNS);
-const CELL_HEIGHT = Math.floor(SHEET_HEIGHT / WELL_ROWS);
-
-/**
- * Left edge of a cell, in whole pixels.
- *
- * 1536 does not divide by five, so cells sit 307 or 308 apart. Both the light
- * sheet and the UV offsets are built off this one function, which is what keeps
- * the two layers registered with each other.
- */
-const cellLeft = (column: number): number =>
-  Math.round((column * SHEET_WIDTH) / WELL_COLUMNS);
-/** How wide the painted stonework should stand in the room. */
-const WELL_STONE_WIDTH = 1.6;
-/** Where the well stands. The motes and the light follow it. */
+/** Where the magicka rises. The light follows it. */
 const WELL_Z = -0.4;
-
-/* Measured off this sheet: the checker runs 253 and 207, both fully neutral. */
-const CHECKER_SATURATION = 8;
-const CHECKER_LUMINANCE = 190;
-const CHECKER_MEAN = 230;
-/** How far a pixel may sit from keyed background and still count as halo. */
-const HALO_RADIUS = 3;
-/** Below this the pixel is stone, not glow, and is left alone. */
-const HALO_LUMINANCE = 170;
-/** Share of the sheet's peak saturation taken to mean "undiluted glow". */
-const GLOW_FRACTION = 0.55;
-
-/* Residue left when the checkerboard fails to cancel between two frames. */
-const NEUTRAL_CHROMA = 16;
-const NEUTRAL_LEVEL = 72;
-/** Puts back what subtracting a bright background took off the glow. */
-const GLOW_GAIN = 1.4;
 
 /** The whole gate ceremony. The brief allows 3s. */
 const CEREMONY_MS = 2600;
@@ -217,281 +175,6 @@ function runeTexture(): CanvasTexture {
   });
 }
 
-/* -- the painted well ----------------------------------------------------- */
-
-interface KeyedSheet {
-  canvas: HTMLCanvasElement;
-  /** Painted width as a fraction of one cell — used to scale the quad. */
-  widthFraction: number;
-  /**
-   * How much of a cell, measured down from its top, the painting actually
-   * occupies. The rest is trimmed off in UV rather than drawn transparent —
-   * it is where the glow spilled onto the checkerboard and could not be keyed
-   * back off it, and cropping is the one treatment that removes it completely.
-   */
-  usedHeight: number;
-}
-
-/**
- * Cut the checkerboard out of the well sheet.
- *
- * THE SOURCE HAS NO ALPHA CHANNEL. It was exported as 24-bit colour with the
- * "transparent" checkerboard painted into the pixels, so the pattern arrives as
- * real grey squares with nothing behind them. A 32-bit PNG carrying a genuine
- * alpha channel deletes this entire function, and ASSETS.md asks for one.
- *
- * Until then, two passes.
- *
- * The first is a plain colour key: the checker is neutral and bright, and
- * measurement says the painting has nothing else that is both — its whites are
- * all blue, so the crystal and the beams survive a global key untouched.
- *
- * The second is the part a key cannot do. Where the glow is semi-transparent
- * the flatten composited it ONTO the checker, so those pixels are part-checker
- * and the pattern is baked into their colour; keying them leaves square holes
- * and keeping them leaves square stains. What is recoverable is an estimate:
- * the background is neutral and the glow is strongly blue, so how much
- * saturation a blended pixel has left says how much glow is in it —
- * alpha ~= saturation / saturation-of-the-pure-glow. With alpha known the grey
- * can be subtracted back out, solving C = a*F + (1-a)*B for F. It runs only on
- * pixels beside keyed ones, which is exactly the halo; solid stone is nowhere
- * near a keyed pixel and is left alone.
- */
-function keyOutCheckerboard(image: HTMLImageElement): KeyedSheet | null {
-  const width = image.naturalWidth;
-  const height = image.naturalHeight;
-  const canvas = document.createElement('canvas');
-  canvas.width = width;
-  canvas.height = height;
-
-  const ctx = canvas.getContext('2d', { willReadFrequently: true });
-  if (ctx === null) return null;
-  ctx.drawImage(image, 0, 0);
-
-  let field: ImageData;
-  try {
-    field = ctx.getImageData(0, 0, width, height);
-  } catch {
-    // A tainted canvas. Better a checkered well than no chamber.
-    return null;
-  }
-  const pixels = field.data;
-  const total = width * height;
-
-  /* -- pass one: the flat background ------------------------------------- */
-
-  const background = new Uint8Array(total);
-  let purest = 1;
-
-  for (let index = 0; index < total; index++) {
-    const i = index * 4;
-    const r = pixels[i]!;
-    const g = pixels[i + 1]!;
-    const b = pixels[i + 2]!;
-    const saturation = Math.max(r, g, b) - Math.min(r, g, b);
-    const luminance = (r + g + b) / 3;
-
-    if (saturation <= CHECKER_SATURATION && luminance >= CHECKER_LUMINANCE) {
-      background[index] = 1;
-      pixels[i + 3] = 0;
-    } else if (saturation > purest) {
-      purest = saturation;
-    }
-  }
-
-  /* -- pass two: the halo ------------------------------------------------ */
-
-  /*
-   * Where the glow was semi-transparent, the flatten composited it ONTO the
-   * checker, so those pixels are part-checker and the pattern is baked into
-   * their colour. What is recoverable is an estimate: the background is
-   * neutral and the glow is strongly blue, so how much saturation a blended
-   * pixel has left says how much glow is in it — alpha ~= saturation /
-   * saturation-of-the-pure-glow — and with alpha known the grey can be
-   * subtracted back out, solving C = a*F + (1-a)*B for F.
-   *
-   * It runs only within HALO_RADIUS of a keyed pixel. Growing the region by
-   * connectivity instead was tried and is worse: the stonework has pale
-   * highlights that are just as desaturated as the spill, so the fill walks
-   * straight through them and eats the entire well.
-   */
-  const stride = width + 1;
-  const sums = new Int32Array(stride * (height + 1));
-  for (let y = 0; y < height; y++) {
-    let row = 0;
-    for (let x = 0; x < width; x++) {
-      row += background[y * width + x]!;
-      sums[(y + 1) * stride + x + 1] = sums[y * stride + x + 1]! + row;
-    }
-  }
-
-  // Constant-time "is there keyed background in this square", via prefix sums.
-  const nearBackground = (x: number, y: number): boolean => {
-    const x0 = Math.max(0, x - HALO_RADIUS);
-    const y0 = Math.max(0, y - HALO_RADIUS);
-    const x1 = Math.min(width, x + HALO_RADIUS + 1);
-    const y1 = Math.min(height, y + HALO_RADIUS + 1);
-    return (
-      sums[y1 * stride + x1]! -
-        sums[y0 * stride + x1]! -
-        sums[y1 * stride + x0]! +
-        sums[y0 * stride + x0]! >
-      0
-    );
-  };
-
-  const pureGlow = purest * GLOW_FRACTION;
-
-  for (let index = 0; index < total; index++) {
-    if (background[index] === 1) continue;
-
-    const i = index * 4;
-    const r = pixels[i]!;
-    const g = pixels[i + 1]!;
-    const b = pixels[i + 2]!;
-
-    // Only the bright halo needs rebuilding; the stonework is dark and opaque.
-    if ((r + g + b) / 3 <= HALO_LUMINANCE) continue;
-
-    const x = index % width;
-    const y = (index - x) / width;
-    if (!nearBackground(x, y)) continue;
-
-    const saturation = Math.max(r, g, b) - Math.min(r, g, b);
-    const alpha = Math.min(saturation / pureGlow, 1);
-
-    // Below this there is more checker in the pixel than glow, and what it is
-    // mostly carrying is the background it was flattened onto.
-    if (alpha < 0.12) {
-      pixels[i + 3] = 0;
-      continue;
-    }
-    if (alpha < 0.996) {
-      const rest = (1 - alpha) * CHECKER_MEAN;
-      pixels[i] = Math.max(0, Math.min(255, (r - rest) / alpha));
-      pixels[i + 1] = Math.max(0, Math.min(255, (g - rest) / alpha));
-      pixels[i + 2] = Math.max(0, Math.min(255, (b - rest) / alpha));
-      pixels[i + 3] = Math.round(alpha * 255);
-    }
-  }
-
-  /*
-   * Where the painting actually sits inside a cell.
-   *
-   * Measured by counting solid pixels per row and column across every cell and
-   * taking the first and last that clear a threshold, rather than by taking the
-   * outermost surviving pixel. A single speck of un-keyable spill would other-
-   * wise define the base of the well, and the whole thing would be hung in the
-   * air above the floor by however far that speck fell below the stone.
-   */
-  const cellWidth = Math.round(width / WELL_COLUMNS);
-  const cellHeight = Math.round(height / WELL_ROWS);
-  const columnMass = new Int32Array(cellWidth);
-  const rowMass = new Int32Array(cellHeight);
-
-  for (let index = 0; index < total; index++) {
-    if (pixels[index * 4 + 3]! < 128) continue;
-    const x = index % width;
-    const y = (index - x) / width;
-    columnMass[x % cellWidth]! += 1;
-    rowMass[y % cellHeight]! += 1;
-  }
-
-  // A row of the stonework runs to thousands of pixels across ten cells; a
-  // speck of un-keyable spill runs to a few hundred. This sits between them.
-  const SOLID = 900;
-  let minX = 0;
-  let maxX = cellWidth - 1;
-  let maxY = cellHeight - 1;
-  while (minX < cellWidth - 1 && columnMass[minX]! < SOLID) minX++;
-  while (maxX > minX && columnMass[maxX]! < SOLID) maxX--;
-  while (maxY > 0 && rowMass[maxY]! < SOLID) maxY--;
-
-  ctx.putImageData(field, 0, 0);
-
-  return {
-    canvas,
-    widthFraction: Math.max((maxX - minX) / cellWidth, 0.05),
-    usedHeight: Math.min((maxY + 1) / cellHeight, 1),
-  };
-}
-
-/**
- * The light the well emits, frame by frame, as its own sheet.
- *
- * Each cell minus cell 0, clamped at zero. Whatever holds still between the
- * two — the stonework, the rim, the checkerboard the sheet was flattened onto
- * — cancels to black, and whatever brightens is what the magicka is doing.
- * Drawn with additive blending over the static stone, where black contributes
- * nothing, so this layer needs no alpha channel and no keying: the background
- * subtracts itself away.
- *
- * The dormant basin's own faint glow belongs to frame 0 and therefore stays in
- * the base layer, which is right — the well is lit before it is lit up.
- */
-function buildLightSheet(image: HTMLImageElement): HTMLCanvasElement {
-  const width = image.naturalWidth;
-  const height = image.naturalHeight;
-
-  const source = document.createElement('canvas');
-  source.width = width;
-  source.height = height;
-  const from = source.getContext('2d', { willReadFrequently: true })!;
-  from.drawImage(image, 0, 0);
-
-  const field = from.getImageData(0, 0, width, height);
-  const pixels = field.data;
-  const lit = new Uint8ClampedArray(pixels.length);
-
-  for (let index = 0; index < WELL_FRAMES; index++) {
-    const column = index % WELL_COLUMNS;
-    const row = Math.floor(index / WELL_COLUMNS);
-    const left = cellLeft(column);
-    const top = row * CELL_HEIGHT;
-
-    for (let y = 0; y < CELL_HEIGHT; y++) {
-      const here = (top + y) * width;
-      const there = y * width;
-      for (let x = 0; x < CELL_WIDTH; x++) {
-        const a = (here + left + x) * 4;
-        const b = (there + x) * 4;
-        const r = Math.max(0, pixels[a]! - pixels[b]!);
-        const g = Math.max(0, pixels[a + 1]! - pixels[b + 1]!);
-        const bl = Math.max(0, pixels[a + 2]! - pixels[b + 2]!);
-
-        /*
-         * The checkerboard does not quite cancel.
-         *
-         * 1536 does not divide by five, so each cell's checker sits at a
-         * different phase from cell 0's, and subtracting them leaves a grid of
-         * residue up to the 46 levels between the two greys. That residue is
-         * neutral, because both greys are; magicka is not. Dropping small
-         * near-grey differences removes the grid and leaves the light.
-         */
-        const chroma = Math.max(r, g, bl) - Math.min(r, g, bl);
-        if (chroma <= NEUTRAL_CHROMA && (r + g + bl) / 3 <= NEUTRAL_LEVEL) {
-          lit[a + 3] = 255;
-          continue;
-        }
-
-        // Subtracting a bright background costs the glow some of its strength.
-        lit[a] = r * GLOW_GAIN;
-        lit[a + 1] = g * GLOW_GAIN;
-        lit[a + 2] = bl * GLOW_GAIN;
-        lit[a + 3] = 255;
-      }
-    }
-  }
-
-  const canvas = document.createElement('canvas');
-  canvas.width = width;
-  canvas.height = height;
-  canvas
-    .getContext('2d')!
-    .putImageData(new ImageData(lit, width, height), 0, 0);
-  return canvas;
-}
-
 /* -- the screen ----------------------------------------------------------- */
 
 export function chamberScreen(): Screen {
@@ -505,7 +188,7 @@ export function chamberScreen(): Screen {
     el(
       'p',
       { class: 'chamber-hint' },
-      'THE WELL LIGHTS WHAT IT WILL',
+      'THE LIGHT SHOWS WHAT IT WILL',
     ),
   );
 
@@ -647,148 +330,18 @@ export function chamberScreen(): Screen {
   gateHit.position.set(0, 1.76, GATE_Z + 0.2);
   scene.add(gateHit);
 
-  /* -- the well ----------------------------------------------------------- */
+  /* -- the magicka -------------------------------------------------------- */
 
   /*
-   * The well is painted, not modelled.
+   * The light the magicka throws.
    *
-   * One quad carrying a ten-frame sheet, stepped by moving the texture offset
-   * — the oldest sprite trick there is, and still the one that needs no
-   * shader. The camera never orbits, so a flat quad facing it is indis-
-   * tinguishable from geometry, and the painting has lighting and runes on it
-   * that would cost a great deal of three.js to reproduce badly.
-   *
-   * NearestFilter, as everywhere here: the sheet is upscaled by the same
-   * quarter-resolution pass as the rest of the room and has to stay hard.
+   * It stays whatever else goes, because it is the only thing that finds the
+   * gate. The brief has no ENTER button — the gate is nearly invisible and is
+   * revealed by this light alone — so removing it would leave a dark room with
+   * a door nobody can see.
    */
-  /*
-   * The well is painted, and it is painted in two layers.
-   *
-   * The stonework does not move. Only the magicka does — the light in the
-   * basin, the column, the sparks coming off it — so animating whole frames
-   * was wrong: the ten paintings differ very slightly in their stone as well,
-   * and cycling them made the masonry crawl.
-   *
-   * So the base layer is frame 0 and never changes, and above it sits a second
-   * quad carrying only the LIGHT, obtained by subtracting frame 0 from each
-   * frame. Everything that holds still cancels to black; everything that
-   * brightens survives. Blended additively, black is nothing, which is exactly
-   * what emitted light does — and it means the light layer needs no keying at
-   * all, because the checkerboard is identical in every frame and subtracts
-   * itself away.
-   */
-  const wellMaterial = keep(
-    new MeshBasicMaterial({
-      transparent: true,
-      depthWrite: false,
-      toneMapped: false,
-    }),
-  );
-  const well = new Mesh(keepGeometry(new PlaneGeometry(1, 1)), wellMaterial);
-  well.visible = false;
-  scene.add(well);
-
-  const glowMaterial = keep(
-    new MeshBasicMaterial({
-      transparent: true,
-      depthWrite: false,
-      toneMapped: false,
-      blending: AdditiveBlending,
-    }),
-  );
-  const glow = new Mesh(keepGeometry(new PlaneGeometry(1, 1)), glowMaterial);
-  glow.visible = false;
-  glow.renderOrder = 1;
-  scene.add(glow);
-
-  let glowMap: Texture | null = null;
-  let wellCrop = 1;
-  let wellFrame = 0;
-  let wellClock = 0;
-
-  /*
-   * Loaded through `onload`, not `decode()`. In this browser `decode()` was
-   * observed never settling — neither resolving nor rejecting — which leaves
-   * the well invisible with nothing in the console to explain it.
-   */
-  const load = new Promise<HTMLImageElement | null>((resolve) => {
-    const img = new Image();
-    img.onload = () => resolve(img);
-    img.onerror = () => resolve(null);
-    img.src = WELL_SHEET;
-  });
-
-  void load
-    .then((sheet) => {
-      if (sheet === null) return;
-      const keyed = keyOutCheckerboard(sheet);
-      if (keyed === null) return;
-      wellCrop = keyed.usedHeight;
-
-      const cropHeight = wellCrop * CELL_HEIGHT;
-      const frame = (texture: Texture, index: number): void => {
-        const column = index % WELL_COLUMNS;
-        const row = Math.floor(index / WELL_COLUMNS);
-        texture.offset.set(
-          cellLeft(column) / SHEET_WIDTH,
-          (SHEET_HEIGHT - row * CELL_HEIGHT - cropHeight) / SHEET_HEIGHT,
-        );
-      };
-
-      const dress = (texture: Texture): void => {
-        texture.magFilter = NearestFilter;
-        texture.minFilter = NearestFilter;
-        texture.generateMipmaps = false;
-        texture.colorSpace = SRGBColorSpace;
-        texture.repeat.set(CELL_WIDTH / SHEET_WIDTH, cropHeight / SHEET_HEIGHT);
-      };
-
-      // The stone, once.
-      const base = new CanvasTexture(keyed.canvas);
-      dress(base);
-      frame(base, 0);
-      keepTexture(base);
-      wellMaterial.map = base;
-      wellMaterial.needsUpdate = true;
-
-      // The light, ten times.
-      const lit = new CanvasTexture(buildLightSheet(sheet));
-      dress(lit);
-      keepTexture(lit);
-      glowMap = lit;
-      glowMaterial.map = lit;
-      glowMaterial.needsUpdate = true;
-
-      // Fit both quads from the painting rather than from guesswork: scale so
-      // the stonework is WELL_STONE_WIDTH across, then stand it on the floor.
-      // The crop puts the base at the very bottom, so that is half its height.
-      const width = WELL_STONE_WIDTH / keyed.widthFraction;
-      const height = width * (cropHeight / CELL_WIDTH);
-      for (const mesh of [well, glow]) {
-        mesh.scale.set(width, height, 1);
-        mesh.position.set(0, height / 2, WELL_Z);
-        mesh.visible = true;
-      }
-
-      showWellFrame(0);
-
-      function showWellFrame(index: number): void {
-        if (glowMap === null) return;
-        frame(glowMap, index);
-      }
-      step = showWellFrame;
-    })
-    .catch(() => {
-      // The sheet did not arrive, or the canvas refused to give its pixels
-      // back. The motes and the light still describe a well, and the gate is
-      // still findable, which is all the chamber owes.
-    });
-
-  let step: ((index: number) => void) | null = null;
-
-  // Sat just above the mouth so the spill clears the rim and reaches the gate.
   const wellLight = new PointLight(new Color('#4fd2e6'), 9, 20, 1.5);
-  wellLight.position.set(0, 0.62, -0.4);
+  wellLight.position.set(0, 0.62, WELL_Z);
   scene.add(wellLight);
 
   // The motes. Positions, velocities and colours are plain arrays written from
@@ -802,7 +355,7 @@ export function chamberScreen(): Screen {
 
   function seed(i: number, atBottom: boolean): void {
     angle[i] = Math.random() * Math.PI * 2;
-    radius[i] = Math.random() ** 0.6 * 0.34;
+    radius[i] = Math.random() ** 0.6 * 0.78;
     life[i] = atBottom ? 0 : Math.random();
     speed[i] = 0.16 + Math.random() * 0.42;
   }
@@ -843,9 +396,8 @@ export function chamberScreen(): Screen {
       const spreadAt = radius[i]! * (1 - t * 0.62);
 
       positions[i * 3] = Math.cos(spin) * spreadAt;
-      // Picked up where the painted jet leaves off, and carried to the ceiling.
-      positions[i * 3 + 1] = 1.95 + t * 2.6;
-      positions[i * 3 + 2] = -0.4 + Math.sin(spin) * spreadAt;
+      positions[i * 3 + 1] = 0.06 + t * 3.4;
+      positions[i * 3 + 2] = WELL_Z + Math.sin(spin) * spreadAt;
 
       // Bright at the mouth of the well, gone by the ceiling.
       const glow = Math.max(0, 1 - t) ** 1.5;
@@ -860,10 +412,26 @@ export function chamberScreen(): Screen {
 
   /* -- sizing ------------------------------------------------------------- */
 
+  let sizedWidth = 0;
+  let sizedHeight = 0;
+
+  /**
+   * Idempotent, and called from the loop as well as from the observer.
+   *
+   * The observer alone is not enough: it is delivered as part of the browser's
+   * rendering steps, and a backgrounded or throttled tab can withhold it
+   * indefinitely — which leaves the camera on its placeholder aspect and the
+   * renderer at its default 300x150 buffer for the life of the scene. Checking
+   * two properties per frame is cheaper than being wrong about the shape of the
+   * room, and the early return means nothing is reallocated unless it changed.
+   */
   function resize(): void {
     const width = element.clientWidth;
     const height = element.clientHeight;
     if (width === 0 || height === 0) return;
+    if (width === sizedWidth && height === sizedHeight) return;
+    sizedWidth = width;
+    sizedHeight = height;
 
     const scale = Math.max(2, Math.round(height / INTERNAL_HEIGHT));
     camera.aspect = width / height;
@@ -885,6 +453,20 @@ export function chamberScreen(): Screen {
     const box = element.getBoundingClientRect();
     pointer.x = ((event.clientX - box.left) / box.width) * 2 - 1;
     pointer.y = -((event.clientY - box.top) / box.height) * 2 + 1;
+
+    /*
+     * World matrices, explicitly, before casting.
+     *
+     * Raycasting reads `matrixWorld`, which three.js only refreshes as part of
+     * rendering. If a pointer event is handled before the loop has drawn — or
+     * against a scene whose loop is not running — the cast is made against an
+     * untransformed camera and an untransformed plane sitting at the origin.
+     * That is not a hypothetical: it put the gate's hit area over the floor,
+     * two units below the doors, with the hand cursor appearing on empty flags
+     * and nothing happening over the gate itself.
+     */
+    camera.updateMatrixWorld();
+    gateHit.updateMatrixWorld();
     raycaster.setFromCamera(pointer, camera);
     const hit = raycaster.intersectObject(gateHit, false).length > 0;
     if (hit === overGate) return;
@@ -986,14 +568,9 @@ export function chamberScreen(): Screen {
     const delta = Math.min((now - last) / 1000, 0.05);
     last = now;
 
-    stepMotes(delta);
+    resize();
 
-    wellClock += delta;
-    if (wellClock >= 1 / WELL_FPS) {
-      wellClock %= 1 / WELL_FPS;
-      wellFrame = (wellFrame + 1) % WELL_FRAMES;
-      step?.(wellFrame);
-    }
+    stepMotes(delta);
 
     // The well breathes. Two frequencies so it never reads as a loop.
     flicker += delta;
@@ -1005,6 +582,21 @@ export function chamberScreen(): Screen {
     renderer.render(scene, camera);
   }
 
+  /*
+   * Sized by a ResizeObserver, not by a frame callback.
+   *
+   * This used to call resize() once from a requestAnimationFrame. That call
+   * can land before the element has been laid out, and resize() bails on a
+   * zero-sized element — so the camera kept its placeholder aspect of 1 for
+   * the life of the scene. The room still drew, which is why it went unnoticed,
+   * but the projection used to pick the gate was not the projection it was
+   * drawn with, and the hand cursor appeared over the floor instead of over the
+   * doors. An observer fires when the element actually has a size, however late
+   * that is, and again whenever it changes.
+   */
+  const observer = new ResizeObserver(() => resize());
+  observer.observe(element);
+
   const onResize = (): void => resize();
 
   element.addEventListener('pointermove', onPointerMove);
@@ -1012,17 +604,14 @@ export function chamberScreen(): Screen {
   window.addEventListener('keydown', onKeydown);
   window.addEventListener('resize', onResize);
 
-  // The element is not in the document yet when this runs.
-  requestAnimationFrame(() => {
-    resize();
-    frame = requestAnimationFrame(tick);
-  });
+  frame = requestAnimationFrame(tick);
 
   return {
     element,
     title: 'THE CHAMBER',
     destroy() {
       cancelAnimationFrame(frame);
+      observer.disconnect();
       window.clearTimeout(leaveTimer);
       element.removeEventListener('pointermove', onPointerMove);
       element.removeEventListener('pointerdown', onPointerDown);

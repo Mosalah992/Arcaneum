@@ -17,32 +17,28 @@ build, because `vite build` empties `dist/` first.
 
 | File | Size | Where | Subject |
 | --- | --- | --- | --- |
-| `art/well.png` | 1536×1024 | `src/screens/chamber.ts` | Ten-frame sheet, 5×2, of a rune-carved magicka font: dormant basin, swirl, rising column, full jet, peak, and back down. One cell is 307×512. |
+| `art/well.png` | 1536×1024 | **unused** | Ten-frame sheet, 5×2, of a rune-carved magicka font. The well was removed from the chamber; the file is kept in case it is wanted again, and nothing loads it. |
 | `art/rubrication.png` | 1536×1024 | `src/lib/rubrication.ts` | Illuminated manuscript elements — decorated initials, a dragon border, sun, hare, raven, stag, hound, snail, compass rose, scribe, wizard — cut out on transparency. |
 
-### `art/well.png` — needs re-exporting
+### `art/well.png` — no longer used
 
-**Export it again as 32-bit PNG with a real alpha channel.** The current file
-is 24-bit colour with the transparency checkerboard flattened into the pixels,
-so the grey squares are actual image data. `keyOutCheckerboard()` in
-`src/screens/chamber.ts` reconstructs the transparency at load, and it is about
-100 lines that exist only because of this. A proper export deletes all of it.
+The well was removed from the chamber. The magicka wells straight up out of the
+floor now, as point sprites, and nothing loads this sheet. The file is left in
+place rather than deleted, in case it is wanted again.
 
-What the keying cannot fix, and a real alpha channel would: where the glow is
-semi-transparent, the flatten mixed it *with* the checker, so those pixels are
-part-background and the true colour is gone. It is estimated from the remaining
-blue saturation, which is close but not the painting.
+If it is ever brought back, **export it as 32-bit PNG with a real alpha
+channel** first. The current file is 24-bit colour with the transparency
+checkerboard flattened into the pixels, so the grey squares are real image data
+and no key can fully undo it: where the glow was semi-transparent, the flatten
+mixed it *with* the checker and the true colour is gone.
 
-`art/rubrication.png` has a real alpha channel and needs nothing.
+### `art/rubrication.png`
 
-### Both sheets — worth compressing
-
-2.9 MB each as PNG. The well sheet is behind the chamber's code-split chunk and
-the rubrication sheet loads with the reader, so neither blocks first paint, but
-both are heavy for a phone. WebP at quality ~85 would put each near 250 KB with
-no visible loss at the sizes they are drawn. This needs an image-processing
-dependency (`sharp`) that is not in the spec's list, so it has not been added —
-say the word.
+Has a real alpha channel and needs nothing. At 2.9 MB it is heavy for a phone —
+it loads with the reader, so it does not block first paint, but WebP at quality
+~85 would put it near 250 KB with no visible loss at the size it is drawn. That
+needs an image-processing dependency (`sharp`) which is not in the spec's list,
+so it has not been added — say the word.
 
 ---
 
