@@ -1,13 +1,25 @@
-/* The two-page spread. */
+/* The reading room.
+ *
+ * The binding is ported from the Chronicles reader in the Centralized Archive:
+ * two leaves, a spine, and a third leaf held above the spread carrying the
+ * outgoing page on its front and the incoming one on its back, turned on the
+ * spine. Spread 0 is the inside of the front board facing the title page.
+ *
+ * The surface is not ported. That book is warm gilt and soft perspective; this
+ * one is a stone-framed archive terminal, so the leaves are hard-edged, the
+ * frames are beveled, and the running heads are bitmap type.
+ */
 
 .reader {
   flex: 1 1 auto;
   min-height: 0;
   display: flex;
   flex-direction: column;
-  padding: 10px 12px 8px;
-  gap: 8px;
+  padding: 8px 12px 6px;
+  gap: 7px;
 }
+
+/* -- running head ------------------------------------------------------- */
 
 .reader-head {
   flex: 0 0 auto;
@@ -26,11 +38,6 @@
   text-shadow: 0 0 6px var(--magicka-dim);
 }
 
-.reader-head .by {
-  color: var(--parchment-dim);
-  white-space: nowrap;
-}
-
 .reader-head .ttl {
   flex: 1 1 auto;
   min-width: 0;
@@ -40,6 +47,11 @@
   color: var(--parchment);
 }
 
+.reader-head .by {
+  color: var(--parchment-dim);
+  white-space: nowrap;
+}
+
 .reader-head .sealed {
   padding: 0 5px 1px;
   color: var(--parchment-lit);
@@ -47,73 +59,142 @@
   box-shadow: var(--bevel-out);
 }
 
-/* The parchment itself. Positioned so the column flow can be clipped. */
-.spread {
-  position: relative;
+/* -- the book ----------------------------------------------------------- */
+
+.book-stage {
   flex: 1 1 auto;
   min-height: 0;
-  overflow: hidden;
-  padding: 26px 34px;
-  color: var(--ink);
-  background:
-    repeating-linear-gradient(
-      104deg,
-      rgba(120, 96, 56, 0.045) 0 2px,
-      transparent 2px 6px
-    ),
-    radial-gradient(ellipse at 50% 40%, #efe2bf 0%, #d9c8a0 62%, #bda877 100%);
-  box-shadow:
-    inset 0 0 60px rgba(90, 66, 30, 0.4),
-    inset 0 0 8px rgba(50, 34, 12, 0.5),
-    0 0 0 1px var(--obsidian),
-    0 0 0 4px var(--stone-700),
-    0 0 0 5px var(--obsidian),
-    0 6px 18px rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* The gutter shadow, which is what sells two leaves rather than one sheet. */
-.spread::after {
+/* Sized by the reader in JS so two leaves and the spine always fit the stage. */
+.book {
+  position: relative;
+  display: flex;
+  perspective: 2200px;
+  box-shadow:
+    0 0 0 1px var(--obsidian),
+    0 0 0 5px var(--stone-700),
+    0 0 0 6px var(--obsidian),
+    0 10px 26px rgba(0, 0, 0, 0.72);
+}
+
+.page {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  background:
+    radial-gradient(ellipse at 20% 12%, rgba(255, 248, 222, 0.42), transparent 56%),
+    radial-gradient(ellipse at 84% 92%, rgba(120, 88, 40, 0.22), transparent 60%),
+    radial-gradient(ellipse at 50% 50%, #e6d7b0 52%, #c9b483 100%);
+  box-shadow:
+    inset 0 0 46px rgba(94, 66, 28, 0.34),
+    inset 0 0 6px rgba(70, 48, 18, 0.42);
+}
+
+/* Paper grain. A data URI, so nothing is downloaded and no art is licensed —
+   taken from the Chronicles stylesheet and retinted to this parchment. */
+.page::after,
+.turnleaf__face::after {
   content: '';
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 46px;
-  transform: translateX(-50%);
+  inset: 0;
+  z-index: 3;
   pointer-events: none;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(90, 66, 30, 0.13) 34%,
-    rgba(58, 40, 16, 0.34) 50%,
-    rgba(90, 66, 30, 0.13) 66%,
-    transparent 100%
-  );
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.70 0 0 0 0 0.60 0 0 0 0 0.41 0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-.spread-clip {
+/* Shading into the gutter, so two leaves read as one opened book. */
+.page::before {
+  content: '';
   position: absolute;
-  inset: 26px 34px 30px;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.page--left::before {
+  background: linear-gradient(270deg, rgba(64, 44, 18, 0.42), transparent 20%);
+}
+
+.page--right::before {
+  background: linear-gradient(90deg, rgba(64, 44, 18, 0.42), transparent 20%);
+}
+
+.spine {
+  flex: 0 0 4px;
+  align-self: stretch;
+  z-index: 4;
+  background: linear-gradient(180deg, #2e2113, #120c06);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+}
+
+/* The inside of the front board, shown only opposite the title page. */
+.board {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at 32% 30%, #2c2419, #100c07 76%);
+  box-shadow:
+    inset 0 0 0 2px rgba(160, 130, 82, 0.26),
+    inset 0 0 56px rgba(0, 0, 0, 0.66);
+}
+
+.book--cover .board { display: flex; }
+.book--cover .page--left > .page__win,
+.book--cover .page--left::before { visibility: hidden; }
+
+/* Drawn, not painted: a college sigil built from CSS so there is no asset to
+   wait on. ASSETS.md lists the plate that will replace it. */
+.board__sigil {
+  width: 42%;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  font-size: 46px;
+  color: var(--magicka-dim);
+  border: 2px solid rgba(160, 130, 82, 0.3);
+  transform: rotate(45deg);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+.board__sigil span {
+  transform: rotate(-45deg);
+  text-shadow: 0 0 14px var(--magicka-dim);
+}
+
+/* -- the text on a leaf ------------------------------------------------- */
+
+/* Each window shows exactly one column of the strip inside it. Every strip is
+   the full width of a spread, so all four lay out identically and a column
+   break falls in the same place on the page, on the leaf, and on the clone. */
+.page__win,
+.turnleaf__win {
+  position: absolute;
+  inset: 22px 26px 26px;
+  z-index: 2;
   overflow: hidden;
 }
 
-/* The paged flow. A fixed height with column-fill:auto makes the browser
-   lay the whole tome out in columns running off to the right; the reader
-   slides that strip two columns at a time. No measurement code needed, and
-   it re-paginates for free on resize. */
 .leaves {
   height: 100%;
   column-count: 2;
-  column-gap: 68px;
   column-fill: auto;
   font-family: var(--font-body);
-  font-size: 17px;
-  line-height: 1.52;
+  font-size: 16.5px;
+  line-height: 1.5;
   text-align: justify;
   hyphens: auto;
+  color: var(--ink);
   -webkit-font-smoothing: antialiased;
   font-smooth: always;
-  will-change: transform;
 }
 
 .leaves > * {
@@ -121,62 +202,62 @@
 }
 
 .leaves p {
-  margin: 0 0 0.72em;
+  margin: 0 0 0.7em;
   text-indent: 1.2em;
 }
 
-.leaves > p:first-child,
+.leaves .standfirst,
 .leaves h2 + p,
 .leaves hr + p,
 .leaves .marginalia + p {
   text-indent: 0;
 }
 
-.leaves > p:first-child {
+.leaves .standfirst {
   font-style: italic;
   color: var(--ink-faded);
   text-align: left;
 }
 
 .leaves h2 {
-  margin: 0.3em 0 0.5em;
-  /* Headings must not inherit the body's justification. */
-  text-align: left;
+  margin: 0.25em 0 0.45em;
   font-family: var(--font-ui);
-  font-size: 21px;
+  font-size: 20px;
   font-weight: normal;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  /* Must not inherit the body's justification. */
+  text-align: left;
   color: var(--burgundy);
-  border-bottom: 1px solid rgba(87, 19, 34, 0.28);
+  border-bottom: 1px solid rgba(87, 19, 34, 0.26);
   padding-bottom: 2px;
 }
 
 .leaves hr {
   height: 0;
-  margin: 0.9em 18%;
+  margin: 0.8em 18%;
   border: 0;
-  border-top: 1px solid rgba(93, 76, 51, 0.42);
+  border-top: 1px solid rgba(93, 76, 51, 0.4);
 }
 
 .leaves strong { font-weight: 600; }
 .leaves em { font-style: italic; }
 
 .leaves blockquote {
-  margin: 0 0 0.72em 1.4em;
+  margin: 0 0 0.7em 1.3em;
   padding-left: 0.8em;
-  border-left: 2px solid rgba(93, 76, 51, 0.4);
+  border-left: 2px solid rgba(93, 76, 51, 0.38);
   font-style: italic;
 }
 
 /* A librarian's pencil note, set into the margin. Deliberately not a link:
    the reader has to notice the call number and type it into the catalogue. */
 .marginalia {
-  margin: 0.9em 0 0.9em 1.6em;
+  margin: 0.85em 0 0.85em 1.5em;
   padding: 4px 0 4px 10px;
   border-left: 2px solid rgba(107, 99, 85, 0.5);
-  font-size: 14.5px;
-  line-height: 1.42;
+  font-size: 14px;
+  line-height: 1.4;
   font-style: italic;
   text-align: left;
   text-indent: 0;
@@ -187,7 +268,7 @@
 .call-ref {
   font-family: var(--font-ui);
   font-style: normal;
-  font-size: 16px;
+  font-size: 15.5px;
   letter-spacing: 0.09em;
   color: #55503f;
   border-bottom: 1px dotted rgba(85, 80, 63, 0.75);
@@ -195,25 +276,127 @@
   cursor: text;
 }
 
-.leaves p .call-ref {
-  color: #5f5843;
+/* -- the title page ----------------------------------------------------- */
+
+/* Occupies column 0 by itself, so it is the leaf the board faces. */
+.title-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  break-after: column;
+  break-inside: avoid-column;
 }
 
-/* Sweeps across the gutter when a spread turns. */
-.page-flip {
+.title-page__call {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 19px;
+  letter-spacing: 0.22em;
+  color: var(--burgundy);
+}
+
+.title-page__title {
+  margin: 0;
+  max-width: 90%;
+  font-family: var(--font-body);
+  font-size: 27px;
+  font-weight: 600;
+  line-height: 1.22;
+  color: var(--ink);
+}
+
+.title-page__rule {
+  width: 46%;
+  height: 0;
+  border-top: 1px solid rgba(93, 76, 51, 0.55);
+  border-bottom: 1px solid rgba(93, 76, 51, 0.28);
+  padding-top: 2px;
+}
+
+.title-page__author {
+  margin: 0;
+  font-size: 17px;
+  font-style: italic;
+  color: var(--ink-faded);
+}
+
+.title-page__school {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+
+.title-page__seal {
+  margin-top: 6px;
+  padding: 2px 9px 3px;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  letter-spacing: 0.18em;
+  color: #f0e2c4;
+  background: var(--burgundy);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* -- the turning leaf --------------------------------------------------- */
+
+.turnleaf {
+  position: absolute;
+  top: 0;
+  /* Flush with the right-hand leaf, not with the middle of the book: the
+     spine takes 4px out of the width, so a leaf at a plain 50%/50% sits two
+     pixels adrift and shows a seam for the first frame of every turn. */
+  left: calc(50% + 2px);
+  width: calc(50% - 2px);
+  height: 100%;
+  z-index: 6;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  visibility: hidden;
+  /* NO `transition` HERE, AND IT MUST STAY THAT WAY. The tween writes
+     `transform` inline once per frame; a transition on the same property would
+     try to interpolate every one of those writes and the leaf would swim
+     rather than turn. (Carried over verbatim from the Chronicles reader — it
+     is the same trap in a different codebase.) */
+}
+
+.book--turning .turnleaf { visibility: visible; }
+
+.turnleaf__face {
   position: absolute;
   inset: 0;
-  z-index: 3;
-  pointer-events: none;
-  opacity: 0;
-  transform-origin: left center;
-  background: linear-gradient(
-    90deg,
-    rgba(58, 40, 16, 0.42) 0%,
-    rgba(240, 228, 196, 0.9) 18%,
-    rgba(214, 196, 156, 0.72) 100%
-  );
+  backface-visibility: hidden;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 20% 12%, rgba(255, 248, 222, 0.42), transparent 56%),
+    radial-gradient(ellipse at 84% 92%, rgba(120, 88, 40, 0.22), transparent 60%),
+    radial-gradient(ellipse at 50% 50%, #e6d7b0 52%, #c9b483 100%);
+  box-shadow:
+    inset 0 0 46px rgba(94, 66, 28, 0.34),
+    inset 0 0 6px rgba(70, 48, 18, 0.42);
 }
+
+.turnleaf__face--back {
+  transform: rotateY(180deg);
+}
+
+/* Sweeps across as the leaf passes over — brightest at the half-turn. */
+.turnleaf__shade {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(20, 12, 4, 0.5), rgba(20, 12, 4, 0.05));
+}
+
+/* -- foot --------------------------------------------------------------- */
 
 .reader-foot {
   flex: 0 0 auto;
@@ -259,36 +442,44 @@
 
 .reader-status--error { color: var(--burgundy-lit); }
 
-/* Under 900px a two-page spread is unreadable. One column, scrolled. */
+/* -- under 900px -------------------------------------------------------- */
+
+/* A two-page spread on a phone is two unreadable pages. The binding comes
+   apart into one scrolling column; the leaf, the spine and the board go. */
 @media (max-width: 900px) {
-  .reader { padding: 8px; }
+  .reader { padding: 6px 8px; }
 
-  .reader-head {
-    font-size: 15px;
-    gap: 8px;
-  }
-
+  .reader-head { font-size: 15px; gap: 8px; }
   .reader-head .by { display: none; }
 
-  .spread {
-    padding: 16px 18px;
+  .book-stage { align-items: stretch; }
+
+  .book {
+    width: 100% !important;
+    height: 100% !important;
+    perspective: none;
     box-shadow:
-      inset 0 0 40px rgba(90, 66, 30, 0.34),
       0 0 0 1px var(--obsidian),
       0 0 0 3px var(--stone-700);
   }
 
-  .spread::after,
-  .page-flip { display: none; }
+  .spine,
+  .turnleaf,
+  .board,
+  .page--right { display: none; }
 
-  .spread-clip {
+  .page::before { display: none; }
+
+  .page--left > .page__win {
     position: static;
     height: 100%;
+    padding: 14px 16px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
 
   .leaves {
+    width: auto !important;
     height: auto;
     column-count: 1;
     font-size: 17px;
@@ -300,6 +491,16 @@
 
   .leaves h2 { font-size: 18px; }
   .marginalia { margin-left: 0.6em; }
+
+  /* The title page is a full-height panel in a paged book and a banner in a
+     scrolled one. */
+  .title-page {
+    height: auto;
+    padding: 8px 0 18px;
+    break-after: auto;
+  }
+
+  .title-page__title { font-size: 23px; }
 
   .reader-foot .pager { display: none; }
   .folio { text-align: left; }
