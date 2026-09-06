@@ -1,10 +1,23 @@
 /**
- * The reader: one tome across a two-page parchment spread.
+ * The reader: one tome, bound.
  *
- * Pagination is done by the browser rather than by measuring code. The prose
- * is laid into a fixed-height, two-column box with `column-fill: auto`, which
- * makes the rest of the tome flow off to the right in further column pairs.
- * Turning a spread is a translate. Resizing re-paginates for free.
+ * THE BINDING is ported from the Chronicles reader in the Centralized Archive.
+ * Spread 0 is the inside of the front board facing the title page; spread s
+ * after that shows pages [2s-1, 2s]; and a turn is done with a third leaf held
+ * above the spread, its front carrying the outgoing page and its back the
+ * incoming one, rotated on the spine. Its easing curve comes across verbatim
+ * (`swing`, 0.9s) as a cubic-bézier, so this project keeps to one animation
+ * library rather than taking on GSAP for one screen.
+ *
+ * THE PAGINATION does not come across. That reader packs discrete dated
+ * entries to a character budget, which is right for a chronicle and wrong for
+ * continuous prose — a budget on running text gives visibly ragged pages. Here
+ * the browser breaks the text: the whole tome is laid into a fixed-height
+ * two-column strip with `column-fill: auto`, which flows the remainder off to
+ * the right in further columns, and each leaf is a clipped window onto a copy
+ * of that strip translated to the column it should show. Every strip is one
+ * spread wide, so all four lay out identically and a break falls in the same
+ * place on the page, on the turning leaf, and on every clone.
  */
 
 import { animate } from 'animejs';
@@ -13,129 +26,282 @@ import { fetchTome, ArchiveError, type Tome } from '../lib/api';
 import { renderMarkdown, citedCallNumbers } from '../lib/markdown';
 import { navigate, type Screen } from '../lib/router';
 
-/** Below this the spread is replaced by a single scrolling column. */
+/** Below this the binding comes apart into one scrolling column. */
 const SPREAD_MIN_WIDTH = 900;
 
-/** Length of the leaf sweep, and the floor between turns. */
-const TURN_MS = 280;
+/** A hinged board swinging. The Chronicles leaf's 0.9s. */
+const TURN_MS = 900;
+
+/** The Chronicles `swing` curve, carried over as its control points. */
+const SWING = 'cubicBezier(0.35, 0.1, 0.28, 1)';
+
+/** Two leaves plus the spine, as a ratio. Each leaf is 23:32. */
+const BOOK_RATIO = (23 * 2) / 32;
+
+/**
+ * Separation between columns inside a strip.
+ *
+ * Never seen — each window shows one column — but it has to be identical in
+ * every strip or their breaks drift apart.
+ */
+const COLUMN_GAP = 64;
+
+interface Win {
+  frame: HTMLElement;
+  strip: HTMLElement;
+}
 
 export function readerScreen(params: Record<string, string>): Screen {
   const id = Number(params.id);
 
+  /* -- structure -------------------------------------------------------- */
+
   const head = el('div', { class: 'reader-head' });
-  const leaves = el('article', { class: 'leaves' });
-  const clip = el('div', { class: 'spread-clip' }, leaves);
-  const flip = el('div', { class: 'page-flip', 'aria-hidden': 'true' });
-  const spread = el('div', { class: 'spread' }, clip, flip);
 
-  const prev = el('button', {
-    class: 'pager',
-    type: 'button',
-    onclick: () => turn(-1),
-  });
+  const makeWin = (frameClass: string): Win => {
+    const strip = el('article', { class: 'leaves' });
+    return { frame: el('div', { class: frameClass }, strip), strip };
+  };
+
+  const left = makeWin('page__win');
+  const right = makeWin('page__win');
+  const front = makeWin('turnleaf__win');
+  const back = makeWin('turnleaf__win');
+  const wins = [left, right, front, back];
+
+  const board = el(
+    'div',
+    { class: 'board', 'aria-hidden': 'true' },
+    el('div', { class: 'board__sigil' }, el('span', {}, '❖')),
+  );
+
+  const shade = el('div', { class: 'turnleaf__shade', 'aria-hidden': 'true' });
+  const turnleaf = el(
+    'div',
+    { class: 'turnleaf', 'aria-hidden': 'true' },
+    el('div', { class: 'turnleaf__face turnleaf__face--front' }, front.frame),
+    el('div', { class: 'turnleaf__face turnleaf__face--back' }, back.frame),
+    shade,
+  );
+
+  const book = el(
+    'div',
+    { class: 'book' },
+    el('div', { class: 'page page--left' }, board, left.frame),
+    el('div', { class: 'spine', 'aria-hidden': 'true' }),
+    el('div', { class: 'page page--right' }, right.frame),
+    turnleaf,
+  );
+
+  const stage = el('div', { class: 'book-stage' }, book);
+
+  const prev = el('button', { class: 'pager', type: 'button', onclick: () => turn(-1) });
   prev.textContent = '< BACK';
-
-  const next = el('button', {
-    class: 'pager',
-    type: 'button',
-    onclick: () => turn(1),
-  });
+  const next = el('button', { class: 'pager', type: 'button', onclick: () => turn(1) });
   next.textContent = 'FORWARD >';
 
   const folio = el('div', { class: 'folio' });
   const foot = el('div', { class: 'reader-foot' }, prev, folio, next);
 
-  const element = el('div', { class: 'screen reader' }, head, spread, foot);
+  const element = el('div', { class: 'screen reader' }, head, stage, foot);
+
+  /* -- state ------------------------------------------------------------ */
 
   let tome: Tome | null = null;
   let cited: string[] = [];
-  let spreads = 1;
-  let at = 0;
-  let lastTurn = 0;
+  /** Columns in the strip. Column 0 is the title page. */
+  let pages = 1;
+  let spread = 0;
+  /** One column plus its gap: how far a strip travels per page. */
+  let stride = 1;
+  let land: (() => void) | null = null;
 
-  function paged(): boolean {
-    return window.innerWidth > SPREAD_MIN_WIDTH;
-  }
+  const paged = (): boolean => window.innerWidth > SPREAD_MIN_WIDTH;
+  const maxSpread = (): number => Math.max(0, Math.ceil((pages - 1) / 2));
 
-  /** Column width plus gutter, doubled, is one spread's worth of travel. */
-  function stride(): number {
-    const gap = parseFloat(getComputedStyle(leaves).columnGap) || 0;
-    return clip.clientWidth + gap;
-  }
+  /** Spread 0 faces the board; every later one is an odd page and the next. */
+  const facing = (s: number): [number, number] =>
+    s === 0 ? [-1, 0] : [2 * s - 1, 2 * s];
 
+  /* -- layout ----------------------------------------------------------- */
+
+  /**
+   * Size the book to the stage, then lay every strip out one spread wide.
+   *
+   * Called on load, on resize, and once the fonts have arrived — a fallback
+   * face breaks the text in different places, so measuring before the real
+   * face lands would page the tome wrongly and never correct itself.
+   */
   function measure(): void {
     if (!paged()) {
-      spreads = 1;
-      at = 0;
-      leaves.style.transform = '';
+      book.classList.remove('book--cover', 'book--turning');
+      book.style.width = '';
+      book.style.height = '';
+      for (const win of wins) {
+        win.strip.style.width = '';
+        win.strip.style.columnWidth = '';
+        win.strip.style.transform = '';
+        win.frame.style.visibility = '';
+      }
+      pages = 1;
+      spread = 0;
       updateFoot();
       return;
     }
-    const gap = parseFloat(getComputedStyle(leaves).columnGap) || 0;
-    const column = (clip.clientWidth - gap) / 2;
-    const columns = Math.max(
-      1,
-      Math.round((leaves.scrollWidth + gap) / (column + gap)),
-    );
-    spreads = Math.max(1, Math.ceil(columns / 2));
-    at = Math.min(at, spreads - 1);
-    leaves.style.transform = `translateX(${-at * stride()}px)`;
+
+    const availableWidth = stage.clientWidth;
+    const availableHeight = stage.clientHeight;
+    if (availableWidth === 0 || availableHeight === 0) return;
+
+    const width = Math.min(availableWidth, availableHeight * BOOK_RATIO);
+    book.style.width = `${Math.floor(width)}px`;
+    book.style.height = `${Math.floor(width / BOOK_RATIO)}px`;
+
+    const columnWidth = left.frame.clientWidth;
+    if (columnWidth === 0) return;
+
+    for (const win of wins) {
+      win.strip.style.width = `${columnWidth * 2 + COLUMN_GAP}px`;
+      win.strip.style.columnWidth = `${columnWidth}px`;
+      win.strip.style.columnGap = `${COLUMN_GAP}px`;
+    }
+
+    stride = columnWidth + COLUMN_GAP;
+    pages = Math.max(1, Math.round((left.strip.scrollWidth + COLUMN_GAP) / stride));
+
+    spread = Math.min(spread, maxSpread());
+    show(spread);
+  }
+
+  /** Point one window at one column. A column past the end shows nothing. */
+  function put(win: Win, index: number): void {
+    win.frame.style.visibility = index < 0 || index >= pages ? 'hidden' : '';
+    win.strip.style.transform = `translateX(${-index * stride}px)`;
+  }
+
+  function show(s: number): void {
+    const [l, r] = facing(s);
+    book.classList.toggle('book--cover', s === 0);
+    put(left, l);
+    put(right, r);
     updateFoot();
   }
 
   function updateFoot(): void {
-    prev.disabled = at === 0;
-    next.disabled = at >= spreads - 1;
+    prev.disabled = !paged() || spread === 0;
+    next.disabled = !paged() || spread >= maxSpread();
 
-    const parts = [
-      paged()
-        ? `SPREAD ${at + 1} OF ${spreads}`
-        : (tome?.school.toUpperCase() ?? ''),
-    ];
-    if (cited.length > 0) {
-      parts.push(
-        `REFERS TO ${cited.length} OTHER VOLUME${cited.length === 1 ? '' : 'S'}`,
-      );
+    const parts: string[] = [];
+    if (paged()) {
+      parts.push(spread === 0 ? 'TITLE PAGE' : `SPREAD ${spread} OF ${maxSpread()}`);
+    } else if (tome !== null) {
+      parts.push(tome.school.toUpperCase());
     }
-    folio.textContent = parts.filter((part) => part !== '').join('  ·  ');
+    if (cited.length > 0) {
+      parts.push(`REFERS TO ${cited.length} OTHER VOLUME${cited.length === 1 ? '' : 'S'}`);
+    }
+    folio.textContent = parts.join('  ·  ');
   }
 
+  /* -- turning ---------------------------------------------------------- */
+
   /**
-   * The spread changes first and the leaf sweeps afterward.
+   * Turn a leaf.
    *
-   * Nothing about which spread is showing depends on the animation finishing.
-   * Driving the page change from an animation callback latches the reader shut
-   * whenever the frame loop stalls — a backgrounded tab is enough — and the
-   * visitor comes back to a book that will not turn. The sweep is decoration
-   * and is treated as decoration.
+   * The spread is committed by `finish()`, which is idempotent and always
+   * writes the FINAL state, so it does not matter which of the three things
+   * that can call it gets there first: the tween completing, the tab going
+   * hidden, or the backstop timer. That redundancy is deliberate. A turn whose
+   * landing hangs off the frame loop alone strands the reader on a half-turned
+   * leaf with the controls locked the moment the tab stops painting — this
+   * codebase shipped exactly that bug in its first reader, and the Chronicles
+   * reader carries its own guard against the same thing.
    */
-  function goTo(target: number, direction: number): void {
-    if (!paged()) return;
+  function turn(direction: number): void {
+    if (!paged() || land !== null) return;
 
-    const now = performance.now();
-    if (now - lastTurn < TURN_MS) return;
-    if (target < 0 || target >= spreads || target === at) return;
+    const to = spread + direction;
+    if (to < 0 || to > maxSpread()) return;
 
-    lastTurn = now;
-    at = target;
-    leaves.style.transform = `translateX(${-at * stride()}px)`;
-    updateFoot();
+    // Which physical leaf moves: forward it is the current right-hand page,
+    // back it is the right-hand page of the spread being returned to. Its back
+    // face is always the page after its front.
+    const faceIndex = direction > 0 ? facing(spread)[1] : facing(to)[1];
+    put(front, faceIndex);
+    put(back, faceIndex + 1);
 
-    if (prefersReducedMotion()) return;
+    // The half of the spread the leaf covers at rest can be swapped now,
+    // hidden underneath it, so nothing changes in view mid-turn.
+    if (direction > 0) put(right, facing(to)[1]);
+    else put(left, facing(to)[0]);
 
-    // Forward, the leaf retreats to the left and uncovers the new spread.
-    flip.style.transformOrigin = direction > 0 ? 'left center' : 'right center';
-    animate(flip, {
-      opacity: [0.92, 0],
-      scaleX: [1, 0.04],
+    if (prefersReducedMotion()) {
+      spread = to;
+      show(to);
+      return;
+    }
+
+    const from = direction > 0 ? 0 : -180;
+    const until = direction > 0 ? -180 : 0;
+
+    turnleaf.style.transform = `rotateY(${from}deg)`;
+    book.classList.add('book--turning');
+    // The board must stay showing while the title leaf lifts off it.
+    book.classList.toggle('book--cover', Math.min(spread, to) === 0);
+
+    let landed = false;
+    const finish = (): void => {
+      if (landed) return;
+      landed = true;
+      window.clearTimeout(timer);
+      document.removeEventListener('visibilitychange', onHidden);
+      land = null;
+      book.classList.remove('book--turning');
+      turnleaf.style.transform = '';
+      shade.style.opacity = '0';
+      spread = to;
+      show(to);
+    };
+
+    const onHidden = (): void => {
+      if (document.visibilityState === 'hidden') finish();
+    };
+
+    const timer = window.setTimeout(finish, TURN_MS + 250);
+    document.addEventListener('visibilitychange', onHidden);
+    land = finish;
+
+    animate(turnleaf, {
+      rotateY: [from, until],
       duration: TURN_MS,
-      ease: 'outQuad',
+      ease: SWING,
+      onComplete: finish,
+    });
+
+    // Brightest at the half-turn, gone by the time the page is down.
+    animate(shade, {
+      opacity: [0, 0.55, 0],
+      duration: TURN_MS,
+      ease: SWING,
     });
   }
 
-  function turn(delta: number): void {
-    goTo(at + delta, delta);
+  function goTo(target: number): void {
+    if (!paged() || land !== null) return;
+    const to = Math.min(Math.max(target, 0), maxSpread());
+    if (to === spread) return;
+    // One leaf swinging over cannot honestly stand for six of them, so a jump
+    // across the volume is not animated at all. The Chronicles reader draws the
+    // same line and it is right.
+    if (Math.abs(to - spread) === 1) {
+      turn(to > spread ? 1 : -1);
+      return;
+    }
+    spread = to;
+    show(to);
   }
+
+  /* -- input ------------------------------------------------------------ */
 
   function onKeydown(event: KeyboardEvent): void {
     if (event.metaKey || event.ctrlKey || event.altKey) return;
@@ -153,11 +319,11 @@ export function readerScreen(params: Record<string, string>): Screen {
         break;
       case 'Home':
         event.preventDefault();
-        goTo(0, -1);
+        goTo(0);
         break;
       case 'End':
         event.preventDefault();
-        goTo(spreads - 1, 1);
+        goTo(maxSpread());
         break;
       case 'Escape':
       case 'Backspace':
@@ -167,19 +333,43 @@ export function readerScreen(params: Record<string, string>): Screen {
     }
   }
 
-  const onResize = (): void => measure();
+  const onResize = (): void => {
+    land?.();
+    measure();
+  };
 
   window.addEventListener('keydown', onKeydown);
   window.addEventListener('resize', onResize);
 
+  /* -- loading ---------------------------------------------------------- */
+
   function fail(message: string): void {
     clear(head);
-    leaves.replaceChildren(
+    book.classList.remove('book--cover');
+    left.strip.replaceChildren(
       el('div', { class: 'reader-status reader-status--error' }, message),
     );
+    right.frame.style.visibility = 'hidden';
     folio.textContent = '';
     prev.disabled = true;
     next.disabled = true;
+  }
+
+  const escapeHtml = (text: string): string =>
+    text.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
+
+  /** Column 0, by itself: the leaf the board faces when the volume opens. */
+  function titlePage(volume: Tome): string {
+    return [
+      '<header class="title-page">',
+      `<p class="title-page__call">${escapeHtml(volume.call_number)}</p>`,
+      `<h1 class="title-page__title">${escapeHtml(volume.title)}</h1>`,
+      '<div class="title-page__rule"></div>',
+      `<p class="title-page__author">${escapeHtml(volume.author)}</p>`,
+      `<p class="title-page__school">${escapeHtml(volume.school)}</p>`,
+      volume.restricted ? '<p class="title-page__seal">SEALED RECORD</p>' : '',
+      '</header>',
+    ].join('');
   }
 
   async function load(): Promise<void> {
@@ -188,7 +378,7 @@ export function readerScreen(params: Record<string, string>): Screen {
       return;
     }
 
-    leaves.replaceChildren(
+    left.strip.replaceChildren(
       el('div', { class: 'reader-status' }, 'FETCHING THE VOLUME...'),
     );
 
@@ -216,11 +406,18 @@ export function readerScreen(params: Record<string, string>): Screen {
 
     // The body is trusted content from our own D1, but the renderer escapes it
     // regardless so that replacing the drafts later cannot open a hole.
-    leaves.innerHTML = renderMarkdown(tome.body);
-    cited = citedCallNumbers(tome.body, tome.call_number);
-    at = 0;
+    const html = titlePage(tome) + renderMarkdown(tome.body);
+    for (const win of wins) {
+      win.strip.innerHTML = html;
+      // The tome's dateline is its standfirst, set apart from the prose.
+      win.strip.querySelector('.title-page + p')?.classList.add('standfirst');
+    }
 
-    // Fonts change the column count, so wait for them before measuring.
+    cited = citedCallNumbers(tome.body, tome.call_number);
+    spread = 0;
+
+    // A fallback face breaks the text elsewhere, so measure again once the
+    // real one has landed.
     void document.fonts?.ready.then(measure);
     requestAnimationFrame(measure);
   }
@@ -231,6 +428,7 @@ export function readerScreen(params: Record<string, string>): Screen {
     element,
     title: 'READING ROOM',
     destroy() {
+      land?.();
       window.removeEventListener('keydown', onKeydown);
       window.removeEventListener('resize', onResize);
     },
