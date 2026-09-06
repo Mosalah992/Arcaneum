@@ -9,7 +9,8 @@
     "preview": "npm run build && wrangler pages dev",
     "db:local": "wrangler d1 migrations apply arcanaeum --local",
     "db:remote": "wrangler d1 migrations apply arcanaeum --remote",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "seed": "node scripts/build-seed.mjs"
   },
   "dependencies": {
     "@fontsource/eb-garamond": "^5.1.0",
