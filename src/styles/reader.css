@@ -288,8 +288,10 @@
 /* Every ornament is one window onto the painted sheet; the inline style says
    which part of it. See src/lib/rubrication.ts. */
 .ornament {
-  background-image: url('/art/rubrication.png');
   background-repeat: no-repeat;
+  /* The cut-out is the ornament and nothing else, so it simply fills its box. */
+  background-size: 100% 100%;
+  background-position: center;
   flex: none;
   /* Painted at 1536px across and shown at a fraction of that, so this one
      wants the browser's smooth downscale rather than the interface's hard

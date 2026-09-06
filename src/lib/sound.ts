@@ -19,7 +19,17 @@
 
 import { muted, music } from './store';
 
-const THEME_URL = '/audio/librarytheme.mp3';
+/**
+ * What plays where. The archive has one voice and the volumes have another —
+ * reading a tome puts you somewhere quieter and stranger than the catalogue.
+ */
+const TRACKS = {
+  archive: '/audio/librarytheme.mp3',
+  reading: '/audio/darkwave.mp3',
+} as const;
+
+export type Track = keyof typeof TRACKS;
+
 const THEME_VOLUME = 0.3;
 
 export type Cue = 'tick' | 'page' | 'grind' | 'unlock';
@@ -29,7 +39,8 @@ let master: GainNode | null = null;
 let noise: AudioBuffer | null = null;
 let gestured = false;
 
-let theme: HTMLAudioElement | null = null;
+const themes = new Map<Track, HTMLAudioElement>();
+let current: Track = 'archive';
 
 /** White noise, made once, reused by the paper and stone cues. */
 function noiseBuffer(context: AudioContext): AudioBuffer {
@@ -155,21 +166,64 @@ export function play(cue: Cue): void {
 
 /* -- the theme ------------------------------------------------------------ */
 
-function themeElement(): HTMLAudioElement | null {
-  if (theme !== null) return theme;
+function themeElement(track: Track): HTMLAudioElement | null {
+  const existing = themes.get(track);
+  if (existing !== undefined) return existing;
   try {
-    theme = new Audio(THEME_URL);
-    theme.loop = true;
-    theme.volume = THEME_VOLUME;
-    theme.preload = 'none';
+    const element = new Audio(TRACKS[track]);
+    element.loop = true;
+    element.volume = THEME_VOLUME;
+    element.preload = 'none';
+    themes.set(track, element);
+    return element;
   } catch {
-    theme = null;
+    return null;
   }
-  return theme;
+}
+
+/** Whether the current track should be sounding at all. */
+const wanted = (): boolean => music.get() && gestured && !muted.get();
+
+function startCurrent(): void {
+  const element = themeElement(current);
+  if (element === null) return;
+  try {
+    element.preload = 'auto';
+    void element.play().catch(() => {
+      /* refused, or the file is not there; the archive reads the same */
+    });
+  } catch {
+    /* as above */
+  }
+}
+
+function stopAll(): void {
+  for (const element of themes.values()) {
+    try {
+      element.pause();
+    } catch {
+      /* nothing to do */
+    }
+  }
 }
 
 /**
- * Start or stop the library theme.
+ * Move to another track.
+ *
+ * Called by the screens rather than by the toggle: opening a volume asks for
+ * the reading track and closing it asks for the archive's. If the music is off
+ * this only records where we are, so that turning it on later starts the right
+ * one rather than whatever was playing last.
+ */
+export function setMusicTrack(track: Track): void {
+  if (track === current) return;
+  current = track;
+  stopAll();
+  if (wanted()) startCurrent();
+}
+
+/**
+ * Start or stop the music.
  *
  * Only ever called from the header toggle, which is off by default and stays
  * off until someone asks for it. The brief rules out an ambient track that
@@ -179,29 +233,14 @@ function themeElement(): HTMLAudioElement | null {
  */
 export function setMusic(on: boolean): void {
   music.set(on);
-  const element = themeElement();
-  if (element === null) return;
-  try {
-    if (on && gestured && !muted.get()) {
-      element.preload = 'auto';
-      void element.play().catch(() => {
-        /* refused, or the file is not there; the archive reads the same */
-      });
-    } else {
-      element.pause();
-    }
-  } catch {
-    /* as above */
-  }
+  if (on && gestured && !muted.get()) startCurrent();
+  else stopAll();
 }
 
 export function setMuted(on: boolean): void {
   muted.set(on);
-  if (on) {
-    theme?.pause();
-  } else if (music.get()) {
-    setMusic(true);
-  }
+  if (on) stopAll();
+  else if (music.get()) startCurrent();
 }
 
 /* -- the gesture ---------------------------------------------------------- */
@@ -220,9 +259,9 @@ export function armOnFirstGesture(): void {
     gestured = true;
     window.removeEventListener('pointerdown', arm, true);
     window.removeEventListener('keydown', arm, true);
-    // A visitor who left the theme on last time gets it back now that they
+    // A visitor who left the music on last time gets it back now that they
     // have given the page the gesture a browser requires.
-    if (music.get() && !muted.get()) setMusic(true);
+    if (wanted()) startCurrent();
   };
   // CAPTURE PHASE, and it matters. The gesture that arms the sound layer is
   // usually the same gesture that asks for the first cue — clicking the gate
