@@ -4,13 +4,13 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "node scripts/dev.mjs",
     "build": "tsc --noEmit && vite build",
-    "preview": "npm run build && wrangler pages dev",
+    "typecheck": "tsc --noEmit",
+    "seed": "node scripts/build-seed.mjs",
     "db:local": "wrangler d1 migrations apply arcanaeum --local",
     "db:remote": "wrangler d1 migrations apply arcanaeum --remote",
-    "typecheck": "tsc --noEmit",
-    "seed": "node scripts/build-seed.mjs"
+    "deploy": "npm run build && wrangler pages deploy"
   },
   "dependencies": {
     "@fontsource/eb-garamond": "^5.1.0",
