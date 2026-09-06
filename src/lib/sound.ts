@@ -174,6 +174,20 @@ function themeElement(track: Track): HTMLAudioElement | null {
     element.loop = true;
     element.volume = THEME_VOLUME;
     element.preload = 'none';
+
+    /*
+     * A track that will not load falls back to the archive's.
+     *
+     * Pages serves its SPA fallback for an unknown path, so a missing mp3
+     * arrives as a 200 of HTML rather than a 404 — the element fails, and
+     * without this the volumes would simply be silent with nothing to say why.
+     */
+    element.addEventListener('error', () => {
+      if (track === 'archive' || current !== track) return;
+      current = 'archive';
+      if (wanted()) startCurrent();
+    });
+
     themes.set(track, element);
     return element;
   } catch {
