@@ -86,12 +86,18 @@
   flex: 1 1 0;
   min-width: 0;
   background:
-    radial-gradient(ellipse at 20% 12%, rgba(255, 248, 222, 0.42), transparent 56%),
-    radial-gradient(ellipse at 84% 92%, rgba(120, 88, 40, 0.22), transparent 60%),
-    radial-gradient(ellipse at 50% 50%, #e6d7b0 52%, #c9b483 100%);
+    /* Foxing and water stains, scattered so no two corners read alike. */
+    radial-gradient(ellipse 30% 18% at 18% 22%, rgba(126, 92, 44, 0.16), transparent 70%),
+    radial-gradient(ellipse 22% 26% at 78% 68%, rgba(112, 80, 36, 0.15), transparent 72%),
+    radial-gradient(ellipse 16% 12% at 62% 14%, rgba(138, 104, 52, 0.13), transparent 70%),
+    radial-gradient(ellipse 20% 16% at 34% 86%, rgba(120, 88, 42, 0.14), transparent 72%),
+    radial-gradient(ellipse at 22% 14%, rgba(255, 248, 222, 0.38), transparent 54%),
+    radial-gradient(ellipse at 50% 50%, #e7d8b2 46%, #cdb88a 88%, #b8a074 100%);
   box-shadow:
-    inset 0 0 46px rgba(94, 66, 28, 0.34),
-    inset 0 0 6px rgba(70, 48, 18, 0.42);
+    /* Worn and darkened at the edges, the way a handled leaf goes. */
+    inset 0 0 72px rgba(84, 58, 22, 0.42),
+    inset 0 0 22px rgba(64, 44, 16, 0.34),
+    inset 0 0 5px rgba(48, 32, 10, 0.5);
 }
 
 /* Paper grain. A data URI, so nothing is downloaded and no art is licensed —
@@ -189,9 +195,10 @@
   column-fill: auto;
   font-family: var(--font-body);
   font-size: 16.5px;
-  line-height: 1.5;
-  text-align: justify;
-  hyphens: auto;
+  line-height: 1.52;
+  /* Ragged right. The reference sets its volumes unjustified, and a hand-set
+     page of this measure justifies into rivers. */
+  text-align: left;
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
   font-smooth: always;
@@ -274,6 +281,54 @@
   border-bottom: 1px dotted rgba(85, 80, 63, 0.75);
   padding-bottom: 1px;
   cursor: text;
+}
+
+/* -- illumination ------------------------------------------------------- */
+
+/* Every ornament is one window onto the painted sheet; the inline style says
+   which part of it. See src/lib/rubrication.ts. */
+.ornament {
+  background-image: url('/art/rubrication.png');
+  background-repeat: no-repeat;
+  flex: none;
+  /* Painted at 1536px across and shown at a fraction of that, so this one
+     wants the browser's smooth downscale rather than the interface's hard
+     pixels. */
+  image-rendering: auto;
+}
+
+.ornament--headpiece { margin-bottom: 0.2em; }
+.ornament--device { margin: 0.35em 0 0.1em; }
+
+.ornament--tailpiece {
+  margin: 1.1em auto 0;
+  opacity: 0.85;
+}
+
+/*
+ * The red initial.
+ *
+ * Rubrication proper: the opening letter set in the same red as the headings,
+ * dropped into the first three lines. Painted initials exist on the sheet but
+ * only for three letters of the alphabet, and a volume beginning with the
+ * wrong one would get somebody else's capital — so this is lettered rather
+ * than illuminated, which is also what most working manuscripts did.
+ */
+.rubric-initial {
+  float: left;
+  margin: 0.04em 0.08em -0.05em 0;
+  font-family: var(--font-body);
+  font-size: 3.15em;
+  line-height: 0.84;
+  font-weight: 600;
+  color: var(--burgundy);
+  text-shadow:
+    1px 1px 0 rgba(196, 158, 92, 0.5),
+    0 0 1px rgba(87, 19, 34, 0.4);
+}
+
+.leaves p.has-initial {
+  text-indent: 0;
 }
 
 /* -- the title page ----------------------------------------------------- */
@@ -491,6 +546,8 @@
 
   .leaves h2 { font-size: 18px; }
   .marginalia { margin-left: 0.6em; }
+  .ornament--headpiece { display: none; }
+  .rubric-initial { font-size: 2.8em; }
 
   /* The title page is a full-height panel in a paged book and a banner in a
      scrolled one. */
