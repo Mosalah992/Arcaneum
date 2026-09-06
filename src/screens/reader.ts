@@ -20,19 +20,13 @@
  * place on the page, on the turning leaf, and on every clone.
  */
 
-import { animate } from 'animejs';
+import { animate, cubicBezier } from 'animejs';
 import { clear, el, prefersReducedMotion } from '../lib/dom';
 import { fetchTome, ArchiveError, type Tome } from '../lib/api';
 import { renderMarkdown, citedCallNumbers } from '../lib/markdown';
 import { navigate, type Screen } from '../lib/router';
-import {
-  BY_SCHOOL,
-  HEADPIECE,
-  TAILPIECE,
-  ornamentStyle,
-  type Ornament,
-} from '../lib/rubrication';
-import { play } from '../lib/sound';
+import { BY_SCHOOL, HEADPIECE, TAILPIECE, cutout, type Box } from '../lib/rubrication';
+import { play, setMusicTrack } from '../lib/sound';
 
 /** Below this the binding comes apart into one scrolling column. */
 const SPREAD_MIN_WIDTH = 900;
@@ -40,8 +34,15 @@ const SPREAD_MIN_WIDTH = 900;
 /** A hinged board swinging. The Chronicles leaf's 0.9s. */
 const TURN_MS = 900;
 
-/** The Chronicles `swing` curve, carried over as its control points. */
-const SWING = 'cubicBezier(0.35, 0.1, 0.28, 1)';
+/**
+ * The Chronicles `swing` curve, carried over as its control points.
+ *
+ * Built as a function, not written as a string. Anime 4.5 removed the string
+ * form of `cubicBezier(...)` from the core; it does not throw, it warns and
+ * quietly falls back to the default ease, so the leaf turns with the wrong
+ * weight and nothing tells you but the console.
+ */
+const SWING = cubicBezier(0.35, 0.1, 0.28, 1);
 
 /** Two leaves plus the spine, as a ratio. Each leaf is 23:32. */
 const BOOK_RATIO = (23 * 2) / 32;
@@ -351,6 +352,9 @@ export function readerScreen(params: Record<string, string>): Screen {
   window.addEventListener('keydown', onKeydown);
   window.addEventListener('resize', onResize);
 
+  // The volumes have their own voice.
+  setMusicTrack('reading');
+
   /* -- loading ---------------------------------------------------------- */
 
   function fail(message: string): void {
@@ -368,20 +372,51 @@ export function readerScreen(params: Record<string, string>): Screen {
   const escapeHtml = (text: string): string =>
     text.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
 
-  const ornament = (piece: Ornament, height: number, extra = ''): string =>
-    `<div class="ornament ${extra}" style="${ornamentStyle(piece, height)}" aria-hidden="true"></div>`;
+  /*
+   * An ornament is written out at the right size but with no image, and the
+   * cut-out is dropped in once the sheet has been labelled. The size comes
+   * from the recorded box, so the leaf paginates identically whether or not
+   * the illumination has arrived yet — the text does not reflow underneath it.
+   */
+  const ornament = (name: string, box: Box, height: number, extra = ''): string =>
+    `<div class="ornament ${extra}" data-piece="${name}" aria-hidden="true"` +
+    ` style="width:${((box.w / box.h) * height).toFixed(3)}em;height:${height}em"></div>`;
+
+  const pieces = new Map<string, Box>();
+
+  function dressOrnaments(strip: HTMLElement): void {
+    for (const node of strip.querySelectorAll<HTMLElement>('.ornament[data-piece]')) {
+      const name = node.dataset.piece!;
+      const box = pieces.get(name);
+      if (box === undefined) continue;
+      void cutout(name, box).then((art) => {
+        if (art === null) {
+          node.remove();
+          return;
+        }
+        node.style.backgroundImage = `url(${art.url})`;
+        node.style.width = `${(art.aspect * parseFloat(node.style.height)).toFixed(3)}em`;
+      });
+    }
+  }
 
   /** Column 0, by itself: the leaf the board faces when the volume opens. */
   function titlePage(volume: Tome): string {
     const device = BY_SCHOOL[volume.school];
+    pieces.set('headpiece', HEADPIECE);
+    pieces.set('tailpiece', TAILPIECE);
+    if (device !== undefined) pieces.set(volume.school, device);
+
     return [
       '<header class="title-page">',
-      ornament(HEADPIECE, 3.4, 'ornament--headpiece'),
+      ornament('headpiece', HEADPIECE, 3.4, 'ornament--headpiece'),
       `<p class="title-page__call">${escapeHtml(volume.call_number)}</p>`,
       `<h1 class="title-page__title">${escapeHtml(volume.title)}</h1>`,
       '<div class="title-page__rule"></div>',
       `<p class="title-page__author">${escapeHtml(volume.author)}</p>`,
-      device === undefined ? '' : ornament(device, 5.4, 'ornament--device'),
+      device === undefined
+        ? ''
+        : ornament(volume.school, device, 5.4, 'ornament--device'),
       `<p class="title-page__school">${escapeHtml(volume.school)}</p>`,
       volume.restricted ? '<p class="title-page__seal">SEALED RECORD</p>' : '',
       '</header>',
@@ -454,13 +489,14 @@ export function readerScreen(params: Record<string, string>): Screen {
     const html =
       titlePage(tome) +
       renderMarkdown(tome.body) +
-      ornament(TAILPIECE, 2.2, 'ornament--tailpiece');
+      ornament('tailpiece', TAILPIECE, 2.2, 'ornament--tailpiece');
 
     for (const win of wins) {
       win.strip.innerHTML = html;
       // The tome's dateline is its standfirst, set apart from the prose.
       win.strip.querySelector('.title-page + p')?.classList.add('standfirst');
       rubricate(win.strip);
+      dressOrnaments(win.strip);
     }
 
     cited = citedCallNumbers(tome.body, tome.call_number);
@@ -479,6 +515,7 @@ export function readerScreen(params: Record<string, string>): Screen {
     title: 'READING ROOM',
     destroy() {
       land?.();
+      setMusicTrack('archive');
       window.removeEventListener('keydown', onKeydown);
       window.removeEventListener('resize', onResize);
     },

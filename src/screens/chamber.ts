@@ -73,8 +73,21 @@ const WELL_ROWS = 2;
 const WELL_FRAMES = 10;
 /** Frames a second. A hand-painted loop, played at a hand-painted rate. */
 const WELL_FPS = 9;
-/** One cell of the sheet: 1536/5 wide by 1024/2 tall. */
-const WELL_ASPECT = (1536 / WELL_COLUMNS) / (1024 / WELL_ROWS);
+/** The sheet, and one cell of it, in whole pixels. */
+const SHEET_WIDTH = 1536;
+const SHEET_HEIGHT = 1024;
+const CELL_WIDTH = Math.floor(SHEET_WIDTH / WELL_COLUMNS);
+const CELL_HEIGHT = Math.floor(SHEET_HEIGHT / WELL_ROWS);
+
+/**
+ * Left edge of a cell, in whole pixels.
+ *
+ * 1536 does not divide by five, so cells sit 307 or 308 apart. Both the light
+ * sheet and the UV offsets are built off this one function, which is what keeps
+ * the two layers registered with each other.
+ */
+const cellLeft = (column: number): number =>
+  Math.round((column * SHEET_WIDTH) / WELL_COLUMNS);
 /** How wide the painted stonework should stand in the room. */
 const WELL_STONE_WIDTH = 1.6;
 /** Where the well stands. The motes and the light follow it. */
@@ -90,6 +103,12 @@ const HALO_RADIUS = 3;
 const HALO_LUMINANCE = 170;
 /** Share of the sheet's peak saturation taken to mean "undiluted glow". */
 const GLOW_FRACTION = 0.55;
+
+/* Residue left when the checkerboard fails to cancel between two frames. */
+const NEUTRAL_CHROMA = 16;
+const NEUTRAL_LEVEL = 72;
+/** Puts back what subtracting a bright background took off the glow. */
+const GLOW_GAIN = 1.4;
 
 /** The whole gate ceremony. The brief allows 3s. */
 const CEREMONY_MS = 2600;
@@ -397,6 +416,82 @@ function keyOutCheckerboard(image: HTMLImageElement): KeyedSheet | null {
   };
 }
 
+/**
+ * The light the well emits, frame by frame, as its own sheet.
+ *
+ * Each cell minus cell 0, clamped at zero. Whatever holds still between the
+ * two — the stonework, the rim, the checkerboard the sheet was flattened onto
+ * — cancels to black, and whatever brightens is what the magicka is doing.
+ * Drawn with additive blending over the static stone, where black contributes
+ * nothing, so this layer needs no alpha channel and no keying: the background
+ * subtracts itself away.
+ *
+ * The dormant basin's own faint glow belongs to frame 0 and therefore stays in
+ * the base layer, which is right — the well is lit before it is lit up.
+ */
+function buildLightSheet(image: HTMLImageElement): HTMLCanvasElement {
+  const width = image.naturalWidth;
+  const height = image.naturalHeight;
+
+  const source = document.createElement('canvas');
+  source.width = width;
+  source.height = height;
+  const from = source.getContext('2d', { willReadFrequently: true })!;
+  from.drawImage(image, 0, 0);
+
+  const field = from.getImageData(0, 0, width, height);
+  const pixels = field.data;
+  const lit = new Uint8ClampedArray(pixels.length);
+
+  for (let index = 0; index < WELL_FRAMES; index++) {
+    const column = index % WELL_COLUMNS;
+    const row = Math.floor(index / WELL_COLUMNS);
+    const left = cellLeft(column);
+    const top = row * CELL_HEIGHT;
+
+    for (let y = 0; y < CELL_HEIGHT; y++) {
+      const here = (top + y) * width;
+      const there = y * width;
+      for (let x = 0; x < CELL_WIDTH; x++) {
+        const a = (here + left + x) * 4;
+        const b = (there + x) * 4;
+        const r = Math.max(0, pixels[a]! - pixels[b]!);
+        const g = Math.max(0, pixels[a + 1]! - pixels[b + 1]!);
+        const bl = Math.max(0, pixels[a + 2]! - pixels[b + 2]!);
+
+        /*
+         * The checkerboard does not quite cancel.
+         *
+         * 1536 does not divide by five, so each cell's checker sits at a
+         * different phase from cell 0's, and subtracting them leaves a grid of
+         * residue up to the 46 levels between the two greys. That residue is
+         * neutral, because both greys are; magicka is not. Dropping small
+         * near-grey differences removes the grid and leaves the light.
+         */
+        const chroma = Math.max(r, g, bl) - Math.min(r, g, bl);
+        if (chroma <= NEUTRAL_CHROMA && (r + g + bl) / 3 <= NEUTRAL_LEVEL) {
+          lit[a + 3] = 255;
+          continue;
+        }
+
+        // Subtracting a bright background costs the glow some of its strength.
+        lit[a] = r * GLOW_GAIN;
+        lit[a + 1] = g * GLOW_GAIN;
+        lit[a + 2] = bl * GLOW_GAIN;
+        lit[a + 3] = 255;
+      }
+    }
+  }
+
+  const canvas = document.createElement('canvas');
+  canvas.width = width;
+  canvas.height = height;
+  canvas
+    .getContext('2d')!
+    .putImageData(new ImageData(lit, width, height), 0, 0);
+  return canvas;
+}
+
 /* -- the screen ----------------------------------------------------------- */
 
 export function chamberScreen(): Screen {
@@ -566,6 +661,22 @@ export function chamberScreen(): Screen {
    * NearestFilter, as everywhere here: the sheet is upscaled by the same
    * quarter-resolution pass as the rest of the room and has to stay hard.
    */
+  /*
+   * The well is painted, and it is painted in two layers.
+   *
+   * The stonework does not move. Only the magicka does — the light in the
+   * basin, the column, the sparks coming off it — so animating whole frames
+   * was wrong: the ten paintings differ very slightly in their stone as well,
+   * and cycling them made the masonry crawl.
+   *
+   * So the base layer is frame 0 and never changes, and above it sits a second
+   * quad carrying only the LIGHT, obtained by subtracting frame 0 from each
+   * frame. Everything that holds still cancels to black; everything that
+   * brightens survives. Blended additively, black is nothing, which is exactly
+   * what emitted light does — and it means the light layer needs no keying at
+   * all, because the checkerboard is identical in every frame and subtracts
+   * itself away.
+   */
   const wellMaterial = keep(
     new MeshBasicMaterial({
       transparent: true,
@@ -577,42 +688,95 @@ export function chamberScreen(): Screen {
   well.visible = false;
   scene.add(well);
 
-  let wellMap: Texture | null = null;
+  const glowMaterial = keep(
+    new MeshBasicMaterial({
+      transparent: true,
+      depthWrite: false,
+      toneMapped: false,
+      blending: AdditiveBlending,
+    }),
+  );
+  const glow = new Mesh(keepGeometry(new PlaneGeometry(1, 1)), glowMaterial);
+  glow.visible = false;
+  glow.renderOrder = 1;
+  scene.add(glow);
+
+  let glowMap: Texture | null = null;
   let wellCrop = 1;
   let wellFrame = 0;
   let wellClock = 0;
 
-  const sheet = new Image();
-  sheet.decoding = 'async';
-  sheet.src = WELL_SHEET;
-  sheet
-    .decode()
-    .then(() => {
+  /*
+   * Loaded through `onload`, not `decode()`. In this browser `decode()` was
+   * observed never settling — neither resolving nor rejecting — which leaves
+   * the well invisible with nothing in the console to explain it.
+   */
+  const load = new Promise<HTMLImageElement | null>((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => resolve(null);
+    img.src = WELL_SHEET;
+  });
+
+  void load
+    .then((sheet) => {
+      if (sheet === null) return;
       const keyed = keyOutCheckerboard(sheet);
       if (keyed === null) return;
-
-      const texture = new CanvasTexture(keyed.canvas);
-      texture.magFilter = NearestFilter;
-      texture.minFilter = NearestFilter;
-      texture.generateMipmaps = false;
-      texture.colorSpace = SRGBColorSpace;
-      texture.repeat.set(1 / WELL_COLUMNS, keyed.usedHeight / WELL_ROWS);
       wellCrop = keyed.usedHeight;
-      wellMap = keepTexture(texture);
-      wellMaterial.map = texture;
+
+      const cropHeight = wellCrop * CELL_HEIGHT;
+      const frame = (texture: Texture, index: number): void => {
+        const column = index % WELL_COLUMNS;
+        const row = Math.floor(index / WELL_COLUMNS);
+        texture.offset.set(
+          cellLeft(column) / SHEET_WIDTH,
+          (SHEET_HEIGHT - row * CELL_HEIGHT - cropHeight) / SHEET_HEIGHT,
+        );
+      };
+
+      const dress = (texture: Texture): void => {
+        texture.magFilter = NearestFilter;
+        texture.minFilter = NearestFilter;
+        texture.generateMipmaps = false;
+        texture.colorSpace = SRGBColorSpace;
+        texture.repeat.set(CELL_WIDTH / SHEET_WIDTH, cropHeight / SHEET_HEIGHT);
+      };
+
+      // The stone, once.
+      const base = new CanvasTexture(keyed.canvas);
+      dress(base);
+      frame(base, 0);
+      keepTexture(base);
+      wellMaterial.map = base;
       wellMaterial.needsUpdate = true;
 
-      // Fit the quad from the painting rather than from guesswork: scale so the
-      // stonework is WELL_STONE_WIDTH across, then stand it on the floor. The
-      // crop puts the base at the very bottom of the quad, so that is just half
-      // its height.
-      const width = WELL_STONE_WIDTH / keyed.widthFraction;
-      const height = (width / WELL_ASPECT) * keyed.usedHeight;
-      well.scale.set(width, height, 1);
-      well.position.set(0, height / 2, WELL_Z);
+      // The light, ten times.
+      const lit = new CanvasTexture(buildLightSheet(sheet));
+      dress(lit);
+      keepTexture(lit);
+      glowMap = lit;
+      glowMaterial.map = lit;
+      glowMaterial.needsUpdate = true;
 
-      well.visible = true;
+      // Fit both quads from the painting rather than from guesswork: scale so
+      // the stonework is WELL_STONE_WIDTH across, then stand it on the floor.
+      // The crop puts the base at the very bottom, so that is half its height.
+      const width = WELL_STONE_WIDTH / keyed.widthFraction;
+      const height = width * (cropHeight / CELL_WIDTH);
+      for (const mesh of [well, glow]) {
+        mesh.scale.set(width, height, 1);
+        mesh.position.set(0, height / 2, WELL_Z);
+        mesh.visible = true;
+      }
+
       showWellFrame(0);
+
+      function showWellFrame(index: number): void {
+        if (glowMap === null) return;
+        frame(glowMap, index);
+      }
+      step = showWellFrame;
     })
     .catch(() => {
       // The sheet did not arrive, or the canvas refused to give its pixels
@@ -620,18 +784,7 @@ export function chamberScreen(): Screen {
       // still findable, which is all the chamber owes.
     });
 
-  /** Step the sheet. Row 0 is the top row, which in UV space is the upper half. */
-  function showWellFrame(index: number): void {
-    if (wellMap === null) return;
-    const column = index % WELL_COLUMNS;
-    const row = Math.floor(index / WELL_COLUMNS);
-    // v runs up from the bottom, and the crop keeps the TOP of each cell, so
-    // the offset has to skip the trimmed sliver underneath it.
-    wellMap.offset.set(
-      column / WELL_COLUMNS,
-      (WELL_ROWS - 1 - row) / WELL_ROWS + (1 - wellCrop) / WELL_ROWS,
-    );
-  }
+  let step: ((index: number) => void) | null = null;
 
   // Sat just above the mouth so the spill clears the rim and reaches the gate.
   const wellLight = new PointLight(new Color('#4fd2e6'), 9, 20, 1.5);
@@ -839,7 +992,7 @@ export function chamberScreen(): Screen {
     if (wellClock >= 1 / WELL_FPS) {
       wellClock %= 1 / WELL_FPS;
       wellFrame = (wellFrame + 1) % WELL_FRAMES;
-      showWellFrame(wellFrame);
+      step?.(wellFrame);
     }
 
     // The well breathes. Two frequencies so it never reads as a loop.

@@ -94,7 +94,22 @@ changing `play()`, nothing else.
 | `audio/grind.wav` | ~900 ms | `grind` | Stone on stone, low, as the gate parts. |
 | `audio/unlock.wav` | ~800 ms | `unlock` | The wards taking the light — four rising steps and a shimmer. |
 
-Supplied: `audio/librarytheme.mp3`, 563 KB, looped under the MUSIC toggle. It
+### Music
+
+Two looped tracks, both under the one MUSIC toggle. The archive's theme plays
+everywhere; opening a volume switches to the reading track and closing it
+switches back.
+
+| File | Where | Status |
+| --- | --- | --- |
+| `audio/librarytheme.mp3` | boot, chamber, catalogue | supplied, 563 KB |
+| `audio/darkwave.mp3` | the reader, while a volume is open | **missing — drop it in** |
+
+The reader asks for `darkwave.mp3` already; until the file exists the request
+fails and is swallowed, and the archive's theme simply stops for the duration
+of the volume. Nothing else breaks.
+
+`audio/librarytheme.mp3`, 563 KB, is looped under the MUSIC toggle. It
 is **off by default and never starts on its own** — the brief rules out an
 autoplaying ambient track. The preference is remembered, so anyone who turns it
 on gets it back on their next visit at the first gesture a browser will allow.
