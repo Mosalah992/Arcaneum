@@ -60,9 +60,12 @@ applyScanlines(scanlines.get());
 const header = el(
   'header',
   { class: 'chrome-bar chrome-bar--header' },
+  // A real anchor, not a button with a click handler: hash routing means the
+  // browser does the navigation itself, so middle-click and open-in-new-tab
+  // behave the way the reader expects them to.
   el(
-    'span',
-    { class: 'chrome-title' },
+    'a',
+    { class: 'chrome-title', href: '#/catalogue' },
     el('span', { class: 'sigil' }, '❖'),
     ' THE ARCANAEUM',
   ),

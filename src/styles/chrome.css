@@ -34,6 +34,17 @@ html[data-chrome='off'] .chrome-bar {
   letter-spacing: 0.14em;
   color: var(--parchment-lit);
   text-shadow: 1px 1px 0 var(--obsidian);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.chrome-title:hover {
+  color: #fff8e2;
+}
+
+.chrome-title:hover .sigil {
+  color: var(--magicka-lit);
+  text-shadow: 0 0 9px var(--magicka);
 }
 
 .chrome-title .sigil {
