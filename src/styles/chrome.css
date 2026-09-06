@@ -1,0 +1,133 @@
+/* Header and footer: the brass-and-stone frame around every screen. */
+
+.chrome-bar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 10px;
+  background: linear-gradient(180deg, var(--stone-700), var(--stone-850));
+  box-shadow: var(--bevel-out);
+  user-select: none;
+}
+
+.chrome-bar--header {
+  height: var(--header-h);
+  border-bottom: 1px solid var(--obsidian);
+}
+
+.chrome-bar--footer {
+  height: var(--footer-h);
+  font-size: 16px;
+  color: var(--parchment-dim);
+  border-top: 1px solid var(--stone-lit);
+}
+
+.chrome-title {
+  white-space: nowrap;
+  font-size: 22px;
+  letter-spacing: 0.14em;
+  color: var(--parchment-lit);
+  text-shadow: 1px 1px 0 var(--obsidian);
+}
+
+.chrome-title .sigil {
+  color: var(--magicka);
+  text-shadow: 0 0 6px var(--magicka-dim);
+}
+
+.chrome-spacer {
+  flex: 1 1 auto;
+}
+
+.chrome-crumb {
+  font-size: 17px;
+  color: var(--parchment-dim);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Chunky toggle switches, lit when active. */
+.toggle {
+  height: 22px;
+  padding: 0 9px 2px;
+  font-size: 17px;
+  letter-spacing: 0.08em;
+  color: var(--parchment-dim);
+  background: linear-gradient(180deg, var(--stone-600), var(--stone-800));
+  border: 0;
+  box-shadow: var(--bevel-out);
+  white-space: nowrap;
+}
+
+.toggle:hover {
+  color: var(--parchment-lit);
+}
+
+.toggle:active,
+.toggle[aria-pressed='true'] {
+  box-shadow: var(--bevel-in);
+  background: linear-gradient(180deg, var(--stone-850), var(--stone-700));
+}
+
+.toggle[aria-pressed='true'] {
+  color: var(--magicka-lit);
+  text-shadow: 0 0 5px var(--magicka-dim);
+}
+
+.footer-note {
+  letter-spacing: 0.05em;
+}
+
+.footer-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 16px;
+  color: var(--parchment-dim);
+  text-decoration: underline dotted;
+  letter-spacing: 0.05em;
+}
+
+.footer-link:hover {
+  color: var(--burgundy-lit);
+}
+
+/* Decorative only. There is no counter behind it and there will not be one. */
+.hit-counter {
+  display: inline-flex;
+  gap: 1px;
+  padding: 2px;
+  background: var(--obsidian);
+  box-shadow: var(--bevel-in);
+  vertical-align: middle;
+}
+
+.hit-counter b {
+  display: inline-block;
+  min-width: 11px;
+  padding: 0 1px;
+  font-weight: normal;
+  font-size: 15px;
+  text-align: center;
+  color: var(--magicka);
+  background: #0a1418;
+  text-shadow: 0 0 4px var(--magicka-dim);
+}
+
+@media (max-width: 700px) {
+  .chrome-crumb,
+  .footer-note--wide {
+    display: none;
+  }
+
+  .chrome-bar { gap: 7px; padding: 0 7px; }
+  .chrome-title { font-size: 18px; letter-spacing: 0.08em; }
+  .chrome-title .sigil { display: none; }
+  .toggle { font-size: 14px; padding: 0 6px 2px; height: 20px; }
+  .chrome-bar--footer { font-size: 14px; }
+  .footer-link { font-size: 14px; }
+  .hit-counter b { min-width: 9px; font-size: 13px; }
+}

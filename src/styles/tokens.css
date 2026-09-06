@@ -1,0 +1,45 @@
+/* The palette. Cyan is magicka and is used for nothing else. */
+:root {
+  --obsidian:      #07080a;
+  --stone-900:     #0e1014;
+  --stone-850:     #14171c;
+  --stone-800:     #1b1f26;
+  --stone-700:     #262b34;
+  --stone-600:     #333944;
+  --stone-500:     #444c59;
+  --stone-lit:     #5a6472;
+  --stone-shadow:  #04050700;
+
+  --burgundy-deep: #340b16;
+  --burgundy:      #571322;
+  --burgundy-lit:  #7c2033;
+
+  --parchment:     #d6c49c;
+  --parchment-lit: #f1e6c6;
+  --parchment-dim: #a08e68;
+  --ink:           #2a2116;
+  --ink-faded:     #5d4c33;
+  --graphite:      #6b6355;
+
+  --magicka:       #4fd2e6;
+  --magicka-lit:   #a8f2ff;
+  --magicka-dim:   #1b5f6b;
+
+  --font-ui: 'VT323', 'Courier New', monospace;
+  --font-body: 'EB Garamond', Georgia, 'Times New Roman', serif;
+
+  --header-h: 34px;
+  --footer-h: 30px;
+
+  /* Beveled stone, built from borders and shadows rather than images. */
+  --bevel-out:
+    inset 1px 1px 0 0 var(--stone-lit),
+    inset -1px -1px 0 0 var(--obsidian),
+    inset 2px 2px 0 0 var(--stone-600),
+    inset -2px -2px 0 0 var(--stone-900);
+  --bevel-in:
+    inset 1px 1px 0 0 var(--obsidian),
+    inset -1px -1px 0 0 var(--stone-lit),
+    inset 2px 2px 0 0 var(--stone-900),
+    inset -2px -2px 0 0 var(--stone-700);
+}
