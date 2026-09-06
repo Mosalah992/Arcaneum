@@ -1,0 +1,60 @@
+/* The chamber. One canvas, upscaled hard. */
+
+.chamber {
+  position: relative;
+  overflow: hidden;
+  background: #05060a;
+  cursor: default;
+}
+
+/* The renderer draws into a buffer about a quarter of this size; the browser
+   scales it up and `pixelated` keeps the edges square. This is the whole
+   technique — remove it and the scene is merely a low-poly room. */
+.chamber-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  image-rendering: pixelated;
+}
+
+/* A pixel hand, drawn from rectangles rather than painted. ASSETS.md lists the
+   cursor plate that replaces it. */
+.chamber--gate {
+  cursor:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIj48ZyBmaWxsPSIjMDAwIj48cmVjdCB4PSIxMCIgeT0iMiIgd2lkdGg9IjYiIGhlaWdodD0iMiIvPjxyZWN0IHg9IjgiIHk9IjQiIHdpZHRoPSIyIiBoZWlnaHQ9IjEyIi8+PHJlY3QgeD0iMTYiIHk9IjQiIHdpZHRoPSIyIiBoZWlnaHQ9IjgiLz48cmVjdCB4PSIxOCIgeT0iMTAiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiLz48cmVjdCB4PSIyMCIgeT0iMTAiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiLz48cmVjdCB4PSIyMiIgeT0iMTIiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiLz48cmVjdCB4PSIyNCIgeT0iMTQiIHdpZHRoPSIyIiBoZWlnaHQ9IjEwIi8+PHJlY3QgeD0iNiIgeT0iMTQiIHdpZHRoPSIyIiBoZWlnaHQ9IjgiLz48cmVjdCB4PSI4IiB5PSIyMiIgd2lkdGg9IjIiIGhlaWdodD0iNCIvPjxyZWN0IHg9IjEwIiB5PSIyNiIgd2lkdGg9IjE0IiBoZWlnaHQ9IjIiLz48cmVjdCB4PSIyMiIgeT0iMjQiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiLz48L2c+PGcgZmlsbD0iI2QwYzRhMCI+PHJlY3QgeD0iMTAiIHk9IjQiIHdpZHRoPSI2IiBoZWlnaHQ9IjEwIi8+PHJlY3QgeD0iMTYiIHk9IjEyIiB3aWR0aD0iNCIgaGVpZ2h0PSIyIi8+PHJlY3QgeD0iOCIgeT0iMTYiIHdpZHRoPSIxNiIgaGVpZ2h0PSI4Ii8+PHJlY3QgeD0iMTAiIHk9IjI0IiB3aWR0aD0iMTIiIGhlaWdodD0iMiIvPjwvZz48L3N2Zz4=")
+      6 2,
+    pointer;
+}
+
+/* Black, at the end of the ceremony. */
+.chamber-fade {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  background: #000;
+}
+
+.chamber-hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 16px;
+  z-index: 3;
+  margin: 0;
+  text-align: center;
+  pointer-events: none;
+  font-size: 15px;
+  letter-spacing: 0.22em;
+  color: #2f4750;
+  transition: opacity 0.4s linear;
+}
+
+.chamber--opening .chamber-hint { opacity: 0; }
+
+@media (max-width: 700px) {
+  .chamber-hint { font-size: 12px; letter-spacing: 0.16em; }
+}

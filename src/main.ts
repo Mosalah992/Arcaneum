@@ -14,12 +14,16 @@ import '@fontsource/eb-garamond/latin-600.css';
 import './styles/tokens.css';
 import './styles/base.css';
 import './styles/chrome.css';
+import './styles/boot.css';
+import './styles/chamber.css';
 import './styles/catalogue.css';
 import './styles/reader.css';
 
-import { el } from './lib/dom';
-import { createRouter, navigate, type Screen } from './lib/router';
-import { scanlines, muted, forgetDiscoveries } from './lib/store';
+import { el, prefersReducedMotion } from './lib/dom';
+import { createRouter, currentPath, navigate, type Screen } from './lib/router';
+import { scanlines, muted, music, visited, forgetDiscoveries } from './lib/store';
+import { armOnFirstGesture, setMusic, setMuted } from './lib/sound';
+import { bootScreen } from './screens/boot';
 import { catalogueScreen } from './screens/catalogue';
 import { readerScreen } from './screens/reader';
 
@@ -68,9 +72,11 @@ const header = el(
     scanlines.set(on);
     applyScanlines(on);
   }),
-  // Wired to the sound layer in a later step; the preference is kept from now
-  // so that a visitor who mutes never hears the archive at all.
-  toggleButton('SOUND', !muted.get(), (on) => muted.set(!on)),
+  // The four cues. Pressed means audible.
+  toggleButton('SOUND', !muted.get(), (on) => setMuted(!on)),
+  // The library theme, separately. Off until it is asked for: an ambient track
+  // that starts on its own is exactly what the brief rules out.
+  toggleButton('MUSIC', music.get(), (on) => setMusic(on)),
 );
 
 /* -- footer ------------------------------------------------------------- */
@@ -115,15 +121,67 @@ const stage = el('main', { class: 'screen', id: 'stage' });
 root.append(header, stage, footer);
 document.body.append(el('div', { id: 'scanlines', 'aria-hidden': 'true' }));
 
+armOnFirstGesture();
+
+/**
+ * The chamber, behind a dynamic import.
+ *
+ * three.js is the largest thing in the project by an order of magnitude and
+ * every other screen works without it, so it is its own chunk and a visitor
+ * who never enters the chamber — reduced motion, a phone, a bookmark straight
+ * to the catalogue — never downloads a byte of it. If the chunk fails to
+ * arrive, the archive is still an archive: go around.
+ */
+function chamberRoute(): Screen {
+  const host = el('div', { class: 'screen' });
+  let inner: Screen | null = null;
+  let dropped = false;
+
+  void import('./screens/chamber')
+    .then(({ chamberScreen }) => {
+      if (dropped) return;
+      inner = chamberScreen();
+      host.append(inner.element);
+    })
+    .catch(() => {
+      if (!dropped) navigate('/catalogue', true);
+    });
+
+  return {
+    element: host,
+    title: 'THE CHAMBER',
+    destroy() {
+      dropped = true;
+      inner?.destroy?.();
+    },
+  };
+}
+
+/*
+ * Where a bare visit lands.
+ *
+ * Resolved once, before the router is built, rather than from inside a route —
+ * a route that redirects re-enters the router while it is still rendering.
+ */
+if (currentPath() === '/') {
+  const first = !visited.get();
+  navigate(
+    prefersReducedMotion() ? '/catalogue' : first ? '/boot' : '/chamber',
+    true,
+  );
+}
+
 createRouter(
   stage,
   {
-    '/': () => catalogueScreen(),
+    '/boot': () => bootScreen(),
+    '/chamber': () => chamberRoute(),
     '/catalogue': () => catalogueScreen(),
     '/tome/:id': (params) => readerScreen(params),
   },
   () => catalogueScreen(),
   (screen: Screen) => {
     crumb.textContent = screen.title ? `· ${screen.title}` : '';
+    document.documentElement.dataset.chrome = screen.chrome === false ? 'off' : 'on';
   },
 );

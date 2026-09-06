@@ -11,6 +11,12 @@ export interface Screen {
   element: HTMLElement;
   /** Shown in the header crumb. */
   title?: string;
+  /**
+   * Whether the stone frame is drawn around this screen. The boot sequence
+   * sets it false: a disc spinning up does not happen inside the application
+   * it is loading.
+   */
+  chrome?: boolean;
   destroy?(): void;
 }
 
