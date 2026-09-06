@@ -25,6 +25,13 @@ import { clear, el, prefersReducedMotion } from '../lib/dom';
 import { fetchTome, ArchiveError, type Tome } from '../lib/api';
 import { renderMarkdown, citedCallNumbers } from '../lib/markdown';
 import { navigate, type Screen } from '../lib/router';
+import {
+  BY_SCHOOL,
+  HEADPIECE,
+  TAILPIECE,
+  ornamentStyle,
+  type Ornament,
+} from '../lib/rubrication';
 import { play } from '../lib/sound';
 
 /** Below this the binding comes apart into one scrolling column. */
@@ -361,18 +368,53 @@ export function readerScreen(params: Record<string, string>): Screen {
   const escapeHtml = (text: string): string =>
     text.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
 
+  const ornament = (piece: Ornament, height: number, extra = ''): string =>
+    `<div class="ornament ${extra}" style="${ornamentStyle(piece, height)}" aria-hidden="true"></div>`;
+
   /** Column 0, by itself: the leaf the board faces when the volume opens. */
   function titlePage(volume: Tome): string {
+    const device = BY_SCHOOL[volume.school];
     return [
       '<header class="title-page">',
+      ornament(HEADPIECE, 3.4, 'ornament--headpiece'),
       `<p class="title-page__call">${escapeHtml(volume.call_number)}</p>`,
       `<h1 class="title-page__title">${escapeHtml(volume.title)}</h1>`,
       '<div class="title-page__rule"></div>',
       `<p class="title-page__author">${escapeHtml(volume.author)}</p>`,
+      device === undefined ? '' : ornament(device, 5.4, 'ornament--device'),
       `<p class="title-page__school">${escapeHtml(volume.school)}</p>`,
       volume.restricted ? '<p class="title-page__seal">SEALED RECORD</p>' : '',
       '</header>',
     ].join('');
+  }
+
+  /**
+   * Rubricate the opening.
+   *
+   * The first letter of the first paragraph of prose is lifted out and set as
+   * a red initial — which is what rubrication is, and what the burgundy
+   * headings elsewhere in the leaf are doing too. The standfirst is skipped:
+   * it is the archive's filing note, not the author's first word.
+   */
+  function rubricate(strip: HTMLElement): void {
+    const opening = strip.querySelector<HTMLParagraphElement>(
+      '.standfirst + p, .title-page + p:not(.standfirst)',
+    );
+    const text = opening?.firstChild;
+    if (opening === null || opening === undefined) return;
+    if (text === null || text === undefined || text.nodeType !== Node.TEXT_NODE) return;
+
+    const body = text.textContent ?? '';
+    const letter = body.trimStart().charAt(0);
+    if (letter === '') return;
+
+    const rest = body.slice(body.indexOf(letter) + 1);
+    const initial = document.createElement('span');
+    initial.className = 'rubric-initial';
+    initial.textContent = letter;
+    opening.replaceChild(document.createTextNode(rest), text);
+    opening.prepend(initial);
+    opening.classList.add('has-initial');
   }
 
   async function load(): Promise<void> {
@@ -409,11 +451,16 @@ export function readerScreen(params: Record<string, string>): Screen {
 
     // The body is trusted content from our own D1, but the renderer escapes it
     // regardless so that replacing the drafts later cannot open a hole.
-    const html = titlePage(tome) + renderMarkdown(tome.body);
+    const html =
+      titlePage(tome) +
+      renderMarkdown(tome.body) +
+      ornament(TAILPIECE, 2.2, 'ornament--tailpiece');
+
     for (const win of wins) {
       win.strip.innerHTML = html;
       // The tome's dateline is its standfirst, set apart from the prose.
       win.strip.querySelector('.title-page + p')?.classList.add('standfirst');
+      rubricate(win.strip);
     }
 
     cited = citedCallNumbers(tome.body, tome.call_number);
