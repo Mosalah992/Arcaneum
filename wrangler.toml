@@ -1,0 +1,15 @@
+# The Arcanaeum — Cloudflare Pages + D1
+#
+# `database_id` below is NOT a secret. It is an opaque account-scoped handle
+# that is useless without your Cloudflare credentials. It is committed on
+# purpose so this repo works after a plain `git clone`. See README.md.
+
+name = "arcanaeum"
+compatibility_date = "2025-09-23"
+pages_build_output_dir = "dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "arcanaeum"
+database_id = "9bbf2f7b-5813-43f2-9c82-cacfc9f6dde0"
+migrations_dir = "migrations"
