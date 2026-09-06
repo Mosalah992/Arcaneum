@@ -6,10 +6,11 @@
  * the far wall. Nothing else — no courtyard, no college, nothing outside these
  * four walls, because nothing outside them is ever in frame.
  *
- * EVERYTHING IS PROCEDURAL. Every texture here is drawn into a canvas at load:
- * there are no image files in this project yet, and the ones that will replace
- * these are listed in ASSETS.md. Every material is stock three.js — no custom
- * GLSL anywhere, including the well, which is animated by writing its buffer
+ * The well is painted — a ten-frame sheet stepped by moving a texture offset.
+ * Everything else here is still procedural: the stone, the runes and the motes
+ * are all drawn into canvases at load, and ASSETS.md lists the plates that will
+ * replace them. Every material is stock three.js. There is no custom GLSL
+ * anywhere, including the motes, which are animated by writing their buffer
  * attributes from JavaScript each frame.
  *
  * The scene renders at roughly a quarter resolution and is scaled up by the
@@ -27,7 +28,6 @@ import {
   BufferGeometry,
   CanvasTexture,
   Color,
-  CylinderGeometry,
   DoubleSide,
   Mesh,
   MeshBasicMaterial,
@@ -41,6 +41,7 @@ import {
   Raycaster,
   RepeatWrapping,
   Scene,
+  SRGBColorSpace,
   Vector2,
   WebGLRenderer,
   FogExp2,
@@ -56,8 +57,39 @@ import { play } from '../lib/sound';
 /** Target internal height in pixels. Everything above this is scaled up. */
 const INTERNAL_HEIGHT = 260;
 
-/** Motes in the well. */
-const MOTE_COUNT = 900;
+/**
+ * Motes drifting off the top of the well.
+ *
+ * The well itself is painted now, so these are no longer the effect — they are
+ * the part of it that has to live in three dimensions, carrying the magicka
+ * up past the flat sprite and into the dark where the room has depth.
+ */
+const MOTE_COUNT = 260;
+
+/** The painted well: 10 frames, five across and two down. */
+const WELL_SHEET = '/art/well.png';
+const WELL_COLUMNS = 5;
+const WELL_ROWS = 2;
+const WELL_FRAMES = 10;
+/** Frames a second. A hand-painted loop, played at a hand-painted rate. */
+const WELL_FPS = 9;
+/** One cell of the sheet: 1536/5 wide by 1024/2 tall. */
+const WELL_ASPECT = (1536 / WELL_COLUMNS) / (1024 / WELL_ROWS);
+/** How wide the painted stonework should stand in the room. */
+const WELL_STONE_WIDTH = 1.6;
+/** Where the well stands. The motes and the light follow it. */
+const WELL_Z = -0.4;
+
+/* Measured off this sheet: the checker runs 253 and 207, both fully neutral. */
+const CHECKER_SATURATION = 8;
+const CHECKER_LUMINANCE = 190;
+const CHECKER_MEAN = 230;
+/** How far a pixel may sit from keyed background and still count as halo. */
+const HALO_RADIUS = 3;
+/** Below this the pixel is stone, not glow, and is left alone. */
+const HALO_LUMINANCE = 170;
+/** Share of the sheet's peak saturation taken to mean "undiluted glow". */
+const GLOW_FRACTION = 0.55;
 
 /** The whole gate ceremony. The brief allows 3s. */
 const CEREMONY_MS = 2600;
@@ -164,6 +196,205 @@ function runeTexture(): CanvasTexture {
     bar(24, 22, 208, 5);
     bar(24, 229, 208, 5);
   });
+}
+
+/* -- the painted well ----------------------------------------------------- */
+
+interface KeyedSheet {
+  canvas: HTMLCanvasElement;
+  /** Painted width as a fraction of one cell — used to scale the quad. */
+  widthFraction: number;
+  /**
+   * How much of a cell, measured down from its top, the painting actually
+   * occupies. The rest is trimmed off in UV rather than drawn transparent —
+   * it is where the glow spilled onto the checkerboard and could not be keyed
+   * back off it, and cropping is the one treatment that removes it completely.
+   */
+  usedHeight: number;
+}
+
+/**
+ * Cut the checkerboard out of the well sheet.
+ *
+ * THE SOURCE HAS NO ALPHA CHANNEL. It was exported as 24-bit colour with the
+ * "transparent" checkerboard painted into the pixels, so the pattern arrives as
+ * real grey squares with nothing behind them. A 32-bit PNG carrying a genuine
+ * alpha channel deletes this entire function, and ASSETS.md asks for one.
+ *
+ * Until then, two passes.
+ *
+ * The first is a plain colour key: the checker is neutral and bright, and
+ * measurement says the painting has nothing else that is both — its whites are
+ * all blue, so the crystal and the beams survive a global key untouched.
+ *
+ * The second is the part a key cannot do. Where the glow is semi-transparent
+ * the flatten composited it ONTO the checker, so those pixels are part-checker
+ * and the pattern is baked into their colour; keying them leaves square holes
+ * and keeping them leaves square stains. What is recoverable is an estimate:
+ * the background is neutral and the glow is strongly blue, so how much
+ * saturation a blended pixel has left says how much glow is in it —
+ * alpha ~= saturation / saturation-of-the-pure-glow. With alpha known the grey
+ * can be subtracted back out, solving C = a*F + (1-a)*B for F. It runs only on
+ * pixels beside keyed ones, which is exactly the halo; solid stone is nowhere
+ * near a keyed pixel and is left alone.
+ */
+function keyOutCheckerboard(image: HTMLImageElement): KeyedSheet | null {
+  const width = image.naturalWidth;
+  const height = image.naturalHeight;
+  const canvas = document.createElement('canvas');
+  canvas.width = width;
+  canvas.height = height;
+
+  const ctx = canvas.getContext('2d', { willReadFrequently: true });
+  if (ctx === null) return null;
+  ctx.drawImage(image, 0, 0);
+
+  let field: ImageData;
+  try {
+    field = ctx.getImageData(0, 0, width, height);
+  } catch {
+    // A tainted canvas. Better a checkered well than no chamber.
+    return null;
+  }
+  const pixels = field.data;
+  const total = width * height;
+
+  /* -- pass one: the flat background ------------------------------------- */
+
+  const background = new Uint8Array(total);
+  let purest = 1;
+
+  for (let index = 0; index < total; index++) {
+    const i = index * 4;
+    const r = pixels[i]!;
+    const g = pixels[i + 1]!;
+    const b = pixels[i + 2]!;
+    const saturation = Math.max(r, g, b) - Math.min(r, g, b);
+    const luminance = (r + g + b) / 3;
+
+    if (saturation <= CHECKER_SATURATION && luminance >= CHECKER_LUMINANCE) {
+      background[index] = 1;
+      pixels[i + 3] = 0;
+    } else if (saturation > purest) {
+      purest = saturation;
+    }
+  }
+
+  /* -- pass two: the halo ------------------------------------------------ */
+
+  /*
+   * Where the glow was semi-transparent, the flatten composited it ONTO the
+   * checker, so those pixels are part-checker and the pattern is baked into
+   * their colour. What is recoverable is an estimate: the background is
+   * neutral and the glow is strongly blue, so how much saturation a blended
+   * pixel has left says how much glow is in it — alpha ~= saturation /
+   * saturation-of-the-pure-glow — and with alpha known the grey can be
+   * subtracted back out, solving C = a*F + (1-a)*B for F.
+   *
+   * It runs only within HALO_RADIUS of a keyed pixel. Growing the region by
+   * connectivity instead was tried and is worse: the stonework has pale
+   * highlights that are just as desaturated as the spill, so the fill walks
+   * straight through them and eats the entire well.
+   */
+  const stride = width + 1;
+  const sums = new Int32Array(stride * (height + 1));
+  for (let y = 0; y < height; y++) {
+    let row = 0;
+    for (let x = 0; x < width; x++) {
+      row += background[y * width + x]!;
+      sums[(y + 1) * stride + x + 1] = sums[y * stride + x + 1]! + row;
+    }
+  }
+
+  // Constant-time "is there keyed background in this square", via prefix sums.
+  const nearBackground = (x: number, y: number): boolean => {
+    const x0 = Math.max(0, x - HALO_RADIUS);
+    const y0 = Math.max(0, y - HALO_RADIUS);
+    const x1 = Math.min(width, x + HALO_RADIUS + 1);
+    const y1 = Math.min(height, y + HALO_RADIUS + 1);
+    return (
+      sums[y1 * stride + x1]! -
+        sums[y0 * stride + x1]! -
+        sums[y1 * stride + x0]! +
+        sums[y0 * stride + x0]! >
+      0
+    );
+  };
+
+  const pureGlow = purest * GLOW_FRACTION;
+
+  for (let index = 0; index < total; index++) {
+    if (background[index] === 1) continue;
+
+    const i = index * 4;
+    const r = pixels[i]!;
+    const g = pixels[i + 1]!;
+    const b = pixels[i + 2]!;
+
+    // Only the bright halo needs rebuilding; the stonework is dark and opaque.
+    if ((r + g + b) / 3 <= HALO_LUMINANCE) continue;
+
+    const x = index % width;
+    const y = (index - x) / width;
+    if (!nearBackground(x, y)) continue;
+
+    const saturation = Math.max(r, g, b) - Math.min(r, g, b);
+    const alpha = Math.min(saturation / pureGlow, 1);
+
+    // Below this there is more checker in the pixel than glow, and what it is
+    // mostly carrying is the background it was flattened onto.
+    if (alpha < 0.12) {
+      pixels[i + 3] = 0;
+      continue;
+    }
+    if (alpha < 0.996) {
+      const rest = (1 - alpha) * CHECKER_MEAN;
+      pixels[i] = Math.max(0, Math.min(255, (r - rest) / alpha));
+      pixels[i + 1] = Math.max(0, Math.min(255, (g - rest) / alpha));
+      pixels[i + 2] = Math.max(0, Math.min(255, (b - rest) / alpha));
+      pixels[i + 3] = Math.round(alpha * 255);
+    }
+  }
+
+  /*
+   * Where the painting actually sits inside a cell.
+   *
+   * Measured by counting solid pixels per row and column across every cell and
+   * taking the first and last that clear a threshold, rather than by taking the
+   * outermost surviving pixel. A single speck of un-keyable spill would other-
+   * wise define the base of the well, and the whole thing would be hung in the
+   * air above the floor by however far that speck fell below the stone.
+   */
+  const cellWidth = Math.round(width / WELL_COLUMNS);
+  const cellHeight = Math.round(height / WELL_ROWS);
+  const columnMass = new Int32Array(cellWidth);
+  const rowMass = new Int32Array(cellHeight);
+
+  for (let index = 0; index < total; index++) {
+    if (pixels[index * 4 + 3]! < 128) continue;
+    const x = index % width;
+    const y = (index - x) / width;
+    columnMass[x % cellWidth]! += 1;
+    rowMass[y % cellHeight]! += 1;
+  }
+
+  // A row of the stonework runs to thousands of pixels across ten cells; a
+  // speck of un-keyable spill runs to a few hundred. This sits between them.
+  const SOLID = 900;
+  let minX = 0;
+  let maxX = cellWidth - 1;
+  let maxY = cellHeight - 1;
+  while (minX < cellWidth - 1 && columnMass[minX]! < SOLID) minX++;
+  while (maxX > minX && columnMass[maxX]! < SOLID) maxX--;
+  while (maxY > 0 && rowMass[maxY]! < SOLID) maxY--;
+
+  ctx.putImageData(field, 0, 0);
+
+  return {
+    canvas,
+    widthFraction: Math.max((maxX - minX) / cellWidth, 0.05),
+    usedHeight: Math.min((maxY + 1) / cellHeight, 1),
+  };
 }
 
 /* -- the screen ----------------------------------------------------------- */
@@ -323,22 +554,84 @@ export function chamberScreen(): Screen {
 
   /* -- the well ----------------------------------------------------------- */
 
-  // The rim sits below the light that comes out of it, so left to the point
-  // light alone it renders as a black hole in the floor. A little emissive of
-  // the well's own colour is what makes it read as wet lit stone.
-  const rimMaterial = keep(
-    new MeshStandardMaterial({
-      color: new Color('#2b323c'),
-      roughness: 1,
-      metalness: 0,
-      emissive: new Color('#0e3a44'),
-      emissiveIntensity: 0.9,
-      side: DoubleSide,
+  /*
+   * The well is painted, not modelled.
+   *
+   * One quad carrying a ten-frame sheet, stepped by moving the texture offset
+   * — the oldest sprite trick there is, and still the one that needs no
+   * shader. The camera never orbits, so a flat quad facing it is indis-
+   * tinguishable from geometry, and the painting has lighting and runes on it
+   * that would cost a great deal of three.js to reproduce badly.
+   *
+   * NearestFilter, as everywhere here: the sheet is upscaled by the same
+   * quarter-resolution pass as the rest of the room and has to stay hard.
+   */
+  const wellMaterial = keep(
+    new MeshBasicMaterial({
+      transparent: true,
+      depthWrite: false,
+      toneMapped: false,
     }),
   );
-  const rim = new Mesh(keepGeometry(new CylinderGeometry(0.86, 0.98, 0.3, 14, 1, true)), rimMaterial);
-  rim.position.set(0, 0.15, -0.4);
-  scene.add(rim);
+  const well = new Mesh(keepGeometry(new PlaneGeometry(1, 1)), wellMaterial);
+  well.visible = false;
+  scene.add(well);
+
+  let wellMap: Texture | null = null;
+  let wellCrop = 1;
+  let wellFrame = 0;
+  let wellClock = 0;
+
+  const sheet = new Image();
+  sheet.decoding = 'async';
+  sheet.src = WELL_SHEET;
+  sheet
+    .decode()
+    .then(() => {
+      const keyed = keyOutCheckerboard(sheet);
+      if (keyed === null) return;
+
+      const texture = new CanvasTexture(keyed.canvas);
+      texture.magFilter = NearestFilter;
+      texture.minFilter = NearestFilter;
+      texture.generateMipmaps = false;
+      texture.colorSpace = SRGBColorSpace;
+      texture.repeat.set(1 / WELL_COLUMNS, keyed.usedHeight / WELL_ROWS);
+      wellCrop = keyed.usedHeight;
+      wellMap = keepTexture(texture);
+      wellMaterial.map = texture;
+      wellMaterial.needsUpdate = true;
+
+      // Fit the quad from the painting rather than from guesswork: scale so the
+      // stonework is WELL_STONE_WIDTH across, then stand it on the floor. The
+      // crop puts the base at the very bottom of the quad, so that is just half
+      // its height.
+      const width = WELL_STONE_WIDTH / keyed.widthFraction;
+      const height = (width / WELL_ASPECT) * keyed.usedHeight;
+      well.scale.set(width, height, 1);
+      well.position.set(0, height / 2, WELL_Z);
+
+      well.visible = true;
+      showWellFrame(0);
+    })
+    .catch(() => {
+      // The sheet did not arrive, or the canvas refused to give its pixels
+      // back. The motes and the light still describe a well, and the gate is
+      // still findable, which is all the chamber owes.
+    });
+
+  /** Step the sheet. Row 0 is the top row, which in UV space is the upper half. */
+  function showWellFrame(index: number): void {
+    if (wellMap === null) return;
+    const column = index % WELL_COLUMNS;
+    const row = Math.floor(index / WELL_COLUMNS);
+    // v runs up from the bottom, and the crop keeps the TOP of each cell, so
+    // the offset has to skip the trimmed sliver underneath it.
+    wellMap.offset.set(
+      column / WELL_COLUMNS,
+      (WELL_ROWS - 1 - row) / WELL_ROWS + (1 - wellCrop) / WELL_ROWS,
+    );
+  }
 
   // Sat just above the mouth so the spill clears the rim and reaches the gate.
   const wellLight = new PointLight(new Color('#4fd2e6'), 9, 20, 1.5);
@@ -356,7 +649,7 @@ export function chamberScreen(): Screen {
 
   function seed(i: number, atBottom: boolean): void {
     angle[i] = Math.random() * Math.PI * 2;
-    radius[i] = Math.random() ** 0.6 * 0.78;
+    radius[i] = Math.random() ** 0.6 * 0.34;
     life[i] = atBottom ? 0 : Math.random();
     speed[i] = 0.16 + Math.random() * 0.42;
   }
@@ -397,7 +690,8 @@ export function chamberScreen(): Screen {
       const spreadAt = radius[i]! * (1 - t * 0.62);
 
       positions[i * 3] = Math.cos(spin) * spreadAt;
-      positions[i * 3 + 1] = 0.34 + t * 2.5;
+      // Picked up where the painted jet leaves off, and carried to the ceiling.
+      positions[i * 3 + 1] = 1.95 + t * 2.6;
       positions[i * 3 + 2] = -0.4 + Math.sin(spin) * spreadAt;
 
       // Bright at the mouth of the well, gone by the ceiling.
@@ -540,6 +834,13 @@ export function chamberScreen(): Screen {
     last = now;
 
     stepMotes(delta);
+
+    wellClock += delta;
+    if (wellClock >= 1 / WELL_FPS) {
+      wellClock %= 1 / WELL_FPS;
+      wellFrame = (wellFrame + 1) % WELL_FRAMES;
+      showWellFrame(wellFrame);
+    }
 
     // The well breathes. Two frequencies so it never reads as a loop.
     flicker += delta;
