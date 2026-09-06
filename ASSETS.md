@@ -99,11 +99,13 @@ switches back.
 | File | Where | Status |
 | --- | --- | --- |
 | `audio/librarytheme.mp3` | boot, chamber, catalogue | supplied, 563 KB |
-| `audio/darkwave.mp3` | the reader, while a volume is open | **missing — drop it in** |
+| `audio/darkwave.mp3` | the reader, while a volume is open | supplied, 367 KB |
 
-The reader asks for `darkwave.mp3` already; until the file exists the request
-fails and is swallowed, and the archive's theme simply stops for the duration
-of the volume. Nothing else breaks.
+If a track ever fails to load, the archive's theme takes over rather than the
+volumes going silent. Worth knowing: Cloudflare Pages serves its SPA fallback
+for an unknown path, so a missing mp3 arrives as **200 with `text/html`**, not
+a 404 — which is exactly how it looks when a file has been added locally but
+not deployed.
 
 `audio/librarytheme.mp3`, 563 KB, is looped under the MUSIC toggle. It
 is **off by default and never starts on its own** — the brief rules out an
