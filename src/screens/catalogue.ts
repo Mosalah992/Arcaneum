@@ -17,6 +17,7 @@ import {
 } from '../lib/api';
 import { discoveries, remember } from '../lib/store';
 import { navigate, type Screen } from '../lib/router';
+import { play } from '../lib/sound';
 
 interface Row extends TomeSummary {
   sealed: boolean;
@@ -219,6 +220,7 @@ export function catalogueScreen(): Screen {
       button.setAttribute('aria-selected', String(i === selected)),
     );
     if (scroll) buttons[selected]?.scrollIntoView({ block: 'nearest' });
+    play('tick');
   }
 
   function openTome(row: Row): void {

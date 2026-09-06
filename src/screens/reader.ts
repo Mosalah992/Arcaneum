@@ -25,6 +25,7 @@ import { clear, el, prefersReducedMotion } from '../lib/dom';
 import { fetchTome, ArchiveError, type Tome } from '../lib/api';
 import { renderMarkdown, citedCallNumbers } from '../lib/markdown';
 import { navigate, type Screen } from '../lib/router';
+import { play } from '../lib/sound';
 
 /** Below this the binding comes apart into one scrolling column. */
 const SPREAD_MIN_WIDTH = 900;
@@ -234,6 +235,8 @@ export function readerScreen(params: Record<string, string>): Screen {
     // hidden underneath it, so nothing changes in view mid-turn.
     if (direction > 0) put(right, facing(to)[1]);
     else put(left, facing(to)[0]);
+
+    play('page');
 
     if (prefersReducedMotion()) {
       spread = to;

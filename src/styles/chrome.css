@@ -1,5 +1,10 @@
 /* Header and footer: the brass-and-stone frame around every screen. */
 
+/* A screen may ask for the frame to come off. */
+html[data-chrome='off'] .chrome-bar {
+  display: none;
+}
+
 .chrome-bar {
   flex: 0 0 auto;
   display: flex;
