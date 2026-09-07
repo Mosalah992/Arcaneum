@@ -79,6 +79,12 @@
     0 0 0 5px var(--stone-700),
     0 0 0 6px var(--obsidian),
     0 10px 26px rgba(0, 0, 0, 0.72);
+  animation: book-settle var(--motion-slow) var(--ease-out) both;
+}
+
+@keyframes book-settle {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .page {
@@ -563,4 +569,8 @@
 
   .reader-foot .pager { display: none; }
   .folio { text-align: left; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book { animation: none; }
 }
