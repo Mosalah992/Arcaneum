@@ -495,11 +495,13 @@ export function chamberScreen(): Screen {
 
   let left = false;
   let leaveTimer = 0;
+  let grindTimer = 0;
 
   function leave(): void {
     if (left) return;
     left = true;
     window.clearTimeout(leaveTimer);
+    window.clearTimeout(grindTimer);
     navigate('/catalogue', true);
   }
 
@@ -516,7 +518,7 @@ export function chamberScreen(): Screen {
     ceremony = true;
     element.classList.add('chamber--opening');
     play('unlock');
-    window.setTimeout(() => play('grind'), 320);
+    grindTimer = window.setTimeout(() => play('grind'), 320);
     leaveTimer = window.setTimeout(leave, CEREMONY_MS);
   }
 
@@ -534,7 +536,9 @@ export function chamberScreen(): Screen {
 
     // 0.14–0.30  the grind, before anything moves
     if (t > 0.14 && t < 0.3) {
-      camera.position.x = (Math.random() - 0.5) * 0.035;
+      // A regular low-amplitude tremor reads as stone under strain; random
+      // values here looked like a dropped frame at the archive's pixel scale.
+      camera.position.x = Math.sin(ceremonyAt * 0.19) * 0.018;
     } else {
       camera.position.x = 0;
     }
@@ -548,13 +552,19 @@ export function chamberScreen(): Screen {
     // 0.46–1.00  the camera goes through
     //
     // Far enough to actually pass the gate plane at z = GATE_Z, not merely to
-    // approach it. It ends outside the room, which is only safe because the
-    // fade below is at full black by the time it gets there.
+    // approach it. The room falls away as the camera reaches the threshold.
     const push = Math.max(0, Math.min((t - 0.46) / 0.54, 1));
     camera.position.z = 4.3 - push * push * 12;
+    // Crossing the room's back wall would otherwise reveal the inverted
+    // stone box. The archive becomes a void just before the crossing.
+    if (push > 0.86) {
+      room.visible = false;
+      floor.visible = false;
+    }
 
-    // 0.72–1.00  black
-    fade.style.opacity = String(Math.max(0, Math.min((t - 0.72) / 0.28, 1)));
+    // The fade begins before the threshold is fully crossed, so the physical
+    // room never reads as the destination on the gate's far side.
+    fade.style.opacity = String(Math.max(0, Math.min((t - 0.64) / 0.36, 1)));
   }
 
   /* -- the loop ----------------------------------------------------------- */
@@ -613,6 +623,7 @@ export function chamberScreen(): Screen {
       cancelAnimationFrame(frame);
       observer.disconnect();
       window.clearTimeout(leaveTimer);
+      window.clearTimeout(grindTimer);
       element.removeEventListener('pointermove', onPointerMove);
       element.removeEventListener('pointerdown', onPointerDown);
       window.removeEventListener('keydown', onKeydown);

@@ -90,6 +90,7 @@ export function createRouter(
     mounted?.destroy?.();
     stage.replaceChildren();
     mounted = resolve(currentPath());
+    mounted.element.classList.add('screen--enter');
     stage.append(mounted.element);
     onScreen?.(mounted);
   }

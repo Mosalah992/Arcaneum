@@ -42,6 +42,17 @@ canvas {
     radial-gradient(ellipse at 50% 0%, #14171c 0%, var(--obsidian) 70%);
 }
 
+/* A new room resolves into focus once. It is intentionally just two small
+   properties, leaving the chamber canvas and reader's page-turn untouched. */
+.screen--enter {
+  animation: screen-enter var(--motion-slow) var(--ease-out) both;
+}
+
+@keyframes screen-enter {
+  from { opacity: 0; filter: brightness(0.72); }
+  to { opacity: 1; filter: brightness(1); }
+}
+
 button {
   font: inherit;
   color: inherit;
@@ -101,4 +112,8 @@ html[data-scanlines='on'] #scanlines::after {
     rgba(0, 0, 0, 0.45) 100%
   );
   mix-blend-mode: multiply;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen--enter { animation: none; }
 }

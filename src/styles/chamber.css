@@ -50,10 +50,31 @@
   font-size: 15px;
   letter-spacing: 0.22em;
   color: #2f4750;
-  transition: opacity 0.4s linear;
+  opacity: 0.78;
+  text-shadow: 0 0 10px rgba(79, 210, 230, 0.18);
+  transition: opacity var(--motion-medium) linear;
 }
 
 .chamber--opening .chamber-hint { opacity: 0; }
+
+/* A thin edge makes the hit area feel discovered before it opens. */
+.chamber--gate::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 18% 42% at 50% 49%, transparent 58%, rgba(79, 210, 230, 0.12) 59%, transparent 63%);
+  animation: gate-answer 1.8s steps(4, end) infinite;
+}
+
+@keyframes gate-answer {
+  0%, 100% { opacity: 0.28; }
+  50% { opacity: 0.9; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chamber--gate::after { animation: none; opacity: 0.55; }
+}
 
 @media (max-width: 700px) {
   .chamber-hint { font-size: 12px; letter-spacing: 0.16em; }

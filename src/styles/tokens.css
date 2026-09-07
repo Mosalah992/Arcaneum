@@ -31,6 +31,14 @@
   --header-h: 34px;
   --footer-h: 30px;
 
+  /* Motion is deliberately spare: the archive should feel mechanical, not
+     floaty. These are shared so its different rooms keep the same tempo. */
+  --motion-fast: 140ms;
+  --motion-medium: 260ms;
+  --motion-slow: 520ms;
+  --ease-out: cubic-bezier(0.22, 0.8, 0.24, 1);
+  --ease-step: steps(3, end);
+
   /* Beveled stone, built from borders and shadows rather than images. */
   --bevel-out:
     inset 1px 1px 0 0 var(--stone-lit),
