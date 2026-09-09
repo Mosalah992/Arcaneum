@@ -54,8 +54,8 @@ async function get<T>(path: string): Promise<T> {
   return payload as T;
 }
 
-export async function listTomes(school?: string): Promise<TomeSummary[]> {
-  const query = school ? `?school=${encodeURIComponent(school)}` : '';
+export async function listTomes(shelf?: string): Promise<TomeSummary[]> {
+  const query = shelf ? `?shelf=${encodeURIComponent(shelf)}` : '';
   const { tomes } = await get<{ tomes: TomeSummary[] }>(`/api/tomes${query}`);
   return tomes;
 }

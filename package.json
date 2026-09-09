@@ -10,7 +10,9 @@
     "seed": "node scripts/build-seed.mjs",
     "db:local": "wrangler d1 migrations apply arcanaeum --local",
     "db:remote": "wrangler d1 migrations apply arcanaeum --remote",
-    "deploy": "npm run build && wrangler pages deploy"
+    "deploy": "npm run build && wrangler pages deploy",
+    "import": "node scripts/import-library.mjs",
+    "db:reset": "node scripts/reset-local-db.mjs && wrangler d1 migrations apply arcanaeum --local"
   },
   "dependencies": {
     "@fontsource/eb-garamond": "^5.1.0",

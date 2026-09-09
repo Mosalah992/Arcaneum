@@ -12,7 +12,7 @@
 // If this project ever needs real access control, it does not go here. It goes
 // behind an identity system that does not yet exist and is not planned.
 
-import { CALL_NUMBER_RE } from '../../../shared/schools';
+import { CALL_NUMBER_RE } from '../../../shared/shelves';
 import { fail, json, param, readOnly, type RequestContext } from '../_lib';
 
 interface Resolved {

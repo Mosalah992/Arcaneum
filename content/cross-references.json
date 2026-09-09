@@ -1,0 +1,63 @@
+{
+  "_comment": [
+    "The Arcanaeum's own hand.",
+    "",
+    "Bethesda's text is never edited, and Bethesda's books almost never name one",
+    "another by exact title — scanning the corpus finds barely fifty references",
+    "in a quarter of a million words, and four of the five sealed books are named",
+    "by nobody at all. Without something more, the sealed shelf could not be",
+    "reached, and a sealed book nobody can reach is not a mystery, it is missing.",
+    "",
+    "So these references are the ARCHIVE's, not the author's. They are what a",
+    "librarian would pencil at the foot of a related volume, and the reader shows",
+    "them that way: a colophon set apart from the text, in the marginal hand,",
+    "after the tailpiece. Nothing here alters a single word of the book itself.",
+    "",
+    "`from` and `cites` are titles rather than call numbers, because call numbers",
+    "are assigned by the importer and would silently rot if the source library",
+    "ever inserted a book. build-seed.mjs resolves them and fails loudly on a",
+    "title it cannot find."
+  ],
+  "references": [
+    {
+      "from": "The Night Mother’s Truth",
+      "cites": "A Kiss, Sweet Mother",
+      "note": "The rite this account circles is set down plainly in the sealed copy."
+    },
+    {
+      "from": "Sacred Witness",
+      "cites": "A Kiss, Sweet Mother",
+      "note": "For the Sacrament itself, and not the telling of it."
+    },
+    {
+      "from": "On Oblivion",
+      "cites": "Liminal Bridges",
+      "note": "The mechanism this treatise declines to describe."
+    },
+    {
+      "from": "The Oblivion Crisis",
+      "cites": "Liminal Bridges",
+      "note": "How the gates were opened, held on the sealed shelf."
+    },
+    {
+      "from": "Darkest Darkness",
+      "cites": "A Tragedy in Black",
+      "note": "A summoning of the kind described here, told as a story."
+    },
+    {
+      "from": "Varieties of Daedra",
+      "cites": "A Tragedy in Black",
+      "note": "On binding a Dremora to a garment; sealed for the method."
+    },
+    {
+      "from": "Darkest Darkness",
+      "cites": "Souls, Black and White",
+      "note": "On the trapping of sentient souls."
+    },
+    {
+      "from": "The Book of Daedra",
+      "cites": "Souls, Black and White",
+      "note": "The black gem and what is done to fill it."
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+---
+call_number: AR-II-008
+title: Shadowmarks
+author: Delvin Mallory
+school: Faction Books
+restricted: false
+source: https://skyrimbooksproj.web.app/books/faction-books/shadowmarks
+---
+Need to know your way around, eh? Don’t want to stumble into a necromancer’s house or fall into another trap set up by the city guard? Then you need to read this book from cover to cover. Learning to identify the shadowmark can mean the difference between making a fortune and ending up with a blade in your gut.
+
+The clever little marks are carved all over Skyrim… mostly on the doorframes or fronts of buildings, but you can find them pretty much anywhere a thief’s been. It’s the way we talk to each other without talking. Keeps the newer thieves from becoming dead thieves and all that nonsense. There aren’t that many of the bloody things, so I don’t want to hear any excuses about not having the time to learn them.
+
+Anyway, enough of my gabbing. Time to put your wizard’s cap on and do a little research.
+
+Glossary of Shadowmarks
+
+
+
+“The Guild”
+
+This is the symbol for the Guild. This means the place is as safe as the Flagon’s cistern. If you see this shadowmark, someone from the Guild is nearby for certain.
+
+“Safe”
+
+We usually leave this shadowmark when we’ve scouted and found a safe way around something, a hallway without traps or maybe a house that’s already cleared out. If you see one of these, head the way it’s pointing and you’ll be fine.
+
+“Danger”
+
+If you see this shadowmark, head the other way or take your life in your own hands. It means there’s something ahead or beyond that door that wants to turn you inside-out.
+
+“Escape Route”
+
+Now, on the rare occasion (it better be a rare occasion if you want to work in the Guild) that you find yourself in jail, look for this little beauty. You see this shadowmark and escape is just a few steps away.
+
+“Protected”
+
+We put these shadowmarks on places we don’t want you to go. As in stay out of there or there’s going to be a boot up the backside. These people are under the Guild’s protection and should never be robbed or assaulted.
+
+“Fence”
+
+This should quickly become your favorite shadowmark. The person near this mark will buy your... hard-earned stolen goods for a fair price.
+
+“Thieve’s Cache”
+
+Who says we only take and never give back? If you find this shadowmark near a chest or maybe a hollowed log, you’re in for a surprise… a gift from the Guild for the thief in the field. Whoever said membership didn’t have its privileges?
+
+“Loot”
+
+There’s something near this shadowmark worth stealing. Saves you from breaking into a place only to find the people don’t even have two septim to rub together.
+
+“Empty”
+
+The opposite of the Loot Shadowmark. Pass on this place, there’s nothing inside.

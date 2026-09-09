@@ -16,7 +16,7 @@
  *   catalogue themselves.
  */
 
-import { CALL_NUMBER_GLOBAL_RE } from '../../shared/schools';
+import { CALL_NUMBER_GLOBAL_RE } from '../../shared/shelves';
 
 const ESCAPES: Record<string, string> = {
   '&': '&amp;',

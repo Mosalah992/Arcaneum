@@ -7,7 +7,7 @@
  * not it was ever on the shelf.
  */
 
-import { SCHOOLS, CALL_NUMBER_RE } from '../../shared/schools';
+import { SHELVES, CALL_NUMBER_RE } from '../../shared/shelves';
 import { clear, el } from '../lib/dom';
 import {
   listTomes,
@@ -60,18 +60,18 @@ export function catalogueScreen(): Screen {
   const tablets = el(
     'nav',
     { class: 'tablets' },
-    el('p', { class: 'tablets-legend' }, 'SCHOOLS'),
+    el('p', { class: 'tablets-legend' }, 'SHELVES'),
   );
   const tabletButtons = new Map<string | null, HTMLButtonElement>();
 
-  for (const name of [null, ...SCHOOLS]) {
+  for (const name of [null, ...SHELVES]) {
     const button = el(
       'button',
       {
         class: 'tablet',
         type: 'button',
         'aria-pressed': String(school === name),
-        onclick: () => selectSchool(name),
+        onclick: () => selectShelf(name),
       },
       name === null ? 'ALL SHELVES' : name.toUpperCase(),
     );
@@ -113,7 +113,7 @@ export function catalogueScreen(): Screen {
     mirrorText.textContent = input.value.slice(0, at);
   }
 
-  function selectSchool(name: string | null): void {
+  function selectShelf(name: string | null): void {
     if (school === name) return;
     school = name;
     for (const [key, button] of tabletButtons) {

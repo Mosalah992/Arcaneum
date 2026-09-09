@@ -1,0 +1,29 @@
+{
+  "_comment": [
+    "The sealed shelf, taken from the 'Restricted Titles' sheet of the College's",
+    "own register rather than chosen here. The reasons are the librarians' own",
+    "words. scripts/import-library.mjs reads this file and sets `restricted` in",
+    "the frontmatter it writes, so re-running the import does not unseal them.",
+    "",
+    "THIS IS LORE, NOT ACCESS CONTROL. Every title below is a published Bethesda",
+    "book that anyone can read anywhere; sealing it here is a game the catalogue",
+    "plays, and the resolve endpoint says so in as many words. Nothing may be",
+    "added to this list that would matter if it leaked.",
+    "",
+    "Three titles on the register are absent from the corpus and are listed here",
+    "anyway, so the two lists can be compared: 'Liminal Bridges: Simplified' is a",
+    "College self-publication, and 'Mannimarco, King of Worms' and 'The Doors of",
+    "Oblivion' are Oblivion-era books that the Skyrim-only source does not carry.",
+    "The importer reports them as unmatched rather than failing."
+  ],
+  "titles": {
+    "A Kiss, Sweet Mother": "A direct guide for how to perform the Black Sacrament to summon the Dark Brotherhood.",
+    "A Tragedy in Black": "Casualizes the practical elements of Daedric summoning and black soul gems.",
+    "Brothers of Darkness": "A primer on active, illegal assassin guilds and their devotion to Sithis and the Night Mother.",
+    "Liminal Bridges": "Effectively an instruction manual for opening Oblivion Gates.",
+    "Liminal Bridges: Simplified": "A simplified explanation of Liminal Bridges by Byrnolf Skjeld.",
+    "Mannimarco, King of Worms": "Romanticizes one of Tamriel's most catastrophic powers.",
+    "Souls, Black and White": "Detailed information on how sentient souls are trapped; bordering on actionable necromancy.",
+    "The Doors of Oblivion": "Held on the register as a sealed title."
+  }
+}
