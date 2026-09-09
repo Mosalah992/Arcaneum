@@ -11,7 +11,6 @@ const DISCOVERIES = 'arcanaeum.discoveries';
 const SCANLINES = 'arcanaeum.scanlines';
 const MUTED = 'arcanaeum.muted';
 const MUSIC = 'arcanaeum.music';
-const VISITED = 'arcanaeum.visited';
 
 function read(key: string): string | null {
   try {
@@ -65,7 +64,6 @@ export const scanlines = flag(SCANLINES, false);
 export const muted = flag(MUTED, false);
 /* Off by default: the brief rules out an ambient track that starts on its own. */
 export const music = flag(MUSIC, false);
-export const visited = flag(VISITED, false);
 
 function flag(key: string, fallback: boolean) {
   return {

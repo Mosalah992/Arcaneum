@@ -163,23 +163,25 @@
 .book--cover .page--left > .page__win,
 .book--cover .page--left::before { visibility: hidden; }
 
-/* Drawn, not painted: a college sigil built from CSS so there is no asset to
-   wait on. ASSETS.md lists the plate that will replace it. */
+/*
+ * The College's sigil, blocked into the board.
+ *
+ * This is the first thing a volume shows you: the inside of the front cover,
+ * facing the title page, before a leaf has been turned. It was a CSS diamond
+ * around a dingbat, standing in until a plate existed; the plate exists.
+ *
+ * `filter`, not opacity: the sigil is painted in flat coral and teal and it is
+ * being set into dark tooled board, so it is pulled down and warmed rather
+ * than faded, the way a blocked device sinks into leather. The gilt ring is
+ * the board's, not the sigil's — a `box-shadow` on this element, because a
+ * bevel in this project is a shadow and not a picture.
+ */
 .board__sigil {
-  width: 42%;
-  aspect-ratio: 1;
-  display: grid;
-  place-items: center;
-  font-size: 46px;
-  color: var(--magicka-dim);
-  border: 2px solid rgba(160, 130, 82, 0.3);
-  transform: rotate(45deg);
-  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8);
-}
-
-.board__sigil span {
-  transform: rotate(-45deg);
-  text-shadow: 0 0 14px var(--magicka-dim);
+  width: 46%;
+  aspect-ratio: 506 / 505;
+  background: url('/art/sigil.png') no-repeat center / contain;
+  image-rendering: auto;
+  filter: saturate(0.72) brightness(0.86) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.75));
 }
 
 /* -- the text on a leaf ------------------------------------------------- */
@@ -219,17 +221,41 @@
   text-indent: 1.2em;
 }
 
-.leaves .standfirst,
 .leaves h2 + p,
 .leaves hr + p,
-.leaves .marginalia + p {
+.leaves .marginalia + p,
+.leaves .frontmatter,
+.leaves .frontmatter + p {
   text-indent: 0;
 }
 
-.leaves .standfirst {
-  font-style: italic;
+/* The book's own front matter, kept because the text is never edited: the
+   title again, then `by`, then the author. Set as front matter rather than as
+   running prose. See markFrontMatter() in src/screens/reader.ts. */
+.leaves .frontmatter {
+  margin: 0 0 0.35em;
+  text-align: center;
   color: var(--ink-faded);
-  text-align: left;
+}
+
+.leaves .frontmatter--title {
+  margin-top: 0.2em;
+  font-variant: small-caps;
+  font-size: 1.16em;
+  letter-spacing: 0.05em;
+  color: var(--burgundy);
+}
+
+.leaves .frontmatter--by {
+  font-style: italic;
+  font-size: 0.9em;
+}
+
+.leaves .frontmatter--author {
+  margin-bottom: 1.1em;
+  font-style: italic;
+  font-size: 1.02em;
+  color: var(--ink);
 }
 
 .leaves h2 {
@@ -305,9 +331,6 @@
   image-rendering: auto;
 }
 
-.ornament--headpiece { margin-bottom: 0.2em; }
-.ornament--device { margin: 0.35em 0 0.1em; }
-
 .ornament--tailpiece {
   margin: 1.1em auto 0;
   opacity: 0.85;
@@ -352,6 +375,31 @@
   text-align: center;
   break-after: column;
   break-inside: avoid-column;
+}
+
+/*
+ * The sigil again, on the title page, and ONLY where there is no cover to put
+ * it on.
+ *
+ * The sigil belongs on the board — the left leaf, the inside of the front
+ * cover, which is what faces you when a volume opens. Below 900px the binding
+ * comes apart into a single scrolling column and there is no board and no
+ * facing leaf, so the mark would simply never be seen. It goes at the head of
+ * the title page instead. One sigil per volume either way, at the beginning of
+ * it either way; what changes is where the beginning is.
+ *
+ * Not `image-rendering: pixelated`. The plate is a soft 506px render shown at a
+ * fifth of that, and nearest-neighbour on a downscale of a soft image aliases
+ * rather than crunches — the same exception the disc gets, for the same reason.
+ */
+.title-page__sigil {
+  display: none;
+  width: 7.2em;
+  aspect-ratio: 506 / 505;
+  margin-bottom: 0.15em;
+  flex: none;
+  background: url('/art/sigil.png') no-repeat center / contain;
+  image-rendering: auto;
 }
 
 .title-page__call {
@@ -554,7 +602,6 @@
 
   .leaves h2 { font-size: 18px; }
   .marginalia { margin-left: 0.6em; }
-  .ornament--headpiece { display: none; }
   .rubric-initial { font-size: 2.8em; }
 
   /* The title page is a full-height panel in a paged book and a banner in a
@@ -566,6 +613,7 @@
   }
 
   .title-page__title { font-size: 23px; }
+  .title-page__sigil { display: block; width: 5.4em; }
 
   .reader-foot .pager { display: none; }
   .folio { text-align: left; }

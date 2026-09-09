@@ -1,7 +1,7 @@
 /**
  * The illuminations.
  *
- * One painted sheet holds every ornament the volumes use, and the elements on
+ * One painted sheet holds the ornaments the volumes use, and the elements on
  * it interleave: the sun's corner reaches into the rectangle around the dragon
  * border, a vine crosses behind the stag. So an ornament CANNOT simply be a
  * crop. Cropping showed whatever else happened to fall inside the rectangle,
@@ -14,8 +14,15 @@
  * passing through the box is left behind rather than cut in half. The result
  * is cached as a data URL and handed to the reader.
  *
- * The boxes below are measured off the current sheet and only have to be close
- * enough to identify the right run. Repaint the sheet and they can be re-
+ * WHAT IS LEFT HERE IS THE TAILPIECE, and that is deliberate. The opening of
+ * every volume now carries the College's own sigil — one mark, the same on all
+ * 249 of them, a supplied plate rather than anything cut from this sheet. The
+ * dragon headpiece and the eight per-shelf devices that used to share the title
+ * page with it are gone; three ornaments on one leaf was a crowded page, and
+ * the sigil is the one that means something. See `src/screens/reader.ts`.
+ *
+ * The box below is measured off the current sheet and only has to be close
+ * enough to identify the right run. Repaint the sheet and it can be re-
  * measured; nothing else needs to change.
  */
 
@@ -34,56 +41,8 @@ export interface Box {
   h: number;
 }
 
-/** The dragon and its vine. Set above the title on the opening leaf. */
-export const HEADPIECE: Box = { x: 448, y: 18, w: 813, h: 257 };
-
 /** A hound running a vine, used to close a volume. */
 export const TAILPIECE: Box = { x: 17, y: 827, w: 692, h: 186 };
-
-/*
- * The devices on the sheet, named for what they are rather than for where they
- * are used, because three of them are used twice.
- */
-const SUN: Box = { x: 359, y: 191, w: 239, h: 246 };
-const RAVEN: Box = { x: 943, y: 270, w: 292, h: 288 };
-const HARE: Box = { x: 602, y: 217, w: 314, h: 313 };
-const SNAIL: Box = { x: 765, y: 893, w: 293, h: 123 };
-const STAG: Box = { x: 1202, y: 431, w: 161, h: 409 };
-const SCHOLAR: Box = { x: 258, y: 445, w: 311, h: 397 };
-const COMPASS: Box = { x: 1090, y: 795, w: 294, h: 225 };
-const DRAGON: Box = { x: 905, y: 599, w: 262, h: 270 };
-
-/**
- * One painted device per shelf, so a volume is recognisable from its title page
- * before a word of it is read.
- *
- * THE CONVENTION, stated because eleven shelves are being served by eight
- * painted devices and the pairings are otherwise arbitrary:
- *
- *   scholar  a life, told         raven    a faction, watchful and secret
- *   hare     a tale being told    compass  a record of where and when
- *   sun      knowledge and light  snail    a private paper, slowly kept
- *   dragon   the numinous         stag     a journey
- *
- * Three shelves borrow a device that already belongs to another — Notes &
- * Letters takes the snail, Plays takes the hare, Politics takes the compass.
- * They are borrowing, not sharing a meaning, and ASSETS.md lists the three
- * plates that would end it. Until those exist, two shelves show the same mark,
- * which is a smaller wrong than a title page with nothing on it.
- */
-export const BY_SHELF: Record<string, Box> = {
-  Biographies: SCHOLAR,
-  'Faction Books': RAVEN,
-  Fiction: HARE,
-  'History & Lore': COMPASS,
-  'Instruction & Research': SUN,
-  'Journals & Logs': SNAIL,
-  'Notes & Letters': SNAIL,
-  'Plays, Poetry & Riddles': HARE,
-  'Politics & Law': COMPASS,
-  'Religion & Prophecy': DRAGON,
-  Travel: STAG,
-};
 
 export interface Cutout {
   /** A PNG of this ornament alone, on transparency. */

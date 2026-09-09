@@ -1,75 +1,403 @@
-/* The front door. A disc, a drive, and a boot log.
+/* The front door: a workstation, its monitor, and a disc on the desk.
  *
- * The disc is a supplied plate, whole. The drive around it — slot, lip, light
- * and every bevel — is drawn with gradients and box-shadows.
+ * ONE SUPPLIED PLATE holds the whole machine — monitor, tower, keyboard and
+ * base unit — on transparency. Everything laid over it is drawn: the drive
+ * slot, its light, and the screen inside the monitor's glass. There is no
+ * second copy of the plate anywhere in here.
+ *
+ * EVERY POSITION IS A PERCENTAGE OF THE PLATE, measured off the artwork once
+ * and recorded below, so the machine's furniture stays where it belongs at any
+ * size. `.rig` carries the plate's exact aspect ratio, which is what makes the
+ * percentages mean anything: the box is always the picture and never a letter-
+ * boxed version of it.
+ *
+ * THE PLATE WAS CROPPED to 1050x1050 for that reason. As supplied it was
+ * 1050x1500 with the machine occupying y 338..1149, so 30% of the picture was
+ * transparent air above and below it — and because the box is fitted to the
+ * shorter axis, that air was what set the size. On a 1440x900 window the
+ * machine came out 630px across with a third of the screen empty either side.
+ * Cropping to the machine plus the disc's landing takes it to 900px across on
+ * the same window, with no pixel of the artwork resampled or lost.
  */
 
 .insert {
   align-items: center;
   justify-content: center;
-  background: radial-gradient(ellipse at 50% 35%, #10141c 0%, var(--obsidian) 72%);
+  background: radial-gradient(ellipse at 50% 42%, #131a22 0%, var(--obsidian) 70%);
   cursor: default;
   user-select: none;
+  overflow: hidden;
+  /* So the desk can be told where the machine's feet are. See `.desk`. */
+  container-type: size;
 }
 
-.insert-inner {
-  width: min(620px, 92vw);
+/* -- the desk ------------------------------------------------------------- */
+
+/*
+ * The stone the machine stands on.
+ *
+ * Drawn, like every other stone surface in this project: gradients, seams and
+ * a grain, no plate. It is a sibling of `.rig` and painted before it, so the
+ * machine's own drop-shadow falls across it and the two are joined by contact
+ * rather than by being pasted one on the other.
+ *
+ * WHERE ITS BACK EDGE GOES is the only awkward part. The machine's feet are at
+ * 78% of the plate, and the plate is a square fitted to the shorter axis of
+ * the window, so the line has to be worked out from both: the plate's height
+ * is `min(100cqh, 100cqw)`, it is centred, and the feet are therefore
+ * `50cqh + 0.28 x` down the screen. `container-type: size` on `.insert` is
+ * what makes those two units mean the screen rather than the page.
+ *
+ * The desk runs off the bottom of the window on purpose. A front edge would
+ * need the machine shrunk to make room for it, and a desk you are sitting at
+ * does not show you its front edge anyway.
+ */
+.desk {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(50cqh + 0.28 * min(100cqh, 100cqw));
+  bottom: 0;
+  background:
+    /* The stone's own grain, the same fractal noise the reader's parchment
+       uses, at a slate temperature instead of a paper one. */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.62 0 0 0 0 0.66 0 0 0 0 0.74 0 0 0 0.2 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E"),
+    /* Two seams where the slabs meet, running away from the reader. Soft:
+       a hairline at full strength read as a drawn rule across a photograph. */
+    linear-gradient(90deg, transparent 20%, rgba(4, 5, 8, 0.4) 22%, transparent 24%),
+    linear-gradient(90deg, transparent 72%, rgba(4, 5, 8, 0.4) 74%, transparent 76%),
+    /*
+     * The recession, and it is nearly all shadow.
+     *
+     * The first version ran from near-black to a mid slate over the first
+     * tenth of the surface and put a lit lip along the back edge, which gave
+     * the machine a bright horizontal rule to stand on — a divider, not a
+     * desk. Stone in an unlit room is dark almost all the way to the front,
+     * and the light reaching it comes off the monitor.
+     */
+    radial-gradient(
+      ellipse 70% 130% at 50% 0%,
+      rgba(86, 104, 130, 0.22) 0%,
+      rgba(86, 104, 130, 0) 70%
+    ),
+    linear-gradient(
+      180deg,
+      #090b0e 0%,
+      #10131a 20%,
+      #1a1f28 48%,
+      #232a35 76%,
+      #2b333f 100%
+    );
+  /* What the machine sits in. No lit edge along the back: the surface simply
+     goes on into the dark, which is where the wall gradient meets it. */
+  box-shadow: inset 0 0 140px 26px rgba(0, 0, 0, 0.7);
+}
+
+/* The wall behind it: the room falls away rather than ending on a line. */
+.desk::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -12%;
+  height: 12%;
+  background: linear-gradient(180deg, rgba(7, 8, 10, 0) 0%, rgba(7, 8, 10, 0.72) 100%);
+}
+
+/* -- the machine ---------------------------------------------------------- */
+
+/*
+ * The plate, whole, fitted to whichever of the two axes runs out first. The
+ * aspect ratio is the artwork's own, so `background-size: 100% 100%` cannot
+ * distort it and every inset below is a true fraction of the picture.
+ *
+ * NOT `image-rendering: pixelated`. This is a photographic render being drawn
+ * smaller than it was made, and nearest-neighbour on that aliases rather than
+ * crunches. The interface stays hard; the machine is a photograph of a thing
+ * and is allowed to be resampled like one.
+ */
+.rig {
+  position: relative;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: 1 / 1;
+  background: url('/art/background.png') no-repeat center / 100% 100%;
+  image-rendering: auto;
+  cursor: pointer;
+  filter: drop-shadow(0 26px 46px rgba(0, 0, 0, 0.72));
+}
+
+.insert--seated .rig { cursor: default; }
+
+/* -- the screen ----------------------------------------------------------- */
+
+/*
+ * The monitor's glass, and the frame the archive speaks through.
+ *
+ * THE BOX IS THE WHOLE PICTURE AREA — x 181..703, y 56..458 of the plate, the
+ * painted glass edge to edge — and not a rectangle sitting inside it. An inset
+ * box was the first version of this and it read as exactly what it was: a flat
+ * panel pasted onto a curved screen, with its own hard corners a few pixels in
+ * from the real ones and a visible step where one dark surface met the other.
+ * Now the tint runs to the actual edge, the corners are rounded to the glass's
+ * own curve, and `.crt__edge` darkens the last of it into the bezel the way a
+ * tube does, so there is no seam to see. The TYPE is what gets held back off
+ * the curve, by padding, which is where the inset belonged all along.
+ *
+ * `container-type: size` makes the glass its own container, so everything on
+ * it is sized in `cqw` — a share of the screen it is written on rather than a
+ * share of the browser window. The boot log then reads the same on a phone as
+ * on a desktop, which a `vw` or a fixed `px` size could not manage.
+ */
+.crt {
+  position: absolute;
+  left: 17.24%;
+  top: 5.33%;
+  width: 49.71%;
+  height: 38.29%;
+  /*
+   * Measured, not guessed. The painted glass is a rounded rectangle with a
+   * corner of roughly 13px on a 522x402 picture — a tube's corner, not a
+   * phone's. The first pass used 7%/9%, which is 36px, and the overlay's
+   * corners cut a long way inside the painted ones: four bright slivers of the
+   * aurora survived outside the tint, at all four corners, which is the badly
+   * rendered edge. This is that radius as a fraction of each axis.
+   */
+  border-radius: 2.5% / 3.2%;
+  container-type: size;
+  overflow: hidden;
+}
+
+/* The College is already painted on the glass. This sits it back far enough
+   for type to be legible over it without putting it out entirely. */
+.crt__scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 45%, rgba(4, 12, 18, 0.46), rgba(2, 6, 10, 0.84) 78%),
+    repeating-linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0 1px, rgba(0, 0, 0, 0) 1px 3px);
+}
+
+/*
+ * The last inch of the tube.
+ *
+ * A real CRT loses its picture into the shadow mask before the bezel starts —
+ * the corners go dark, and there is a thin bright line where the glass meets
+ * the plastic. Both are here, and between them they hide the join: there is no
+ * longer any edge at which the drawn screen stops and the painted one begins.
+ */
+.crt__edge {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 82% 80% at 50% 48%,
+    rgba(0, 0, 0, 0) 58%,
+    rgba(0, 0, 0, 0.42) 88%,
+    rgba(0, 0, 0, 0.78) 100%
+  );
+  box-shadow:
+    inset 0 0 5cqw 1.4cqw rgba(0, 0, 0, 0.55),
+    inset 0 0 0 1px rgba(190, 214, 210, 0.13);
+}
+
+.crt__inner {
+  position: relative;
+  height: 100%;
+  /* Off the curve. This is the inset that used to be applied to the box. */
+  padding: 9cqh 9cqw;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  font-family: var(--font-ui);
+  color: var(--parchment-dim);
+  text-shadow: 0 0 0.5cqw rgba(150, 210, 220, 0.55);
 }
 
-/* -- the bay -------------------------------------------------------------- */
+.crt__head {
+  font-size: 7cqw;
+  letter-spacing: 0.06em;
+  color: #cfe8ea;
+}
 
-.insert-bay {
-  position: relative;
-  width: 300px;
-  height: 300px;
-  margin-bottom: 26px;
-  /* The disc is clipped by the bay as it goes in, so it disappears into the
-     drive rather than sliding behind it. */
+.crt__mark { color: var(--magicka); }
+
+.crt__sub {
+  margin-bottom: 3cqh;
+  font-size: 4cqw;
+  letter-spacing: 0.22em;
+  color: #6f8f96;
+}
+
+.crt__log {
+  margin: 0;
+  flex: 1 1 auto;
+  min-height: 0;
+  font: inherit;
+  font-size: 4.4cqw;
+  line-height: 1.34;
+  letter-spacing: 0.02em;
+  white-space: pre-wrap;
   overflow: hidden;
+}
+
+.crt__line--head { color: #d8ecec; }
+
+.crt__hint {
+  margin: 0;
+  flex: none;
+  font-size: 4.2cqw;
+  letter-spacing: 0.2em;
+  color: #7fa9b0;
+  animation: insert-blink 1.5s steps(1, end) infinite;
+}
+
+@keyframes insert-blink {
+  0%, 64% { opacity: 1; }
+  65%, 100% { opacity: 0.12; }
+}
+
+/* -- the drive ------------------------------------------------------------ */
+
+/*
+ * There is no floppy slot in the plate — the base unit's front is a clean
+ * stretch of case between the keyboard's edge and its buttons — so the slot is
+ * drawn, which is this project's standing rule anyway: a bevel is a box-shadow
+ * and not a picture. It is placed on that empty run of panel, at the height of
+ * the buttons already painted to the right of it, and sized as a 3.5" drive
+ * actually sits on a case this wide.
+ */
+.rig__slot {
+  position: absolute;
+  /*
+   * Sized to the disc, not to the element that carries it. `floppydisk.png`
+   * has transparent margins — the disc itself is 78.87% of the plate's width,
+   * offset 11.58% from its left edge — so a slot matched to the element's box
+   * came out a third wider than the thing going into it, which is a slot for
+   * some other disc. These numbers are the disc's own, plus a hair of
+   * clearance, and its centre line and the slot's are the same: 38.78%.
+   */
+  left: 28.58%;
+  top: 72.95%;
+  width: 20.4%;
+  height: 1.35%;
+  min-height: 4px;
+  border-radius: 1px;
+  background: #0a0d0c;
+  box-shadow:
+    inset 0 0.2em 0.35em rgba(0, 0, 0, 0.95),
+    inset 0 -1px 0 rgba(178, 190, 168, 0.34),
+    0 1px 0 rgba(196, 206, 180, 0.4);
+}
+
+.rig:hover .rig__slot {
+  box-shadow:
+    inset 0 0.2em 0.35em rgba(0, 0, 0, 0.95),
+    inset 0 -1px 0 rgba(200, 214, 190, 0.5),
+    0 1px 0 rgba(214, 224, 200, 0.6);
+}
+
+/* The drive light, beside the slot. Dark until the drive has the disc — the
+   two lamps already painted on the panel are the machine's, not the drive's. */
+.rig__led {
+  position: absolute;
+  left: 50%;
+  top: 73.15%;
+  width: 1.71%;
+  height: 1.14%;
+  min-height: 4px;
+  border-radius: 1px;
+  /* Nothing at all until it lights. An unlit LED drawn as a dark chip reads as
+     a hole punched in the case, because the case around it is painted beige
+     and a real dark lens would carry the case's own sheen. An LED that is not
+     on is not a feature of the panel; it is nowhere. */
+  opacity: 0;
+  background: #ff6a3c;
+  transition: opacity 0.14s ease-out;
+}
+
+.insert--seated .rig__led {
+  opacity: 1;
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.45),
+    0 0 0.9em rgba(255, 106, 60, 0.9);
+  animation: drive-blink 0.36s steps(1, end) infinite;
+}
+
+/*
+ * The tower's lamp, going green.
+ *
+ * The plate paints it amber — standby — at x 834..857, y 409..432, measured off
+ * the artwork. This is a green one laid exactly over it, a little larger so no
+ * amber fringe survives at the edge, and it is simply not there until the disc
+ * is in. Two channels, not one: the lamp changes colour AND the drive light
+ * beside the slot comes on and blinks, so the state is legible to somebody who
+ * cannot tell the two hues apart.
+ */
+.rig__lamp {
+  position: absolute;
+  left: 79.1%;
+  top: 38.62%;
+  width: 2.857%;
+  height: 2.857%;
+  border-radius: 50%;
+  opacity: 0;
+  background: radial-gradient(circle at 42% 38%, #b6ffca 0%, #34e05e 42%, #0f8b33 78%, #06371a 100%);
+  transition: opacity 0.18s ease-out;
+}
+
+.insert--seated .rig__lamp {
+  opacity: 1;
+  box-shadow: 0 0 1.4em rgba(52, 224, 94, 0.75);
+}
+
+@keyframes drive-blink {
+  0%, 64% { opacity: 1; }
+  65%, 100% { opacity: 0.4; }
 }
 
 /* -- the disc ------------------------------------------------------------- */
 
 /*
- * The whole disc is one supplied plate — shell, shutter, label and sigil.
+ * The disc's layer, cut off along the top edge of the slot.
  *
- * NOT `image-rendering: pixelated`, which is the exception in this project.
- * The plate is a smooth 1278px render being drawn at a fifth of that, and
- * nearest-neighbour on a downscale of a soft image produces aliasing rather
- * than crunch. The interface stays hard; this one object is a photograph of a
- * thing and is allowed to be resampled like one.
+ * This is the insertion. The disc is drawn in front of the machine on its way
+ * up — which is correct, it is being held against the case — and the clip
+ * removes whatever has crossed into the slot, so the last of it disappears at
+ * exactly the line the drive begins. One element and one `clip-path`, rather
+ * than a second copy of a megabyte of plate laid over the top.
  */
+.disc-track {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(73.2% 0 0 0);
+  pointer-events: none;
+}
+
 .disc {
   position: absolute;
-  left: 50%;
-  top: 4px;
-  width: 210px;
+  left: 26.03%;
+  top: 76.5%;
+  width: 25%;
   /* 1278 x 1230, kept exactly so the shutter meets the slot squarely. */
   aspect-ratio: 1278 / 1230;
-  margin-left: -105px;
-  background-image: url('/art/floppydisk.png');
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: contain;
-  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.7));
-  z-index: 2;
+  background: url('/art/floppydisk.png') no-repeat center top / contain;
+  filter: drop-shadow(0 1.2em 1.6em rgba(0, 0, 0, 0.72));
+  pointer-events: auto;
   cursor: pointer;
-  /* Only while it is still in the visitor's hand. The tween takes over the
-     transform the moment it goes in, and a transition on the same property
-     would fight it. */
+  /* Only while it is still on the desk. The tween takes the transform over the
+     moment it goes in, and a transition on the same property would fight it. */
   transition: transform 0.18s ease-out, filter 0.18s ease-out;
 }
 
-/* It is offered, not parked: a little proud of the slot, and it lifts when
-   reached for. This is the whole invitation — there is no ENTER button. */
+/* It is offered, not parked: it lifts when it is reached for. This is the
+   whole invitation — there is no ENTER button. */
 .disc:hover,
 .disc:focus-visible {
-  transform: translateY(-9px);
-  filter: drop-shadow(0 16px 22px rgba(0, 0, 0, 0.75))
-    drop-shadow(0 0 14px rgba(120, 160, 255, 0.35));
+  transform: translateY(-3.4%);
+  filter: drop-shadow(0 1.6em 2em rgba(0, 0, 0, 0.78))
+    drop-shadow(0 0 1em rgba(120, 180, 255, 0.4));
 }
 
 .insert--seated .disc {
@@ -77,123 +405,22 @@
   transition: none;
 }
 
-/* The drive is the other half of the same invitation. */
-.drive { cursor: pointer; }
-.insert--seated .drive { cursor: default; }
-
-.drive:hover .drive__slot {
-  box-shadow:
-    inset 0 3px 6px rgba(0, 0, 0, 0.95),
-    inset 0 -1px 0 rgba(170, 190, 220, 0.3),
-    0 1px 0 rgba(170, 190, 220, 0.22);
-}
-
-/* -- the drive ------------------------------------------------------------ */
-
-.drive {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 34px;
-  height: 78px;
-  z-index: 3;
-  background: linear-gradient(180deg, #2a2f38 0%, #1b1f26 52%, #12161c 100%);
-  box-shadow:
-    inset 1px 1px 0 var(--stone-lit),
-    inset -1px -1px 0 var(--obsidian),
-    0 -2px 10px rgba(0, 0, 0, 0.8);
-}
-
-/* The mouth. Inset shadow does the depth; nothing here is an image. */
-.drive__slot {
-  position: absolute;
-  left: 50%;
-  top: 16px;
-  width: 224px;
-  height: 15px;
-  margin-left: -112px;
-  border-radius: 2px;
-  background: #05070b;
-  box-shadow:
-    inset 0 3px 6px rgba(0, 0, 0, 0.95),
-    inset 0 -1px 0 rgba(150, 160, 180, 0.18),
-    0 1px 0 rgba(150, 160, 180, 0.12);
-}
-
-.drive__lip {
-  position: absolute;
-  left: 50%;
-  top: 40px;
-  width: 196px;
-  height: 3px;
-  margin-left: -98px;
-  background: linear-gradient(90deg, transparent, var(--stone-600), transparent);
-}
-
-/* The activity light. Off until the drive has the disc. */
-.drive__led {
-  position: absolute;
-  right: 34px;
-  top: 20px;
-  width: 12px;
-  height: 7px;
-  border-radius: 1px;
-  background: #2a1418;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.7);
-}
-
-.insert--seated .drive__led {
-  background: #ff5540;
-  box-shadow:
-    inset 0 0 0 1px rgba(0, 0, 0, 0.5),
-    0 0 10px rgba(255, 85, 64, 0.85);
-  animation: drive-blink 0.36s steps(1, end) infinite;
-}
-
-@keyframes drive-blink {
-  0%, 64% { opacity: 1; }
-  65%, 100% { opacity: 0.45; }
-}
-
-/* -- the log -------------------------------------------------------------- */
-
-.insert-log {
-  margin: 0;
-  min-height: 7.6em;
-  align-self: stretch;
-  font-family: var(--font-ui);
-  font-size: 19px;
-  line-height: 1.3;
-  letter-spacing: 0.04em;
-  color: var(--parchment-dim);
-  white-space: pre-wrap;
-  text-shadow: 0 0 6px rgba(214, 196, 156, 0.16);
-}
-
-.insert-line--head { color: var(--parchment-lit); }
-
-.insert-hint {
-  margin: 16px 0 0;
-  font-size: 15px;
-  letter-spacing: 0.24em;
-  color: #5c6270;
-  animation: insert-blink 1.5s steps(1, end) infinite;
-}
-
-@keyframes insert-blink {
-  0%, 64% { opacity: 1; }
-  65%, 100% { opacity: 0.15; }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .insert-hint,
-  .insert--seated .drive__led { animation: none; }
+  .crt__hint,
+  .insert--seated .rig__led { animation: none; }
+  .disc { transition: none; }
 }
 
+/*
+ * Narrow windows.
+ *
+ * Nothing moves — every position is a share of the plate — but the type on the
+ * glass needs a floor, because `cqw` on a 180px-wide screen puts the boot log
+ * under 8px.
+ */
 @media (max-width: 700px) {
-  .insert-bay { width: 240px; height: 240px; }
-  .disc { width: 172px; margin-left: -86px; }
-  .drive__slot { width: 186px; margin-left: -93px; }
-  .insert-log { font-size: 16px; }
-  .insert-hint { font-size: 13px; }
+  .crt__log,
+  .crt__hint { font-size: max(9px, 4.4cqw); }
+  .crt__head { font-size: max(13px, 7cqw); }
+  .crt__sub { font-size: max(8px, 4cqw); }
 }

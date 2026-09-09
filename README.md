@@ -13,10 +13,13 @@ The text is Bethesda's, ported from the Library of Skyrim. **Read
 
 ```
   INSERT                CATALOGUE                    TOME
+  (the front page,          │                          │
+   every visit)             │                          │
      │                      │                          │
   DOM/CSS                DOM/CSS                    DOM/CSS
-  floppy disc            shelf tablets              two-page
-  into a drive           + search                   spread
+  a workstation          shelf tablets              two-page
+  on a stone desk;       + search                   spread
+  the disc goes in                                     │
                          │        │                    │
                          │        └──── /api/search ── FTS5
                          │                              │
@@ -28,6 +31,21 @@ The text is Bethesda's, ported from the Library of Skyrim. **Read
 
 No framework, no 3D, no runtime dependency beyond anime.js and two self-hosted
 fonts. The whole client is one ~56 KB bundle.
+
+## The front door
+
+`#/insert` is the archive's front page and every bare visit lands on it — it is
+not a first-run title card, and there is no `visited` flag any more. A
+workstation stands on a stone desk with a disc in front of it; the monitor
+frames the archive; the disc goes into the drive, and the catalogue opens.
+Reduced motion gets the same screen with the travel taken out of it rather than
+being sent past it.
+
+A link straight to `#/catalogue` or `#/tome/:id` still lands where it was sent.
+
+The machine is one supplied plate. The drive slot, its light, the green lamp on
+the tower and the desk are drawn in CSS, and every position on the plate is a
+percentage of it, measured once — see the head of `src/styles/insert.css`.
 
 | Route | Returns |
 | --- | --- |
@@ -113,6 +131,22 @@ tomes` and `DELETE FROM citations`, so re-applying is a reset — which is why
 those two statements are there.
 
 Adding a book means a *new* numbered migration, not a regenerated one.
+
+### The opening of a volume
+
+Every volume opens on the College's sigil, blocked into the inside of the front
+board — one mark, the same on all 249. There is no per-shelf device; the shelf
+is named in words on the title page. Below 900px the binding comes apart into a
+single column and there is no board, so the sigil moves to the head of the
+title page.
+
+The red initial goes on the first paragraph of prose — after the book's own
+front matter (`THE ART OF WAR MAGIC` / `by` / `Zurin Arctus`, which the port
+keeps because the text is never edited) and after any heading that introduces
+it. It is only set when that paragraph is really prose: eight words or more,
+opening on a letter. 189 of the 249 get one. The rest open on dialogue, on a
+number or on a subtitle, and a three-line capital dropped onto any of those
+looks like a mistake.
 
 ### The sealed shelf
 

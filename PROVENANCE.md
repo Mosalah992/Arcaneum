@@ -57,10 +57,18 @@ being those particular books.
 | --- | --- |
 | `public/art/rubrication.png` | Supplied by the client. Illuminated manuscript elements on transparency. |
 | `public/art/floppydisk.png` | Supplied by the client: a 3.5" disc bearing the College of Winterhold sigil. |
+| `public/art/background.png` | Supplied by the client: a period workstation with the College painted on its screen. Cropped from 1050×1500 to 1050×1050 — transparent margin removed, nothing resampled. |
+| `public/art/sigil.png` | Supplied by the client: the College's sigil, a rayed eye in a roundel. Cropped from 1050×1500 to its own bounds, 506×505 — as above. |
 
 Every other visual in the project is drawn in CSS or generated procedurally —
-the disc shell, the drive, the parchment, the stone tablets, the bevels, the
-pixel cursor. `ASSETS.md` lists what is placeholder and what is final.
+the drive slot and its light, the stone desk the machine stands on, the
+parchment, the stone tablets, the bevels, the pixel cursor. `ASSETS.md` lists
+what is placeholder and what is final.
+
+The two crops above were done once, by hand, and the cropped files are what is
+committed. They are lossless in content — only fully transparent margin was
+removed — but the originals as supplied are not in this repository, so keep
+your own copies.
 
 ## The register
 

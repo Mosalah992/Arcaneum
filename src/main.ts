@@ -19,9 +19,9 @@ import './styles/insert.css';
 import './styles/catalogue.css';
 import './styles/reader.css';
 
-import { el, prefersReducedMotion } from './lib/dom';
+import { el } from './lib/dom';
 import { createRouter, currentPath, navigate, type Screen } from './lib/router';
-import { scanlines, muted, music, visited, forgetDiscoveries } from './lib/store';
+import { scanlines, muted, music, forgetDiscoveries } from './lib/store';
 import { armOnFirstGesture, setMusic, setMuted } from './lib/sound';
 import { insertScreen } from './screens/insert';
 import { catalogueScreen } from './screens/catalogue';
@@ -134,16 +134,21 @@ document.body.append(el('div', { id: 'scanlines', 'aria-hidden': 'true' }));
 armOnFirstGesture();
 
 /*
- * Where a bare visit lands.
+ * Where a bare visit lands: the disc, every time.
  *
- * Two branches now rather than three: the disc goes in on a first visit and
- * never again. Resolved once, before the router is built, rather than from
- * inside a route — a route that redirects re-enters the router while it is
- * still rendering.
+ * No branch left. The workstation is the archive's front page rather than a
+ * first-run title card — it is where you put the disc in, and you put the disc
+ * in whenever you come. Reduced motion gets the same screen with the travel
+ * taken out of it rather than being sent past it, because skipping the way in
+ * is not an accessibility accommodation, it is a different site.
+ *
+ * Resolved once here, before the router is built, rather than from inside a
+ * route — a route that redirects re-enters the router while it is still
+ * rendering. Anyone arriving on `#/catalogue` or a `#/tome/:id` link still
+ * lands where they were sent.
  */
 if (currentPath() === '/') {
-  const showDisc = !visited.get() && !prefersReducedMotion();
-  navigate(showDisc ? '/insert' : '/catalogue', true);
+  navigate('/insert', true);
 }
 
 createRouter(

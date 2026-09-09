@@ -19,13 +19,49 @@ build, because `vite build` empties `dist/` first.
 | --- | --- | --- | --- |
 | `art/rubrication.png` | 1536×1024 | `src/lib/rubrication.ts` | Illuminated manuscript elements — decorated initials, a dragon border, sun, hare, raven, stag, hound, snail, compass rose, scribe, wizard — cut out on transparency. |
 | `art/floppydisk.png` | 1278×1230 | `.disc` | The whole 3.5" disc — navy shell, brushed shutter, label and the College's sigil — on transparency. Drawn at ~210px, smooth-resampled rather than `pixelated`: it is a soft render, and nearest-neighbour on a downscale of one aliases badly. |
+| `art/background.png` | 1050×1050 | `.rig` | The workstation: CRT, tower, keyboard and base unit, on transparency, with the College painted on the glass. The front page. |
+| `art/sigil.png` | 506×505 | `.board__sigil`, `.title-page__sigil` | The College's sigil — a rayed eye in a roundel. Blocked into the inside of every volume's front board. |
+
+### `art/background.png`
+
+Supplied as 1050×1500 with the machine occupying y 338..1149 — 30% of the
+picture was transparent air. Because the plate is fitted to the shorter axis of
+the window, that air was what set the machine's size on screen: 630px across on
+a 1440×900 window, with a third of the screen empty either side. **Cropped to
+1050×1050**, the machine plus the stone the disc lands on, which takes it to
+900px across on the same window. No pixel was resampled.
+
+Every position on it — the glass, the drive slot, its light, the tower lamp,
+the disc's rest — is a percentage of the plate, measured once and recorded in
+`src/styles/insert.css`. Repaint the machine at the same framing and nothing
+needs moving; reframe it and those percentages are the list of what to
+re-measure.
+
+The plate has **no floppy slot**. The base unit's front is a clean run of case,
+so the slot, its light and the desk under the machine are drawn in CSS.
+
+### `art/sigil.png`
+
+Supplied as 1050×1500 with the sigil in the middle of it. **Cropped to its own
+bounds**, 506×505, which is the whole change — the transparent margin held no
+information and was four fifths of the file.
+
+At 409 KB it is heavy for its size, and the reason is the halftone stipple the
+sigil is drawn with: two-value noise across every flat area is the worst case
+for PNG's filters. WebP at quality ~88 would take it under 60 KB. Same `sharp`
+question as the rubrication sheet, below.
 
 ### `art/floppydisk.png`
 
-Supplied and in use. At 1.07 MB it is the second-heaviest thing the site sends
-and it is on the first screen a new visitor sees — worth the same WebP pass as
-the rubrication sheet, which would put it near 80 KB with no visible loss at the
-size it is drawn.
+Supplied and in use. At 1.07 MB it is heavy, and it is on the front page, which
+every visit now starts on rather than only the first — worth the same WebP pass
+as the rubrication sheet, which would put it near 80 KB with no visible loss at
+the size it is drawn.
+
+Its transparent margins matter to the layout rather than to the file size: the
+disc itself is 78.87% of the plate's width, offset 11.58% from the left edge,
+and the drive slot is sized and centred to *that* rather than to the element
+carrying it. Recrop this plate and those two numbers in `insert.css` change.
 
 `art/well.png` was deleted with the chamber.
 
@@ -41,20 +77,18 @@ so it has not been added — say the word.
 
 ## To paint
 
-### Shelf devices — three shelves are borrowing
+### Shelf devices — retired, not outstanding
 
-Eight painted devices serve eleven shelves. `src/lib/rubrication.ts` states the
-convention and which three borrow; these would end the borrowing.
+There used to be three plates wanted here: eight painted devices from the
+rubrication sheet were serving eleven shelves, so Notes & Letters borrowed the
+snail, Plays borrowed the hare and Politics borrowed the compass rose.
 
-| File | Size | Where | Subject |
-| --- | --- | --- | --- |
-| `art/devices/notes-letters.png` | ~300×300 | `BY_SHELF['Notes & Letters']` | A folded letter with a broken seal, illuminated in the sheet's hand. Currently borrows the snail. |
-| `art/devices/plays-poetry.png` | ~300×300 | `BY_SHELF['Plays, Poetry & Riddles']` | A mask, or a lute with a vine. Currently borrows the hare. |
-| `art/devices/politics-law.png` | ~300×300 | `BY_SHELF['Politics & Law']` | A pair of scales, or a sealed writ. Currently borrows the compass rose. |
-
-Painted on transparency, in the style of `rubrication.png`. They can be added to
-that sheet instead — `rubrication.ts` addresses ornaments by bounding box, so a
-new element only needs its box recorded.
+**There is no longer a per-shelf device.** Every volume opens on the College's
+own sigil, blocked into the inside of the front board, and the shelf is named
+in words on the title page. One mark, the same on all 249, said once — which is
+what the College would actually have done. `BY_SHELF` and the dragon headpiece
+went with it; `src/lib/rubrication.ts` now cuts one ornament from the sheet,
+the tailpiece that closes a volume.
 
 ### Illustrations dropped from the books
 

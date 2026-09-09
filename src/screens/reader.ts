@@ -25,7 +25,7 @@ import { clear, el, prefersReducedMotion } from '../lib/dom';
 import { fetchTome, ArchiveError, type Tome } from '../lib/api';
 import { renderMarkdown, citedCallNumbers } from '../lib/markdown';
 import { navigate, type Screen } from '../lib/router';
-import { BY_SHELF, HEADPIECE, TAILPIECE, cutout, type Box } from '../lib/rubrication';
+import { TAILPIECE, cutout, type Box } from '../lib/rubrication';
 import { play, setMusicTrack } from '../lib/sound';
 
 /** Below this the binding comes apart into one scrolling column. */
@@ -81,7 +81,7 @@ export function readerScreen(params: Record<string, string>): Screen {
   const board = el(
     'div',
     { class: 'board', 'aria-hidden': 'true' },
-    el('div', { class: 'board__sigil' }, el('span', {}, '❖')),
+    el('div', { class: 'board__sigil' }),
   );
 
   const shade = el('div', { class: 'turnleaf__shade', 'aria-hidden': 'true' });
@@ -402,25 +402,73 @@ export function readerScreen(params: Record<string, string>): Screen {
 
   /** Column 0, by itself: the leaf the board faces when the volume opens. */
   function titlePage(volume: Tome): string {
-    const device = BY_SHELF[volume.school];
-    pieces.set('headpiece', HEADPIECE);
     pieces.set('tailpiece', TAILPIECE);
-    if (device !== undefined) pieces.set(volume.school, device);
 
     return [
       '<header class="title-page">',
-      ornament('headpiece', HEADPIECE, 3.4, 'ornament--headpiece'),
+      // The College's own sigil, the same on all 249 volumes. It is blocked
+      // into the board on a wide screen — see `.board__sigil` — and this is
+      // the same mark for the narrow layout, where the binding comes apart and
+      // there is no board to carry it. Not an ornament cut from the painted
+      // sheet: it is a supplied plate with a known aspect ratio, so it is
+      // written out at its final size and the leaf paginates correctly on the
+      // first pass, with nothing that reflows the text when the image lands.
+      '<div class="title-page__sigil" aria-hidden="true"></div>',
       `<p class="title-page__call">${escapeHtml(volume.call_number)}</p>`,
       `<h1 class="title-page__title">${escapeHtml(volume.title)}</h1>`,
       '<div class="title-page__rule"></div>',
       `<p class="title-page__author">${escapeHtml(volume.author)}</p>`,
-      device === undefined
-        ? ''
-        : ornament(volume.school, device, 5.4, 'ornament--device'),
       `<p class="title-page__school">${escapeHtml(volume.school)}</p>`,
       volume.restricted ? '<p class="title-page__seal">SEALED RECORD</p>' : '',
       '</header>',
     ].join('');
+  }
+
+  /** Case, punctuation and spacing removed, for comparing two lines of type. */
+  const normalise = (text: string): string =>
+    text
+      .toLowerCase()
+      .replace(/[‘’“”]/g, "'")
+      .replace(/[^a-z0-9']+/g, ' ')
+      .trim();
+
+  const words = (text: string): number => (text.trim().match(/\S+/g) ?? []).length;
+
+  /**
+   * The words before the words: how many of these volumes open.
+   *
+   * Bethesda's books carry their own front matter — the title again, then
+   * `by`, then the author on a line of its own — and the port keeps it,
+   * because the rule of this archive is that the text is never edited. It is
+   * still front matter and not prose, so it is marked as such: it must not be
+   * set as running text, and it must not be given the red initial. The reader
+   * shipped with exactly that bug and it was visible on the first page of the
+   * first volume you opened — a burgundy capital B three lines tall with a
+   * lower-case y hanging off it, because `by` is a paragraph.
+   *
+   * Returns the index of the first block that is not front matter.
+   */
+  function markFrontMatter(strip: HTMLElement, volume: Tome): number {
+    const blocks = [...strip.children].filter((node) => node.tagName !== 'HEADER');
+    const title = normalise(volume.title);
+    const author = normalise(volume.author);
+
+    let index = 0;
+    for (; index < blocks.length && index < 5; index++) {
+      const block = blocks[index]!;
+      if (block.tagName !== 'P') break;
+      const text = normalise(block.textContent ?? '');
+      if (text === '') break;
+
+      if (text === title) block.className = 'frontmatter frontmatter--title';
+      else if (text === 'by') block.className = 'frontmatter frontmatter--by';
+      // `startsWith`, not equality: the catalogue's author is often fuller than
+      // the book's own byline — "Zurin Arctus et al." against "Zurin Arctus".
+      else if (author.startsWith(text) || text.startsWith(`by ${author}`)) {
+        block.className = 'frontmatter frontmatter--author';
+      } else break;
+    }
+    return index;
   }
 
   /**
@@ -428,20 +476,44 @@ export function readerScreen(params: Record<string, string>): Screen {
    *
    * The first letter of the first paragraph of prose is lifted out and set as
    * a red initial — which is what rubrication is, and what the burgundy
-   * headings elsewhere in the leaf are doing too. The standfirst is skipped:
-   * it is the archive's filing note, not the author's first word.
+   * headings elsewhere in the leaf are doing too.
+   *
+   * IT IS THE FIRST PARAGRAPH AFTER THE FRONT MATTER AND ANY HEADING THAT
+   * INTRODUCES IT, and only if that paragraph is actually prose: eight words
+   * or more, opening on a letter. Everything else
+   * gets no initial at all, which is the right answer and not a shortfall.
+   * A numbered treatise, a book of verse, a page of shopping-list notes — a
+   * three-line capital dropped into any of those lands on a chapter number or
+   * an orphaned particle and looks like a mistake, because it is one. A volume
+   * with no initial simply looks like a volume that was not illuminated, which
+   * is what most of them were.
    */
-  function rubricate(strip: HTMLElement): void {
-    const opening = strip.querySelector<HTMLParagraphElement>(
-      '.standfirst + p, .title-page + p:not(.standfirst)',
-    );
-    const text = opening?.firstChild;
-    if (opening === null || opening === undefined) return;
-    if (text === null || text === undefined || text.nodeType !== Node.TEXT_NODE) return;
+  function rubricate(strip: HTMLElement, from: number): void {
+    const blocks = [...strip.children].filter((node) => node.tagName !== 'HEADER');
+
+    // Past whatever announces the prose. A third of these books open on a
+    // heading — `Volume One`, `Part I`, `Chapter 1` — and the initial belongs
+    // on the paragraph under it, not nowhere. Headings and rules only: a
+    // paragraph is prose and stops the search, whatever it says.
+    let index = from;
+    for (let skipped = 0; skipped < 3; skipped++) {
+      const block = blocks[index];
+      if (block === undefined) return;
+      if (block.tagName !== 'H2' && block.tagName !== 'HR') break;
+      index++;
+    }
+
+    const opening = blocks[index];
+    if (opening === undefined || opening.tagName !== 'P') return;
+
+    const text = opening.firstChild;
+    if (text === null || text.nodeType !== Node.TEXT_NODE) return;
 
     const body = text.textContent ?? '';
+    if (words(body) < 8) return;
+
     const letter = body.trimStart().charAt(0);
-    if (letter === '') return;
+    if (!/\p{L}/u.test(letter)) return;
 
     const rest = body.slice(body.indexOf(letter) + 1);
     const initial = document.createElement('span');
@@ -493,9 +565,7 @@ export function readerScreen(params: Record<string, string>): Screen {
 
     for (const win of wins) {
       win.strip.innerHTML = html;
-      // The tome's dateline is its standfirst, set apart from the prose.
-      win.strip.querySelector('.title-page + p')?.classList.add('standfirst');
-      rubricate(win.strip);
+      rubricate(win.strip, markFrontMatter(win.strip, tome));
       dressOrnaments(win.strip);
     }
 
