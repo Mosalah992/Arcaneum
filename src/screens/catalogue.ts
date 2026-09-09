@@ -109,16 +109,6 @@ export function catalogueScreen(): Screen {
     el('p', { class: 'tablets-legend' }, 'SHELVES'),
   );
 
-  /*
-   * What the two right-hand columns mean, written out once.
-   *
-   * A colour code nobody can read is decoration. This is the key to it, and it
-   * names each state in the same words the chips use, so the legend is read as
-   * a list of the four things a cell can say rather than as four colours.
-   * Hidden entirely when there is no register: a legend for columns that are
-   * all dashes explains nothing.
-   */
-  const key = el('div', { class: 'holdings-key', hidden: 'hidden' });
   const tabletButtons = new Map<string | null, HTMLButtonElement>();
 
   for (const name of [null, ...SHELVES]) {
@@ -136,7 +126,25 @@ export function catalogueScreen(): Screen {
     tablets.append(button);
   }
 
-  tablets.append(key);
+  /*
+   * The column headings, and they are NOT inside the scrolling list.
+   *
+   * That is the reason for `syncGutter()` below: the list reserves a scrollbar
+   * gutter and the heading does not, so the two boxes are a scrollbar apart and
+   * every column drifts by that much. The heading is kept outside so it does
+   * not scroll away with the rows.
+   */
+  const resultsHead = el(
+    'div',
+    { class: 'results-head' },
+    el('span', {}, 'NO.'),
+    el('span', {}, 'CALL'),
+    el('span', {}, 'TITLE'),
+    el('span', { class: 'col-copies' }, 'COPIES'),
+    el('span', { class: 'col-held' }, 'AVAILABLE'),
+    el('span', {}, 'AUTHOR'),
+    el('span', {}, 'SCHOOL'),
+  );
 
   const element = el(
     'div',
@@ -152,21 +160,31 @@ export function catalogueScreen(): Screen {
         el('div', { class: 'search-field' }, mirror, input),
         hint,
       ),
-      el(
-        'div',
-        { class: 'results-head' },
-        el('span', {}, 'NO.'),
-        el('span', {}, 'CALL'),
-        el('span', {}, 'TITLE'),
-        el('span', { class: 'col-copies' }, 'COPIES'),
-        el('span', { class: 'col-held' }, 'AVAILABLE'),
-        el('span', {}, 'AUTHOR'),
-        el('span', {}, 'SCHOOL'),
-      ),
+      resultsHead,
       status,
       list,
     ),
   );
+
+  /**
+   * Hand the heading the width of the list's scrollbar.
+   *
+   * The rows live inside a scrolling box and the heading sits above it, so the
+   * rows' content box is a scrollbar narrower than the heading's. Both use the
+   * same grid template, so that difference lands entirely in `minmax(0, 1fr)`
+   * and shoves every column right of the title out of line with its own
+   * heading — fifteen pixels on Windows, which is exactly enough to put `22`
+   * to the left of `COPIES` and `19 IN` underneath it.
+   *
+   * `scrollbar-gutter: stable` on the list makes the number constant whether
+   * or not it overflows, so a filtered search of three rows does not shift the
+   * heading back again. It is zero on overlay-scrollbar systems, where there
+   * was never anything to correct.
+   */
+  function syncGutter(): void {
+    const gutter = list.offsetWidth - list.clientWidth;
+    resultsHead.style.setProperty('--gutter', `${gutter}px`);
+  }
 
   /** The block cursor is drawn, not native, so it has to be told where to sit. */
   function syncCursor(): void {
@@ -277,12 +295,18 @@ export function catalogueScreen(): Screen {
 
   /** One result row. `rows` is kept in the same order as these buttons. */
   function resultButton(row: Row, index: number): HTMLElement {
+    const shelved = lookUp(row.title, register);
+    // Tinted only when a copy is actually in. A title the College owns and has
+    // entirely lent out is still at the top of the answer, but it is not green:
+    // green is "you can hand this over", not "we own one".
+    const held = shelved.state === 'in' || shelved.state === 'some';
     return el(
       'button',
       {
         class:
           `result${row.restricted ? ' result--sealed' : ''}` +
-          `${row.excerpt ? ' result--found' : ''}`,
+          `${row.excerpt ? ' result--found' : ''}` +
+          `${row.excerpt && held ? ' result--held' : ''}`,
         type: 'button',
         role: 'option',
         'aria-selected': String(index === selected),
@@ -298,7 +322,7 @@ export function catalogueScreen(): Screen {
         row.restricted ? el('span', { class: 'seal' }, 'SEALED') : null,
         row.excerpt ? excerptOf(row.excerpt) : null,
       ),
-      ...heldCells(lookUp(row.title, register)),
+      ...heldCells(shelved),
       el('span', { class: 'author' }, row.author),
       el('span', { class: 'school' }, row.school),
     );
@@ -309,6 +333,9 @@ export function catalogueScreen(): Screen {
     selected = Math.max(0, selected);
     if (found !== null) renderFound(found);
     else renderShelf();
+    // After the rows, not before: the first frame runs with an empty list and
+    // measures nothing.
+    syncGutter();
   }
 
   /** The shelf the visitor already has, filtered in the browser. */
@@ -341,13 +368,6 @@ export function catalogueScreen(): Screen {
    * in the title or the author above one in the body.
    */
   function renderFound(hits: Row[]): void {
-    const shelves = new Map<string, Row[]>();
-    for (const hit of hits) {
-      const group = shelves.get(hit.school) ?? [];
-      group.push(hit);
-      shelves.set(hit.school, group);
-    }
-
     rows = [];
     if (hits.length === 0) {
       status.className = 'results-status';
@@ -355,25 +375,70 @@ export function catalogueScreen(): Screen {
       return;
     }
 
+    /*
+     * WHAT THE COLLEGE ACTUALLY HOLDS COMES FIRST.
+     *
+     * A librarian at the desk with a reader in front of them is not asking
+     * which books mention the word — they are asking which of them they can
+     * put in a hand, and that is 48 volumes out of 249. Those are lifted into
+     * their own group above the shelves, in the archive's ranking, and tinted
+     * green when there is a copy in.
+     *
+     * ON THE REGISTER, not "available", is what puts a book in this group: a
+     * title the College owns but has entirely lent out still belongs at the top
+     * of a librarian's answer, because the answer is "we have it, it is out
+     * until Tuesday" and not "we do not have it". Its AVAILABLE cell says ALL
+     * OUT in red and it is not tinted, so the two cases stay distinct inside
+     * the group.
+     *
+     * The rest keep the shelf grouping, which is the other thing a librarian
+     * needs: the shelf they will actually walk to.
+     */
+    const atTheCollege: Row[] = [];
+    const elsewhere: Row[] = [];
+    for (const hit of hits) {
+      (lookUp(hit.title, register).holding === null ? elsewhere : atTheCollege).push(hit);
+    }
+
+    const shelves = new Map<string, Row[]>();
+    for (const hit of elsewhere) {
+      const group = shelves.get(hit.school) ?? [];
+      group.push(hit);
+      shelves.set(hit.school, group);
+    }
+
+    const heading = (name: string, count: number, extra = ''): HTMLElement =>
+      el(
+        'li',
+        { class: `results-group${extra}` },
+        el('span', { class: 'results-group__name' }, name),
+        el('span', { class: 'results-group__count' }, String(count)),
+      );
+
+    const place = (row: Row): void => {
+      list.append(el('li', {}, resultButton(row, rows.length)));
+      rows.push(row);
+    };
+
     status.className = 'results-status results-status--found';
+    const shelfCount = shelves.size + (atTheCollege.length > 0 ? 1 : 0);
     status.textContent =
       `${foundTotal}${truncated ? '+' : ''} VOLUME${foundTotal === 1 ? '' : 'S'} ` +
-      `MENTION “${query.trim().toUpperCase()}” ` +
-      `ACROSS ${shelves.size} SHEL${shelves.size === 1 ? 'F' : 'VES'}`;
+      `MENTION “${query.trim().toUpperCase()}”` +
+      (atTheCollege.length > 0
+        ? ` · ${atTheCollege.length} ON THE COLLEGE REGISTER`
+        : ` ACROSS ${shelfCount} SHEL${shelfCount === 1 ? 'F' : 'VES'}`);
+
+    if (atTheCollege.length > 0) {
+      list.append(
+        heading('ON THE SHELF AT THE COLLEGE', atTheCollege.length, ' results-group--held'),
+      );
+      for (const row of atTheCollege) place(row);
+    }
 
     for (const [name, group] of shelves) {
-      list.append(
-        el(
-          'li',
-          { class: 'results-group' },
-          el('span', { class: 'results-group__name' }, name.toUpperCase()),
-          el('span', { class: 'results-group__count' }, `${group.length}`),
-        ),
-      );
-      for (const row of group) {
-        list.append(el('li', {}, resultButton(row, rows.length)));
-        rows.push(row);
-      }
+      list.append(heading(name.toUpperCase(), group.length));
+      for (const row of group) place(row);
     }
 
     selected = Math.min(selected, Math.max(0, rows.length - 1));
@@ -418,39 +483,6 @@ export function catalogueScreen(): Screen {
     }
   }
 
-  /** Draw the key, once the register has said whether there is one. */
-  function renderKey(): void {
-    if (register === null || !register.configured) {
-      key.hidden = true;
-      return;
-    }
-    key.hidden = false;
-    clear(key);
-    key.append(
-      el('p', { class: 'holdings-key__head' }, 'ON THE SHELF'),
-      ...(
-        [
-          ['in', 'n IN', 'every copy in'],
-          ['some', 'n IN', 'some out'],
-          ['out', 'ALL OUT', 'none on the shelf'],
-          ['unlisted', '—', 'not on the register'],
-        ] as const
-      ).map(([state, label, meaning]) =>
-        el(
-          'p',
-          { class: 'holdings-key__row' },
-          el('span', { class: `held held--${state}` }, label),
-          el('span', { class: 'holdings-key__what' }, meaning),
-        ),
-      ),
-      el(
-        'p',
-        { class: 'holdings-key__foot' },
-        `READ FROM THE COLLEGE REGISTER · ${(register.fetchedAt ?? '').slice(11, 16)} UTC`,
-      ),
-    );
-  }
-
   /*
    * The register, asked for once.
    *
@@ -459,9 +491,10 @@ export function catalogueScreen(): Screen {
    * catalogue nothing but two columns of em dashes. `fetchAvailability` never
    * throws.
    */
+  window.addEventListener('resize', syncGutter);
+
   void fetchAvailability().then((answer) => {
     register = answer;
-    renderKey();
     render();
   });
 
@@ -530,6 +563,7 @@ export function catalogueScreen(): Screen {
       window.clearTimeout(debounce);
       inFlight?.abort();
       window.removeEventListener('keydown', onWindowKeydown);
+      window.removeEventListener('resize', syncGutter);
     },
   };
 }

@@ -148,11 +148,41 @@ html[data-chrome='off'] .chrome-bar {
   text-shadow: 0 0 4px var(--magicka-dim);
 }
 
+/*
+ * The realm's clock, in the footer where the port credit used to stand.
+ *
+ * Two lines of the same fact: the date the College would write, and the hour.
+ * Reckoned in `shared/reckoning.ts`, which is the Thalmor archive's module
+ * carried across so the two archives cannot disagree about the day.
+ *
+ * `font-variant-numeric: tabular-nums` because it ticks: proportional figures
+ * make the whole line shuffle sideways every thirty seconds as a 1 replaces a
+ * 4, which is the sort of movement a footer should never have.
+ */
+.clock {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 9px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.clock__date { color: var(--parchment-dim); }
+
+.clock__time {
+  color: var(--magicka);
+  text-shadow: 0 0 5px var(--magicka-dim);
+}
+
 @media (max-width: 700px) {
   .chrome-crumb,
   .footer-note--wide {
     display: none;
   }
+
+  /* The hour survives; the date is the part a phone can spare. */
+  .clock__date { display: none; }
 
   .chrome-bar { gap: 7px; padding: 0 7px; }
   .chrome-title { font-size: 18px; letter-spacing: 0.08em; }

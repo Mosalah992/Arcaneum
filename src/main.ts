@@ -22,6 +22,7 @@ import './styles/reader.css';
 import { el } from './lib/dom';
 import { createRouter, currentPath, navigate, type Screen } from './lib/router';
 import { enterRegister, fetchRegister } from './lib/api';
+import { formatDate, formatHour, machineTime, reckon } from '../shared/reckoning';
 import { scanlines, muted, music } from './lib/store';
 import { armOnFirstGesture, setMusic, setMuted } from './lib/sound';
 import { insertScreen } from './screens/insert';
@@ -102,6 +103,9 @@ const header = el(
  */
 const hitCounter = el('span', { class: 'hit-counter hit-counter--waiting' });
 
+/** The realm's date and hour. Filled by `tick()` below, before first paint. */
+const clock = el('time', { class: 'clock' });
+
 function showVisits(count: number | null): void {
   if (count === null) return;
   hitCounter.classList.remove('hit-counter--waiting');
@@ -131,18 +135,12 @@ const footer = el(
   el('span', { class: 'footer-note' }, 'VISITORS '),
   hitCounter,
   el('span', { class: 'chrome-spacer' }),
-  el(
-    'span',
-    { class: 'footer-note footer-note--wide' },
-    'COLLEGE OF WINTERHOLD · 4E 201 · ',
-  ),
-  // The text is Bethesda's and the transcription is the Library of Skyrim's.
-  // Credit belongs where a reader can see it, not only in PROVENANCE.md.
-  el(
-    'span',
-    { class: 'footer-note footer-note--wide' },
-    'TEXT © BETHESDA · PORTED FROM THE LIBRARY OF SKYRIM · ',
-  ),
+  el('span', { class: 'footer-note footer-note--wide' }, 'COLLEGE OF WINTERHOLD · '),
+  // Bethesda's text. The Library of Skyrim's transcription is credited in
+  // PROVENANCE.md and in every book's `source:` frontmatter; it used to be
+  // named here too and the client asked for the line back.
+  el('span', { class: 'footer-note footer-note--wide' }, 'TEXT © BETHESDA · '),
+  clock,
   // `forget my discoveries` stood here. It cleared a list of call numbers a
   // visitor had resolved, which the catalogue used to fold sealed volumes into
   // the shelf. Every volume is listed now, so there was nothing left for it to
@@ -150,6 +148,32 @@ const footer = el(
 );
 
 /* -- stage -------------------------------------------------------------- */
+
+/*
+ * The realm's clock, ticked once a real second.
+ *
+ * A REAL SECOND IS TWO IN-WORLD MINUTES, so the displayed minute changes every
+ * thirty seconds and a one-second tick is the coarsest interval that never
+ * shows a stale one. Reckoned from `shared/reckoning.ts`, which is the Thalmor
+ * archive's module carried across whole — two archives of the same realm
+ * disagreeing about the date would be worse than either being wrong.
+ *
+ * `setInterval` and not `requestAnimationFrame`: a backgrounded tab produces no
+ * frames, and the clock should be right when it comes back rather than frozen
+ * at the moment it was hidden. Timers are throttled in the background, not
+ * stopped, and each tick reads the wall clock rather than counting its own.
+ */
+function tick(): void {
+  const moment = reckon();
+  clock.replaceChildren(
+    el('span', { class: 'clock__date' }, formatDate(moment)),
+    el('span', { class: 'clock__time' }, formatHour(moment)),
+  );
+  clock.setAttribute('datetime', machineTime(moment));
+}
+
+tick();
+window.setInterval(tick, 1000);
 
 const stage = el('main', { class: 'screen', id: 'stage' });
 

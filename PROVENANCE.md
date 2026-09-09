@@ -32,8 +32,15 @@ anyone deciding what to do with it can see the position clearly.
 
 ### What has been done about it
 
-- **The source is credited** in the footer of every page and in every book's
-  frontmatter, and Bethesda is named as the author of the text.
+- **Bethesda is credited in the footer of every page**, and every book records
+  the Library of Skyrim page it was ported from in its own `source:`
+  frontmatter.
+
+  **The footer no longer names the Library of Skyrim.** It read `PORTED FROM
+  THE LIBRARY OF SKYRIM` until the client asked for that line to make room for
+  the realm's clock. The credit still exists — here, and on all 249 books — but
+  it is no longer on screen, and that is a smaller acknowledgement than it was.
+  Worth reversing if this is ever published.
 - **`robots.txt` refuses indexing.** A fan archive that does not compete with
   its source in search results is a materially smaller ask than one that does,
   and it is the one thing here that can be done unilaterally.

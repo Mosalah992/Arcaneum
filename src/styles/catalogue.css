@@ -214,8 +214,23 @@
 .results-head,
 .result {
   display: grid;
-  /* NO. · CALL · TITLE · COPIES · AVAILABLE · AUTHOR · SCHOOL */
-  grid-template-columns: 3.5ch 12ch minmax(0, 1fr) 8ch 12ch 19ch 13ch;
+  /*
+   * NO. · CALL · TITLE · COPIES · AVAILABLE · AUTHOR · SCHOOL
+   *
+   * IN `rem`, NOT `ch`, AND THAT IS THE WHOLE POINT. `ch` is the width of a
+   * zero in the element's OWN font, and these two rows are deliberately set at
+   * different sizes — the heading at 15px, a result at 19px. The same `12ch`
+   * was therefore 72px on the heading and 91px on the row, `minmax(0, 1fr)`
+   * swallowed the difference in the title column, and every column to the
+   * right of it landed about twenty pixels adrift of its own heading. It never
+   * showed while the right-hand columns were left-aligned prose; the moment
+   * two of them became right-aligned numbers, `22` was sitting to the left of
+   * `COPIES` and `19 IN` underneath it.
+   *
+   * `rem` is the root's font size, which is one number for both rows and still
+   * follows a reader who has set a larger default.
+   */
+  grid-template-columns: 1.7rem 5.7rem minmax(0, 1fr) 3.9rem 5.9rem 9rem 6.2rem;
   gap: 10px;
   align-items: baseline;
   padding: 3px 14px;
@@ -230,12 +245,20 @@
   border-bottom: 1px solid var(--stone-700);
   padding-top: 5px;
   padding-bottom: 5px;
+  /* The list's scrollbar, measured and handed over by syncGutter() in
+     src/screens/catalogue.ts. Without it the heading is a scrollbar wider than
+     the rows it labels and every column right of the title is out of line. */
+  padding-right: calc(14px + var(--gutter, 0px));
 }
 
 .results {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
+  /* Reserved whether or not the list overflows, so the heading's correction is
+     one constant rather than something that changes when a search narrows the
+     list to three rows. */
+  scrollbar-gutter: stable;
   margin: 0;
   padding: 4px 0 12px;
   list-style: none;
@@ -346,56 +369,39 @@
 
 .result[aria-selected='true'] .copies { color: var(--parchment); }
 
-/* -- the key ------------------------------------------------------------- */
-
-.holdings-key {
-  margin: 18px 2px 4px;
-  padding-top: 12px;
-  border-top: 1px solid var(--stone-700);
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--parchment-dim);
-}
-
-.holdings-key__head {
-  margin: 0 0 5px;
-  font-size: 15px;
-  letter-spacing: 0.16em;
-  color: var(--parchment-dim);
-}
-
-.holdings-key__row {
-  display: grid;
-  grid-template-columns: 7ch minmax(0, 1fr);
-  gap: 7px;
-  margin: 0;
-  align-items: baseline;
-}
-
-.holdings-key__row .held {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-.holdings-key__row .held--in { color: #6fd08c; }
-.holdings-key__row .held--some { color: #e0b552; }
-.holdings-key__row .held--out { color: #ff7a6a; }
-.holdings-key__row .held--unlisted { color: var(--stone-lit); }
-
-.holdings-key__what {
-  color: var(--graphite-lit, #8b93a3);
-  white-space: normal;
-}
-
-.holdings-key__foot {
-  margin: 9px 0 0;
-  font-size: 13px;
-  line-height: 1.4;
-  letter-spacing: 0.06em;
-  color: var(--stone-lit);
-}
-
 /* -- what the archive found ---------------------------------------------- */
+
+/*
+ * A hit the College actually holds.
+ *
+ * Green, and ALREADY AT THE TOP — the group it sits in is the first thing under
+ * the search line, so the colour is the second channel and not the only one.
+ * A left bar rather than a wash across the row: the row is a grid of five
+ * columns of type and a green field behind them fights every one of them,
+ * while a bar in the gutter reads at a glance down a list and leaves the words
+ * alone.
+ *
+ * Only on a body search. The full 249-row listing is in call-number order and
+ * lighting up 48 of them there would be a stripe pattern rather than an
+ * answer — see `renderFound()` in src/screens/catalogue.ts.
+ */
+.result--held {
+  box-shadow: inset 3px 0 0 #4fae6c;
+  background: linear-gradient(90deg, rgba(79, 174, 108, 0.11), rgba(79, 174, 108, 0) 42%);
+}
+
+.result--held:hover,
+.result--held[aria-selected='true'] {
+  box-shadow: inset 3px 0 0 #6fd08c;
+  background: linear-gradient(90deg, rgba(79, 174, 108, 0.2), rgba(79, 174, 108, 0.04) 60%);
+}
+
+/* The group heading above them, in the same green. */
+.results-group--held .results-group__name { color: #6fd08c; }
+.results-group--held .results-group__count {
+  color: var(--obsidian);
+  background: #4fae6c;
+}
 
 /* A shelf heading inside the results. Not a `.result`, so it is skipped by the
    keyboard model, which walks `.result` alone. */
@@ -487,7 +493,8 @@
   .result {
     /* The copy count goes; how many are on the shelf stays. On a phone at the
        shelves that is the whole question. */
-    grid-template-columns: 3.5ch 12ch minmax(0, 1fr) 10ch;
+    /* `rem` here too, for the same reason — see the desktop template. */
+    grid-template-columns: 1.7rem 5.7rem minmax(0, 1fr) 4.8rem;
     grid-template-areas: 'idx call ttl held' '. call author held';
     row-gap: 0;
     padding-top: 6px;
@@ -503,10 +510,6 @@
   .result .copies,
   .result .school { display: none; }
 
-  /* The shelf column is a row of chips across the top on a phone, so the key
-     would sit between the shelves and the results. It belongs beside a tall
-     list, not across a short one. */
-  .holdings-key { display: none; }
 
   .search-hint { display: none; }
 }

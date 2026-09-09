@@ -171,6 +171,35 @@ Bethesda books satisfy that trivially.
 `npm run seed` reports a sealed book that no open book cites; it no longer
 fails the build over one.
 
+### The clock
+
+The footer carries the realm's date and hour, reckoned in
+`shared/reckoning.ts` — the Thalmor archive's module carried across whole
+rather than re-derived, because two archives of the same realm disagreeing
+about the day would be worse than either being wrong. **The rate is 2:1**, two
+in-world minutes per real one, measured against the realm's own clock; the
+anchor and the rate are the only two things to edit if the realm is ever re-set,
+and they must be changed in both projects.
+
+It ticks once a real second, which is the coarsest interval that never shows a
+stale minute at 2:1. Everything is UTC: a reader in Cairo and one in Seattle
+are told the same in-world hour.
+
+It stands where `PORTED FROM THE LIBRARY OF SKYRIM` used to — see
+[PROVENANCE.md](PROVENANCE.md).
+
+### Searching
+
+A body search puts **what the College actually holds first**, in its own group
+above the shelf groups, tinted green where a copy is in. On the register — not
+"available" — is what lifts a book into that group: a title the College owns but
+has entirely lent out still belongs at the top of a librarian's answer, and its
+AVAILABLE cell says `ALL OUT` in red so the two cases stay distinct.
+
+The green is a second channel, not the only one: those rows are already at the
+top. The full 249-row listing is left in call-number order — lighting up 48 of
+them there would be a stripe pattern rather than an answer.
+
 ### The counter
 
 `VISITORS` in the footer is a real number, ported from the Thalmor archive's
