@@ -25,9 +25,18 @@ build, because `vite build` empties `dist/` first.
 
 `art/sigil.png` was blocked into the inside of every volume's front board and
 set at the head of the title page on narrow screens. **It has been deleted**:
-it had no home left, and a megabyte of supplied plate shipping to every visitor
-for nothing is worse than a gap in a table. It is in the history at `c603c25`
-if it is ever wanted back.
+it had no home left, and 409 KB of supplied plate shipping to every visitor for
+nothing is worse than a gap in a table. It is in the history at `c603c25` if it
+is ever wanted back.
+
+**It can still be served from the edge for up to a week after the deploy that
+removed it.** Pages sends assets with `s-maxage=604800`, and there is no cache
+purge for a `*.pages.dev` hostname, so a request for that exact path may get a
+`CF-Cache-Status: HIT` from a colo that cached it earlier. The origin has it no
+longer — the deployment's own URL and any cache-busted request both answer with
+the SPA fallback — and nothing on the site links to it. This is worth knowing
+before deleting any asset that matters: removing it from a deploy is not the
+same as making it unreachable.
 
 `art/rubrication.png` is in the same position — it was the sheet the tailpiece
 was cut from, and `src/lib/rubrication.ts`, the connected-component labeller
