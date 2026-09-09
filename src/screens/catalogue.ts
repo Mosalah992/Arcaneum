@@ -4,7 +4,7 @@
  * The search field does two jobs. Typed prose filters the visible list, or —
  * past two characters — asks the archive to read the bodies. A typed call
  * number is a request slip: pressing Enter sends it to /api/resolve and the
- * volume opens.
+ * roll answers with the record.
  *
  * EVERY VOLUME IS LISTED, restricted ones included, marked SEALED and shelved
  * at L1. They used to be held back and reachable only by noticing a call
@@ -28,7 +28,7 @@ import {
   type TomeSummary,
 } from '../lib/api';
 import { heldCells, lookUp } from '../lib/holdings';
-import { navigate, type Screen } from '../lib/router';
+import { type Screen } from '../lib/router';
 import { play } from '../lib/sound';
 
 interface Row extends TomeSummary {
@@ -95,7 +95,7 @@ export function catalogueScreen(): Screen {
     cursor,
   );
 
-  const hint = el('span', { class: 'search-hint' }, 'UP/DOWN SELECT   ENTER OPEN');
+  const hint = el('span', { class: 'search-hint' }, 'UP/DOWN SELECT   ENTER CALLS A NUMBER');
   const status = el('div', { class: 'results-status' }, 'CONSULTING THE ROLL...');
   const list = el('ol', {
     class: 'results',
@@ -310,7 +310,6 @@ export function catalogueScreen(): Screen {
         type: 'button',
         role: 'option',
         'aria-selected': String(index === selected),
-        onclick: () => openTome(row),
         onmouseenter: () => select(index, false),
       },
       el('span', { class: 'idx' }, String(index + 1).padStart(2, '0')),
@@ -457,10 +456,6 @@ export function catalogueScreen(): Screen {
     play('tick');
   }
 
-  function openTome(row: Row): void {
-    navigate(`/tome/${row.id}`);
-  }
-
   /** A typed call number is a request slip handed across the desk. */
   async function request(callNumber: string): Promise<void> {
     status.className = 'results-status';
@@ -468,8 +463,9 @@ export function catalogueScreen(): Screen {
     try {
       const tome = await resolveCallNumber(callNumber);
       status.className = 'results-status results-status--found';
-      status.textContent = `${tome.call_number} — ${tome.title.toUpperCase()}`;
-      navigate(`/tome/${tome.id}`);
+      status.textContent =
+        `${tome.call_number} — ${tome.title.toUpperCase()} — ` +
+        `${tome.author.toUpperCase()} — ${tome.school.toUpperCase()}`;
     } catch (err) {
       status.className = 'results-status results-status--error';
       if (err instanceof ArchiveError) {
@@ -525,8 +521,6 @@ export function catalogueScreen(): Screen {
       const typed = query.trim().toUpperCase();
       if (CALL_NUMBER_RE.test(typed)) {
         void request(typed);
-      } else if (rows.length > 0) {
-        openTome(rows[selected]!);
       }
     } else if (event.key === 'Escape') {
       input.value = '';

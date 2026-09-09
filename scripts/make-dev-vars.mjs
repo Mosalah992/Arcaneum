@@ -17,6 +17,7 @@
 //
 // The key itself is never printed. The account address is.
 
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -84,16 +85,33 @@ if (process.argv[1]?.endsWith('make-dev-vars.mjs')) {
   const before = fs.existsSync(target) ? fs.readFileSync(target, 'utf8') : '';
   let after = setDevVar(before, 'GOOGLE_SERVICE_ACCOUNT_JSON', JSON.stringify(key));
   after = setDevVar(after, 'ARCANAEUM_SHEET_ID', SHEET_ID);
+
+  /*
+   * The gate, for local development only.
+   *
+   * THE REAL PASSPHRASE IS NOT IN THIS REPOSITORY and never passes through
+   * this script. Production's is set with `wrangler pages secret put` and is
+   * known only to the College; what this writes is a throwaway word so that
+   * `npm run dev` is not locked out of its own archive. Override it with
+   * ARCANAEUM_PASSPHRASE in the environment to develop against the real one.
+   *
+   * The signing secret is generated fresh unless one is already in the file,
+   * so a re-run does not log the developer out of their own machine.
+   */
+  const devWord = process.env.ARCANAEUM_PASSPHRASE ?? 'winterhold';
+  after = setDevVar(after, 'ARCANAEUM_PASSPHRASE', devWord);
+  if (!keysIn(after).includes('ARCANAEUM_GATE_SECRET')) {
+    after = setDevVar(
+      after,
+      'ARCANAEUM_GATE_SECRET',
+      crypto.randomBytes(32).toString('base64url'),
+    );
+  }
+
   fs.writeFileSync(target, after);
 
-  const kept = keysIn(after).filter(
-    (k) => k !== 'GOOGLE_SERVICE_ACCOUNT_JSON' && k !== 'ARCANAEUM_SHEET_ID',
-  );
   console.log(`.dev.vars written for ${key.client_email}`);
-  console.log(
-    kept.length > 0
-      ? `kept ${kept.length} other value${kept.length === 1 ? '' : 's'}: ${kept.join(', ')}`
-      : 'no other values were present',
-  );
+  console.log(`keys: ${keysIn(after).join(', ')}`);
+  console.log(`local passphrase: ${devWord}   (development only — production's is a Pages secret)`);
   console.log('\nRestart `npm run dev` — wrangler reads .dev.vars at startup.');
 }

@@ -29,16 +29,39 @@ interface TomeSummary {
   restricted: number;
 }
 
-// Rows are numbered in shelf order by the seed generator (tier, then
-// accession), so id order is shelf order and needs no roman-numeral sort here.
+/*
+ * ORDERED BY CALL NUMBER, WORKED OUT HERE, and not by `id`.
+ *
+ * The seed generator numbers rows in shelf order, so for a corpus written in
+ * one pass `id` order and shelf order are the same thing — and every book added
+ * afterwards has to be given an id in the middle of the sequence, which
+ * renumbers every row after it and rewrites every migration that carries them.
+ * One book cost the whole ledger.
+ *
+ * So `id` is an opaque key now and the order is derived from the call number it
+ * is printed under: the shelf's position in SHELVES, then the accession number.
+ * A new volume is a new row with the next free id, wherever its call number
+ * puts it on the shelf. Sorting 250 rows in the Worker costs nothing.
+ */
 const BASE = 'SELECT id, call_number, title, author, school, restricted FROM tomes';
+
+const ACCESSION = /-(\d+)$/;
+
+function shelfOrder(tome: TomeSummary): number {
+  const shelf = (SHELVES as readonly string[]).indexOf(tome.school);
+  const accession = Number(ACCESSION.exec(tome.call_number)?.[1] ?? 0);
+  // A shelf the catalogue does not know goes last rather than first, so a
+  // mistyped `school` is visible at the end of the list instead of silently
+  // heading it.
+  return (shelf < 0 ? SHELVES.length : shelf) * 100_000 + accession;
+}
 
 export const onRequest = readOnly(async ({ request, env }: RequestContext) => {
   const raw = new URL(request.url).searchParams.get('shelf');
 
   let stmt;
   if (raw === null || raw === '') {
-    stmt = env.DB.prepare(`${BASE} ORDER BY id`);
+    stmt = env.DB.prepare(BASE);
   } else {
     const shelf = canonicalShelf(raw);
     if (shelf === null) {
@@ -48,13 +71,12 @@ export const onRequest = readOnly(async ({ request, env }: RequestContext) => {
         400,
       );
     }
-    stmt = env.DB.prepare(`${BASE} WHERE school = ? ORDER BY id`).bind(shelf);
+    stmt = env.DB.prepare(`${BASE} WHERE school = ?`).bind(shelf);
   }
 
   const { results } = await stmt.all<TomeSummary>();
-  return json(
-    { tomes: results.map((t) => ({ ...t, restricted: t.restricted === 1 })) },
-    200,
-    'public, max-age=60',
-  );
+  const tomes = results
+    .sort((a, b) => shelfOrder(a) - shelfOrder(b))
+    .map((t) => ({ ...t, restricted: t.restricted === 1 }));
+  return json({ tomes }, 200, 'public, max-age=60');
 });

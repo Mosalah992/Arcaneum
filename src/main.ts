@@ -17,7 +17,6 @@ import './styles/base.css';
 import './styles/chrome.css';
 import './styles/insert.css';
 import './styles/catalogue.css';
-import './styles/reader.css';
 
 import { el } from './lib/dom';
 import { createRouter, currentPath, navigate, type Screen } from './lib/router';
@@ -27,7 +26,6 @@ import { scanlines, muted, music } from './lib/store';
 import { armOnFirstGesture, setMusic, setMuted } from './lib/sound';
 import { insertScreen } from './screens/insert';
 import { catalogueScreen } from './screens/catalogue';
-import { readerScreen } from './screens/reader';
 
 const root = document.querySelector<HTMLDivElement>('#app')!;
 
@@ -205,7 +203,6 @@ createRouter(
   {
     '/insert': () => insertScreen(),
     '/catalogue': () => catalogueScreen(),
-    '/tome/:id': (params) => readerScreen(params),
   },
   () => catalogueScreen(),
   (screen: Screen) => {

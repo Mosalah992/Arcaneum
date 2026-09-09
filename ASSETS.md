@@ -17,10 +17,23 @@ build, because `vite build` empties `dist/` first.
 
 | File | Size | Where | Subject |
 | --- | --- | --- | --- |
-| `art/rubrication.png` | 1536×1024 | `src/lib/rubrication.ts` | Illuminated manuscript elements — decorated initials, a dragon border, sun, hare, raven, stag, hound, snail, compass rose, scribe, wizard — cut out on transparency. |
+| `art/rubrication.png` | 1536×1024 | **nothing, currently** | Illuminated manuscript elements — decorated initials, a dragon border, sun, hare, raven, stag, hound, snail, compass rose, scribe, wizard — cut out on transparency. |
 | `art/floppydisk.png` | 1278×1230 | `.disc` | The whole 3.5" disc — navy shell, brushed shutter, label and the College's sigil — on transparency. Drawn at ~210px, smooth-resampled rather than `pixelated`: it is a soft render, and nearest-neighbour on a downscale of one aliases badly. |
 | `art/background.png` | 1050×1050 | `.rig` | The workstation: CRT, tower, keyboard and base unit, on transparency, with the College painted on the glass. The front page. |
-| `art/sigil.png` | 506×505 | `.board__sigil`, `.title-page__sigil` | The College's sigil — a rayed eye in a roundel. Blocked into the inside of every volume's front board. |
+| `art/sigil.png` | 506×505 | **nothing, currently** | The College's sigil — a rayed eye in a roundel. |
+
+### Orphaned when the reader was removed
+
+`art/sigil.png` was blocked into the inside of every volume's front board and
+set at the head of the title page on narrow screens. `art/rubrication.png` was
+the sheet the tailpiece was cut from, and `src/lib/rubrication.ts` — the
+connected-component labeller that isolated an ornament from its neighbours — has
+been deleted with it. `audio/darkwave.mp3` was the reading track and nothing
+asks for it any more.
+
+All three are still in the repository. The sigil in particular wants a new home
+— the front page or the catalogue's header are the obvious candidates — and it
+is a supplied plate sitting unused until it gets one.
 
 ### `art/background.png`
 

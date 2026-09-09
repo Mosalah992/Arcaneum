@@ -46,10 +46,15 @@ anyone deciding what to do with it can see the position clearly.
   and it is the one thing here that can be done unilaterally.
 - **Nothing is sold and nothing is monetised.** There is no advertising, no
   tracking, and no third-party script of any kind.
-- **The text is never edited.** Cross-references between books are the
-  *archive's* apparatus, printed as a librarian's colophon set apart from the
-  page — see `content/cross-references.json`. Not one word of the books
-  themselves is altered, cut, or added to.
+- **The text is never edited.** Not one word of any book is altered, cut, or
+  added to.
+- **The volumes cannot be read on the site.** There is no reading screen, no
+  route returns a book's `body`, and clicking a title opens nothing. The
+  catalogue is a catalogue. The only text that reaches a browser is a
+  fourteen-token excerpt around a search match — see the note in
+  `functions/api/search.ts`.
+- **The archive is behind a passphrase.** Every `/api/*` route needs a writ, so
+  a stranger without the College's word gets an empty terminal.
 
 ### If a takedown is asked for
 

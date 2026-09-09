@@ -12,22 +12,25 @@ The text is Bethesda's, ported from the Library of Skyrim. **Read
 ## Architecture
 
 ```
-  INSERT                CATALOGUE                    TOME
-  (the front page,          │                          │
-   every visit)             │                          │
-     │                      │                          │
-  DOM/CSS                DOM/CSS                    DOM/CSS
-  a workstation          shelf tablets              two-page
-  on a stone desk;       + search                   spread
-  the disc goes in                                     │
-                         │        │                    │
-                         │        └──── /api/search ── FTS5
-                         │                              │
-                         └──── /api/availability      D1
-                                     │            tomes / citations
-                              Google Sheets
-                           (the College's register)
+  INSERT                          CATALOGUE
+  (the front page, every visit)       │
+     │                                │
+  DOM/CSS                          DOM/CSS
+  a workstation on a stone desk;   shelf tablets
+  the disc goes in, then the       + search
+  monitor asks for the word            │        │
+     │                                 │        └── /api/search ── FTS5
+     └── /api/gate ── a writ           │                            │
+                        │              └── /api/availability      D1
+                        │                        │             tomes
+              functions/api/_middleware   Google Sheets
+              guards every other route  (the College's register)
 ```
+
+**There is no reading screen.** The catalogue lists all 250 volumes and search
+reads every word of them, but no route returns a book's text and clicking a
+title opens nothing. That is deliberate — see *The volumes cannot be read*
+below.
 
 No framework, no 3D, no runtime dependency beyond anime.js and two self-hosted
 fonts. The whole client is one ~56 KB bundle.
@@ -50,17 +53,63 @@ percentage of it, measured once — see the head of `src/styles/insert.css`.
 | Route | Returns |
 | --- | --- |
 | `GET /api/tomes[?shelf=]` | Metadata only, never `body`. Excludes sealed books. |
-| `GET /api/tomes/:id` | One book, full text, and the volumes it refers to. |
 | `GET /api/search?q=&shelf=&limit=` | Full-text over title, author and body, with excerpts. |
 | `GET /api/resolve/:callNumber` | A call number to a shelf position, or 404. |
 | `GET /api/availability` | What the College holds. `configured:false` if no register. |
 | `GET /api/register` | How many readers have consulted the archive. |
-| `POST /api/register/entry` | Counts this reader. The only write in the project. |
+| `POST /api/register/entry` | Counts this reader. |
+| `GET`/`POST /api/gate` | The door. The only route outside the middleware. |
 
-Everything but that last route is read-only: no login, no admin, no analytics,
-and anything that is not a `GET` gets a 405. `POST /api/register/entry` takes no
-body, no parameters and no identifier, and its whole effect is
-`visits = visits + 1` on a table with one row.
+Every route except `/api/gate` is behind `functions/api/_middleware.ts` and
+needs a valid writ. Two of them write: `/api/gate` sets a cookie, and
+`/api/register/entry` takes no body, no parameters and no identifier and does
+`visits = visits + 1` on a table with one row. Everything else is read-only,
+and anything that is not a `GET` gets a 405.
+
+## The door
+
+The archive is behind a shared passphrase. The disc goes in, the monitor asks
+for the word, and a correct one buys an HMAC-signed writ that lasts a week.
+
+```bash
+# a signing key neither you nor anyone else ever reads
+node -e "process.stdout.write(require('crypto').randomBytes(32).toString('base64url'))" | npx wrangler pages secret put ARCANAEUM_GATE_SECRET --project-name arcanaeum
+# the word itself, typed at the prompt
+npx wrangler pages secret put ARCANAEUM_PASSPHRASE --project-name arcanaeum
+```
+
+**Two secrets, not one.** Signing with the passphrase would make a guessable
+word into the key that mints admissions, and changing the word would forge every
+writ already issued. Kept apart, the word can change without logging anybody
+out, and everybody can be logged out — by bumping `ARCANAEUM_GATE_EPOCH` —
+without changing the word.
+
+**It fails closed.** A missing secret answers `503` and the archive is
+unreadable until one is set. The alternative is that one lost secret silently
+opens everything with nothing on any screen to say so.
+
+**The prompt is scenery; the middleware is the boundary.** A reader can delete
+the cookie, edit the bundle or call the routes with curl, and all of it gets
+them a 401. What is *not* behind the door is the shell — the HTML, the bundle,
+the fonts and the artwork — because a Function in front of every asset costs the
+edge cache on all of them. Without the word you get an empty terminal and
+nothing to read.
+
+`npm run dev:vars` writes a throwaway local word (`winterhold`) so development
+is not locked out of its own archive. The real one is a Pages secret and is not
+in this repository.
+
+## The volumes cannot be read
+
+There is no reader. Clicking a title highlights the row and does nothing else,
+`GET /api/tomes/:id` is gone, and no response from any route carries a `body`
+column. Librarians catalogue these books; they are not meant to read them here.
+
+**The one exception is the search excerpt**, about fourteen tokens around a
+match, which is what makes a hit legible and is the whole point of searching
+inside the volumes. Dropping `snippet(...)` from the SELECT in
+`functions/api/search.ts` and `excerpt` from the client's `Hit` is the entire
+change if that trade is ever judged the wrong way round.
 
 ## Run it
 
@@ -136,22 +185,6 @@ those two statements are there.
 
 Adding a book means a *new* numbered migration, not a regenerated one.
 
-### The opening of a volume
-
-Every volume opens on the College's sigil, blocked into the inside of the front
-board — one mark, the same on all 249. There is no per-shelf device; the shelf
-is named in words on the title page. Below 900px the binding comes apart into a
-single column and there is no board, so the sigil moves to the head of the
-title page.
-
-The red initial goes on the first paragraph of prose — after the book's own
-front matter (`THE ART OF WAR MAGIC` / `by` / `Zurin Arctus`, which the port
-keeps because the text is never edited) and after any heading that introduces
-it. It is only set when that paragraph is really prose: eight words or more,
-opening on a letter. 189 of the 249 get one. The rest open on dialogue, on a
-number or on a subtitle, and a three-line capital dropped onto any of those
-looks like a mistake.
-
 ### The restricted press
 
 Five books are `restricted`, from the College's own `Restricted Titles` sheet,
@@ -223,32 +256,6 @@ unapplied migration — so a prober cannot learn from the status code whether
 they were recorded or whether there is a database at all. The odometer starts
 empty and stays empty if the count never arrives; it never shows a made-up
 number, which is what the old `0041982` was.
-
-### The colophon
-
-Every volume prints the archive's cross-references at the back, after the
-tailpiece, boxed and set in the interface's face rather than the book's, with a
-line saying they are the archive's and not the author's. They are clickable.
-
-**None of them are in the text.** Bethesda does not write shelf marks, so no
-body in the corpus contains a call number; the references are derived from one
-volume naming another's title, plus eight curated in
-`content/cross-references.json`, and they live in the `citations` table. Keeping
-them physically outside the prose is the same rule as everywhere else here: the
-text is never edited.
-
-### Reading a volume
-
-Left and Right turn the leaf, PageUp/PageDown and Space too, Home and End jump
-to the ends, Escape closes the book. The foot says so.
-
-**READING AID** in the running head switches the volume to a plain sans face at
-a larger size, opens the letters, words and lines, widens the gutters, flattens
-the parchment grain behind the text and sets the red initial back into the line
-as an ordinary capital. It is spacing and face rather than a dyslexia-specific
-typeface: the evidence for those faces is mixed and the evidence for spacing,
-measure and contrast is not. A face can be dropped in — one `@font-face` and
-one line of `--font-aid` in `reader.css`. The preference is remembered.
 
 ## The register
 

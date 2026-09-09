@@ -253,6 +253,70 @@
   animation: insert-blink 1.5s steps(1, end) infinite;
 }
 
+/* -- the word ------------------------------------------------------------- */
+
+/*
+ * The passphrase, typed on the monitor.
+ *
+ * Sized in `cqw` like everything else on the glass, so it is the same size
+ * relative to the screen it is written on at any window width. The field is a
+ * real `<input>` with its chrome taken off — a drawn one would not take a
+ * password manager's offer, and this is a word the College hands out rather
+ * than one a reader invents.
+ */
+.crt__prompt {
+  display: flex;
+  align-items: baseline;
+  gap: 2cqw;
+  margin: 1cqh 0 0;
+}
+
+/* `display: flex` above is a class rule and the browser's own `[hidden]` rule
+   is an attribute rule, so the class wins and a hidden form stays on screen.
+   The prompt was visible before the disc had gone in for exactly that reason. */
+.crt__prompt[hidden] { display: none; }
+
+.crt__ask {
+  flex: none;
+  font-size: 4.4cqw;
+  letter-spacing: 0.06em;
+  color: var(--parchment-dim);
+}
+
+.crt__word {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0;
+  font: inherit;
+  font-size: 4.4cqw;
+  letter-spacing: 0.22em;
+  color: #d8ecec;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(150, 210, 220, 0.35);
+  outline: 0;
+  caret-color: var(--magicka);
+}
+
+.crt__word::placeholder {
+  color: rgba(150, 210, 220, 0.3);
+  letter-spacing: 0;
+}
+
+.crt__word:focus { border-bottom-color: rgba(150, 210, 220, 0.8); }
+
+/* While the door is being asked. Not a spinner — the field simply stops
+   answering, which is what it is doing. */
+.crt__prompt--waiting .crt__word { opacity: 0.45; }
+
+.crt__refusal {
+  margin: 0.6cqh 0 0;
+  min-height: 1.3em;
+  font-size: 4cqw;
+  letter-spacing: 0.08em;
+  color: #ff8a72;
+}
+
 @keyframes insert-blink {
   0%, 64% { opacity: 1; }
   65%, 100% { opacity: 0.12; }
@@ -420,7 +484,10 @@
  */
 @media (max-width: 700px) {
   .crt__log,
-  .crt__hint { font-size: max(9px, 4.4cqw); }
+  .crt__hint,
+  .crt__ask,
+  .crt__word { font-size: max(9px, 4.4cqw); }
+  .crt__refusal { font-size: max(8px, 4cqw); }
   .crt__head { font-size: max(13px, 7cqw); }
   .crt__sub { font-size: max(8px, 4cqw); }
 }

@@ -198,3 +198,58 @@ export async function fetchRegister(): Promise<number | null> {
     return null;
   }
 }
+
+/* -- the door ------------------------------------------------------------- */
+
+export interface Gate {
+  /** Whether a passphrase is set on this deployment at all. */
+  configured: boolean;
+  /** Whether this browser already holds a valid writ. */
+  open: boolean;
+  /** What to print when the word is refused. */
+  message?: string;
+}
+
+/**
+ * Whether this reader is already admitted.
+ *
+ * A sealed archive with no passphrase configured answers 503, which is not an
+ * error to swallow: it is the difference between "say the word" and "nobody has
+ * set a word, this archive cannot be opened by anybody", and the terminal
+ * prints them differently.
+ */
+export async function gateStatus(): Promise<Gate> {
+  try {
+    const res = await fetch('/api/gate', {
+      headers: { accept: 'application/json' },
+      credentials: 'same-origin',
+    });
+    const body = (await res.json()) as Gate;
+    return { configured: body.configured === true, open: body.open === true };
+  } catch {
+    // Offline, or the route is missing entirely. Treat it as "ask" rather than
+    // "let them in": the middleware is the boundary and it will refuse anyway,
+    // so guessing open here would only show an empty catalogue.
+    return { configured: true, open: false };
+  }
+}
+
+/** Offer the word. On success the browser is handed a writ and let through. */
+export async function openGate(passphrase: string): Promise<Gate> {
+  try {
+    const res = await fetch('/api/gate', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', accept: 'application/json' },
+      credentials: 'same-origin',
+      body: JSON.stringify({ passphrase }),
+    });
+    const body = (await res.json()) as Gate;
+    return {
+      configured: body.configured === true,
+      open: body.open === true,
+      message: typeof body.message === 'string' ? body.message : undefined,
+    };
+  } catch {
+    return { configured: true, open: false, message: 'THE DOOR DID NOT ANSWER.' };
+  }
+}

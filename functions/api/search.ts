@@ -101,6 +101,17 @@ export const onRequest = readOnly(async ({ request, env }: RequestContext) => {
    * The excerpt is taken from the body (column 2). Where the match is only in
    * the title, there is nothing in the body to quote and SQLite returns the
    * opening of the book, which is the right thing to show anyway.
+   *
+   * THE EXCERPT IS THE ONE PLACE A BOOK'S TEXT STILL LEAVES THE SERVER, and it
+   * is worth being explicit about that. The reader was removed so that a
+   * librarian cannot sit and read the volumes they are cataloguing; this hands
+   * back about fourteen tokens around a match, which is a card catalogue's
+   * keyword-in-context and not a book — but a patient person with a wordlist
+   * could walk a volume out of it a phrase at a time. It stays because
+   * searching inside the volumes is the feature the archive was asked for and
+   * the excerpt is what makes a hit legible. Dropping `snippet(...)` from this
+   * SELECT and the `excerpt` field from the client's `Hit` is the whole change
+   * if that trade is ever judged the wrong way round.
    */
   const sql =
     `SELECT t.id, t.call_number, t.title, t.author, t.school, t.restricted,` +

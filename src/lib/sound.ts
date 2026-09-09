@@ -22,6 +22,10 @@ import { muted, music } from './store';
 /**
  * What plays where. The archive has one voice and the volumes have another —
  * reading a tome puts you somewhere quieter and stranger than the catalogue.
+ *
+ * NOTHING ASKS FOR `reading` ANY MORE. The reader screen it belonged to is
+ * gone; the track is kept because it is a supplied asset and `setMusicTrack`
+ * still takes it, so restoring the screen restores the sound with it.
  */
 const TRACKS = {
   archive: '/audio/librarytheme.mp3',
