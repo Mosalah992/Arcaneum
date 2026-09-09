@@ -148,40 +148,83 @@ opening on a letter. 189 of the 249 get one. The rest open on dialogue, on a
 number or on a subtitle, and a three-line capital dropped onto any of those
 looks like a mistake.
 
-### The sealed shelf
+### The restricted press
 
-Five books are `restricted`: hidden from the listing, reachable only by noticing
-a call number in a book you can already read and typing it into the catalogue.
-The list is the College's own, in `content/restricted.json`.
+Five books are `restricted`, from the College's own `Restricted Titles` sheet,
+mirrored in `content/restricted.json` with the librarians' reasons.
 
-**This is lore, not access control.** `/api/resolve` is public, unauthenticated
-and unthrottled; anyone can enumerate call numbers and read every sealed book.
-Nothing may go on that list that would matter if a stranger read it — published
+**They are listed on the shelf like everything else**, marked SEALED, shelved at
+L1, searched with the rest and carrying their copy counts. They used to be held
+out of the listing and reachable only by noticing a call number in a book you
+could already read — but the College's register carries them openly, and
+hiding a title was never access control (`/api/resolve` is public,
+unauthenticated and unthrottled) only a game. A librarian who cannot see that
+the College holds twenty copies of *Brothers of Darkness* cannot answer for it.
+
+Nothing may go on that list that would matter if a stranger read it. Published
 Bethesda books satisfy that trivially.
 
-`npm run seed` fails the build if a sealed book is reachable from nowhere.
+`npm run seed` reports a sealed book that no open book cites; it no longer
+fails the build over one.
+
+### Reading a volume
+
+Left and Right turn the leaf, PageUp/PageDown and Space too, Home and End jump
+to the ends, Escape closes the book. The foot says so.
+
+**READING AID** in the running head switches the volume to a plain sans face at
+a larger size, opens the letters, words and lines, widens the gutters, flattens
+the parchment grain behind the text and sets the red initial back into the line
+as an ordinary capital. It is spacing and face rather than a dyslexia-specific
+typeface: the evidence for those faces is mixed and the evidence for spacing,
+measure and contrast is not. A face can be dropped in — one `@font-face` and
+one line of `--font-aid` in `reader.css`. The preference is remembered.
 
 ## The register
 
-Availability is read live from the College's spreadsheet through a Google
-service account, read-only. Two secrets:
+The catalogue's **COPIES** and **AVAILABLE** columns are read live from the
+College's *Arcanaeum Records* spreadsheet through a Google service account,
+read-only. The same two appear in a volume's running head.
+
+Locally:
+
+```bash
+npm run dev:vars
+```
+
+That writes `.dev.vars` (gitignored) from the sibling Thalmor archive's key —
+set `ARCANAEUM_SA_KEY` to point somewhere else. **Wrangler reads `.dev.vars`
+at startup, so restart `npm run dev` after.** For the deployed site:
 
 ```bash
 npx wrangler pages secret put GOOGLE_SERVICE_ACCOUNT_JSON --project-name arcanaeum
 npx wrangler pages secret put ARCANAEUM_SHEET_ID --project-name arcanaeum
 ```
 
-For local development put both in `.dev.vars` (gitignored). **The sheet must be
-shared with the service account's `client_email` as a Viewer** or every read
-returns 403.
+The sheet must be shared with the service account's `client_email` as a Viewer
+or every read returns 403.
 
-Without either secret, `/api/availability` answers `configured:false`, no chips
-render, and the archive works exactly as it did before there was a register. A
-catalogue that 500s because a spreadsheet is down has the tail wagging the dog.
+Without either secret `/api/availability` answers `configured: false`, both
+columns are em dashes, the key is hidden, and the archive works exactly as it
+did before there was a register. A catalogue that 500s because a spreadsheet is
+down has the tail wagging the dog.
 
-Availability is *derived*, not read: the register's own `Availability` column is
-empty in every row, so what counts is `Copies` against the open rows of `Book
-Borrowing` and `In-Library Signouts`.
+**Availability is derived, not read.** The register's own `Availability` column
+says `In` on all 109 rows of it, so what counts is `Copies` against the open
+rows of `Borrowed_Books` (status `Out` or `Overdue`) and `Library_Signouts`
+(`Returned?` false).
+
+**The two lists disagree about what a book is.** The register is a shelf list
+and counts physical volumes — `The Real Barenziah, v1` … `v5`; the catalogue is
+a reading list and holds the work as one entry. `shared/titles.ts` reduces a
+volume to its work and the Worker sums the copies, which takes the match from
+37 of 249 volumes to 48. It strips a trailing volume number and nothing else —
+no fuzzy matching, because a wrong pairing would be invisible while an
+unmatched title is reported and a librarian can fix a spelling.
+
+201 of the 249 volumes are **not on the register at all**: the archive holds the
+text, the College does not stock a copy. That reads as `—`, not as `ALL OUT` —
+"we do not hold that" and "it is out until Tuesday" are different answers.
 
 ## Layout
 

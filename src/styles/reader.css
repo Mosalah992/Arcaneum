@@ -59,6 +59,115 @@
   box-shadow: var(--bevel-out);
 }
 
+/* What the College holds, in the running head: the same two cells the
+   catalogue shows, so a librarian who has walked from the list into the book
+   does not have to walk back. */
+.reader-head .held-head {
+  display: flex;
+  gap: 7px;
+  align-items: baseline;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.reader-head .copies { color: var(--parchment-dim); }
+.reader-head .copies::after { content: ' HELD'; }
+.reader-head .held--in { color: #6fd08c; }
+.reader-head .held--some { color: #e0b552; }
+.reader-head .held--out { color: #ff7a6a; }
+
+/* -- the reading aid ----------------------------------------------------- */
+
+/*
+ * The toggle. Same shape as the frame's own SCANLINES / SOUND / MUSIC buttons,
+ * because it is the same kind of thing — a switch on how the archive presents
+ * itself — but it lives in the volume's running head rather than the site
+ * header, since it changes nothing outside a book.
+ */
+.reader-aid {
+  flex: none;
+  font: inherit;
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  padding: 1px 8px 3px;
+  color: var(--parchment-dim);
+  background: var(--stone-800);
+  border: 0;
+  box-shadow: var(--bevel-out);
+  cursor: pointer;
+}
+
+.reader-aid:hover { color: var(--parchment); }
+
+.reader-aid[aria-pressed='true'] {
+  color: var(--obsidian);
+  background: var(--magicka);
+  box-shadow: var(--bevel-in);
+}
+
+.reader-aid:focus-visible { outline: 2px solid var(--magicka); outline-offset: 1px; }
+
+/*
+ * What the aid actually does.
+ *
+ * A plain sans at a larger size, with the letters, words and lines opened up;
+ * the parchment's grain taken out from behind the text so the strokes sit on a
+ * flat ground; the measure narrowed by wider gutters; and the red initial set
+ * back into the line as an ordinary capital instead of a three-line drop.
+ *
+ * `--font-aid` is a system stack on purpose — no font is downloaded for it, so
+ * it cannot fail to load and costs nothing until it is switched on. Drop a
+ * dyslexia-specific face in here (`@font-face` plus this one line) if one is
+ * wanted; the spacing below is doing most of the work either way.
+ */
+.reader--aid {
+  --font-aid:
+    ui-sans-serif, 'Segoe UI', system-ui, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.reader--aid .leaves {
+  font-family: var(--font-aid);
+  font-size: 17.5px;
+  line-height: 1.85;
+  letter-spacing: 0.035em;
+  word-spacing: 0.14em;
+}
+
+.reader--aid .leaves p { margin-bottom: 1em; }
+
+.reader--aid .page__win,
+.reader--aid .turnleaf__win { inset: 26px 40px 30px; }
+
+/* Flat ground. The foxing and the fibre are lovely and they are noise behind
+   a word somebody is working to hold together. */
+.reader--aid .page::after,
+.reader--aid .turnleaf__face::after { opacity: 0.12; }
+
+.reader--aid .rubric-initial {
+  float: none;
+  margin: 0;
+  font-family: inherit;
+  font-size: 1em;
+  line-height: inherit;
+  font-weight: 700;
+  text-shadow: none;
+}
+
+.reader--aid .leaves h2 {
+  font-family: var(--font-aid);
+  font-size: 18px;
+  letter-spacing: 0.06em;
+}
+
+.reader--aid .title-page__title,
+.reader--aid .title-page__author,
+.reader--aid .leaves .frontmatter {
+  font-family: var(--font-aid);
+  font-style: normal;
+}
+
+.reader--aid .leaves .frontmatter--title { font-variant: normal; }
+
 /* -- the book ----------------------------------------------------------- */
 
 .book-stage {

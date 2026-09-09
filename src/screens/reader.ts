@@ -22,10 +22,12 @@
 
 import { animate, cubicBezier } from 'animejs';
 import { clear, el, prefersReducedMotion } from '../lib/dom';
-import { fetchTome, ArchiveError, type Tome } from '../lib/api';
+import { fetchAvailability, fetchTome, ArchiveError, type Tome } from '../lib/api';
 import { renderMarkdown, citedCallNumbers } from '../lib/markdown';
 import { navigate, type Screen } from '../lib/router';
 import { TAILPIECE, cutout, type Box } from '../lib/rubrication';
+import { heldCells, lookUp } from '../lib/holdings';
+import { readingAid } from '../lib/store';
 import { play, setMusicTrack } from '../lib/sound';
 
 /** Below this the binding comes apart into one scrolling column. */
@@ -66,6 +68,46 @@ export function readerScreen(params: Record<string, string>): Screen {
   /* -- structure -------------------------------------------------------- */
 
   const head = el('div', { class: 'reader-head' });
+
+  /*
+   * The reading aid.
+   *
+   * A volume is set in a serif face at a manuscript measure on a textured
+   * ground, which is the point of it and is also close to the worst case for a
+   * dyslexic reader. This turns that off for as long as it is wanted: a plain
+   * sans face, larger, with the letters, words and lines opened up, the
+   * parchment grain taken out from behind the text, and the three-line red
+   * initial set back into the line as an ordinary capital.
+   *
+   * SPACING AND FACE, NOT A SPECIAL FONT. The evidence for the dyslexia-
+   * specific typefaces is genuinely mixed; the evidence for letter, word and
+   * line spacing, for a shorter measure and for lower contrast is much
+   * steadier, so that is what this changes. A face like OpenDyslexic or
+   * Atkinson Hyperlegible can be dropped in on top of it — one @font-face and
+   * one line of `--font-aid` — and ASSETS.md says so.
+   *
+   * Remembered, because somebody who needs it needs it on every volume.
+   */
+  const aid = el('button', {
+    class: 'reader-aid',
+    type: 'button',
+    'aria-pressed': String(readingAid.get()),
+    title: 'Plain face, wider spacing, no texture behind the text',
+  });
+  aid.textContent = 'READING AID';
+  aid.addEventListener('click', () => {
+    const next = aid.getAttribute('aria-pressed') !== 'true';
+    aid.setAttribute('aria-pressed', String(next));
+    readingAid.set(next);
+    applyAid();
+    // The face and the spacing both change, so the text breaks somewhere else
+    // and every column has to be measured again.
+    measure();
+  });
+
+  function applyAid(): void {
+    element.classList.toggle('reader--aid', readingAid.get());
+  }
 
   const makeWin = (frameClass: string): Win => {
     const strip = el('article', { class: 'leaves' });
@@ -113,10 +155,12 @@ export function readerScreen(params: Record<string, string>): Screen {
   const foot = el('div', { class: 'reader-foot' }, prev, folio, next);
 
   const element = el('div', { class: 'screen reader' }, head, stage, foot);
+  applyAid();
 
   /* -- state ------------------------------------------------------------ */
 
   let tome: Tome | null = null;
+  let register: Awaited<ReturnType<typeof fetchAvailability>> | null = null;
   let cited: string[] = [];
   /** Columns in the strip. Column 0 is the title page. */
   let pages = 1;
@@ -209,6 +253,10 @@ export function readerScreen(params: Record<string, string>): Screen {
     if (cited.length > 0) {
       parts.push(`REFERS TO ${cited.length} OTHER VOLUME${cited.length === 1 ? '' : 'S'}`);
     }
+    // Said out loud, the way the catalogue says UP/DOWN SELECT ENTER OPEN. The
+    // arrows have always turned the leaf; nothing on the screen admitted it,
+    // so the two buttons read as the only way through a book.
+    if (paged()) parts.push('← → TURN');
     folio.textContent = parts.join('  ·  ');
   }
 
@@ -524,6 +572,28 @@ export function readerScreen(params: Record<string, string>): Screen {
     opening.classList.add('has-initial');
   }
 
+  /*
+   * The running head, redrawn when the register lands.
+   *
+   * The same two cells the catalogue shows, so a librarian who has walked from
+   * the list into the book does not have to walk back to find out whether
+   * there is a copy on the shelf.
+   */
+  function drawHead(): void {
+    if (tome === null) return;
+    const shelved = lookUp(tome.title, register);
+    head.replaceChildren(
+      ...[
+        el('span', { class: 'call' }, tome.call_number),
+        el('span', { class: 'ttl' }, tome.title),
+        tome.restricted ? el('span', { class: 'sealed' }, 'SEALED') : null,
+        el('span', { class: 'by' }, tome.author.toUpperCase()),
+        shelved.state === 'unlisted' ? null : el('span', { class: 'held-head' }, ...heldCells(shelved)),
+        aid,
+      ].filter((node): node is HTMLElement => node !== null),
+    );
+  }
+
   async function load(): Promise<void> {
     if (!Number.isSafeInteger(id) || id < 1) {
       fail('THAT IS NOT A CALL SLIP.');
@@ -547,14 +617,7 @@ export function readerScreen(params: Record<string, string>): Screen {
       return;
     }
 
-    head.replaceChildren(
-      ...[
-        el('span', { class: 'call' }, tome.call_number),
-        el('span', { class: 'ttl' }, tome.title),
-        tome.restricted ? el('span', { class: 'sealed' }, 'SEALED') : null,
-        el('span', { class: 'by' }, tome.author.toUpperCase()),
-      ].filter((node): node is HTMLSpanElement => node !== null),
-    );
+    drawHead();
 
     // The body is trusted content from our own D1, but the renderer escapes it
     // regardless so that replacing the drafts later cannot open a hole.
@@ -577,6 +640,12 @@ export function readerScreen(params: Record<string, string>): Screen {
     void document.fonts?.ready.then(measure);
     requestAnimationFrame(measure);
   }
+
+  // Never awaited. The head draws without it and redraws if it arrives.
+  void fetchAvailability().then((answer) => {
+    register = answer;
+    drawHead();
+  });
 
   void load();
 

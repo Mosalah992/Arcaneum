@@ -21,7 +21,7 @@ import './styles/reader.css';
 
 import { el } from './lib/dom';
 import { createRouter, currentPath, navigate, type Screen } from './lib/router';
-import { scanlines, muted, music, forgetDiscoveries } from './lib/store';
+import { scanlines, muted, music } from './lib/store';
 import { armOnFirstGesture, setMusic, setMuted } from './lib/sound';
 import { insertScreen } from './screens/insert';
 import { catalogueScreen } from './screens/catalogue';
@@ -109,19 +109,10 @@ const footer = el(
     { class: 'footer-note footer-note--wide' },
     'TEXT © BETHESDA · PORTED FROM THE LIBRARY OF SKYRIM · ',
   ),
-  el(
-    'button',
-    {
-      class: 'footer-link',
-      type: 'button',
-      onclick: () => {
-        forgetDiscoveries();
-        navigate('/catalogue');
-        window.location.reload();
-      },
-    },
-    'forget my discoveries',
-  ),
+  // `forget my discoveries` stood here. It cleared a list of call numbers a
+  // visitor had resolved, which the catalogue used to fold sealed volumes into
+  // the shelf. Every volume is listed now, so there was nothing left for it to
+  // forget — see the head of src/screens/catalogue.ts.
 );
 
 /* -- stage -------------------------------------------------------------- */

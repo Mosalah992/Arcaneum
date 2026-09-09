@@ -219,7 +219,15 @@ for (const [index, book] of books.entries()) {
   for (const cn of [...found].sort()) citations.push({ from: index + 1, cites: cn });
 }
 
-/* -- the sealed shelf must be reachable ----------------------------------- */
+/* -- how the sealed shelf is reached -------------------------------------- */
+//
+// This used to be a build failure. It is a report now, because the catalogue
+// lists restricted titles openly — they are on the College's own register with
+// a location and a copy count, so hiding them here was never access control,
+// only a game, and it is a game the register does not play. A sealed book
+// nothing points at is still worth knowing about (the cross-references are the
+// archive's apparatus and a gap in them is a gap), but it no longer stops a
+// build: nobody can fail to find a book that is on the shelf list.
 
 const sealed = books.filter((b) => b.restricted === 1);
 const orphans = [];

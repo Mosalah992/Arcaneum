@@ -34,6 +34,7 @@ interface Hit {
   title: string;
   author: string;
   school: string;
+  restricted: number;
   excerpt: string;
   score: number;
 }
@@ -102,12 +103,15 @@ export const onRequest = readOnly(async ({ request, env }: RequestContext) => {
    * opening of the book, which is the right thing to show anyway.
    */
   const sql =
-    `SELECT t.id, t.call_number, t.title, t.author, t.school,` +
+    `SELECT t.id, t.call_number, t.title, t.author, t.school, t.restricted,` +
     ` snippet(tomes_fts, 2, ?, ?, '…', 14) AS excerpt,` +
     ` bm25(tomes_fts, 10.0, 4.0, 1.0) AS score` +
     ` FROM tomes_fts` +
     ` JOIN tomes t ON t.id = tomes_fts.rowid` +
-    ` WHERE tomes_fts MATCH ? AND t.restricted = 0` +
+    // Sealed volumes are searched with the rest of them: they are listed on
+    // the shelf now, and a search that quietly skipped five of the books the
+    // College holds would be a worse tool than one that admits to them.
+    ` WHERE tomes_fts MATCH ?` +
     (shelf === null ? '' : ' AND t.school = ?') +
     ` ORDER BY score LIMIT ?`;
 
@@ -131,7 +135,7 @@ export const onRequest = readOnly(async ({ request, env }: RequestContext) => {
       total: results.length,
       truncated: results.length === limit,
       markers: { open: OPEN, close: CLOSE },
-      hits: results,
+      hits: results.map((h) => ({ ...h, restricted: h.restricted === 1 })),
     },
     200,
     'public, max-age=30',

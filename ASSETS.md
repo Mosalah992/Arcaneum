@@ -112,6 +112,21 @@ without them; each is a plate from the source site.
 them silently. Bringing them in means hosting the files and teaching
 `src/lib/markdown.ts` an image block — neither is done.
 
+### A face for the reading aid
+
+`READING AID` in a volume's running head switches to `--font-aid`, which is a
+system sans stack — nothing is downloaded, so it cannot fail to load and costs
+nothing until it is switched on. Most of the work is done by the spacing,
+measure and flattened ground that come with it, which is where the evidence
+actually is; the dyslexia-specific typefaces test far less clearly than their
+reputation suggests.
+
+If one is wanted anyway, it is two lines in `src/styles/reader.css`: an
+`@font-face` and the first entry of `--font-aid`. **OpenDyslexic** is SIL
+Open Font License and free to self-host. **Atkinson Hyperlegible** is also OFL
+and available from `@fontsource/atkinson-hyperlegible`, which would be the
+project's first new runtime dependency — worth asking before adding.
+
 ### Interface
 
 | File | Size | Where | Subject |

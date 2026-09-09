@@ -12,29 +12,52 @@
  * against this exact service account; it needs no dependency because
  * WebCrypto can sign RS256 on the Cloudflare runtime.
  *
- * AVAILABILITY IS DERIVED, NOT READ. The register's own `Availability` column
- * is empty in every row — the librarians never fill it in, and it would go
- * stale the moment they did. What is real is `Copies` against the open rows in
- * `Book Borrowing` and `In-Library Signouts`, so that is what this counts.
+ * AVAILABILITY IS DERIVED, NOT READ. The register has an `Availability` column
+ * and it reads "In" on all 109 rows of it, restricted titles included — it is a
+ * field nobody has ever had cause to change, and it would go stale the moment
+ * somebody did. What is real is `Copies` against the open rows of
+ * `Borrowed_Books` and `Library_Signouts`, so that is what this counts.
+ *
+ * THE RANGES AND COLUMNS BELOW WERE READ OFF THE LIVE SHEET, not off a copy.
+ * An earlier version of this file was written against a downloaded `.xlsx`
+ * export and had every tab name wrong (`Book Index` for `Book_Index`, `Book
+ * Borrowing` for `Borrowed_Books`, `In-Library Signouts` for
+ * `Library_Signouts`) and the borrowing sheet's title column off by one. It
+ * would have failed silently — a bad range is a 400, and this module's caller
+ * turns every failure into `configured: false`, which looks exactly like a
+ * sheet that was never connected.
  */
+
+import { normaliseTitle, withoutVolume, workKey } from '../../shared/titles';
 
 const SCOPE = 'https://www.googleapis.com/auth/spreadsheets.readonly';
 
-/** The sheets, and how far across each one the data goes. */
+/**
+ * The sheets, and how far across and down each one the data goes.
+ *
+ * Read generously — the register grows — but not open-ended: `A1:E` with no row
+ * bound returns every blank row the grid has, and `Library_Signouts` has three
+ * hundred of them with `FALSE` pre-filled in the returned column.
+ */
 const RANGES = [
-  "'Book Index'!A1:G200",
-  "'Book Borrowing'!A1:H400",
-  "'In-Library Signouts'!A1:E500",
+  "'Book_Index'!A1:E200",
+  "'Borrowed_Books'!A1:H400",
+  "'Library_Signouts'!A1:E500",
+  "'Restricted Titles'!A1:G60",
 ];
 
 export interface Holding {
   title: string;
-  /** Where in the College it stands: R1–R5, L15 for the sealed press. */
+  /** Where in the College it stands: R1–R5 open, L1 the restricted press. */
   location: string;
   copies: number;
   out: number;
   available: number;
+  /** On the restricted register, and why. Empty for an open title. */
   note: string;
+  restricted: boolean;
+  /** Register rows folded into this one. 1 unless it is a work in volumes. */
+  volumes: number;
 }
 
 export interface Register {
@@ -48,28 +71,6 @@ export interface Register {
 export interface SheetsEnv {
   ARCANAEUM_SHEET_ID?: string;
   GOOGLE_SERVICE_ACCOUNT_JSON?: string;
-}
-
-/* -- the join key --------------------------------------------------------- */
-
-/**
- * Titles are typed by hand in the register and come off a fan site in the
- * catalogue, so they will never match exactly. Case, punctuation, curly
- * quotation marks and a leading article are all noise; what is left is enough
- * to pair "The Book of Daedra" with "book of daedra".
- *
- * Deliberately NOT clever. Fuzzy matching would pair things that are not the
- * same book and there would be no way to see that it had, whereas an
- * unmatched title is visible and a librarian can fix a spelling.
- */
-export function normaliseTitle(title: string): string {
-  return title
-    .toLowerCase()
-    .replace(/[‘’“”]/g, "'")
-    .replace(/[^a-z0-9' ]+/g, ' ')
-    .replace(/^(the|a|an)\s+/, '')
-    .replace(/\s+/g, ' ')
-    .trim();
 }
 
 /* -- the token ------------------------------------------------------------ */
@@ -171,31 +172,66 @@ export async function readRegister(env: SheetsEnv): Promise<Register> {
   if (!res.ok) throw new Error(`sheets read failed (${res.status})`);
 
   const body = (await res.json()) as { valueRanges?: { values?: string[][] }[] };
-  const [index, borrowing, signouts] = (body.valueRanges ?? []).map((r) => r.values ?? []);
+  const [index, borrowing, signouts, restricted] = (body.valueRanges ?? []).map(
+    (r) => r.values ?? [],
+  );
 
-  const holdings: Record<string, Holding> = {};
+  /*
+   * One entry per register row, keyed by its own exact title. The loans below
+   * name volumes — `The Real Barenziah, v3` — so they are applied here, before
+   * anything is aggregated.
+   */
+  const rows: Record<string, Holding> = {};
 
-  // Book Index: A Title, B Location, C Copies, D Availability, E Volumes,
-  // F Note, G On Loan. Row 1 is the header.
-  for (const row of (index ?? []).slice(1)) {
-    const title = cell(row, 0);
-    if (title === '' || title.toLowerCase() === 'title') continue;
-    const copies = Number(cell(row, 2)) || 0;
-    holdings[normaliseTitle(title)] = {
+  const hold = (
+    title: string,
+    location: string,
+    copies: number,
+    note: string,
+    sealed: boolean,
+  ): void => {
+    rows[normaliseTitle(title)] = {
       title,
-      location: cell(row, 1),
+      location,
       copies,
       out: 0,
       available: copies,
-      note: cell(row, 5),
+      note,
+      restricted: sealed,
+      volumes: 1,
     };
+  };
+
+  // Book_Index: A Title, B Location, C Copies, D Availability, E Volumes.
+  // Row 1 is the header, and it carries the sheet's own totals off in F..I,
+  // which is why the range stops at E.
+  for (const row of (index ?? []).slice(1)) {
+    const title = cell(row, 0);
+    if (title === '' || title.toLowerCase() === 'title') continue;
+    hold(title, cell(row, 1), Number(cell(row, 2)) || 0, '', false);
+  }
+
+  /*
+   * Restricted Titles: A Title, B Location, C Copies, D Type, E Availability,
+   * F Volumes, G Note. One column wider than Book_Index, because of `Type`.
+   *
+   * The tab holds TWO tables. The eight restricted books come first, and below
+   * them the sheet repeats its own header — `Spell Tome | Location | ...` — and
+   * starts a second list of spell tomes, which are stock rather than volumes
+   * and answer to no book in this catalogue. The second header is the stop: a
+   * row whose B cell is the literal word `Location` ends the reading.
+   */
+  for (const row of (restricted ?? []).slice(1)) {
+    const title = cell(row, 0);
+    if (cell(row, 1).toLowerCase() === 'location') break;
+    if (title === '' || title.toLowerCase() === 'title') continue;
+    hold(title, cell(row, 1), Number(cell(row, 2)) || 0, cell(row, 6), true);
   }
 
   const unmatched = new Set<string>();
   const takeOut = (title: string): void => {
     if (title === '') return;
-    const key = normaliseTitle(title);
-    const holding = holdings[key];
+    const holding = rows[normaliseTitle(title)];
     if (holding === undefined) {
       unmatched.add(title);
       return;
@@ -204,20 +240,62 @@ export async function readRegister(env: SheetsEnv): Promise<Register> {
     holding.available = Math.max(0, holding.copies - holding.out);
   };
 
-  // Book Borrowing: B is the book, F the status. The sheet carries section
-  // rows that fill only column A, so a row without both is not a loan.
-  for (const row of borrowing ?? []) {
-    const book = cell(row, 1);
+  /*
+   * Borrowed_Books: A the book, F the status. Row 1 is a READ ME addressed to
+   * the librarians and row 2 is the header, so the data starts at row 3.
+   *
+   * A blank status is not an unrecorded loan — the only rows in the sheet with
+   * a value in A and nothing in F are the three semester dividers
+   * (`2nd Semester, 7/3/2026`), so a row without both is not a loan at all.
+   * What is left is `Returned`, `Out` and `Overdue`.
+   */
+  for (const row of (borrowing ?? []).slice(2)) {
+    const book = cell(row, 0);
     const status = cell(row, 5);
     if (book === '' || status === '' || book.toLowerCase() === 'book') continue;
     if (!isClosed(status)) takeOut(book);
   }
 
-  // In-Library Signouts: A the book, D whether it came back.
+  // Library_Signouts: A the book, D whether it came back. The blank tail of
+  // the grid carries `FALSE` in D all the way down, so the empty A is what
+  // keeps three hundred phantom loans out of the count.
   for (const row of (signouts ?? []).slice(1)) {
     const book = cell(row, 0);
     if (book === '' || Number.isFinite(Number(book))) continue;
     if (!isClosed(cell(row, 3))) takeOut(book);
+  }
+
+  /*
+   * Fold the volumes into their works, and answer to both names.
+   *
+   * A catalogue asking for `The Real Barenziah` gets the five register rows
+   * added up; one asking for `The Real Barenziah, v3` — if it ever did — still
+   * gets that row alone. An exact title always wins: a work aggregate is only
+   * written where no register row is called that already.
+   */
+  const holdings: Record<string, Holding> = { ...rows };
+  const works = new Map<string, Holding[]>();
+
+  for (const [key, holding] of Object.entries(rows)) {
+    const work = workKey(holding.title);
+    if (work === key || work === '') continue;
+    works.set(work, [...(works.get(work) ?? []), holding]);
+  }
+
+  for (const [work, group] of works) {
+    if (rows[work] !== undefined) continue;
+    const locations = [...new Set(group.map((h) => h.location).filter((l) => l !== ''))];
+    holdings[work] = {
+      // The register's own words, minus the volume number it was filed under.
+      title: withoutVolume(group[0]!.title),
+      location: locations.join(', '),
+      copies: group.reduce((n, h) => n + h.copies, 0),
+      out: group.reduce((n, h) => n + h.out, 0),
+      available: group.reduce((n, h) => n + h.available, 0),
+      note: group.find((h) => h.note !== '')?.note ?? '',
+      restricted: group.some((h) => h.restricted),
+      volumes: group.length,
+    };
   }
 
   return {

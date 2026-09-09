@@ -72,14 +72,25 @@ your own copies.
 
 ## The register
 
-Availability comes from the College's own `Arcanaeum Records — Winterhold`
-spreadsheet, read live and read-only through a Google service account. It holds
-real member names, loan records and library-card data, so:
+Availability comes from the College's own **Arcanaeum Records** spreadsheet,
+read live and read-only through the `ancarion@thalmor.iam.gserviceaccount.com`
+service account. That workbook has fourteen tabs and most of them are none of
+this archive's business: `Library Cards`, `Card Holder Records`, `Money_Ledger`,
+`Book Sales`, `Requests`, `Budget_Summary`. It holds real member names, loan
+records, collateral sums and library-card data, so:
 
 - The scope is `spreadsheets.readonly`. There is no write path in this codebase.
-- Only three columns leave the Worker — title, location and a count. **No
-  borrower name, no card number and no loan history is ever sent to a browser.**
-- The credential is a Pages secret and is not in this repository.
+- **Four tabs are read and no others**: `Book_Index`, `Borrowed_Books`,
+  `Library_Signouts`, `Restricted Titles`. The ranges are pinned in
+  `functions/lib/availability.ts` and stop at the last column that matters.
+- **What leaves the Worker is a title, a location, three numbers and the
+  librarians' note on a restricted title.** The borrower columns — `Guest`,
+  `Name`, `Handling Librarian`, `Collateral`, `Strikes` — are read to count how
+  many copies are out and are then thrown away. No name, no card number and no
+  loan history is ever sent to a browser.
+- The credential is a Pages secret. It is not in this repository and this
+  project has never held its own copy: `npm run dev:vars` reads the sibling
+  Thalmor archive's key and writes `.dev.vars`, which is gitignored.
 
 ## The music
 

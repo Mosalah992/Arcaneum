@@ -1,27 +1,37 @@
 /**
- * The catalogue: a pixel-bitmap terminal over the open shelf.
+ * The catalogue: a pixel-bitmap terminal over the shelf.
  *
- * The search field does two jobs. Typed prose filters the visible list. A
- * typed call number is a request slip: pressing Enter sends it to
- * /api/resolve, and if the roll lists that number the volume opens, whether or
- * not it was ever on the shelf.
+ * The search field does two jobs. Typed prose filters the visible list, or —
+ * past two characters — asks the archive to read the bodies. A typed call
+ * number is a request slip: pressing Enter sends it to /api/resolve and the
+ * volume opens.
+ *
+ * EVERY VOLUME IS LISTED, restricted ones included, marked SEALED and shelved
+ * at L1. They used to be held back and reachable only by noticing a call
+ * number in a book you could already read; the College's register carries them
+ * openly, with a location and a copy count, so this does too. What went with
+ * that change is the `discoveries` store — a list of call numbers a visitor had
+ * resolved, kept so the shelf could show them the sealed books they had found.
+ * There is nothing left for it to add, and a `forget my discoveries` button
+ * that forgets nothing is worse than no button.
  */
 
 import { SHELVES, CALL_NUMBER_RE } from '../../shared/shelves';
 import { clear, el } from '../lib/dom';
 import {
+  fetchAvailability,
   listTomes,
   resolveCallNumber,
   searchTomes,
   ArchiveError,
+  type Availability,
   type TomeSummary,
 } from '../lib/api';
-import { discoveries, remember } from '../lib/store';
+import { heldCells, lookUp } from '../lib/holdings';
 import { navigate, type Screen } from '../lib/router';
 import { play } from '../lib/sound';
 
 interface Row extends TomeSummary {
-  sealed: boolean;
   /** Present only on rows that came back from a body search. */
   excerpt?: string;
 }
@@ -51,6 +61,15 @@ export function catalogueScreen(): Screen {
    * same order as the buttons, so the keyboard model does not have to know
    * which one it is looking at.
    */
+  /*
+   * The College's register, or null until it answers — and null for good if it
+   * cannot. Fetched once when the screen opens: it is one request for the whole
+   * catalogue, cached for a minute by the browser, and every row reads its two
+   * columns out of it. The rows render before it lands and re-render after, so
+   * nothing waits on a spreadsheet.
+   */
+  let register: Availability | null = null;
+
   let found: Row[] | null = null;
   let foundTotal = 0;
   let truncated = false;
@@ -89,6 +108,17 @@ export function catalogueScreen(): Screen {
     { class: 'tablets' },
     el('p', { class: 'tablets-legend' }, 'SHELVES'),
   );
+
+  /*
+   * What the two right-hand columns mean, written out once.
+   *
+   * A colour code nobody can read is decoration. This is the key to it, and it
+   * names each state in the same words the chips use, so the legend is read as
+   * a list of the four things a cell can say rather than as four colours.
+   * Hidden entirely when there is no register: a legend for columns that are
+   * all dashes explains nothing.
+   */
+  const key = el('div', { class: 'holdings-key', hidden: 'hidden' });
   const tabletButtons = new Map<string | null, HTMLButtonElement>();
 
   for (const name of [null, ...SHELVES]) {
@@ -105,6 +135,8 @@ export function catalogueScreen(): Screen {
     tabletButtons.set(name, button);
     tablets.append(button);
   }
+
+  tablets.append(key);
 
   const element = el(
     'div',
@@ -126,6 +158,8 @@ export function catalogueScreen(): Screen {
         el('span', {}, 'NO.'),
         el('span', {}, 'CALL'),
         el('span', {}, 'TITLE'),
+        el('span', { class: 'col-copies' }, 'COPIES'),
+        el('span', { class: 'col-held' }, 'AVAILABLE'),
         el('span', {}, 'AUTHOR'),
         el('span', {}, 'SCHOOL'),
       ),
@@ -172,20 +206,7 @@ export function catalogueScreen(): Screen {
       return;
     }
 
-    const found = await Promise.all(
-      discoveries().map((cn) => resolveCallNumber(cn).catch(() => null)),
-    );
-
-    const seen = new Set(open.map((t) => t.id));
-    shelf = open.map((t) => ({ ...t, sealed: false }));
-
-    for (const tome of found) {
-      if (tome === null || seen.has(tome.id)) continue;
-      if (school !== null && tome.school !== school) continue;
-      seen.add(tome.id);
-      shelf.push({ ...tome, sealed: tome.restricted });
-    }
-
+    shelf = open;
     render();
   }
 
@@ -216,7 +237,7 @@ export function catalogueScreen(): Screen {
       void searchTomes(typed, school, mine.signal)
         .then((result) => {
           if (mine.signal.aborted) return;
-          found = result.hits.map((h) => ({ ...h, sealed: false }));
+          found = result.hits;
           foundTotal = result.total;
           truncated = result.truncated;
           selected = 0;
@@ -259,7 +280,9 @@ export function catalogueScreen(): Screen {
     return el(
       'button',
       {
-        class: `result${row.sealed ? ' result--sealed' : ''}${row.excerpt ? ' result--found' : ''}`,
+        class:
+          `result${row.restricted ? ' result--sealed' : ''}` +
+          `${row.excerpt ? ' result--found' : ''}`,
         type: 'button',
         role: 'option',
         'aria-selected': String(index === selected),
@@ -272,9 +295,10 @@ export function catalogueScreen(): Screen {
         'span',
         { class: 'ttl' },
         row.title,
-        row.sealed ? el('span', { class: 'seal' }, 'SEALED') : null,
+        row.restricted ? el('span', { class: 'seal' }, 'SEALED') : null,
         row.excerpt ? excerptOf(row.excerpt) : null,
       ),
+      ...heldCells(lookUp(row.title, register)),
       el('span', { class: 'author' }, row.author),
       el('span', { class: 'school' }, row.school),
     );
@@ -378,7 +402,6 @@ export function catalogueScreen(): Screen {
     status.textContent = `CHECKING THE ROLL FOR ${callNumber}...`;
     try {
       const tome = await resolveCallNumber(callNumber);
-      remember(tome.call_number);
       status.className = 'results-status results-status--found';
       status.textContent = `${tome.call_number} — ${tome.title.toUpperCase()}`;
       navigate(`/tome/${tome.id}`);
@@ -394,6 +417,53 @@ export function catalogueScreen(): Screen {
       }
     }
   }
+
+  /** Draw the key, once the register has said whether there is one. */
+  function renderKey(): void {
+    if (register === null || !register.configured) {
+      key.hidden = true;
+      return;
+    }
+    key.hidden = false;
+    clear(key);
+    key.append(
+      el('p', { class: 'holdings-key__head' }, 'ON THE SHELF'),
+      ...(
+        [
+          ['in', 'n IN', 'every copy in'],
+          ['some', 'n IN', 'some out'],
+          ['out', 'ALL OUT', 'none on the shelf'],
+          ['unlisted', '—', 'not on the register'],
+        ] as const
+      ).map(([state, label, meaning]) =>
+        el(
+          'p',
+          { class: 'holdings-key__row' },
+          el('span', { class: `held held--${state}` }, label),
+          el('span', { class: 'holdings-key__what' }, meaning),
+        ),
+      ),
+      el(
+        'p',
+        { class: 'holdings-key__foot' },
+        `READ FROM THE COLLEGE REGISTER · ${(register.fetchedAt ?? '').slice(11, 16)} UTC`,
+      ),
+    );
+  }
+
+  /*
+   * The register, asked for once.
+   *
+   * Not awaited by anything: the shelf draws with dashes in both columns and
+   * fills them in when this lands, so a slow or dead spreadsheet costs the
+   * catalogue nothing but two columns of em dashes. `fetchAvailability` never
+   * throws.
+   */
+  void fetchAvailability().then((answer) => {
+    register = answer;
+    renderKey();
+    render();
+  });
 
   input.addEventListener('input', () => {
     query = input.value;

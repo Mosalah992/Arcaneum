@@ -172,11 +172,38 @@
   color: var(--parchment-dim);
 }
 
+/*
+ * The two register columns' headings are set tighter than the rest, and the
+ * pair is fenced off by a rule.
+ *
+ * At the head row's 0.14em letter-spacing, `AVAILABLE` is nine characters wide
+ * in a nine-character column and ran straight into `AUTHOR` — the heading read
+ * as one word, `COPIESAVAILABLEAUTHOR`. The spacing is dropped here, the
+ * column is two characters wider, and a hairline before and after says where
+ * the register's two columns start and stop, since they are the only ones on
+ * the row that come from somewhere other than the archive.
+ */
+.results-head .col-copies,
+.results-head .col-held { letter-spacing: 0.04em; }
+
+.results-head .col-copies,
+.result .copies {
+  padding-left: 10px;
+  border-left: 1px solid var(--stone-700);
+}
+
+.results-head .col-held,
+.result .held {
+  padding-right: 10px;
+  border-right: 1px solid var(--stone-700);
+}
+
 /* Results. */
 .results-head,
 .result {
   display: grid;
-  grid-template-columns: 3.5ch 12ch minmax(0, 1fr) 22ch 13ch;
+  /* NO. · CALL · TITLE · COPIES · AVAILABLE · AUTHOR · SCHOOL */
+  grid-template-columns: 3.5ch 12ch minmax(0, 1fr) 8ch 12ch 19ch 13ch;
   gap: 10px;
   align-items: baseline;
   padding: 3px 14px;
@@ -260,6 +287,100 @@
   color: var(--parchment-lit);
   background: var(--burgundy);
   box-shadow: var(--bevel-out);
+}
+
+/* -- what the College holds ---------------------------------------------- */
+
+/*
+ * Two columns off the register: how many the College owns, and how many are on
+ * the shelf now. Right-aligned, because they are quantities and a librarian
+ * reads a column of them down the units.
+ *
+ * The state is carried by the WORDS first — `22 IN`, `ALL OUT`, `—` — and the
+ * colour second. Nothing here is legible only in colour.
+ */
+.col-copies,
+.col-held,
+.result .copies,
+.result .held {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.result .copies {
+  color: var(--parchment-dim);
+}
+
+.result .copies--unlisted,
+.result .held--unlisted {
+  color: var(--stone-lit);
+}
+
+.result .held {
+  letter-spacing: 0.04em;
+}
+
+/* Every copy is in. */
+.result .held--in { color: #6fd08c; }
+
+/* Some are out, some are not. */
+.result .held--some { color: #e0b552; }
+
+/* None on the shelf — the one state that changes the answer to a reader. */
+.result .held--out {
+  color: #ff7a6a;
+  font-weight: 600;
+}
+
+.result[aria-selected='true'] .copies { color: var(--parchment); }
+
+/* -- the key ------------------------------------------------------------- */
+
+.holdings-key {
+  margin: 18px 2px 4px;
+  padding-top: 12px;
+  border-top: 1px solid var(--stone-700);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--parchment-dim);
+}
+
+.holdings-key__head {
+  margin: 0 0 5px;
+  font-size: 15px;
+  letter-spacing: 0.16em;
+  color: var(--parchment-dim);
+}
+
+.holdings-key__row {
+  display: grid;
+  grid-template-columns: 7ch minmax(0, 1fr);
+  gap: 7px;
+  margin: 0;
+  align-items: baseline;
+}
+
+.holdings-key__row .held {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.holdings-key__row .held--in { color: #6fd08c; }
+.holdings-key__row .held--some { color: #e0b552; }
+.holdings-key__row .held--out { color: #ff7a6a; }
+.holdings-key__row .held--unlisted { color: var(--stone-lit); }
+
+.holdings-key__what {
+  color: var(--graphite-lit, #8b93a3);
+  white-space: normal;
+}
+
+.holdings-key__foot {
+  margin: 9px 0 0;
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  color: var(--stone-lit);
 }
 
 /* -- what the archive found ---------------------------------------------- */
@@ -352,8 +473,10 @@
   .results-head { display: none; }
 
   .result {
-    grid-template-columns: 3.5ch 12ch minmax(0, 1fr);
-    grid-template-areas: 'idx call ttl' '. call author';
+    /* The copy count goes; how many are on the shelf stays. On a phone at the
+       shelves that is the whole question. */
+    grid-template-columns: 3.5ch 12ch minmax(0, 1fr) 10ch;
+    grid-template-areas: 'idx call ttl held' '. call author held';
     row-gap: 0;
     padding-top: 6px;
     padding-bottom: 6px;
@@ -364,7 +487,14 @@
   .result .ttl { grid-area: ttl; white-space: normal; }
   .results-group { padding-left: 8px; padding-right: 8px; }
   .result .author { grid-area: author; }
+  .result .held { grid-area: held; align-self: center; }
+  .result .copies,
   .result .school { display: none; }
+
+  /* The shelf column is a row of chips across the top on a phone, so the key
+     would sit between the shelves and the results. It belongs beside a tall
+     list, not across a short one. */
+  .holdings-key { display: none; }
 
   .search-hint { display: none; }
 }

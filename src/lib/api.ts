@@ -6,18 +6,17 @@ export interface TomeSummary {
   title: string;
   author: string;
   school: string;
+  /** On the College's restricted register, and shelved at L1. */
+  restricted: boolean;
 }
 
 export interface Tome extends TomeSummary {
   body: string;
-  restricted: boolean;
   /** Call numbers this book refers to. Numbers only — never titles. */
   refers: string[];
 }
 
-export interface Resolved extends TomeSummary {
-  restricted: boolean;
-}
+export type Resolved = TomeSummary;
 
 export class ArchiveError extends Error {
   constructor(
@@ -105,4 +104,47 @@ export function searchTomes(
 
 export function resolveCallNumber(callNumber: string): Promise<Resolved> {
   return get<Resolved>(`/api/resolve/${encodeURIComponent(callNumber)}`);
+}
+
+/* -- what the College holds ---------------------------------------------- */
+
+export interface Holding {
+  /** The register's own words for it. */
+  title: string;
+  /** R1–R5 on the open shelves, L1 the restricted press. */
+  location: string;
+  copies: number;
+  out: number;
+  available: number;
+  /** The librarians' note on a restricted title. Empty otherwise. */
+  note: string;
+  restricted: boolean;
+  /** Register rows folded into this one. Above 1 it is a work in volumes. */
+  volumes: number;
+}
+
+export interface Availability {
+  configured: boolean;
+  fetchedAt?: string;
+  /** Titles the register names that no volume here answers to. */
+  unmatched?: string[];
+  /** Keyed by `normaliseTitle` and, for a work in volumes, by `workKey`. */
+  holdings: Record<string, Holding>;
+}
+
+/**
+ * What is on the shelf this afternoon.
+ *
+ * NEVER THROWS. Availability is an ornament on a catalogue that works without
+ * it: no credential, a refused read, Google having a bad morning, the browser
+ * offline — every one of those comes back as "not configured", the chips are
+ * not drawn, and the archive behaves exactly as it did before there was a
+ * register. A reading room does not close because a spreadsheet is down.
+ */
+export async function fetchAvailability(signal?: AbortSignal): Promise<Availability> {
+  try {
+    return await get<Availability>('/api/availability', signal);
+  } catch {
+    return { configured: false, holdings: {} };
+  }
 }
