@@ -21,6 +21,7 @@ import './styles/reader.css';
 
 import { el } from './lib/dom';
 import { createRouter, currentPath, navigate, type Screen } from './lib/router';
+import { enterRegister, fetchRegister } from './lib/api';
 import { scanlines, muted, music } from './lib/store';
 import { armOnFirstGesture, setMusic, setMuted } from './lib/sound';
 import { insertScreen } from './screens/insert';
@@ -84,12 +85,45 @@ const header = el(
 
 /* -- footer ------------------------------------------------------------- */
 
-/** Decorative. There is no counter behind this and there will not be one. */
-const hitCounter = el(
-  'span',
-  { class: 'hit-counter', title: 'decorative' },
-  ...'0041982'.split('').map((digit) => el('b', {}, digit)),
-);
+/*
+ * The register of consultation.
+ *
+ * A REAL COUNT NOW. This was `0041982` in a 90s odometer, marked `decorative`
+ * and documented as never going to be anything else; the College's other
+ * archive has been keeping a genuine one, so this is that design with its
+ * country tally taken off — one integer in D1, incremented in SQL, deduped by a
+ * cookie whose value is the literal `1`.
+ *
+ * The odometer stays, because it is the right object for the number. It is
+ * EMPTY until the count arrives and stays empty if it never does: a counter
+ * that shows nought while it waits is telling the reader something false about
+ * the archive, and one that falls back to a made-up figure is worse than the
+ * decoration it replaced.
+ */
+const hitCounter = el('span', { class: 'hit-counter hit-counter--waiting' });
+
+function showVisits(count: number | null): void {
+  if (count === null) return;
+  hitCounter.classList.remove('hit-counter--waiting');
+  hitCounter.replaceChildren(
+    ...String(count)
+      .padStart(7, '0')
+      .split('')
+      .map((digit) => el('b', {}, digit)),
+  );
+}
+
+/*
+ * Entered once per load, and the answer is the number to show.
+ *
+ * A 204 means this browser was already counted today, which is the common case
+ * on a reload — then the count is asked for separately, because the reader
+ * still wants to see it. Neither call is awaited by anything and neither can
+ * throw.
+ */
+void enterRegister().then(async (entered) => {
+  showVisits(entered ?? (await fetchRegister()));
+});
 
 const footer = el(
   'footer',

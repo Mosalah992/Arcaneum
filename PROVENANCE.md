@@ -38,7 +38,7 @@ anyone deciding what to do with it can see the position clearly.
   its source in search results is a materially smaller ask than one that does,
   and it is the one thing here that can be done unilaterally.
 - **Nothing is sold and nothing is monetised.** There is no advertising, no
-  analytics, no tracking, and no third-party script of any kind.
+  tracking, and no third-party script of any kind.
 - **The text is never edited.** Cross-references between books are the
   *archive's* apparatus, printed as a librarian's colophon set apart from the
   page — see `content/cross-references.json`. Not one word of the books
@@ -91,6 +91,23 @@ records, collateral sums and library-card data, so:
 - The credential is a Pages secret. It is not in this repository and this
   project has never held its own copy: `npm run dev:vars` reads the sibling
   Thalmor archive's key and writes `.dev.vars`, which is gitignored.
+
+## The counter
+
+The footer's `VISITORS` figure is real, and it is the only thing this site
+writes down about anybody. It is **one integer in one row**: no address, no
+user agent, no timestamp, no country, and no row per visitor. There is
+deliberately nothing stored that could answer "did this person come back".
+
+A browser is counted once a day, deduped by a cookie whose value is the literal
+`1` — not a nonce, not a hash, not an id — scoped to the single URL
+`/api/register/entry` so it is never sent with any other request. Two visits
+from one browser and two visits from two browsers are indistinguishable in
+everything that is kept, which is the point: a counter that can tell readers
+apart is a tracker whatever it is called.
+
+The design is ported from the Thalmor archive's register of consultation, minus
+its per-country tally.
 
 ## The music
 

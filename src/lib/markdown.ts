@@ -11,9 +11,15 @@
  *
  * Inline grammar
  *   **bold**  *italic*  and bare call numbers, which are marked up as
- *   annotations rather than links. Making them clickable would give the
- *   discovery away; the reader has to notice one and type it into the
- *   catalogue themselves.
+ *   annotations rather than links.
+ *
+ * NO BODY IN THE CORPUS CONTAINS A CALL NUMBER. All 249 are Bethesda's text
+ * and Bethesda does not write shelf marks, so the call-number rule below has
+ * never fired on a real volume — the archive's own cross-references live in
+ * the citations table and are printed as a colophon at the back of the book
+ * (see `colophon()` in src/screens/reader.ts), precisely so that nothing the
+ * archive added can be mistaken for something the author wrote. The rule stays
+ * for the marginalia dialect, which can carry one.
  */
 
 import { CALL_NUMBER_GLOBAL_RE } from '../../shared/shelves';

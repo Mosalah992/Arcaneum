@@ -50,13 +50,17 @@ percentage of it, measured once — see the head of `src/styles/insert.css`.
 | Route | Returns |
 | --- | --- |
 | `GET /api/tomes[?shelf=]` | Metadata only, never `body`. Excludes sealed books. |
-| `GET /api/tomes/:id` | One book, full text, and the call numbers it refers to. |
+| `GET /api/tomes/:id` | One book, full text, and the volumes it refers to. |
 | `GET /api/search?q=&shelf=&limit=` | Full-text over title, author and body, with excerpts. |
 | `GET /api/resolve/:callNumber` | A call number to a shelf position, or 404. |
 | `GET /api/availability` | What the College holds. `configured:false` if no register. |
+| `GET /api/register` | How many readers have consulted the archive. |
+| `POST /api/register/entry` | Counts this reader. The only write in the project. |
 
-The API is read-only. No `POST`, no login, no admin, no analytics; anything that
-is not a `GET` gets a 405.
+Everything but that last route is read-only: no login, no admin, no analytics,
+and anything that is not a `GET` gets a 405. `POST /api/register/entry` takes no
+body, no parameters and no identifier, and its whole effect is
+`visits = visits + 1` on a table with one row.
 
 ## Run it
 
@@ -166,6 +170,43 @@ Bethesda books satisfy that trivially.
 
 `npm run seed` reports a sealed book that no open book cites; it no longer
 fails the build over one.
+
+### The counter
+
+`VISITORS` in the footer is a real number, ported from the Thalmor archive's
+register with its per-country tally removed. One row, one integer, incremented
+inside SQL — never read into JavaScript and written back, which is what makes
+two readers arriving at once safe.
+
+**Nothing identifying is stored or sent.** No address, no user agent, no
+timestamp, no country, no row per visitor; there is deliberately nothing that
+could answer "did this person come back". A browser is entered once a day,
+deduped by a cookie whose value is the literal `1`, scoped to
+`Path=/api/register/entry` so it never touches a cached route's cache key.
+
+Crawlers are filtered by the shape of the request rather than by a user agent:
+a `POST` carrying the browser's own `Sec-Fetch-Site: same-origin`,
+`Sec-Fetch-Mode: cors` and a matching `Origin`, none of which page script can
+forge and none of which is retained.
+
+Every failure answers `204` — already counted, not a browser, no database, an
+unapplied migration — so a prober cannot learn from the status code whether
+they were recorded or whether there is a database at all. The odometer starts
+empty and stays empty if the count never arrives; it never shows a made-up
+number, which is what the old `0041982` was.
+
+### The colophon
+
+Every volume prints the archive's cross-references at the back, after the
+tailpiece, boxed and set in the interface's face rather than the book's, with a
+line saying they are the archive's and not the author's. They are clickable.
+
+**None of them are in the text.** Bethesda does not write shelf marks, so no
+body in the corpus contains a call number; the references are derived from one
+volume naming another's title, plus eight curated in
+`content/cross-references.json`, and they live in the `citations` table. Keeping
+them physically outside the prose is the same rule as everywhere else here: the
+text is never edited.
 
 ### Reading a volume
 

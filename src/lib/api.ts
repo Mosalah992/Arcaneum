@@ -10,10 +10,18 @@ export interface TomeSummary {
   restricted: boolean;
 }
 
+/** One entry in a volume's colophon: another volume this one points at. */
+export interface Refers {
+  id: number;
+  call_number: string;
+  title: string;
+  restricted: boolean;
+}
+
 export interface Tome extends TomeSummary {
   body: string;
-  /** Call numbers this book refers to. Numbers only — never titles. */
-  refers: string[];
+  /** The archive's own cross-references out of this volume. */
+  refers: Refers[];
 }
 
 export type Resolved = TomeSummary;
@@ -146,5 +154,47 @@ export async function fetchAvailability(signal?: AbortSignal): Promise<Availabil
     return await get<Availability>('/api/availability', signal);
   } catch {
     return { configured: false, holdings: {} };
+  }
+}
+
+/* -- the register of consultation ---------------------------------------- */
+
+/**
+ * Enter this reader in the register, and get the count back.
+ *
+ * NEVER THROWS, and answers `null` for every kind of nothing: already counted
+ * today, not judged a browser, no database, migration unapplied. The counter is
+ * a footer ornament with a true number in it, and nothing about the archive
+ * depends on it.
+ *
+ * `POST` with an empty body and no parameters. The Worker reads the browser's
+ * own `Sec-Fetch-*` headers to tell a reader from a crawler and stores one
+ * integer; nothing identifying is sent, and nothing identifying is kept.
+ */
+export async function enterRegister(): Promise<number | null> {
+  try {
+    const res = await fetch('/api/register/entry', {
+      method: 'POST',
+      headers: { accept: 'application/json' },
+      // Same-origin by default, but said out loud: this request carries the
+      // dedupe cookie and must never be sent anywhere else.
+      credentials: 'same-origin',
+    });
+    // 204 is "not counted this time", which is the common case on a reload.
+    if (res.status !== 200) return null;
+    const body = (await res.json()) as { visits?: number };
+    return typeof body.visits === 'number' ? body.visits : null;
+  } catch {
+    return null;
+  }
+}
+
+/** The count on its own, for a reader who has already been entered today. */
+export async function fetchRegister(): Promise<number | null> {
+  try {
+    const body = await get<{ configured: boolean; visits?: number }>('/api/register');
+    return body.configured && typeof body.visits === 'number' ? body.visits : null;
+  } catch {
+    return null;
   }
 }

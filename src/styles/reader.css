@@ -471,6 +471,103 @@
   text-indent: 0;
 }
 
+/* -- the colophon -------------------------------------------------------- */
+
+/*
+ * What else the archive holds on this, printed after the tailpiece.
+ *
+ * SET IN THE INTERFACE'S FACE, not the book's, and boxed off. That is the
+ * whole design: it is not part of the volume. Bethesda's text is never edited,
+ * so a reference the archive added must not be able to be mistaken for a
+ * reference the author wrote — a librarian's slip laid into the back of the
+ * book, in the librarian's hand.
+ */
+.colophon {
+  margin: 1.6em 0 0;
+  padding: 0.7em 0.8em 0.6em;
+  border: 1px solid rgba(93, 76, 51, 0.42);
+  background: rgba(120, 100, 66, 0.07);
+  font-family: var(--font-ui);
+  text-align: left;
+}
+
+.colophon__head {
+  margin: 0 0 0.5em;
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  color: var(--burgundy);
+}
+
+.colophon__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.colophon__ref {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  width: 100%;
+  margin: 0 0 1px;
+  padding: 2px 4px 3px;
+  font: inherit;
+  font-size: 15px;
+  text-align: left;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.colophon__ref:hover,
+.colophon__ref:focus-visible {
+  background: rgba(87, 19, 34, 0.1);
+  outline: 0;
+}
+
+.colophon__ref:focus-visible { box-shadow: inset 0 0 0 1px var(--burgundy); }
+
+.colophon__call {
+  flex: none;
+  letter-spacing: 0.08em;
+  color: #55503f;
+}
+
+.colophon__ttl {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: rgba(87, 19, 34, 0.35);
+  text-underline-offset: 2px;
+}
+
+.colophon__seal {
+  flex: none;
+  padding: 0 4px 1px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: #f0e2c4;
+  background: var(--burgundy);
+}
+
+.colophon__note {
+  margin: 0.6em 0 0;
+  font-size: 12.5px;
+  line-height: 1.35;
+  letter-spacing: 0.03em;
+  color: var(--graphite);
+}
+
+/* The aid takes the volume's face off; the colophon was never in it. */
+.reader--aid .colophon__ttl { font-family: var(--font-aid); }
+
 /* -- the title page ----------------------------------------------------- */
 
 /* Occupies column 0 by itself, so it is the leaf the board faces. */

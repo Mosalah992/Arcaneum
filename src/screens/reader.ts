@@ -23,7 +23,7 @@
 import { animate, cubicBezier } from 'animejs';
 import { clear, el, prefersReducedMotion } from '../lib/dom';
 import { fetchAvailability, fetchTome, ArchiveError, type Tome } from '../lib/api';
-import { renderMarkdown, citedCallNumbers } from '../lib/markdown';
+import { renderMarkdown } from '../lib/markdown';
 import { navigate, type Screen } from '../lib/router';
 import { TAILPIECE, cutout, type Box } from '../lib/rubrication';
 import { heldCells, lookUp } from '../lib/holdings';
@@ -397,6 +397,18 @@ export function readerScreen(params: Record<string, string>): Screen {
     measure();
   };
 
+  /** One listener for every colophon reference on every clone of the strip. */
+  function onColophonClick(event: MouseEvent): void {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    const ref = target.closest<HTMLElement>('.colophon__ref');
+    const id = ref?.dataset.tome;
+    if (id === undefined) return;
+    play('tick');
+    navigate(`/tome/${id}`);
+  }
+
+  element.addEventListener('click', onColophonClick);
   window.addEventListener('keydown', onKeydown);
   window.addEventListener('resize', onResize);
 
@@ -446,6 +458,46 @@ export function readerScreen(params: Record<string, string>): Screen {
         node.style.width = `${(art.aspect * parseFloat(node.style.height)).toFixed(3)}em`;
       });
     }
+  }
+
+  /*
+   * The colophon: what else the archive holds on this.
+   *
+   * SET APART FROM THE PAGE, after the tailpiece, in the interface's own
+   * bitmap face rather than the book's — because it is NOT part of the book.
+   * Bethesda's text is never edited, and these references are the archive's
+   * apparatus: a handful derived from one volume naming another, the rest
+   * curated in content/cross-references.json because Bethesda's books almost
+   * never cite each other. The last line of it says so, in the reader's own
+   * view rather than only in PROVENANCE.md.
+   *
+   * Written as markup and delegated for clicks, because the whole strip is
+   * `innerHTML`'d into four windows — the two leaves and the two faces of the
+   * turning leaf — and four sets of listeners on four clones of the same
+   * buttons is four times the work and one more thing to tear down.
+   */
+  function colophon(volume: Tome): string {
+    if (volume.refers.length === 0) return '';
+
+    const entries = volume.refers
+      .map(
+        (ref) =>
+          `<li><button class="colophon__ref" type="button" data-tome="${ref.id}">` +
+          `<span class="colophon__call">${escapeHtml(ref.call_number)}</span>` +
+          `<span class="colophon__ttl">${escapeHtml(ref.title)}</span>` +
+          (ref.restricted ? '<span class="colophon__seal">SEALED</span>' : '') +
+          '</button></li>',
+      )
+      .join('');
+
+    return (
+      '<footer class="colophon">' +
+      '<p class="colophon__head">ELSEWHERE IN THE ARCHIVE</p>' +
+      `<ul class="colophon__list">${entries}</ul>` +
+      '<p class="colophon__note">The archive’s own references. ' +
+      'No word of the volume above has been altered.</p>' +
+      '</footer>'
+    );
   }
 
   /** Column 0, by itself: the leaf the board faces when the volume opens. */
@@ -624,7 +676,8 @@ export function readerScreen(params: Record<string, string>): Screen {
     const html =
       titlePage(tome) +
       renderMarkdown(tome.body) +
-      ornament('tailpiece', TAILPIECE, 2.2, 'ornament--tailpiece');
+      ornament('tailpiece', TAILPIECE, 2.2, 'ornament--tailpiece') +
+      colophon(tome);
 
     for (const win of wins) {
       win.strip.innerHTML = html;
@@ -632,7 +685,15 @@ export function readerScreen(params: Record<string, string>): Screen {
       dressOrnaments(win.strip);
     }
 
-    cited = citedCallNumbers(tome.body, tome.call_number);
+    /*
+     * The references, counted for the foot.
+     *
+     * `tome.refers` and NOT `citedCallNumbers(tome.body, ...)`, which is the
+     * number of call numbers printed inside the prose — and that is zero for
+     * all 249 of them, because the corpus is Bethesda's text and Bethesda does
+     * not write call numbers. The line had never once appeared.
+     */
+    cited = tome.refers.map((ref) => ref.call_number);
     spread = 0;
 
     // A fallback face breaks the text elsewhere, so measure again once the

@@ -111,7 +111,15 @@ html[data-chrome='off'] .chrome-bar {
   color: var(--burgundy-lit);
 }
 
-/* Decorative only. There is no counter behind it and there will not be one. */
+/*
+ * The register of consultation, in a 90s odometer.
+ *
+ * The number is real — see the note in src/main.ts. The odometer keeps its
+ * width while it waits, so the footer does not jump when the count lands, and
+ * it shows NOTHING rather than nought: a counter reading zero while it waits
+ * is a false statement about the archive, and this one either knows or does
+ * not.
+ */
 .hit-counter {
   display: inline-flex;
   gap: 1px;
@@ -119,6 +127,13 @@ html[data-chrome='off'] .chrome-bar {
   background: var(--obsidian);
   box-shadow: var(--bevel-in);
   vertical-align: middle;
+}
+
+/* Seven digits' worth of empty case. Collapses if the count never comes. */
+.hit-counter--waiting {
+  min-width: 7.4em;
+  height: 1.35em;
+  font-size: 15px;
 }
 
 .hit-counter b {
@@ -145,5 +160,12 @@ html[data-chrome='off'] .chrome-bar {
   .toggle { font-size: 14px; padding: 0 6px 2px; height: 20px; }
   .chrome-bar--footer { font-size: 14px; }
   .footer-link { font-size: 14px; }
-  .hit-counter b { min-width: 9px; font-size: 13px; }
+  /* Seven digits' worth of empty case. Collapses if the count never comes. */
+.hit-counter--waiting {
+  min-width: 7.4em;
+  height: 1.35em;
+  font-size: 15px;
+}
+
+.hit-counter b { min-width: 9px; font-size: 13px; }
 }

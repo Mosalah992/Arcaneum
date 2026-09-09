@@ -37,25 +37,28 @@ export const onRequest = readOnly(async (ctx: RequestContext) => {
    * it on every book it opens and never on its own, so a second round trip
    * would buy nothing but latency.
    *
-   * Only the call numbers travel, never the titles. Naming a sealed book here
-   * would hand over the discovery — the whole mechanic is that a reader meets a
-   * number and asks for it at the desk.
+   * TITLES TRAVEL NOW, and ids with them. This used to send bare call numbers
+   * on the grounds that naming a sealed book would hand over the discovery —
+   * the reader was meant to meet a number and ask for it at the desk. Every
+   * volume is listed on the shelf, so there is no discovery left to protect,
+   * and a colophon of unresolvable numbers was only ever a puzzle. It is a
+   * reference now: the title, and somewhere to go.
    */
   const { results: refers } = await ctx.env.DB.prepare(
-    `SELECT c.cites_call_number AS call_number
+    `SELECT t.id, t.call_number, t.title, t.restricted
        FROM citations c
        JOIN tomes t ON t.call_number = c.cites_call_number
       WHERE c.from_tome = ?
-      ORDER BY c.cites_call_number`,
+      ORDER BY t.id`,
   )
     .bind(id)
-    .all<{ call_number: string }>();
+    .all<{ id: number; call_number: string; title: string; restricted: number }>();
 
   return json(
     {
       ...tome,
       restricted: tome.restricted === 1,
-      refers: refers.map((r) => r.call_number),
+      refers: refers.map((r) => ({ ...r, restricted: r.restricted === 1 })),
     },
     200,
     'public, max-age=300',

@@ -69,7 +69,19 @@
 /* Right-hand stacks: search over results. */
 .stacks {
   flex: 1 1 auto;
+  /*
+   * BOTH axes, and the height is the one that matters.
+   *
+   * A flex item's default `min-height: auto` refuses to shrink below its
+   * content, and this one's content is 249 rows. Beside the shelf column it
+   * never showed: the row stretches its items to the container's height, so
+   * `.results` was bounded and scrolled. Stacked above it on a narrow screen it
+   * became a 17,800px column inside a 748px box, and `body { overflow: hidden }`
+   * simply clipped it — the catalogue ended at whatever row reached the bottom
+   * of the phone and there was no way to reach the rest of the library.
+   */
   min-width: 0;
+  min-height: 0;
   display: flex;
   flex-direction: column;
 }
