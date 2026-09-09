@@ -1,8 +1,9 @@
 /**
  * The Arcanaeum.
  *
- * Everything outside the chamber is plain DOM and CSS. This module builds the
- * stone frame — header, stage, footer — and hands the stage to the router.
+ * Plain DOM and CSS throughout — there is no longer any 3D anywhere in the
+ * project. This module builds the stone frame (header, stage, footer) and
+ * hands the stage to the router.
  */
 
 // Self-hosted, latin subsets only. Nothing is fetched from a font CDN.
@@ -14,8 +15,7 @@ import '@fontsource/eb-garamond/latin-600.css';
 import './styles/tokens.css';
 import './styles/base.css';
 import './styles/chrome.css';
-import './styles/boot.css';
-import './styles/chamber.css';
+import './styles/insert.css';
 import './styles/catalogue.css';
 import './styles/reader.css';
 
@@ -23,7 +23,7 @@ import { el, prefersReducedMotion } from './lib/dom';
 import { createRouter, currentPath, navigate, type Screen } from './lib/router';
 import { scanlines, muted, music, visited, forgetDiscoveries } from './lib/store';
 import { armOnFirstGesture, setMusic, setMuted } from './lib/sound';
-import { bootScreen } from './screens/boot';
+import { insertScreen } from './screens/insert';
 import { catalogueScreen } from './screens/catalogue';
 import { readerScreen } from './screens/reader';
 
@@ -126,59 +126,23 @@ document.body.append(el('div', { id: 'scanlines', 'aria-hidden': 'true' }));
 
 armOnFirstGesture();
 
-/**
- * The chamber, behind a dynamic import.
- *
- * three.js is the largest thing in the project by an order of magnitude and
- * every other screen works without it, so it is its own chunk and a visitor
- * who never enters the chamber — reduced motion, a phone, a bookmark straight
- * to the catalogue — never downloads a byte of it. If the chunk fails to
- * arrive, the archive is still an archive: go around.
- */
-function chamberRoute(): Screen {
-  const host = el('div', { class: 'screen' });
-  let inner: Screen | null = null;
-  let dropped = false;
-
-  void import('./screens/chamber')
-    .then(({ chamberScreen }) => {
-      if (dropped) return;
-      inner = chamberScreen();
-      host.append(inner.element);
-    })
-    .catch(() => {
-      if (!dropped) navigate('/catalogue', true);
-    });
-
-  return {
-    element: host,
-    title: 'THE CHAMBER',
-    destroy() {
-      dropped = true;
-      inner?.destroy?.();
-    },
-  };
-}
-
 /*
  * Where a bare visit lands.
  *
- * Resolved once, before the router is built, rather than from inside a route —
- * a route that redirects re-enters the router while it is still rendering.
+ * Two branches now rather than three: the disc goes in on a first visit and
+ * never again. Resolved once, before the router is built, rather than from
+ * inside a route — a route that redirects re-enters the router while it is
+ * still rendering.
  */
 if (currentPath() === '/') {
-  const first = !visited.get();
-  navigate(
-    prefersReducedMotion() ? '/catalogue' : first ? '/boot' : '/chamber',
-    true,
-  );
+  const showDisc = !visited.get() && !prefersReducedMotion();
+  navigate(showDisc ? '/insert' : '/catalogue', true);
 }
 
 createRouter(
   stage,
   {
-    '/boot': () => bootScreen(),
-    '/chamber': () => chamberRoute(),
+    '/insert': () => insertScreen(),
     '/catalogue': () => catalogueScreen(),
     '/tome/:id': (params) => readerScreen(params),
   },
