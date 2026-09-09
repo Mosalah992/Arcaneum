@@ -12,6 +12,7 @@ import { clear, el } from '../lib/dom';
 import {
   listTomes,
   resolveCallNumber,
+  searchTomes,
   ArchiveError,
   type TomeSummary,
 } from '../lib/api';
@@ -21,7 +22,18 @@ import { play } from '../lib/sound';
 
 interface Row extends TomeSummary {
   sealed: boolean;
+  /** Present only on rows that came back from a body search. */
+  excerpt?: string;
 }
+
+/** How long to wait after the last keystroke before asking the archive. */
+const SEARCH_DEBOUNCE = 180;
+/** Shorter than this is not a search worth a round trip. */
+const SEARCH_MIN = 2;
+
+/** The control characters /api/search brackets a matched run with. */
+const MARK_OPEN = '';
+const MARK_CLOSE = '';
 
 export function catalogueScreen(): Screen {
   let school: string | null = null;
@@ -29,6 +41,21 @@ export function catalogueScreen(): Screen {
   let shelf: Row[] = [];
   let rows: Row[] = [];
   let selected = 0;
+
+  /*
+   * Two kinds of result share one list.
+   *
+   * `found` null means the visitor is filtering the shelf they already have —
+   * instant, local, and only over what a listing carries. Non-null means the
+   * archive has searched the prose. Both render into the same `rows`, in the
+   * same order as the buttons, so the keyboard model does not have to know
+   * which one it is looking at.
+   */
+  let found: Row[] | null = null;
+  let foundTotal = 0;
+  let truncated = false;
+  let debounce = 0;
+  let inFlight: AbortController | null = null;
 
   const input = el('input', {
     class: 'search-input',
@@ -120,6 +147,7 @@ export function catalogueScreen(): Screen {
       button.setAttribute('aria-pressed', String(key === name));
     }
     void load();
+    if (found !== null) search();
   }
 
   /**
@@ -161,6 +189,64 @@ export function catalogueScreen(): Screen {
     render();
   }
 
+  /**
+   * Ask the archive to read the bodies.
+   *
+   * Debounced, and the previous request is aborted rather than left to land
+   * out of order behind a newer one. A call number is never sent: that is the
+   * request slip, and Enter already has a job for it.
+   */
+  function search(): void {
+    window.clearTimeout(debounce);
+    const typed = query.trim();
+
+    if (typed.length < SEARCH_MIN || CALL_NUMBER_RE.test(typed.toUpperCase())) {
+      inFlight?.abort();
+      inFlight = null;
+      found = null;
+      render();
+      return;
+    }
+
+    debounce = window.setTimeout(() => {
+      inFlight?.abort();
+      const mine = new AbortController();
+      inFlight = mine;
+
+      void searchTomes(typed, school, mine.signal)
+        .then((result) => {
+          if (mine.signal.aborted) return;
+          found = result.hits.map((h) => ({ ...h, sealed: false }));
+          foundTotal = result.total;
+          truncated = result.truncated;
+          selected = 0;
+          render();
+        })
+        .catch((err) => {
+          if (err instanceof ArchiveError && err.code === 'aborted') return;
+          // A failed search falls back to the local filter rather than
+          // emptying the screen: the shelf is still there to look at.
+          found = null;
+          render();
+        });
+    }, SEARCH_DEBOUNCE);
+  }
+
+  /** The matched run, marked as elements. Never as markup. */
+  function excerptOf(text: string): HTMLElement {
+    const line = el('span', { class: 'excerpt' });
+    for (const [i, part] of text.split(MARK_OPEN).entries()) {
+      if (i === 0) {
+        line.append(part);
+        continue;
+      }
+      const [hit, ...rest] = part.split(MARK_CLOSE);
+      line.append(el('mark', { class: 'excerpt-hit' }, hit ?? ''));
+      line.append(rest.join(MARK_CLOSE));
+    }
+    return line;
+  }
+
   function matches(row: Row, needle: string): boolean {
     if (needle === '') return true;
     return `${row.call_number} ${row.title} ${row.author} ${row.school}`
@@ -168,12 +254,44 @@ export function catalogueScreen(): Screen {
       .includes(needle);
   }
 
+  /** One result row. `rows` is kept in the same order as these buttons. */
+  function resultButton(row: Row, index: number): HTMLElement {
+    return el(
+      'button',
+      {
+        class: `result${row.sealed ? ' result--sealed' : ''}${row.excerpt ? ' result--found' : ''}`,
+        type: 'button',
+        role: 'option',
+        'aria-selected': String(index === selected),
+        onclick: () => openTome(row),
+        onmouseenter: () => select(index, false),
+      },
+      el('span', { class: 'idx' }, String(index + 1).padStart(2, '0')),
+      el('span', { class: 'call' }, row.call_number),
+      el(
+        'span',
+        { class: 'ttl' },
+        row.title,
+        row.sealed ? el('span', { class: 'seal' }, 'SEALED') : null,
+        row.excerpt ? excerptOf(row.excerpt) : null,
+      ),
+      el('span', { class: 'author' }, row.author),
+      el('span', { class: 'school' }, row.school),
+    );
+  }
+
   function render(): void {
+    clear(list);
+    selected = Math.max(0, selected);
+    if (found !== null) renderFound(found);
+    else renderShelf();
+  }
+
+  /** The shelf the visitor already has, filtered in the browser. */
+  function renderShelf(): void {
     const needle = query.trim().toLowerCase();
     rows = shelf.filter((row) => matches(row, needle));
     selected = Math.min(selected, Math.max(0, rows.length - 1));
-
-    clear(list);
 
     if (rows.length === 0) {
       status.className = 'results-status';
@@ -186,30 +304,57 @@ export function catalogueScreen(): Screen {
     status.className = 'results-status';
     status.textContent = `${rows.length} VOLUME${rows.length === 1 ? '' : 'S'} ON THE SHELF`;
 
-    rows.forEach((row, i) => {
-      const button = el(
-        'button',
-        {
-          class: `result${row.sealed ? ' result--sealed' : ''}`,
-          type: 'button',
-          role: 'option',
-          'aria-selected': String(i === selected),
-          onclick: () => openTome(row),
-          onmouseenter: () => select(i, false),
-        },
-        el('span', { class: 'idx' }, String(i + 1).padStart(2, '0')),
-        el('span', { class: 'call' }, row.call_number),
+    rows.forEach((row, i) => list.append(el('li', {}, resultButton(row, i))));
+  }
+
+  /*
+   * What the archive found, gathered by shelf.
+   *
+   * A librarian asking for "illusion" is answered by fifteen books across five
+   * shelves, and an undifferentiated list of fifteen is a worse answer than the
+   * same fifteen under their headings — it is the shelf they will actually walk
+   * to. Within a shelf the order is the archive's ranking, which weights a hit
+   * in the title or the author above one in the body.
+   */
+  function renderFound(hits: Row[]): void {
+    const shelves = new Map<string, Row[]>();
+    for (const hit of hits) {
+      const group = shelves.get(hit.school) ?? [];
+      group.push(hit);
+      shelves.set(hit.school, group);
+    }
+
+    rows = [];
+    if (hits.length === 0) {
+      status.className = 'results-status';
+      status.textContent = `NOTHING IN THE STACKS ANSWERS TO “${query.trim().toUpperCase()}”.`;
+      return;
+    }
+
+    status.className = 'results-status results-status--found';
+    status.textContent =
+      `${foundTotal}${truncated ? '+' : ''} VOLUME${foundTotal === 1 ? '' : 'S'} ` +
+      `MENTION “${query.trim().toUpperCase()}” ` +
+      `ACROSS ${shelves.size} SHEL${shelves.size === 1 ? 'F' : 'VES'}`;
+
+    for (const [name, group] of shelves) {
+      list.append(
         el(
-          'span',
-          { class: 'ttl' },
-          row.title,
-          row.sealed ? el('span', { class: 'seal' }, 'SEALED') : null,
+          'li',
+          { class: 'results-group' },
+          el('span', { class: 'results-group__name' }, name.toUpperCase()),
+          el('span', { class: 'results-group__count' }, `${group.length}`),
         ),
-        el('span', { class: 'author' }, row.author),
-        el('span', { class: 'school' }, row.school),
       );
-      list.append(el('li', {}, button));
-    });
+      for (const row of group) {
+        list.append(el('li', {}, resultButton(row, rows.length)));
+        rows.push(row);
+      }
+    }
+
+    selected = Math.min(selected, Math.max(0, rows.length - 1));
+    const buttons = list.querySelectorAll<HTMLElement>('.result');
+    buttons.forEach((b, i) => b.setAttribute('aria-selected', String(i === selected)));
   }
 
   function select(index: number, scroll = true): void {
@@ -254,7 +399,10 @@ export function catalogueScreen(): Screen {
     query = input.value;
     selected = 0;
     syncCursor();
+    // The local filter redraws on this keystroke; the archive answers a beat
+    // later. Typing never waits for the network.
     render();
+    search();
   });
 
   for (const event of ['click', 'keyup', 'select', 'focus', 'blur']) {
@@ -280,6 +428,9 @@ export function catalogueScreen(): Screen {
     } else if (event.key === 'Escape') {
       input.value = '';
       query = '';
+      found = null;
+      window.clearTimeout(debounce);
+      inFlight?.abort();
       syncCursor();
       render();
     }
@@ -306,6 +457,8 @@ export function catalogueScreen(): Screen {
     element,
     title: 'CATALOGUE',
     destroy() {
+      window.clearTimeout(debounce);
+      inFlight?.abort();
       window.removeEventListener('keydown', onWindowKeydown);
     },
   };

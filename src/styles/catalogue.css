@@ -262,6 +262,64 @@
   box-shadow: var(--bevel-out);
 }
 
+/* -- what the archive found ---------------------------------------------- */
+
+/* A shelf heading inside the results. Not a `.result`, so it is skipped by the
+   keyboard model, which walks `.result` alone. */
+.results-group {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 10px 0 2px;
+  padding: 3px 14px 4px;
+  background: linear-gradient(90deg, var(--stone-800), transparent 88%);
+  border-top: 1px solid var(--stone-700);
+}
+
+.results-group__name {
+  font-size: 16px;
+  letter-spacing: 0.16em;
+  color: var(--parchment);
+}
+
+.results-group__count {
+  font-size: 14px;
+  padding: 0 5px 1px;
+  color: var(--obsidian);
+  background: var(--parchment-dim);
+}
+
+/* A found row is taller than a shelf row: it carries the quotation. */
+.result--found {
+  align-items: start;
+  padding-top: 5px;
+  padding-bottom: 6px;
+}
+
+.excerpt {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--parchment-dim);
+  white-space: normal;
+  /* Two lines of quotation; the book itself is one keystroke away. */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.excerpt-hit {
+  padding: 0 2px;
+  color: var(--obsidian);
+  background: var(--magicka);
+  border-radius: 0;
+}
+
+.result[aria-selected='true'] .excerpt { color: var(--parchment); }
+
 .results-status {
   padding: 18px 16px;
   font-size: 19px;
@@ -304,6 +362,7 @@
   .result .idx { grid-area: idx; }
   .result .call { grid-area: call; }
   .result .ttl { grid-area: ttl; white-space: normal; }
+  .results-group { padding-left: 8px; padding-right: 8px; }
   .result .author { grid-area: author; }
   .result .school { display: none; }
 
