@@ -27,6 +27,13 @@ export interface D1Database {
 
 export interface Env {
   DB: D1Database;
+  /**
+   * The College's register, and the service account that may read it. Both
+   * optional: without them /api/availability answers "not configured" and the
+   * archive works exactly as it did before there was a register.
+   */
+  ARCANAEUM_SHEET_ID?: string;
+  GOOGLE_SERVICE_ACCOUNT_JSON?: string;
 }
 
 export interface RequestContext {
