@@ -11,6 +11,8 @@ export interface TomeSummary {
 export interface Tome extends TomeSummary {
   body: string;
   restricted: boolean;
+  /** Call numbers this book refers to. Numbers only — never titles. */
+  refers: string[];
 }
 
 export interface Resolved extends TomeSummary {

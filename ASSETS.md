@@ -17,20 +17,17 @@ build, because `vite build` empties `dist/` first.
 
 | File | Size | Where | Subject |
 | --- | --- | --- | --- |
-| `art/well.png` | 1536×1024 | **unused** | Ten-frame sheet, 5×2, of a rune-carved magicka font. The well was removed from the chamber; the file is kept in case it is wanted again, and nothing loads it. |
 | `art/rubrication.png` | 1536×1024 | `src/lib/rubrication.ts` | Illuminated manuscript elements — decorated initials, a dragon border, sun, hare, raven, stag, hound, snail, compass rose, scribe, wizard — cut out on transparency. |
+| `art/floppydisk.png` | 1278×1230 | `.disc` | The whole 3.5" disc — navy shell, brushed shutter, label and the College's sigil — on transparency. Drawn at ~210px, smooth-resampled rather than `pixelated`: it is a soft render, and nearest-neighbour on a downscale of one aliases badly. |
 
-### `art/well.png` — no longer used
+### `art/floppydisk.png`
 
-The well was removed from the chamber. The magicka wells straight up out of the
-floor now, as point sprites, and nothing loads this sheet. The file is left in
-place rather than deleted, in case it is wanted again.
+Supplied and in use. At 1.07 MB it is the second-heaviest thing the site sends
+and it is on the first screen a new visitor sees — worth the same WebP pass as
+the rubrication sheet, which would put it near 80 KB with no visible loss at the
+size it is drawn.
 
-If it is ever brought back, **export it as 32-bit PNG with a real alpha
-channel** first. The current file is 24-bit colour with the transparency
-checkerboard flattened into the pixels, so the grey squares are real image data
-and no key can fully undo it: where the glow was semi-transparent, the flatten
-mixed it *with* the checker and the true colour is gone.
+`art/well.png` was deleted with the chamber.
 
 ### `art/rubrication.png`
 
@@ -44,24 +41,48 @@ so it has not been added — say the word.
 
 ## To paint
 
-### Chamber — currently procedural canvas textures
+### Shelf devices — three shelves are borrowing
+
+Eight painted devices serve eleven shelves. `src/lib/rubrication.ts` states the
+convention and which three borrow; these would end the borrowing.
 
 | File | Size | Where | Subject |
 | --- | --- | --- | --- |
-| `art/chamber/wall.png` | 128×128 | `stoneTexture()` | Tiling coursed stone, cold grey-blue, heavy mortar joints, worn. Must tile seamlessly on both axes. |
-| `art/chamber/floor.png` | 128×128 | `stoneTexture()` | Tiling flagstone, darker and smoother than the wall, damp. Seamless. |
-| `art/chamber/mote.png` | 128×128 | `moteTexture()` | One mote of magicka: a hard-edged blue-white dot with a stepped falloff, on transparency. No soft blur — it is drawn with `NearestFilter`. |
-| `art/chamber/gate-runes.png` | 256×256 | `runeTexture()` | Greyscale emissive mask for the gate doors: warding marks in a ring around a central sigil. White glows, black does not. |
-| `art/chamber/gate-doors.png` | 512×512 | not yet used | Albedo for the two door leaves — dark iron-bound timber, banded, with the ward channels cut in. |
-| `art/chamber/board-sigil.png` | 256×256 | `.board__sigil` | The College's mark, embossed on the inside of the front board. Currently a CSS lozenge with a glyph in it. |
+| `art/devices/notes-letters.png` | ~300×300 | `BY_SHELF['Notes & Letters']` | A folded letter with a broken seal, illuminated in the sheet's hand. Currently borrows the snail. |
+| `art/devices/plays-poetry.png` | ~300×300 | `BY_SHELF['Plays, Poetry & Riddles']` | A mask, or a lute with a vine. Currently borrows the hare. |
+| `art/devices/politics-law.png` | ~300×300 | `BY_SHELF['Politics & Law']` | A pair of scales, or a sealed writ. Currently borrows the compass rose. |
+
+Painted on transparency, in the style of `rubrication.png`. They can be added to
+that sheet instead — `rubrication.ts` addresses ornaments by bounding box, so a
+new element only needs its box recorded.
+
+### Illustrations dropped from the books
+
+Ten imported books carry an image the port did not bring across. The prose reads
+without them; each is a plate from the source site.
+
+| Book | Images |
+| --- | --- |
+| `AR-II-005` The Nightingales | nightingales.png |
+| `AR-II-008` Shadowmarks | shadowmark1–9.png |
+| `AR-IV-031` A Minor Maze | minormaze.png |
+| `AR-V-008` Atronach Forge Manual | daedric-rune.png |
+| `AR-V-015` Dragon Language: Myth no More | dragon-lang1–5.png |
+| `AR-V-018` Dwemer Inquiries | dwemer-inquiries3, 5, 6.png |
+| `AR-V-027` Herbalist's Guide to Skyrim | eight reagent plates |
+| `AR-V-029` Horker Attacks | horker1–2.png |
+| `AR-V-046` Troll Slaying | troll-slaying.png |
+| `AR-VIII-007` King Olaf's Verse | olafverse1.png |
+
+`scripts/import-library.mjs` reports these on every run rather than dropping
+them silently. Bringing them in means hosting the files and teaching
+`src/lib/markdown.ts` an image block — neither is done.
 
 ### Interface
 
 | File | Size | Where | Subject |
 | --- | --- | --- | --- |
-| `art/ui/cursor-hand.png` | 32×32 | `.chamber--gate` | Pixel-art pointing hand, 1-bit outline with a parchment fill. Currently an inline SVG built from rectangles. |
-| `art/ui/cursor-hand@2x.png` | 64×64 | `.chamber--gate` | The same at double density. |
-| `art/ui/tablet.png` | 200×40 | `.tablet` | Carved stone tablet for the school filters, engraved and beveled. Currently CSS gradients and box-shadow, which is convincing enough that this is optional. |
+| `art/ui/tablet.png` | 200×40 | `.tablet` | Carved stone tablet for the shelf filters, engraved and beveled. Currently CSS gradients and box-shadow, which is convincing enough that this is optional. |
 | `art/ui/seal.png` | 64×64 | `.title-page__seal`, `.seal` | A burgundy wax seal, broken, for restricted volumes. Currently a flat burgundy chip. |
 | `art/ui/parchment.png` | 512×512 | `.page` | Tiling aged paper: foxing, water stains, fibre. Currently layered radial gradients plus an SVG turbulence grain. Seamless. |
 
@@ -72,7 +93,7 @@ so it has not been added — say the word.
 | `favicon-16.png` | 16×16 | `index.html` | The College sigil at bitmap size. Not yet referenced. |
 | `favicon-32.png` | 32×32 | `index.html` | As above. |
 | `apple-touch-icon.png` | 180×180 | `index.html` | As above, on an obsidian ground. |
-| `og-image.png` | 1200×630 | `index.html` | The chamber with the well lit, gate behind, title set in bitmap type. |
+| `og-image.png` | 1200×630 | `index.html` | The disc going into the drive, title set in bitmap type. Note robots.txt refuses indexing — see PROVENANCE.md. |
 
 ---
 
@@ -87,8 +108,8 @@ changing `play()`, nothing else.
 | --- | --- | --- | --- |
 | `audio/tick.wav` | ~40 ms | `tick` | A dry blip as the cursor crosses something that answers. |
 | `audio/page.wav` | ~250 ms | `page` | One leaf turning. Paper, no tone. |
-| `audio/grind.wav` | ~900 ms | `grind` | Stone on stone, low, as the gate parts. |
-| `audio/unlock.wav` | ~800 ms | `unlock` | The wards taking the light — four rising steps and a shimmer. |
+| `audio/grind.wav` | ~900 ms | `grind` | The drive taking the disc. Was the gate grinding open. |
+| `audio/unlock.wav` | ~800 ms | `unlock` | Four rising steps and a shimmer. Unused since the gate went; kept for the sealed shelf. |
 
 ### Music
 
@@ -98,7 +119,7 @@ switches back.
 
 | File | Where | Status |
 | --- | --- | --- |
-| `audio/librarytheme.mp3` | boot, chamber, catalogue | supplied, 563 KB |
+| `audio/librarytheme.mp3` | insert, catalogue | supplied, 563 KB |
 | `audio/darkwave.mp3` | the reader, while a volume is open | supplied, 367 KB |
 
 If a track ever fails to load, the archive's theme takes over rather than the

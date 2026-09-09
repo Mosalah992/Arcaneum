@@ -102,6 +102,13 @@ const footer = el(
     { class: 'footer-note footer-note--wide' },
     'COLLEGE OF WINTERHOLD · 4E 201 · ',
   ),
+  // The text is Bethesda's and the transcription is the Library of Skyrim's.
+  // Credit belongs where a reader can see it, not only in PROVENANCE.md.
+  el(
+    'span',
+    { class: 'footer-note footer-note--wide' },
+    'TEXT © BETHESDA · PORTED FROM THE LIBRARY OF SKYRIM · ',
+  ),
   el(
     'button',
     {

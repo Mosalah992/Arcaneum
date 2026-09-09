@@ -40,19 +40,49 @@ export const HEADPIECE: Box = { x: 448, y: 18, w: 813, h: 257 };
 /** A hound running a vine, used to close a volume. */
 export const TAILPIECE: Box = { x: 17, y: 827, w: 692, h: 186 };
 
-/**
- * One painted device per school, so a volume is recognisable from its title
- * page before a word of it is read.
+/*
+ * The devices on the sheet, named for what they are rather than for where they
+ * are used, because three of them are used twice.
  */
-export const BY_SCHOOL: Record<string, Box> = {
-  Destruction: { x: 359, y: 191, w: 239, h: 246 },
-  Conjuration: { x: 943, y: 270, w: 292, h: 288 },
-  Restoration: { x: 602, y: 217, w: 314, h: 313 },
-  Illusion: { x: 765, y: 893, w: 293, h: 123 },
-  Alteration: { x: 1202, y: 431, w: 161, h: 409 },
-  Alchemy: { x: 258, y: 445, w: 311, h: 397 },
-  History: { x: 1090, y: 795, w: 294, h: 225 },
-  Daedra: { x: 905, y: 599, w: 262, h: 270 },
+const SUN: Box = { x: 359, y: 191, w: 239, h: 246 };
+const RAVEN: Box = { x: 943, y: 270, w: 292, h: 288 };
+const HARE: Box = { x: 602, y: 217, w: 314, h: 313 };
+const SNAIL: Box = { x: 765, y: 893, w: 293, h: 123 };
+const STAG: Box = { x: 1202, y: 431, w: 161, h: 409 };
+const SCHOLAR: Box = { x: 258, y: 445, w: 311, h: 397 };
+const COMPASS: Box = { x: 1090, y: 795, w: 294, h: 225 };
+const DRAGON: Box = { x: 905, y: 599, w: 262, h: 270 };
+
+/**
+ * One painted device per shelf, so a volume is recognisable from its title page
+ * before a word of it is read.
+ *
+ * THE CONVENTION, stated because eleven shelves are being served by eight
+ * painted devices and the pairings are otherwise arbitrary:
+ *
+ *   scholar  a life, told         raven    a faction, watchful and secret
+ *   hare     a tale being told    compass  a record of where and when
+ *   sun      knowledge and light  snail    a private paper, slowly kept
+ *   dragon   the numinous         stag     a journey
+ *
+ * Three shelves borrow a device that already belongs to another — Notes &
+ * Letters takes the snail, Plays takes the hare, Politics takes the compass.
+ * They are borrowing, not sharing a meaning, and ASSETS.md lists the three
+ * plates that would end it. Until those exist, two shelves show the same mark,
+ * which is a smaller wrong than a title page with nothing on it.
+ */
+export const BY_SHELF: Record<string, Box> = {
+  Biographies: SCHOLAR,
+  'Faction Books': RAVEN,
+  Fiction: HARE,
+  'History & Lore': COMPASS,
+  'Instruction & Research': SUN,
+  'Journals & Logs': SNAIL,
+  'Notes & Letters': SNAIL,
+  'Plays, Poetry & Riddles': HARE,
+  'Politics & Law': COMPASS,
+  'Religion & Prophecy': DRAGON,
+  Travel: STAG,
 };
 
 export interface Cutout {

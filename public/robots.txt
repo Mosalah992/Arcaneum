@@ -1,0 +1,10 @@
+# The Arcanaeum is a fan archive of text that belongs to Bethesda Softworks,
+# ported from The Library of Skyrim (https://skyrimbooksproj.web.app) with
+# neither party's permission. See PROVENANCE.md.
+#
+# It does not ask to be found. Competing with the source in search results is a
+# materially larger ask than simply existing, and refusing indexing is the one
+# thing this archive can do about that on its own.
+
+User-agent: *
+Disallow: /

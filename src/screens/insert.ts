@@ -1,10 +1,9 @@
 /**
  * The front door: a 3.5" disc going into a drive.
  *
- * This replaces the three.js chamber. DOM and CSS only — the disc, the slot,
- * the bevels and the shutter are elements, per the project's standing rule
- * that a bevel is a box-shadow and not a picture. Deleting the chamber took
- * three.js out of the bundle entirely.
+ * This replaces the three.js chamber, which took three.js out of the bundle
+ * entirely. The disc is the supplied painting; the drive around it is CSS, per
+ * the project's standing rule that a bevel is a box-shadow and not a picture.
  *
  * TIMERS, NOT TWEENS, for anything the sequence depends on. The boot screen
  * settled this already: a backgrounded tab produces no frames, and a front
@@ -45,15 +44,15 @@ const SCRIPT: Beat[] = [
 ];
 
 export function insertScreen(): Screen {
-  const sigil = el('div', { class: 'disc__sigil', 'aria-hidden': 'true' });
-
-  const disc = el(
-    'div',
-    { class: 'disc', 'aria-hidden': 'true' },
-    el('div', { class: 'disc__shutter' }),
-    el('div', { class: 'disc__notch' }),
-    el('div', { class: 'disc__label' }, sigil),
-  );
+  /*
+   * The disc is the supplied plate, whole.
+   *
+   * Shell, shutter, label and the College's sigil are all painted into
+   * art/floppydisk.png, so there is nothing here to draw — an element and a
+   * background. The drive below it is still CSS, because a drive bezel is
+   * bevels and a slot and those are box-shadows.
+   */
+  const disc = el('div', { class: 'disc', 'aria-hidden': 'true' });
 
   const drive = el(
     'div',
@@ -106,8 +105,8 @@ export function insertScreen(): Screen {
     );
   }
 
-  // The drive takes the disc: the shutter opens, the light comes on, and the
-  // grind is the same cue the gate used to make.
+  // The drive takes the disc: the light comes on, and the grind is the same
+  // cue the gate used to make.
   timers.push(
     window.setTimeout(() => {
       element.classList.add('insert--seated');

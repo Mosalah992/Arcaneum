@@ -25,7 +25,7 @@ import { clear, el, prefersReducedMotion } from '../lib/dom';
 import { fetchTome, ArchiveError, type Tome } from '../lib/api';
 import { renderMarkdown, citedCallNumbers } from '../lib/markdown';
 import { navigate, type Screen } from '../lib/router';
-import { BY_SCHOOL, HEADPIECE, TAILPIECE, cutout, type Box } from '../lib/rubrication';
+import { BY_SHELF, HEADPIECE, TAILPIECE, cutout, type Box } from '../lib/rubrication';
 import { play, setMusicTrack } from '../lib/sound';
 
 /** Below this the binding comes apart into one scrolling column. */
@@ -402,7 +402,7 @@ export function readerScreen(params: Record<string, string>): Screen {
 
   /** Column 0, by itself: the leaf the board faces when the volume opens. */
   function titlePage(volume: Tome): string {
-    const device = BY_SCHOOL[volume.school];
+    const device = BY_SHELF[volume.school];
     pieces.set('headpiece', HEADPIECE);
     pieces.set('tailpiece', TAILPIECE);
     if (device !== undefined) pieces.set(volume.school, device);
