@@ -1,19 +1,24 @@
 /**
- * The front door: a 3.5" disc going into a drive.
+ * The front door: a 3.5" disc, and a drive to put it in.
  *
  * This replaces the three.js chamber, which took three.js out of the bundle
  * entirely. The disc is the supplied painting; the drive around it is CSS, per
  * the project's standing rule that a bevel is a box-shadow and not a picture.
  *
- * TIMERS, NOT TWEENS, for anything the sequence depends on. The boot screen
- * settled this already: a backgrounded tab produces no frames, and a front
- * door that never opens is worse than one that is not animated. anime.js moves
- * the disc because that is decoration; `done()` is idempotent and four things
- * can call it, so the archive opens whether or not a single frame is drawn.
+ * THE VISITOR INSERTS IT. Nothing happens until the disc goes in, and putting
+ * it in is the affordance — the same idea the chamber's gate had, where there
+ * was no ENTER button and the light was the invitation. The disc sits proud of
+ * the slot, the cursor changes over it and over the drive, and clicking either
+ * one seats it. Then the drive reads, and the archive opens.
  *
- * Every guarantee the chamber gave is kept: under 2.5 seconds, skippable on
- * any key, and it does not run at all under prefers-reduced-motion or on a
- * repeat visit — both of which land on the catalogue, decided in main.ts.
+ * TIMERS, NOT TWEENS, for everything after that. A backgrounded tab produces no
+ * frames, and a door that has been opened and then never finishes opening is
+ * worse than one that was never animated. anime.js moves the disc because that
+ * is decoration; `done()` is idempotent and three things can call it, so once
+ * the disc is in, the archive opens whether or not another frame is drawn.
+ *
+ * Reduced motion and repeat visits never reach this screen at all — main.ts
+ * sends both straight to the catalogue.
  */
 
 import { animate } from 'animejs';
@@ -22,11 +27,11 @@ import { navigate, type Screen } from '../lib/router';
 import { visited } from '../lib/store';
 import { play } from '../lib/sound';
 
-/** The whole sequence, start to catalogue. The brief allowed 2.5s. */
-const TOTAL_MS = 2400;
+/** How long the disc takes to go in. */
+const SEAT_MS = 620;
 
-/** When the disc is fully in and the drive takes over. */
-const SEATED_MS = 1100;
+/** From the disc seating to the catalogue. The brief allowed 2.5s. */
+const READ_MS = 1500;
 
 interface Beat {
   at: number;
@@ -35,101 +40,115 @@ interface Beat {
 }
 
 const SCRIPT: Beat[] = [
-  { at: SEATED_MS + 40, text: 'DRIVE A: DISC PRESENT', head: true },
-  { at: SEATED_MS + 220, text: 'READING BOOT SECTOR ......... OK' },
-  { at: SEATED_MS + 430, text: 'VOLUME LABEL ................ ARCANAEUM' },
-  { at: SEATED_MS + 640, text: 'CATALOGUING ................. 249 VOLUMES' },
-  { at: SEATED_MS + 850, text: '' },
-  { at: SEATED_MS + 880, text: 'STARTING ARCANAEUM.EXE', head: true },
+  { at: 40, text: 'DRIVE A: DISC PRESENT', head: true },
+  { at: 250, text: 'READING BOOT SECTOR ......... OK' },
+  { at: 470, text: 'VOLUME LABEL ................ ARCANAEUM' },
+  { at: 700, text: 'CATALOGUING ................. 249 VOLUMES' },
+  { at: 930, text: '' },
+  { at: 960, text: 'STARTING ARCANAEUM.EXE', head: true },
 ];
 
 export function insertScreen(): Screen {
-  /*
-   * The disc is the supplied plate, whole.
-   *
-   * Shell, shutter, label and the College's sigil are all painted into
-   * art/floppydisk.png, so there is nothing here to draw — an element and a
-   * background. The drive below it is still CSS, because a drive bezel is
-   * bevels and a slot and those are box-shadows.
-   */
-  const disc = el('div', { class: 'disc', 'aria-hidden': 'true' });
+  const disc = el('div', {
+    class: 'disc',
+    role: 'button',
+    tabindex: '0',
+    'aria-label': 'Insert the disc',
+  });
 
   const drive = el(
     'div',
-    { class: 'drive', 'aria-hidden': 'true' },
+    { class: 'drive' },
     el('div', { class: 'drive__slot' }),
     el('div', { class: 'drive__lip' }),
     el('div', { class: 'drive__led' }),
   );
 
+  const bay = el('div', { class: 'insert-bay' }, disc, drive);
   const log = el('pre', { class: 'insert-log' });
-  const hint = el('p', { class: 'insert-hint' }, 'PRESS ANY KEY');
+  const hint = el('p', { class: 'insert-hint' }, 'INSERT THE DISC');
 
   const element = el(
     'div',
     { class: 'screen insert' },
-    el(
-      'div',
-      { class: 'insert-inner' },
-      el('div', { class: 'insert-bay' }, disc, drive),
-      log,
-      hint,
-    ),
+    el('div', { class: 'insert-inner' }, bay, log, hint),
   );
 
   const timers: number[] = [];
+  let started = false;
   let finished = false;
 
   function done(): void {
     if (finished) return;
     finished = true;
     for (const timer of timers) window.clearTimeout(timer);
-    window.removeEventListener('keydown', onSkip);
-    element.removeEventListener('pointerdown', onSkip);
+    window.removeEventListener('keydown', onKeydown);
     visited.set(true);
     navigate('/catalogue', true);
   }
 
-  function onSkip(): void {
+  /** Put the disc in. Everything after this is on a timer. */
+  function begin(): void {
+    if (started || finished) return;
+    started = true;
+
+    element.classList.add('insert--seated');
+    disc.removeAttribute('tabindex');
+    disc.setAttribute('aria-hidden', 'true');
+    hint.textContent = 'PRESS ANY KEY';
+    play('grind');
+
+    for (const beat of SCRIPT) {
+      timers.push(
+        window.setTimeout(() => {
+          log.append(
+            el(
+              'span',
+              { class: `insert-line${beat.head === true ? ' insert-line--head' : ''}` },
+              beat.text,
+            ),
+            document.createTextNode('\n'),
+          );
+        }, SEAT_MS + beat.at),
+      );
+    }
+
+    // The backstop. Even with every timer above throttled and no frame ever
+    // drawn, the drive finishes reading and the archive opens.
+    timers.push(window.setTimeout(done, SEAT_MS + READ_MS));
+
+    // Decoration, and only decoration. Nothing is awaited or depended on.
+    if (!prefersReducedMotion()) {
+      animate(disc, {
+        translateY: ['0%', '46%'],
+        scale: [1, 0.94],
+        duration: SEAT_MS,
+        ease: 'cubicBezier(0.34, 0.86, 0.3, 1)',
+      });
+    }
+  }
+
+  /**
+   * A key does whichever thing is next: puts the disc in, or waves the drive
+   * through. Never nothing — somebody pressing keys at a door expects it to
+   * answer, and this one has exactly two states.
+   */
+  function onKeydown(event: KeyboardEvent): void {
+    if (event.metaKey || event.ctrlKey || event.altKey) return;
+    if (!started) {
+      event.preventDefault();
+      begin();
+      return;
+    }
     done();
   }
 
-  for (const beat of SCRIPT) {
-    timers.push(
-      window.setTimeout(() => {
-        log.append(
-          el('span', { class: `insert-line${beat.head === true ? ' insert-line--head' : ''}` }, beat.text),
-          document.createTextNode('\n'),
-        );
-      }, beat.at),
-    );
-  }
-
-  // The drive takes the disc: the light comes on, and the grind is the same
-  // cue the gate used to make.
-  timers.push(
-    window.setTimeout(() => {
-      element.classList.add('insert--seated');
-      play('grind');
-    }, SEATED_MS),
-  );
-
-  // The backstop. Even with every timer above throttled and no frame ever
-  // drawn, the disc finishes loading and the archive opens.
-  timers.push(window.setTimeout(done, TOTAL_MS));
-
-  window.addEventListener('keydown', onSkip);
-  element.addEventListener('pointerdown', onSkip);
-
-  // Decoration, and only decoration. Nothing below is awaited or depended on.
-  if (!prefersReducedMotion()) {
-    animate(disc, {
-      translateY: ['-118%', '0%'],
-      rotate: ['-2.5deg', '0deg'],
-      duration: SEATED_MS,
-      ease: 'cubicBezier(0.32, 0.9, 0.28, 1)',
-    });
-  }
+  // The disc and the drive are both the target: a visitor reaches for whichever
+  // reads as the thing to click, and being wrong about which should cost
+  // nothing.
+  disc.addEventListener('click', begin);
+  drive.addEventListener('click', begin);
+  window.addEventListener('keydown', onKeydown);
 
   return {
     element,
@@ -138,7 +157,7 @@ export function insertScreen(): Screen {
     destroy() {
       finished = true;
       for (const timer of timers) window.clearTimeout(timer);
-      window.removeEventListener('keydown', onSkip);
+      window.removeEventListener('keydown', onKeydown);
     },
   };
 }
