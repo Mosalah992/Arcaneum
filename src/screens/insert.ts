@@ -96,7 +96,7 @@ const SCRIPT: Beat[] = [
   { at: 40, text: 'DRIVE A: DISC PRESENT', head: true },
   { at: 250, text: 'READING BOOT SECTOR ....... OK' },
   { at: 470, text: 'VOLUME LABEL ...... ARCANAEUM' },
-  { at: 700, text: 'CATALOGUING ....... 250 VOLUMES' },
+  { at: 700, text: 'CATALOGUING ....... 287 VOLUMES' },
 ];
 
 export function insertScreen(): Screen {
