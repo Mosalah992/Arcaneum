@@ -324,6 +324,61 @@
   box-shadow: var(--bevel-out);
 }
 
+/* -- sortable headings --------------------------------------------------- */
+
+/*
+ * Every heading but NO. is a button, and has to read as one without turning the
+ * head row into a strip of chrome. A bare <button> arrives with the user
+ * agent's own grey fill and 2px outset border, which is what showed up the
+ * first time: six pills across the top of the catalogue. `appearance: none` is
+ * the part that actually removes it — resetting `background` and `border`
+ * alone leaves the native rendering in place.
+ */
+.col-sort {
+  appearance: none;
+  -webkit-appearance: none;
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+  text-align: inherit;
+}
+
+.col-sort:hover { color: var(--parchment); }
+
+.col-sort:focus-visible {
+  outline: 1px solid var(--magicka);
+  outline-offset: 2px;
+  color: var(--parchment);
+}
+
+/* The active column, said twice: lit type and a caret. Never colour alone. */
+.col-sort--on { color: var(--magicka); }
+
+.col-sort__mark {
+  font-size: 9px;
+  line-height: 1;
+  /* Reserved whether or not a caret is in it, so a heading does not shift
+     sideways the moment it becomes the sorted one. */
+  min-width: 8px;
+}
+
+/* The two quantity columns are right-aligned, so their heading puts the caret
+   on the left of the label to stay flush with the numbers beneath it. */
+.results-head .col-copies,
+.results-head .col-held {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
 /* -- what the College holds ---------------------------------------------- */
 
 /*

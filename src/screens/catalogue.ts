@@ -70,6 +70,28 @@ export function catalogueScreen(): Screen {
    */
   let register: Availability | null = null;
 
+  /*
+   * How the list is ordered.
+   *
+   * `null` is the archive's own order — shelf, then accession — which is what
+   * the call numbers are for and what a librarian walking the stacks wants.
+   * Anything else is a question being asked of the list, and the two worth
+   * asking are "how many do we own" and "what can I hand over right now".
+   */
+  type SortKey = 'call' | 'title' | 'author' | 'school' | 'copies' | 'available';
+  let sortKey: SortKey | null = null;
+  let sortDesc = false;
+
+  /** Text sorts read up, quantities read down: the useful end is the big end. */
+  const DEFAULT_DESC: Record<SortKey, boolean> = {
+    call: false,
+    title: false,
+    author: false,
+    school: false,
+    copies: true,
+    available: true,
+  };
+
   let found: Row[] | null = null;
   let foundTotal = 0;
   let truncated = false;
@@ -139,17 +161,74 @@ export function catalogueScreen(): Screen {
    * every column drifts by that much. The heading is kept outside so it does
    * not scroll away with the rows.
    */
+  /*
+   * One column heading, and every heading but NO. is a button.
+   *
+   * NO. is the row's position in whatever order is showing, so it renumbers as
+   * the list moves and there is nothing to sort it by — it is a counter, not a
+   * column of data.
+   */
+  const sortButtons = new Map<SortKey, HTMLButtonElement>();
+
+  function heading(key: SortKey, label: string, extra = ''): HTMLElement {
+    const button = el('button', {
+      class: `col-sort${extra === '' ? '' : ` ${extra}`}`,
+      type: 'button',
+      onclick: () => sortBy(key),
+    });
+    button.append(el('span', { class: 'col-sort__label' }, label));
+    button.append(el('span', { class: 'col-sort__mark', 'aria-hidden': 'true' }));
+    sortButtons.set(key, button);
+    return button;
+  }
+
   const resultsHead = el(
     'div',
-    { class: 'results-head' },
+    { class: 'results-head', role: 'row' },
     el('span', {}, 'NO.'),
-    el('span', {}, 'CALL'),
-    el('span', {}, 'TITLE'),
-    el('span', { class: 'col-copies' }, 'COPIES'),
-    el('span', { class: 'col-held' }, 'AVAILABLE'),
-    el('span', {}, 'AUTHOR'),
-    el('span', {}, 'SCHOOL'),
+    heading('call', 'CALL'),
+    heading('title', 'TITLE'),
+    heading('copies', 'COPIES', 'col-copies'),
+    heading('available', 'AVAILABLE', 'col-held'),
+    heading('author', 'AUTHOR'),
+    heading('school', 'SCHOOL'),
   );
+
+  /**
+   * Click a heading to sort by it; click the same one again to reverse it; a
+   * third click puts the archive's own shelf order back.
+   *
+   * The third state is worth the extra click. Sorting is a question, and a
+   * librarian needs a way to stop asking it and see the shelf as it stands
+   * without hunting for which column was the original one.
+   */
+  function sortBy(key: SortKey): void {
+    if (sortKey !== key) {
+      sortKey = key;
+      sortDesc = DEFAULT_DESC[key];
+    } else if (sortDesc !== !DEFAULT_DESC[key]) {
+      sortDesc = !sortDesc;
+    } else {
+      sortKey = null;
+      sortDesc = false;
+    }
+    selected = 0;
+    markSort();
+    render();
+  }
+
+  /** Tell the headings, and anything reading the page aloud, where we are. */
+  function markSort(): void {
+    for (const [key, button] of sortButtons) {
+      const active = key === sortKey;
+      button.classList.toggle('col-sort--on', active);
+      button.setAttribute('aria-sort', active ? (sortDesc ? 'descending' : 'ascending') : 'none');
+      const mark = button.querySelector('.col-sort__mark');
+      // A shape, not a colour, and not only a background: this has to be legible
+      // in a screenshot and to somebody who cannot separate the two greens.
+      if (mark !== null) mark.textContent = active ? (sortDesc ? '▼' : '▲') : '';
+    }
+  }
 
   const element = el(
     'div',
@@ -298,6 +377,53 @@ export function catalogueScreen(): Screen {
       .includes(needle);
   }
 
+  /**
+   * Order a list of rows by the current sort.
+   *
+   * VOLUMES THE REGISTER DOES NOT LIST ALWAYS SINK, in both directions. 201 of
+   * the 250 have no copy count at all, and letting them sort as zero would bury
+   * the 49 that answer the question underneath them on one click and scatter
+   * them through the middle on the other. "We do not stock it" is not a
+   * quantity, so it is not sorted as one — it goes last and stays there.
+   *
+   * The tie-break is always the call number, so equal counts come out in shelf
+   * order rather than in whatever order the rows happened to arrive.
+   */
+  function sorted(list: Row[]): Row[] {
+    if (sortKey === null) return list;
+    const key = sortKey;
+
+    const quantity = key === 'copies' || key === 'available';
+    const numberOf = (row: Row): number | null => {
+      const holding = lookUp(row.title, register).holding;
+      if (holding === null) return null;
+      return key === 'copies' ? holding.copies : holding.available;
+    };
+
+    return [...list].sort((a, b) => {
+      let order: number;
+
+      if (quantity) {
+        const x = numberOf(a);
+        const y = numberOf(b);
+        if (x === null && y === null) order = 0;
+        else if (x === null) return 1; // unlisted sinks, whichever way we sort
+        else if (y === null) return -1;
+        else order = x - y;
+      } else {
+        const pick = (row: Row): string =>
+          key === 'call' ? row.call_number
+          : key === 'title' ? row.title
+          : key === 'author' ? row.author
+          : row.school;
+        order = pick(a).localeCompare(pick(b), 'en', { sensitivity: 'base' });
+      }
+
+      if (order !== 0) return sortDesc ? -order : order;
+      return a.call_number.localeCompare(b.call_number, 'en');
+    });
+  }
+
   /** One result row. `rows` is kept in the same order as these buttons. */
   function resultButton(row: Row, index: number): HTMLElement {
     const shelved = lookUp(row.title, register);
@@ -345,7 +471,7 @@ export function catalogueScreen(): Screen {
   /** The shelf the visitor already has, filtered in the browser. */
   function renderShelf(): void {
     const needle = query.trim().toLowerCase();
-    rows = shelf.filter((row) => matches(row, needle));
+    rows = sorted(shelf.filter((row) => matches(row, needle)));
     selected = Math.min(selected, Math.max(0, rows.length - 1));
 
     if (rows.length === 0) {
@@ -411,7 +537,7 @@ export function catalogueScreen(): Screen {
       shelves.set(hit.school, group);
     }
 
-    const heading = (name: string, count: number, extra = ''): HTMLElement =>
+    const groupRow = (name: string, count: number, extra = ''): HTMLElement =>
       el(
         'li',
         { class: `results-group${extra}` },
@@ -433,16 +559,25 @@ export function catalogueScreen(): Screen {
         ? ` · ${atTheCollege.length} ON THE COLLEGE REGISTER`
         : ` ACROSS ${shelfCount} SHEL${shelfCount === 1 ? 'F' : 'VES'}`);
 
+    /*
+     * Sorted INSIDE each group, not across them.
+     *
+     * The groups are the answer to "where do I walk"; the sort is the answer to
+     * "which of these first". Flattening the groups to honour a sort would
+     * throw away the more useful of the two, so a sort reorders within
+     * `ON THE SHELF AT THE COLLEGE` and within each shelf, and the groups stay
+     * where they are.
+     */
     if (atTheCollege.length > 0) {
       list.append(
-        heading('ON THE SHELF AT THE COLLEGE', atTheCollege.length, ' results-group--held'),
+        groupRow('ON THE SHELF AT THE COLLEGE', atTheCollege.length, ' results-group--held'),
       );
-      for (const row of atTheCollege) place(row);
+      for (const row of sorted(atTheCollege)) place(row);
     }
 
     for (const [name, group] of shelves) {
-      list.append(heading(name.toUpperCase(), group.length));
-      for (const row of group) place(row);
+      list.append(groupRow(name.toUpperCase(), group.length));
+      for (const row of sorted(group)) place(row);
     }
 
     selected = Math.min(selected, Math.max(0, rows.length - 1));
