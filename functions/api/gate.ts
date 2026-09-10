@@ -42,6 +42,10 @@ const reply = (body: unknown, status = 200, cookie?: string): Response => {
   const headers: Record<string, string> = {
     'content-type': 'application/json; charset=utf-8',
     'cache-control': PRIVATE,
+    // The door is outside the middleware, so it sets its own. See the note
+    // there: `public/_headers` does not reach a Function's response.
+    'x-content-type-options': 'nosniff',
+    'x-frame-options': 'DENY',
     vary: 'Cookie',
   };
   if (cookie !== undefined) headers['set-cookie'] = cookie;

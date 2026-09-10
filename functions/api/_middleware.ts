@@ -33,6 +33,8 @@ function sealed(status: number, message: string): Response {
     headers: {
       'content-type': 'application/json; charset=utf-8',
       'cache-control': 'private, no-store',
+      'x-content-type-options': 'nosniff',
+      'x-frame-options': 'DENY',
       vary: 'Cookie',
     },
   });
@@ -65,5 +67,10 @@ export const onRequest = async (context: MiddlewareContext): Promise<Response> =
   const response = new Response(upstream.body, upstream);
   response.headers.set('cache-control', 'private, no-store');
   response.headers.set('vary', 'Cookie');
+  // `public/_headers` covers static assets only — Pages does not apply it to a
+  // Function's response — so the two headers that mean anything on JSON are set
+  // here instead. A scan of the shell alone will not show this gap.
+  response.headers.set('x-content-type-options', 'nosniff');
+  response.headers.set('x-frame-options', 'DENY');
   return response;
 };
