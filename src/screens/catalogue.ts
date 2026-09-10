@@ -78,6 +78,11 @@ export function catalogueScreen(): Screen {
 
   const input = el('input', {
     class: 'search-input',
+    // `id` and `name` even though `autocomplete` is off: a field with neither
+    // is one Chrome reports as an accessibility and autofill problem, and the
+    // id is what lets anything else on the page point a `for` at it.
+    id: 'catalogue-search',
+    name: 'q',
     type: 'text',
     autocomplete: 'off',
     autocapitalize: 'characters',

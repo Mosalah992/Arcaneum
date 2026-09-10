@@ -119,8 +119,13 @@ export function insertScreen(): Screen {
    */
   const word = el('input', {
     class: 'crt__word',
-    type: 'password',
+    // `id` AND `name`. The label beside it carries `for="passphrase"`, which
+    // resolves against an id and not a name — so until this was added the
+    // label pointed at nothing: clicking THE WORD: did not focus the field,
+    // and only the `aria-label` was holding the accessible name up.
+    id: 'passphrase',
     name: 'passphrase',
+    type: 'password',
     autocomplete: 'current-password',
     spellcheck: 'false',
     'aria-label': 'Passphrase',
