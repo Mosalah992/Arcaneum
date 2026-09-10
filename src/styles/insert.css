@@ -116,11 +116,25 @@
  * crunches. The interface stays hard; the machine is a photograph of a thing
  * and is allowed to be resampled like one.
  */
+/*
+ * ONE DEFINITE DIMENSION, and `aspect-ratio` derives the other.
+ *
+ * This was `height: 100%` with `max-width: 100%` and `max-height: 100%`, which
+ * looks like it fits a square into the box and does not: with a definite height
+ * AND a max-width, `aspect-ratio` has no say at all. The height stayed at the
+ * full viewport, the width was clamped to it, and the box came out 375x812 on a
+ * phone — whereupon `background-size: 100% 100%` did exactly what it is told
+ * and STRETCHED the 1050x1050 plate to fill it. The machine was 2.17 times too
+ * tall, the monitor was a portrait slab and the keyboard was a smear.
+ *
+ * `min(100cqw, 100cqh)` is the largest square that fits, computed rather than
+ * negotiated — `.insert` is a size container, so both units resolve against it.
+ * Nothing can clamp it afterwards and nothing can stretch the plate again.
+ */
 .rig {
   position: relative;
-  height: 100%;
-  max-width: 100%;
-  max-height: 100%;
+  width: min(100cqw, 100cqh);
+  height: auto;
   aspect-ratio: 1 / 1;
   background: url('/art/background.png') no-repeat center / 100% 100%;
   image-rendering: auto;
@@ -483,11 +497,25 @@
  * under 8px.
  */
 @media (max-width: 700px) {
-  .crt__log,
-  .crt__hint,
+  /*
+   * The glass is about 186x144 on a 375px phone, because the machine is a
+   * square fitted to the width and the screen is half of it. `cqw` alone puts
+   * the boot log at 8px there, so each size gets a floor — and the floors are
+   * chosen against the LONGEST line each element has to hold, not picked for
+   * comfort. `READING BOOT SECTOR ....... OK` is 29 characters, and VT323 at
+   * 11px would run it past the edge of the tube; 10px is the largest that
+   * fits. The padding is tightened at the same time to buy the room.
+   */
+  .crt__inner { padding: 7cqh 6cqw; }
+  .crt__head { font-size: max(15px, 7cqw); }
+  /* The last four pixels. With the prompt showing, the tube held 3.8 of the
+     four boot lines and cut `CATALOGUING ....... 250 VOLUMES` in half; a
+     tighter leading and a smaller gap under the subtitle buy the fourth line
+     back rather than dropping it. */
+  .crt__sub { font-size: max(9px, 4cqw); margin-bottom: 1.5cqh; }
+  .crt__log { font-size: max(10px, 4.4cqw); line-height: 1.24; }
+  .crt__hint { font-size: max(10px, 4.2cqw); }
   .crt__ask,
-  .crt__word { font-size: max(9px, 4.4cqw); }
-  .crt__refusal { font-size: max(8px, 4cqw); }
-  .crt__head { font-size: max(13px, 7cqw); }
-  .crt__sub { font-size: max(8px, 4cqw); }
+  .crt__word { font-size: max(11px, 4.4cqw); }
+  .crt__refusal { font-size: max(10px, 4cqw); }
 }
