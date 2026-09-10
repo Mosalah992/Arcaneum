@@ -116,16 +116,32 @@ function showVisits(count: number | null): void {
 }
 
 /*
- * Entered once per load, and the answer is the number to show.
+ * Entered once a reader is actually through the door.
+ *
+ * NOT ON PAGE LOAD, which is where this used to be and where it broke the
+ * moment the gate went in: `/api/register/entry` is behind the middleware like
+ * every other route, the front page runs before anybody has a writ, and both
+ * calls came back 401 with the odometer left empty for the whole session. The
+ * console said so and nothing else did.
+ *
+ * Counting after admission is also the better definition of the number. It is
+ * a register of consultation, and somebody who arrived at the door and did not
+ * know the word has not consulted the archive.
  *
  * A 204 means this browser was already counted today, which is the common case
  * on a reload — then the count is asked for separately, because the reader
  * still wants to see it. Neither call is awaited by anything and neither can
  * throw.
  */
-void enterRegister().then(async (entered) => {
-  showVisits(entered ?? (await fetchRegister()));
-});
+let counted = false;
+
+function countOnce(): void {
+  if (counted) return;
+  counted = true;
+  void enterRegister().then(async (entered) => {
+    showVisits(entered ?? (await fetchRegister()));
+  });
+}
 
 const footer = el(
   'footer',
@@ -208,5 +224,8 @@ createRouter(
   (screen: Screen) => {
     crumb.textContent = screen.title ? `· ${screen.title}` : '';
     document.documentElement.dataset.chrome = screen.chrome === false ? 'off' : 'on';
+    // Any screen but the door means a writ was accepted. A reader who lands
+    // straight on `#/catalogue` still holding last week's writ counts too.
+    if (currentPath() !== '/insert') countOnce();
   },
 );
