@@ -1,0 +1,45 @@
+# Response headers for every path. Cloudflare Pages reads this at deploy time;
+# it is not code and nothing imports it, which is why it is easy to forget it
+# exists. It is the whole of the site's header policy.
+#
+# WHY THE POLICY CAN BE THIS STRICT: the archive loads nothing from anywhere
+# else. No CDN script, no font host — the two faces are @fontsource packages
+# bundled into /assets/ — no analytics, no inline `<script>` and no inline
+# `style=` attribute anywhere in the built output. So every directive below can
+# be 'self' rather than the usual list of exceptions, and there is no
+# 'unsafe-inline' in script-src or style-src.
+#
+# Verified against the built site before deploying: the only non-'self' thing
+# the CSS fetches is one `data:image/svg+xml` turbulence texture, which is why
+# img-src carries `data:` and nothing else does.
+
+/*
+  # No third-party anything. If a future change adds a CDN script or a font
+  # host, it fails loudly here rather than shipping quietly.
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+
+  # Clickjacking. `frame-ancestors` above is the modern control and this is the
+  # one browsers that ignore it still read. Nikto reports the absence of this
+  # header by name, which is how it surfaced.
+  X-Frame-Options: DENY
+
+  # `form-action 'none'` above is doing a second job worth naming. The
+  # passphrase sits in a <form>, and its submit is always intercepted in
+  # JavaScript — but if that script ever failed to load, the browser would fall
+  # back to a native GET and put the passphrase in the URL, where it would land
+  # in every log and Referer between here and Cloudflare. This makes that
+  # impossible rather than unlikely.
+
+  # HTTPS only, for a year. No includeSubDomains and no preload: this is a
+  # subdomain of pages.dev, which is not ours to make promises about.
+  Strict-Transport-Security: max-age=31536000
+
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Nothing here asks for hardware. Refusing it costs the archive nothing and
+  # means a compromised script could not ask either.
+  Permissions-Policy: accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), usb=(), xr-spatial-tracking=()
+
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
