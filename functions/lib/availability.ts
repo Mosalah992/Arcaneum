@@ -12,11 +12,16 @@
  * against this exact service account; it needs no dependency because
  * WebCrypto can sign RS256 on the Cloudflare runtime.
  *
- * AVAILABILITY IS DERIVED, NOT READ. The register has an `Availability` column
- * and it reads "In" on all 109 rows of it, restricted titles included — it is a
- * field nobody has ever had cause to change, and it would go stale the moment
- * somebody did. What is real is `Copies` against the open rows of
- * `Borrowed_Books` and `Library_Signouts`, so that is what this counts.
+ * AVAILABILITY IS DERIVED, NOT READ. The register has an `Availability` column,
+ * and since September 2026 it is a formula doing this same arithmetic on the
+ * sheet, for the librarians' benefit — before that it was a hand-set dropdown
+ * that read "In" on every row. This module still counts `Copies` against the
+ * open rows of `Borrowed_Books` and `Library_Signouts` itself and never reads
+ * that column: the formula matches titles exactly, per register row, while
+ * this code forgives spellings and folds volumes into works; and a cell with a
+ * dropdown on it can still be overwritten by hand. Two independent readings of
+ * one fact, and `scripts/reshape-register.mjs` is where they are checked
+ * against each other.
  *
  * THE RANGES AND COLUMNS BELOW WERE READ OFF THE LIVE SHEET, not off a copy.
  * An earlier version of this file was written against a downloaded `.xlsx`
@@ -26,6 +31,20 @@
  * would have failed silently — a bad range is a 400, and this module's caller
  * turns every failure into `configured: false`, which looks exactly like a
  * sheet that was never connected.
+ *
+ * COLUMNS ON THE LOAN TABS ARE FOUND BY HEADER, NOT BY LETTER. The librarians
+ * edit those tabs — September 2026 put a `Date` column into `Library_Signouts`
+ * and turned its `Returned?` checkbox into a `Status` dropdown — and a reader
+ * that knew the status was in D would have counted every signout ever
+ * recorded as still out the moment D became `Handling Librarian`. So the
+ * header row is found by its `Book` cell and the columns by their names, and a
+ * tab whose header no longer says what this expects throws, which the caller
+ * shows as `configured: false` on every row. Visible, where a wrong column is
+ * not.
+ *
+ * Nothing here writes. The one thing that ever writes to the register from
+ * this project is `scripts/reshape-register.mjs`, run by hand, with a scope
+ * this module is never given.
  */
 
 import { normaliseTitle, withoutVolume, workKey } from '../../shared/titles';
@@ -37,12 +56,12 @@ const SCOPE = 'https://www.googleapis.com/auth/spreadsheets.readonly';
  *
  * Read generously — the register grows — but not open-ended: `A1:E` with no row
  * bound returns every blank row the grid has, and `Library_Signouts` has three
- * hundred of them with `FALSE` pre-filled in the returned column.
+ * hundred of them.
  */
 const RANGES = [
   "'Book_Index'!A1:E200",
   "'Borrowed_Books'!A1:H400",
-  "'Library_Signouts'!A1:E500",
+  "'Library_Signouts'!A1:F500",
   "'Restricted Titles'!A1:G60",
 ];
 
@@ -159,6 +178,26 @@ function isClosed(value: string): boolean {
   return v === '1' || v === 'true' || v === 'yes' || v === 'y' || v.startsWith('return');
 }
 
+/**
+ * Where a loan tab's header is, and which of its columns hold the book and
+ * whether it came back.
+ *
+ * The header is the first row with a cell that says `Book` — row 2 on
+ * `Borrowed_Books`, under its READ ME, row 1 on `Library_Signouts` — and the
+ * status is the column headed `Status`, or `Returned?` as the signouts called
+ * their checkbox before it was a dropdown. Either missing is a throw, not a
+ * guess: see the header of this file.
+ */
+function loanColumns(rows: string[][], tab: string): { first: number; book: number; status: number } {
+  const at = rows.findIndex((row) => row.some((c) => c.trim().toLowerCase() === 'book'));
+  if (at < 0) throw new Error(`${tab}: no header row`);
+  const header = rows[at]!.map((c) => c.trim().toLowerCase());
+  const book = header.indexOf('book');
+  const status = header.findIndex((c) => c === 'status' || c === 'returned?' || c === 'returned');
+  if (status < 0) throw new Error(`${tab}: no status column`);
+  return { first: at + 1, book, status };
+}
+
 export async function readRegister(env: SheetsEnv): Promise<Register> {
   const sheetId = env.ARCANAEUM_SHEET_ID;
   if (sheetId === undefined || sheetId === '') throw new Error('no sheet configured');
@@ -241,28 +280,34 @@ export async function readRegister(env: SheetsEnv): Promise<Register> {
   };
 
   /*
-   * Borrowed_Books: A the book, F the status. Row 1 is a READ ME addressed to
-   * the librarians and row 2 is the header, so the data starts at row 3.
+   * Borrowed_Books: the book, and its status.
    *
    * A blank status is not an unrecorded loan — the only rows in the sheet with
-   * a value in A and nothing in F are the three semester dividers
-   * (`2nd Semester, 7/3/2026`), so a row without both is not a loan at all.
-   * What is left is `Returned`, `Out` and `Overdue`.
+   * a book and no status are the semester dividers (`2nd Semester,
+   * 7/3/2026`), so a row without both is not a loan at all. What is left is
+   * `Returned`, `Out` and `Overdue`.
    */
-  for (const row of (borrowing ?? []).slice(2)) {
-    const book = cell(row, 0);
-    const status = cell(row, 5);
-    if (book === '' || status === '' || book.toLowerCase() === 'book') continue;
+  const b = loanColumns(borrowing ?? [], 'Borrowed_Books');
+  for (const row of (borrowing ?? []).slice(b.first)) {
+    const book = cell(row, b.book);
+    const status = cell(row, b.status);
+    if (book === '' || status === '') continue;
     if (!isClosed(status)) takeOut(book);
   }
 
-  // Library_Signouts: A the book, D whether it came back. The blank tail of
-  // the grid carries `FALSE` in D all the way down, so the empty A is what
-  // keeps three hundred phantom loans out of the count.
-  for (const row of (signouts ?? []).slice(1)) {
-    const book = cell(row, 0);
+  /*
+   * Library_Signouts: the book, and whether it came back. HERE A BLANK STATUS
+   * IS OUT — a signout is out until somebody marks it returned, and the
+   * sheet's own Availability formula counts it the same way. The empty book
+   * cell is what keeps the three hundred blank rows of the grid out of the
+   * count, and a bare number in that cell is a row of the sheet's own
+   * bookkeeping, not a title.
+   */
+  const s = loanColumns(signouts ?? [], 'Library_Signouts');
+  for (const row of (signouts ?? []).slice(s.first)) {
+    const book = cell(row, s.book);
     if (book === '' || Number.isFinite(Number(book))) continue;
-    if (!isClosed(cell(row, 3))) takeOut(book);
+    if (!isClosed(cell(row, s.status))) takeOut(book);
   }
 
   /*
