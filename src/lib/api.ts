@@ -80,6 +80,12 @@ export function fetchTome(id: number): Promise<Tome> {
 export interface Hit extends TomeSummary {
   /** A window of the body around the match, with the run marked. */
   excerpt: string;
+  /**
+   * For a book bound from several parts — "Volume Two", "Book IV", "Part
+   * III: The Importance of Where" — the headings of the parts the match is
+   * in, in book order. Empty for a book that is one text.
+   */
+  sections: string[];
   score: number;
 }
 

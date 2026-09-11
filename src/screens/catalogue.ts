@@ -34,6 +34,8 @@ import { play } from '../lib/sound';
 interface Row extends TomeSummary {
   /** Present only on rows that came back from a body search. */
   excerpt?: string;
+  /** With `excerpt`: which parts of a bound volume the match is in. */
+  sections?: string[];
 }
 
 /** How long to wait after the last keystroke before asking the archive. */
@@ -370,6 +372,22 @@ export function catalogueScreen(): Screen {
     return line;
   }
 
+  /**
+   * Which volume, when the book is several bound as one.
+   *
+   * "Biography of Barenziah" is the row; "Volume Two" is where the word is,
+   * and without it a librarian who has found the book still has three volumes
+   * to leaf through. Sits with the title, because it is part of the answer to
+   * "which book?", not part of the quotation.
+   */
+  function sectionChips(names: string[]): HTMLElement {
+    return el(
+      'span',
+      { class: 'sections' },
+      ...names.map((name) => el('span', { class: 'section' }, name)),
+    );
+  }
+
   function matches(row: Row, needle: string): boolean {
     if (needle === '') return true;
     return `${row.call_number} ${row.title} ${row.author} ${row.school}`
@@ -450,6 +468,7 @@ export function catalogueScreen(): Screen {
         { class: 'ttl' },
         row.title,
         row.restricted ? el('span', { class: 'seal' }, 'SEALED') : null,
+        row.sections?.length ? sectionChips(row.sections) : null,
         row.excerpt ? excerptOf(row.excerpt) : null,
       ),
       ...heldCells(shelved),

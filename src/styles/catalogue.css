@@ -505,6 +505,34 @@
   -webkit-line-clamp: 2;
 }
 
+/*
+ * Which part of a bound volume the word is in. One chip per part, in the
+ * cyan of the marked run so the eye pairs them: the chip says where, the mark
+ * says what.
+ *
+ * A LINE OF THEIR OWN, under the title and above the quotation. The title
+ * line is `nowrap` and ellipsised, and chips set inline after "2920, Last
+ * Year of the First Era" were the part of that line that fell off the end —
+ * the books with the most parts to name were exactly the ones that lost the
+ * naming. They wrap, so a twelve-part chronicle says all it has to.
+ */
+.sections {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 3px;
+  white-space: normal;
+}
+
+.section {
+  padding: 0 5px;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  color: var(--magicka-lit);
+  border: 1px solid var(--magicka-dim);
+}
+
 .excerpt-hit {
   padding: 0 2px;
   color: var(--obsidian);
