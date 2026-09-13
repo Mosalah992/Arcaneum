@@ -449,6 +449,7 @@ export function catalogueScreen(): Screen {
         'span',
         { class: 'ttl' },
         row.title,
+        row.volume ? el('span', { class: 'volume' }, ` — ${row.volume}`) : null,
         row.restricted ? el('span', { class: 'seal' }, 'SEALED') : null,
         row.excerpt ? excerptOf(row.excerpt) : null,
       ),

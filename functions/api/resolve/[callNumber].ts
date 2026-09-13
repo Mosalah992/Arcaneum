@@ -21,6 +21,7 @@ interface Resolved {
   title: string;
   author: string;
   school: string;
+  volume?: string | null;
   restricted: number;
 }
 
@@ -32,7 +33,7 @@ export const onRequest = readOnly(async (ctx: RequestContext) => {
   }
 
   const tome = await ctx.env.DB.prepare(
-    'SELECT id, call_number, title, author, school, restricted FROM tomes WHERE call_number = ?',
+    'SELECT id, call_number, title, author, school, restricted, volume FROM tomes WHERE call_number = ?',
   )
     .bind(raw)
     .first<Resolved>();

@@ -64,6 +64,20 @@ function callNumberOrder(cn) {
   return romanValue(tier) * 100000 + Number(acc);
 }
 
+function inferVolumeFromBody(body) {
+  const lines = body.split('\n');
+  for (const line of lines) {
+    const trimmed = line.trim();
+    const match = trimmed.match(/^##\s+(.+?)\s*$/);
+    if (!match) continue;
+    const heading = match[1];
+    if (/(volume|vol|book|part)\s*\.?(?:\s|[0-9ivxlcdm]+)/i.test(heading)) {
+      return heading;
+    }
+  }
+  return '';
+}
+
 function parse(file) {
   const raw = readFileSync(join(CONTENT_DIR, file), 'utf8').replace(/\r\n/g, '\n');
   const lines = raw.split('\n');
@@ -105,12 +119,15 @@ function parse(file) {
   }
   if (body.length === 0) throw new Error(`${file}: empty body`);
 
+  const volume = String(meta.volume ?? inferVolumeFromBody(body));
+
   return {
     call_number: meta.call_number,
     title: meta.title,
     author: meta.author,
     school: meta.school,
     restricted: meta.restricted === 'true' ? 1 : 0,
+    volume,
     body,
   };
 }
@@ -281,9 +298,9 @@ SHELVES.forEach((shelf, shelfIndex) => {
     const id = byCallNumber.get(book.call_number);
     const parts = chunks(book.body);
     out.push(`-- ${book.call_number} — ${book.title}${book.restricted ? '  [SEALED]' : ''}`);
-    out.push('INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES');
+    out.push('INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES');
     out.push(`  (${id}, ${q(book.call_number)}, ${q(book.title)}, ${q(book.author)}, ${q(book.school)},`);
-    out.push(`   ${q(parts[0])}, ${book.restricted});`);
+    out.push(`   ${q(parts[0])}, ${book.restricted}, ${q(book.volume)});`);
     for (const part of parts.slice(1)) {
       out.push(`UPDATE tomes SET body = body || ${q(part)} WHERE id = ${id};`);
     }

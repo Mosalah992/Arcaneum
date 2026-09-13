@@ -34,6 +34,7 @@ interface Hit {
   title: string;
   author: string;
   school: string;
+  volume?: string | null;
   restricted: number;
   excerpt: string;
   score: number;
@@ -114,7 +115,7 @@ export const onRequest = readOnly(async ({ request, env }: RequestContext) => {
    * if that trade is ever judged the wrong way round.
    */
   const sql =
-    `SELECT t.id, t.call_number, t.title, t.author, t.school, t.restricted,` +
+    `SELECT t.id, t.call_number, t.title, t.author, t.school, t.restricted, t.volume,` +
     ` snippet(tomes_fts, 2, ?, ?, '…', 14) AS excerpt,` +
     ` bm25(tomes_fts, 10.0, 4.0, 1.0) AS score` +
     ` FROM tomes_fts` +

@@ -7,8 +7,8 @@
 -- See PROVENANCE.md.
 
 -- AR-VII-001 — Charwich-Koniinge Letters
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (169, 'AR-VII-001', 'Charwich-Koniinge Letters', 'Charwich, Koniinge', 'Notes & Letters',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (199, 'AR-VII-001', 'Charwich-Koniinge Letters', 'Charwich, Koniinge', 'Notes & Letters',
    '## Charwich-Koniinge Letters, v1
 
 6 Suns Height, 3E 411
@@ -166,11 +166,11 @@ Syrix Goinithi,
 
 Former Estate Banker
 
-P.S.: Charwich -- Turn around now, or don’t. Your choice. Your friend, Koniinge.', 0);
+P.S.: Charwich -- Turn around now, or don’t. Your choice. Your friend, Koniinge.', 0, '');
 
 -- AR-VII-002 — A Game at Dinner
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (170, 'AR-VII-002', 'A Game at Dinner', 'Anonymous', 'Notes & Letters',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (200, 'AR-VII-002', 'A Game at Dinner', 'Anonymous', 'Notes & Letters',
    'A GAME AT DINNER
  
  by
@@ -256,11 +256,11 @@ The council was dismissed shortly thereafter. I do not know if Prince Helseth kn
 
 *Publisher’s Note:*
 
-Of course, the anonymous writer’s signature has not been on any reprint of the letter since the original.', 0);
+Of course, the anonymous writer’s signature has not been on any reprint of the letter since the original.', 0, '');
 
 -- AR-VII-003 — The Nirnoot Missive
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (171, 'AR-VII-003', 'The Nirnoot Missive', 'Sinderion; Sharmirin Raythorne, ed.', 'Notes & Letters',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (201, 'AR-VII-003', 'The Nirnoot Missive', 'Sinderion; Sharmirin Raythorne, ed.', 'Notes & Letters',
    'Sharmirin Raythorne,
 
 Imperial Scribe
@@ -277,11 +277,11 @@ In summation, it''s clear that the nirnroot was dying and used a byproduct of it
 
 Whether you subscribe to my theory or not, one thing is certain; the nirnroot is on a path to destruction. It contains untapped potential to create potions the likes of which have never been seen in our day. I propose to you today that we divert a small portion of our funds to an expedition to collect some of these roots to study. I have outlined this proposal for your perusal after this section of the Symposium. Please, seriously consider this proposal before it becomes too late, and the nirnroot becomes nothing but a memory.
 
-Thank you for your time.', 0);
+Thank you for your time.', 0, '');
 
 -- AR-VII-004 — On the Great Collapse
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (172, 'AR-VII-004', 'On the Great Collapse', 'Archmage Deneth', 'Notes & Letters',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (202, 'AR-VII-004', 'On the Great Collapse', 'Archmage Deneth', 'Notes & Letters',
    'To the esteemed Jarl Valdimar of Winterhold,
 
 First, please allow me to offer my most sincere condolences. I understand that you, like many others, have lost family and you have my deepest sympathies.
@@ -302,11 +302,11 @@ I certainly would never hold you accountable for the gossip spread amongst the p
 
 Your persistent advocate,
 
-Arch-Mage Deneth', 0);
+Arch-Mage Deneth', 0, '');
 
 -- AR-VII-005 — Report: Disaster at Ionith
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (173, 'AR-VII-005', 'Report: Disaster at Ionith', 'Lord Pottreid', 'Notes & Letters',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (203, 'AR-VII-005', 'Report: Disaster at Ionith', 'Lord Pottreid', 'Notes & Letters',
    '## Part I: Preparations
 
 The Emperor’s plans for the invasion of Akavir were laid in the 270s, when he began the conquest of the small island kingdoms that lie between Tamriel and Akavir. With the fall of Black Harbor in Esroniet in 282, Uriel V was already looking ahead to the ultimate prize. He immediately ordered extensive renovations to the port, which would serve as the marshalling point for the invasion force and as the main supply source throughout the campaign. At this time he also began the construction of the many large, ocean-going transports that would be needed for the final crossing to Akavir, in which the Navy was previously deficient. Thus it can be seen that the Emperor’s preparations for the invasion were laid well in advance, before even the conquest of Esroniet was complete, and was not a sudden whim as some have charged.
@@ -367,11 +367,11 @@ Second, the Tsaesci appear to possess no navy to speak of. The Expeditionary For
 
 Third, much longer-term study needs to be made of Akavir before another invasion could even be contemplated. The information gathered over the four years prior to the invasion was extensive, but clearly inadequate. The weather conditions were completely unexpected; the Tsaesci much stronger than expected; and the attempted negotiations by the Emperor with the Tsaesci a disaster. Akavir proved alien beyond expectation, and the Commission believes any future attempt to invade Akavir should not be contemplated without much greater knowledge of the conditions, politics, and peoples of that continent than presently obtains.
 
-Finally, the Commission unanimously concludes that given what we now know, any attempt to invade Akavir is folly, at least in the present state of the Empire. The Empire’s legions are needed at home. One day, a peaceful, united Empire will return to Akavir and exact severe retribution for the disaster at Ionith and for our fallen Emperor. But that day is not now, nor in the foreseeable future.', 0);
+Finally, the Commission unanimously concludes that given what we now know, any attempt to invade Akavir is folly, at least in the present state of the Empire. The Empire’s legions are needed at home. One day, a peaceful, united Empire will return to Akavir and exact severe retribution for the disaster at Ionith and for our fallen Emperor. But that day is not now, nor in the foreseeable future.', 0, 'Part I: Preparations');
 
 -- AR-VII-006 — The Windhelm Letters
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (174, 'AR-VII-006', 'The Windhelm Letters', 'Reylia, Stessl, Shapl', 'Notes & Letters',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (204, 'AR-VII-006', 'The Windhelm Letters', 'Reylia, Stessl, Shapl', 'Notes & Letters',
    'My dearest Thessalonius,
 
 I hope this letter reaches you, and finds you well. It is getting more difficult to find paper within the city, but I still save the scraps sent by the city’s tax agents. I hope you don’t mind a household reckoning on the reverse of this.
@@ -432,8 +432,8 @@ Thessalonius,
 
 I don’t have much time. The city has finally broken. The gates of the palace will not keep us out. The storming begins soon. I have gathered those who still have a spirit to live, and we are taking our own fortunes to hand. I hope to see you on the other side of this. Pray for us as we once prayed for you.
 
-Your Reylia', 0);
+Your Reylia', 0, '');
 
 -- Cross-references, derived from the titles named in these bodies.
-INSERT INTO citations (from_tome, cites_call_number) VALUES (172, 'AR-IV-033');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (172, 'AR-IV-038');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (202, 'AR-IV-033');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (202, 'AR-IV-038');

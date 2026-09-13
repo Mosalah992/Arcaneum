@@ -7,8 +7,8 @@
 -- See PROVENANCE.md.
 
 -- AR-V-001 — An Accounting of the Elder Scrolls
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (104, 'AR-V-001', 'An Accounting of the Elder Scrolls', 'Quintus Nerevelus', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (125, 'AR-V-001', 'An Accounting of the Elder Scrolls', 'Quintus Nerevelus', 'Instruction & Research',
    'After the supposed theft of an Elder Scroll from our Imperial Library, I endeavored to find any sort of index or catalogue of the Scrolls in our possession so that such situations may be avoided (or at least properly verified) in the future. To my dismay, I discovered that the Moth Priests are notoriously inexact when it comes to the actual physical manifestations of the Scrolls, and had no idea how many they held, or how they were organized. Merely asking the question evoked chuckles, as if a child was asking why dogs cannot talk.
 
 I will confess, my jealousy of the ones who can read the Scrolls grows, but I am not yet willing to sacrifice my sight to alleged knowledge. The older Moth Priests I attempt to engage in conversation seem as batty as any other elder who has lost their mind, so I fail to see what wisdom is imparted from the reading.
@@ -35,22 +35,22 @@ Humoring him, I again passed my hands over the Scrolls, but could not believe wh
 
 The old monk chuckled, his cheeks pushing up his blindfold until it folded over itself. “And in fact,” he said, “there always were.”
 
-It was then that I enrolled as the oldest novice ever accepted into the Cult of the Ancestor Moth.', 0);
+It was then that I enrolled as the oldest novice ever accepted into the Cult of the Ancestor Moth.', 0, '');
 
 -- AR-V-002 — Advances in Lockpicking
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (105, 'AR-V-002', 'Advances in Lockpicking', 'Anonymous', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (126, 'AR-V-002', 'Advances in Lockpicking', 'Anonymous', 'Instruction & Research',
    'I am not a writer. I am a thief. I am a good thief. I am not such a good writer. Anyway, I want to write about picking locks. I read a book about designing locks once. It was good. It gave me lots of ideas.
 
 Some guys make locks with angled keyholes. Always carry a bent lockpick. They will work good in these locks. I do, and I open lots of locks. Sometimes I carry copper lockpicks. Copper bends easy. That way I can bend it right there. Copper lockpicks break easy too. Be careful.
 
 Sometimes the locks have weird springs. They all spring differently, which makes picking it hard. I hold my torch close to the lock. This makes it hot. When it’s hot, the springs are all the same. They don’t bounce so differently any more. Be careful not to burn yourself.
 
-Some thieves can’t read. If you can’t read, get someone to read this book to you. It will make more sense then.', 0);
+Some thieves can’t read. If you can’t read, get someone to read this book to you. It will make more sense then.', 0, '');
 
--- AR-V-003 — Amongst the Dragur
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (106, 'AR-V-003', 'Amongst the Dragur', 'Bernadette Bantien', 'Instruction & Research',
+-- AR-V-003 — Amongst the Draugr
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (127, 'AR-V-003', 'Amongst the Draugr', 'Bernadette Bantien', 'Instruction & Research',
    'It wasn’t until my seventh month with the creatures that
  they seemed to accept me. Well, “accept” isn’t really the
  proper word, but they seemed to have decided that I posed no
@@ -115,11 +115,11 @@ These discoveries and extrapolations excite me, and my mind
  the College to transcribe these notes and gather further
  supplies for a more extended stay. My new hope is to learn
  some rudimentary way of speaking to them, for imagining what
- they could tell us of the early mists of time is staggering.', 0);
+ they could tell us of the early mists of time is staggering.', 0, '');
 
 -- AR-V-004 — The Apprentice’s Assistant
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (107, 'AR-V-004', 'The Apprentice’s Assistant', 'Aramril', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (128, 'AR-V-004', 'The Apprentice’s Assistant', 'Aramril', 'Instruction & Research',
    'No doubt you have heard tales of my adventures. Stories carried from province to province, all of Tamriel in awe of my feats of magical prowess. More than once, I am sure, you have thought “if only I had Aramril’s ability. Then I too could seek fame and fortune in magic duels!”
 
 It is true, of course. Great fame and limitless fortune await those who are successful. But to be successful, one needs to learn from the best. That is why you have purchased this book, so that I may teach you. I am, of course, the best.
@@ -146,22 +146,22 @@ Any advanced spellcaster has learned to cast spells with both hands, dealing mor
 
 Remember that your first priority is, of course, to stay alive. Following closely behind, though, is your need to please the crowd. You are, after all, depending on their generosity to fund your adventures. Here, then, more than magic comes into play. If you can gain a sense of your opponent’s ability before the duel begins, you can enter into the event with confidence. Knowing that you outclass your opponent is of great importance, as it means you can confidently give the crowd a better show. Likewise, knowing ahead of time that you could very well lose a duel, you are afforded an opportunity to suddenly find yourself engaged elsewhere, and be unable to attend the event. (By no means do I suggest that I have ever done such a thing; I simply find that my great fame occasionally means I am unable to respond to every single request for a duel)
 
-Keep these few things in mind, keep your wits about you, and you too can make a name for yourself by putting on great displays of magical prowess. Take care, though - for if you become successful enough, you may find yourself facing a challenge from me!', 0);
+Keep these few things in mind, keep your wits about you, and you too can make a name for yourself by putting on great displays of magical prowess. Take care, though - for if you become successful enough, you may find yourself facing a challenge from me!', 0, '');
 
 -- AR-V-005 — Arcana Restored: A Handbook
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (108, 'AR-V-005', 'Arcana Restored: A Handbook', 'Wapna Neustra Praceptor Emeritus', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (129, 'AR-V-005', 'Arcana Restored: A Handbook', 'Wapna Neustra Praceptor Emeritus', 'Instruction & Research',
    'FORM THE FIRST: Makest thou the Mana Fountain to be Primed with Pure Gold, for from Pure Gold only may the Humors be rectified, and the Pure Principles coaxed from the chaos of Pure Power. Droppest thou then the Pure Gold upon the surface of the Mana Fountain. Takest thou exceeding great care to safeguard yourself from the insalubrious tempests of the Mana Fountain, for through such Assaults may one’s health be utterly Blighted.
 
 FORM THE SECOND: Make sure that thou havest with you this Excellent Manual, so that thou might speak the necessary Words straightaway, and without error, so that thou not in carelessness cause thyself and much else to discorporate and disorder the World with your component humors.
 
 FORM THE THIRD: Take in hand the item to be Restored, and hold it forth within the Primed Fountain, murmuring all the while the appropriate phrases, which are to be learned most expeditiously and faultlessly from this Manual, and this Manual alone, notwithstanding the vile calumnies of Kharneson and Rattor, whose bowels are consumed by envy of my great learning, and who do falsely give testament to the efficacies of their own Manuals, which are in every way inferior and steeped in error.
 
-FORM THE FOURTH: Proceed instantly to Heal thyself of all injuries, or to avail yourself of the Healing powers of the Temples and Healers, for though the agonies of manacaust must be borne by any who would Restore a prized Arcana to full Potency, yet it is not wise that suffering be endured unduly, nor does the suffering in any way render the Potency more Sublime, notwithstanding the foolish speculations of Kharneson and Rattor, whose faults and wickednesses are manifest even to the least learned of critics.', 0);
+FORM THE FOURTH: Proceed instantly to Heal thyself of all injuries, or to avail yourself of the Healing powers of the Temples and Healers, for though the agonies of manacaust must be borne by any who would Restore a prized Arcana to full Potency, yet it is not wise that suffering be endured unduly, nor does the suffering in any way render the Potency more Sublime, notwithstanding the foolish speculations of Kharneson and Rattor, whose faults and wickednesses are manifest even to the least learned of critics.', 0, '');
 
 -- AR-V-006 — The Art of War Magic
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (109, 'AR-V-006', 'The Art of War Magic', 'Zurin Arctus et al.', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (130, 'AR-V-006', 'The Art of War Magic', 'Zurin Arctus et al.', 'Instruction & Research',
    'THE ART OF WAR MAGIC
 
 by
@@ -202,11 +202,11 @@ Thulidden dir’Tharkun: By ‘tactics’, Master Arctus includes all the common
 
 10. If you plan your dispositions well, your victories will seem easy and you will win no acclaim. If you plan your dispositions poorly, your victories will seem difficult, and your fame will be widespread.
 
-Marandro Sul: Those commonly believed to be the greatest practitioners of war magic are almost always those with the least skill. The true masters are not known to the multitude.', 0);
+Marandro Sul: Those commonly believed to be the greatest practitioners of war magic are almost always those with the least skill. The true masters are not known to the multitude.', 0, '');
 
 -- AR-V-007 — Atlas of Dragons
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (110, 'AR-V-007', 'Atlas of Dragons', 'Brother Mathnan', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (131, 'AR-V-007', 'Atlas of Dragons', 'Brother Mathnan', 'Instruction & Research',
    'Herein is recorded the list of known dragons, both living and dead, including those slain by the Dragonguard since the time of its founding, as well as those slain in earlier ages, where they can be identified. Unfortunately, only a few of the dragons slain by our Akaviri predecessors during the Crusade were recorded and thus this list is sadly incomplete.
 
 Deceased by Report
@@ -237,11 +237,11 @@ Mirmulnir - Last sighted in the Reach in 2E 212.
 
 Nahfahlaar - Repeated alliances with mortal protectors which have prevented his elimination. His last known protector was the King Casimir II of Wayrest, which the Dragonguard successfully ended in 2E 369. He escaped and current location is unknown.
 
-Paarthurnax - The legendary lieutenant of Alduin in the Dragon War. He is now known to lair on the Throat of the World under the protection of the Greybeards of High Hrothgar. Master Araidh continues the established policy of avoiding direct confrontation with the Greybeards while waiting for an opportunity to exact justice upon him.', 0);
+Paarthurnax - The legendary lieutenant of Alduin in the Dragon War. He is now known to lair on the Throat of the World under the protection of the Greybeards of High Hrothgar. Master Araidh continues the established policy of avoiding direct confrontation with the Greybeards while waiting for an opportunity to exact justice upon him.', 0, '');
 
 -- AR-V-008 — Atronach Forge Manual
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (111, 'AR-V-008', 'Atronach Forge Manual', 'Anonymous', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (132, 'AR-V-008', 'Atronach Forge Manual', 'Anonymous', 'Instruction & Research',
    'Nephew -
 
 I apologize that I cannot see you personally before you leave. The trip from Sadrith Mora is treacherous this season, or I would have visited upon hearing the news. The Nords have a fine college at Winterhold, and I am sure you will excel. You may know that I, too, attended there. I was quite the conjuration adept in my own day. I am sending you my notes on something called the “Atronach Forge,” a bit of a project of mine while at Winterhold.
@@ -268,11 +268,11 @@ Frost Salts + Sapphire
 
 Storm Atronach:
 
-Void Salts + Amethyst', 0);
+Void Salts + Amethyst', 0, '');
 
 -- AR-V-009 — The Buying Game
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (112, 'AR-V-009', 'The Buying Game', 'Ababael Timsar-Dadisun', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (133, 'AR-V-009', 'The Buying Game', 'Ababael Timsar-Dadisun', 'Instruction & Research',
    'So many people simply buy the items they need at the price they are given. It''s a very sad state of affairs, when the game is really open to all, you don''t need an invitation. And it is a game, the game of bargaining, to be played seriously and, I hasten to add, politely. In Elsweyr, it is common for the shop-owner to offer the prospective buyer tea or sweetmeats and engage in polite conversation before commencing the business. This eminently civilized tradition has a practical purpose, allowing the buyer to observe the wares for sale. It is considered impolite not to accept, though it does not imply obligation on the part of the buyer.
 
 Whether this particular custom is part of the culture or not, it''s wise for the buyer and seller to greet one another with smiles and warm salutations, like gladiators honoring one another before the battle.
@@ -287,11 +287,11 @@ Knowing what you''re buying and from whom is a talent bought only after years of
 
 If you see something you really like or need, buy it then and there at the best price you can get. I cannot tell you how many times I passed up a rare and interesting relic, assuming that I could find it elsewhere in the region, perhaps at a larger town at a better price. Too late, I discovered I was wrong, and when I returned to the shop weeks later, the item I wanted was gone. Better to get a great purchase at a decent price and discover it again at a worse price than to miss out on your opportunities for ownership. Occasionally impulsiveness is the best buying strategy.
 
-Sense the moves of the game, and everyone can win.', 0);
+Sense the moves of the game, and everyone can win.', 0, '');
 
 -- AR-V-010 — Catalogue of Armor Enchantments
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (113, 'AR-V-010', 'Catalogue of Armor Enchantments', 'Yvonne Bienne, Synod researcher', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (134, 'AR-V-010', 'Catalogue of Armor Enchantments', 'Yvonne Bienne, Synod researcher', 'Instruction & Research',
    'Within this catalogue are all the known varieties of armor enchantments the modern mages can cast. No pretense is made that this list is complete. New discoveries are made and new enchantments are revealed often enough that this work will eventually become outdated. Those who follow may choose to revise this work as needed.
 
 The most common enchantments for armor and other garb are those that improve health, magick or stamina. Fortifying the wearers health is popular with warriors. It actually makes the wearer harder to kill, binding his life force a bit tighter to his body. Fortifying magicka is more commonly seen in clothing because wizards tend to avoid bulky, restrictive armor. It allows the wizard to cast more spells before becoming magically exhausted. Fortifying stamina is a secondary choice for fighters. They tire less quickly, but do not survive their wounds any better.
@@ -302,11 +302,11 @@ Another common form of armor enchantment are the resistances. The elemental resi
 
 An uncommon pair of enchantments are waterbreathing and muffle. The former allows the wearing to swim underwater indefinitely. The later totally silences the clinking and clanking of the armor so the wearer moves more quietly. It’s been speculated that muffle is a wizard’s lazy solution to a problem that could be solved with cloth and wrappings.
 
-The rarest of enchantments increase the recovery rate of health, magicka or stamina. The wearer actually heals from his wounds while you watch, even if he is in the midst of a battle. Wizards normally recover their magical energy at a moderate pace. Wearing this armor makes that recovery much faster. The same is true for stamina recovery enchantments. The wearer tires just as quickly as always, but seems to get his wind back much faster.', 0);
+The rarest of enchantments increase the recovery rate of health, magicka or stamina. The wearer actually heals from his wounds while you watch, even if he is in the midst of a battle. Wizards normally recover their magical energy at a moderate pace. Wearing this armor makes that recovery much faster. The same is true for stamina recovery enchantments. The wearer tires just as quickly as always, but seems to get his wind back much faster.', 0, '');
 
 -- AR-V-011 — Catalogue of Weapon Enchantments
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (114, 'AR-V-011', 'Catalogue of Weapon Enchantments', 'Yvonne Bienne, Synod researcher', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (135, 'AR-V-011', 'Catalogue of Weapon Enchantments', 'Yvonne Bienne, Synod researcher', 'Instruction & Research',
    'Within this catalogue are all the known varieties of weapon enchantments the modern mages can cast. No pretense is made that this list is complete. New discoveries are made and new enchantments are revealed often enough that this work will eventually become outdated. Those who follow may choose to revise this work as needed.
 
 Weapon such as axes and bows can hold a wide variety of enchantments. The most common are fire, frost and lightning. The simple, yet effective enchantments burn, freeze or shock when they draw blood.
@@ -321,11 +321,11 @@ Noticablely more rare are the absorb enchantments. There are three known types t
 
 The rarest of enchantments are those of banishment and paralyzation. Banishment only affects summoned atronachs or undead raised by wizards. The banishment breaks the link between the caster and the creature. Summoned atronach return to the Oblivion plane from whence they came. Raised undead are released. It is important to note that self-willed undead are not affected by banishment.
 
-Paralyzation is simple, yet deadly. The affected creature becomes rigid and unable to move for a short time. This is one of the most prized enchantments among warriors. A paralyzed opponent can be dispatched with ease. It is important to note that many creature are immune to paralysis, such as Atronachs, skeletons, ice wraiths, and dwarven automatons.', 0);
+Paralyzation is simple, yet deadly. The affected creature becomes rigid and unable to move for a short time. This is one of the most prized enchantments among warriors. A paralyzed opponent can be dispatched with ease. It is important to note that many creature are immune to paralysis, such as Atronachs, skeletons, ice wraiths, and dwarven automatons.', 0, '');
 
 -- AR-V-012 — Cats of Skyrim
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (115, 'AR-V-012', 'Cats of Skyrim', 'Aldetuile', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (136, 'AR-V-012', 'Cats of Skyrim', 'Aldetuile', 'Instruction & Research',
    'I have been sent to this frigid wasteland to catalogue and study any of its indigenous cats, which has so far been uneventful. After months of wandering I have so far only encountered some variations of the same basic species.
 
 In my travels I have encountered several khajiit outcast from their clans that have taken up residence in Skyrim. They have been most unhelpful, probably for fear I’d expose their locations. I can’t say I’m surprised that there are few khajiit here, it’s cold and unwelcoming.
@@ -340,11 +340,11 @@ The snowy version of the sabrecat has spotted white fur which I believe it uses 
 
 The tooth of the cat is rumored to be useful in potions that restore the imbibers stamina as well as a potion that will temporarily give a more keen eye for smithing.
 
-An skillful hunter can usually salvage the pelts and teeth of their kill, but report that the meat is tasteless and not fit to eat.', 0);
+An skillful hunter can usually salvage the pelts and teeth of their kill, but report that the meat is tasteless and not fit to eat.', 0, '');
 
 -- AR-V-013 — Chaurus Pie: A Recipe
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (116, 'AR-V-013', 'Chaurus Pie: A Recipe', 'Nils', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (137, 'AR-V-013', 'Chaurus Pie: A Recipe', 'Nils', 'Instruction & Research',
    'If I have to hear one more time about that famous gourmet who wrote that recipe book, I’ll hack off my own ears with a blunt axe.
 
 Sure, he can cook up some dishes fit for them stodgy Imperials and them poncy Bretons, but real Nords want real Nord food, and my chaurus pie is just that.
@@ -373,11 +373,11 @@ If you want turnips, sometimes those are good. Depends on what you’re in the m
 
 Then you cook that for awhile. Look for the top to be light brown, that’s when you know it’s done.
 
-And that’s it. Easy as pie. Haha.', 0);
+And that’s it. Easy as pie. Haha.', 0, '');
 
 -- AR-V-014 — Darkest Darkness
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (117, 'AR-V-014', 'Darkest Darkness', 'Anonymous', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (138, 'AR-V-014', 'Darkest Darkness', 'Anonymous', 'Instruction & Research',
    'In Morrowind, both worshippers and sorcerers summon lesser Daedra and bound Daedra as servants and instruments.
 
 Most Daedric servants can be summoned by sorcerers only for very brief periods, within the most fragile and tenuous frameworks of command and binding. This fortunately limits their capacity for mischief, though in only a few minutes, most of these servants can do terrible harm to their summoners as well as their enemies.
@@ -392,11 +392,11 @@ The Good Daedra are Boethiah, Azura, and Mephala. The hunger is a powerful and v
 
 The Bad Daedra are Mehrunes Dagon, Malacath, Sheogorath, and Molag Bal. Three lesser Daedra are associated with Mehrunes Dagon: the agile and pesky scamp, the ferocious and beast-like clannfear, and the noble and deadly dremora. The crocodile-headed humanoid Daedra called the daedroth is a servant of Molag Bal, while the giant but dim-witted ogrim is a servant of Malacath. Sheogorath’s lesser Daedra, the golden saint, a half-clothed human female in appearance, is highly resistant to magic and a dangerous spellcaster.
 
-Another type of lesser Daedra often encountered in Morrowind is the Atronach, or Elemental Daedra. Atronachs have no binding kinship or alignments with the Daedra Lords, serving one realm or another at whim, shifting sides according to seduction, compulsion, or opportunity.', 0);
+Another type of lesser Daedra often encountered in Morrowind is the Atronach, or Elemental Daedra. Atronachs have no binding kinship or alignments with the Daedra Lords, serving one realm or another at whim, shifting sides according to seduction, compulsion, or opportunity.', 0, '');
 
 -- AR-V-015 — Dragon Language: Myth no More
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (118, 'AR-V-015', 'Dragon Language: Myth no More', 'Hela Thrice-Versed', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (139, 'AR-V-015', 'Dragon Language: Myth no More', 'Hela Thrice-Versed', 'Instruction & Research',
    'Dragon.
 
 The very word conjurs nightmare images of shadowed skies,
@@ -582,11 +582,11 @@ But don’t take my word for it. For the walls are there for
  now we can return to theirs.
 
 And someday, someday, we may even unlock the strange,
- unknown power hidden in their words.', 0);
+ unknown power hidden in their words.', 0, '');
 
 -- AR-V-016 — The Dreamstride
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (119, 'AR-V-016', 'The Dreamstride', 'Anonymous', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (140, 'AR-V-016', 'The Dreamstride', 'Anonymous', 'Instruction & Research',
    'For over a thousand years, the Priests of Vaermina have been masters of the art of alchemy. The complexity and potency of their mixtures are nothing short of legendary. These alchemical treasures are so highly sought-after, that a single draught showing up on the black market can command sums in the tens of thousands of septims.
 
 Of the numerous potions that have surfaced to date, Vaermina’s Torpor is perhaps the most impressive. A single sip of this viscous liquid places the imbiber in a state known as “The Dreamstride.” This condition allows the subject to experience the dreams of another as if they were actually there. The subject becomes an integral part of the dream, behaving as if they belong. To any other entities in this dream state, the subject will be mistaken for the dreamer; the subject will even find his mannerisms, speech patterns and knowledge expanded appropriately.
@@ -595,11 +595,11 @@ To an observer, after the subject has imbibed the potion, they will appear to va
 
 It’s to be noted that the Dreamstride is highly dangerous and presents the subject with numerous pitfalls. In certain dreams, subjects have been exposed to life-threatening scenarios such as sicknesses, violence and even death. In most cases, the subject simply fades back to our world without harm, but in some instances, the subject never reappeared and was assumed to have expired or the subject reappeared deceased. It’s also quite possible that the subject could reappear in a precarious or hazardous location in reality, even though that location appeared safe within the Dreamstride.
 
-Vaermina’s Torpor is as mysterious and elusive as the priests that created it. It’s unknown whether this unique transport mechanism is a result of the Torpor itself or simply the odd machinations of Vaermina, but the potential for using the Dreamstride to penetrate seemingly impassible obstacles certainly outweighs its mysterious nature.', 0);
+Vaermina’s Torpor is as mysterious and elusive as the priests that created it. It’s unknown whether this unique transport mechanism is a result of the Torpor itself or simply the odd machinations of Vaermina, but the potential for using the Dreamstride to penetrate seemingly impassible obstacles certainly outweighs its mysterious nature.', 0, '');
 
 -- AR-V-017 — Dwarves
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (120, 'AR-V-017', 'Dwarves', 'Calcelmo, Scholar of Markarth', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (141, 'AR-V-017', 'Dwarves', 'Calcelmo, Scholar of Markarth', 'Instruction & Research',
    '## Volume I: Architecture and Designs
 
 Let me begin by correcting a common misconception. The
@@ -811,11 +811,11 @@ The mysteries the dwarves have left us with could easily
  our threadbare tapestry of dwarven artifacts is a careful,
  intelligent, industrious, and highly advanced culture whose
  secrets we as students and teachers of their works can only
- hope to uncover some day.', 0);
+ hope to uncover some day.', 0, 'Volume I: Architecture and Designs');
 
 -- AR-V-018 — Dwemer Inquiries
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (121, 'AR-V-018', 'Dwemer Inquiries', 'Thelwe Ghelein, Scholar', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (142, 'AR-V-018', 'Dwemer Inquiries', 'Thelwe Ghelein, Scholar', 'Instruction & Research',
    '## Vol I
 
 It has been my life’s work to investigate the Dwemer, their dubious history and mysterious banishment. My goal with this text is to share my findings and conclusions based on eighty years spent studying their unique architectural remains.
@@ -866,11 +866,11 @@ I have found in a small number of ruins reference to a geological anomaly or pla
 
 The most reasonable translation of “” I have managed to decipher is “Blackest Kingdom Reaches", but I cannot imagine what that means.
 
-I suspect there may be some pattern I am failing to notice. This creeping doubt has haunted my career in recent years, and I have begun to doubt if I will unravel some grand secret of the Dwarves in my lifetime, though it lies just under my nose - or indeed, under my feet.', 0);
+I suspect there may be some pattern I am failing to notice. This creeping doubt has haunted my career in recent years, and I have begun to doubt if I will unravel some grand secret of the Dwarves in my lifetime, though it lies just under my nose - or indeed, under my feet.', 0, 'Vol I');
 
 -- AR-V-019 — Effects of the Elder Scrolls
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (122, 'AR-V-019', 'Effects of the Elder Scrolls', 'Justinius Poluhnius, Anstius Metchim', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (143, 'AR-V-019', 'Effects of the Elder Scrolls', 'Justinius Poluhnius, Anstius Metchim', 'Instruction & Research',
    'It is widely known among scholars that the Elder Scrolls entail a certain hazard in their very reading. The mechanism of the effects has, at present, been largely unknown – theories of hidden knowledge and divine retribution were the subject of idle speculation with little investigation.
 
 I, Justinius Poluhnius, have undertaken to thoroughly document the ailments afflicted by the Elder Scrolls on their readers, though a unified theory of how they manifest continues to elude me and remains a subject for future study.
@@ -899,11 +899,11 @@ To prepare for his Ultimate Reading, a monk typically withdraws to seclusion in 
 
 It is hoped that this catalog will prove useful to those who wish to further our mortal understanding of the Elder Scrolls. The Moth priests remain aloof about these matters, taking the gradual debilitation that comes with reading as a point of pride. May this serve as a useful starting point for those hoping to take up such study.
 
-– Dictated to Anstius Metchim, 4th of Last Seed in the 126th year of the Second Era', 0);
+– Dictated to Anstius Metchim, 4th of Last Seed in the 126th year of the Second Era', 0, '');
 
 -- AR-V-020 — A Primer on Enchanting
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (123, 'AR-V-020', 'A Primer on Enchanting', 'Sergius Turrianus', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (144, 'AR-V-020', 'A Primer on Enchanting', 'Sergius Turrianus', 'Instruction & Research',
    'Enchanting was raised to a fine art by the wizards of the
  Arcane University. Sadly, some of the nuances of this skill
  were lost when the Imperial City was sacked. Yet we are not
@@ -954,11 +954,11 @@ At first you will find that your enchantments require a lot
  of the soul energy. As you become more skilled, you can
  achieve the same effects with less and less soul energy. So
  practice your lessons and pay heed to your masters in the
- magical arts.', 0);
+ magical arts.', 0, '');
 
 -- AR-V-021 — The Falmer: A study
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (124, 'AR-V-021', 'The Falmer: A study', 'Ursa Uthrax', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (145, 'AR-V-021', 'The Falmer: A study', 'Ursa Uthrax', 'Instruction & Research',
    'I have studied, and traveled, and explored, and observed, and my hypothesis has finally been confirmed: that the twisted Falmer that inhabit the darkest depths of Skyrim are indeed the snow elves of legend.
 
 No one really knows when the story of the snow elves began, but the ancient work “Fall of the Snow Prince,” which is an account of the Battle of the Moesring as transcribed by Lokheim, chronicler to the chieftain Ingjaldr White-Eye, gives a rather vivid account of its ending.
@@ -983,11 +983,11 @@ And so the legends began. Of small, blind, goblin-like creatures who would rise 
 
 In recent years, however, the sightings of these creatures have become more and more frequent. Their raids, more organized. Their attacks, more brutal. In fact, one might even come to the conclusion that the Falmer are ready to change once again. Could it be true? Are the snow elves of ages past ready to reclaim their long-forgotten glory? Are they ready to surge to the surface, and make war upon the “light dwellers"?
 
-If that happens - if the Falmer are indeed planning on reconquering Skyrim - I fear a horror neither man nor gods could possibly stand against.', 0);
+If that happens - if the Falmer are indeed planning on reconquering Skyrim - I fear a horror neither man nor gods could possibly stand against.', 0, '');
 
 -- AR-V-022 — The Firmament
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (125, 'AR-V-022', 'The Firmament', 'Ffoulke', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (146, 'AR-V-022', 'The Firmament', 'Ffoulke', 'Instruction & Research',
    'The Stars of Tamriel are divided into thirteen constellations. Three of them are the major constellations, known as the Guardians. These are the Warrior, the Mage, and the Thief. Each of the Guardians protects its three Charges from the thirteenth constellation, the Serpent.
 
 When the sun rises near one of the constellations, it is that constellation’s season. Each constellation has a Season of approximately one month. The Serpent has no season, for it moves about in the heavens, usually threatening one of the other constellations.
@@ -1042,11 +1042,11 @@ The Shadow’s Season is Second Seed. The Shadow grants those born under her sig
 
 The Tower
 
-The Tower is one of the Thief’s Charges and its Season is Frostfall. Those born under the sign of the Tower have a knack for finding gold and can open locks of all kinds.', 0);
+The Tower is one of the Thief’s Charges and its Season is Frostfall. Those born under the sign of the Tower have a knack for finding gold and can open locks of all kinds.', 0, '');
 
 -- AR-V-023 — Forge, Hammer, and Anvil
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (126, 'AR-V-023', 'Forge, Hammer, and Anvil', 'Thorbald; Adolphus Eritius, ed.', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (147, 'AR-V-023', 'Forge, Hammer, and Anvil', 'Thorbald; Adolphus Eritius, ed.', 'Instruction & Research',
    'These notes were found in ruins near Old Hroldan. As best I
  can tell, they were written by Thorbald, a rather infamous
  smith who died shortly before Tiber Septim’s reign. He was
@@ -1106,11 +1106,11 @@ Postscript - The last page had a large streak of ink an a
  Thorbald ever discovered the extraneous comments added to
  his script.
 
-– Adolphus Eritius', 0);
+– Adolphus Eritius', 0, '');
 
 -- AR-V-024 — Guide to Better Thieving
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (127, 'AR-V-024', 'Guide to Better Thieving', 'Wulfmare Shadow-Cloak', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (148, 'AR-V-024', 'Guide to Better Thieving', 'Wulfmare Shadow-Cloak', 'Instruction & Research',
    'So, you want to make it as a cutpurse. You want to live the life of a criminal, always one step ahead of everyone and pockets brimming with septims. Maybe it appeals to you to try and earn a living by robbing some wealthy merchants or extorting your local shopkeepers? Let me give you a bit of advise - don’t bother. For every skilled thief I’ve met in my day, I’ve seen a twenty who thought that they had what it took but ended up rotting in jail.
 
 But if you’re anything like me, you don’t listen to advice. You do whatever you want and never let anyone else tell you otherwise. To Oblivion with the risks - all that matters is the coin. Sound familiar? If it does, then this book might just teach you the difference between acting like a petty thief and a master criminal.
@@ -1125,11 +1125,11 @@ Lockpicking is an art form that takes years to master. The important thing to re
 
 By using my techniques, I’m not merely suggesting you’ll be a successful thief, I’m giving you a solid guarantee. All it takes is a little bit of patience and a great deal of practice then maybe, just maybe, you’ll become as successful as Wulfmare.
 
-*In my next volume, we’ll move onto another important tool in your arsenal - sneaking. I’ll prove to you that the shadows can be just as potent of a weapon as your blade if you know how to bend it to your will.*', 0);
+*In my next volume, we’ll move onto another important tool in your arsenal - sneaking. I’ll prove to you that the shadows can be just as potent of a weapon as your blade if you know how to bend it to your will.*', 0, '');
 
 -- AR-V-025 — Harvesting Frostbite Spider Venom
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (128, 'AR-V-025', 'Harvesting Frostbite Spider Venom', 'Anonymous', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (149, 'AR-V-025', 'Harvesting Frostbite Spider Venom', 'Anonymous', 'Instruction & Research',
    'My reserves of frostbite spider venom are nearly depleted. The injuries I suffered in my last encounter with these deadly arachnids prevent me from undertaking the task myself, which is why I’ve hired you.
 
 Collecting the venom of the frostbite spider is not a complicated task, but there is some risk involved. I’ve written this brief guide in the hope that you’ll be able to avoid making some of the mistakes that I’ve made.
@@ -1146,11 +1146,11 @@ As long as you find the frostbite spider before it finds you, collecting the ven
 
 With that, I will say farewell and good hunting. Remember, any loot that you find in the spider’s web is yours to keep.
 
-The larger the hole, the larger the spider.', 0);
+The larger the hole, the larger the spider.', 0, '');
 
 -- AR-V-026 — Heavy Armor Forging
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (129, 'AR-V-026', 'Heavy Armor Forging', 'Sven Two-Hammers', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (150, 'AR-V-026', 'Heavy Armor Forging', 'Sven Two-Hammers', 'Instruction & Research',
    'Heavy armor must be designed to take a lot of punishment. It will receive direct blows from all sorts of weapons while protecting the wearer. Leather strips are used to make the straps and bindings in all armor
 
 Iron and steel are easy to work. Just heat them up and pound them into shape. The heat of the forge is not that critical. Avoid filing off any of the metal. Always try to conserve the metal and work it back into shape.
@@ -1165,11 +1165,11 @@ Steel plate mail is made by adding steel to molten Corundum. The alloy is strong
 
 Ebony can only be worked when heated. It will develop small cracks that eventually shatter the material if hammered cold. Unlike most other armors, Ebony will not alloy with iron. It must be used pure.
 
-I can only tell you tales of how to make Daedric armor. I have never seen it myself, nor do I know anyone that has. The stories say that it should always be worked on at night... ideally under a new or full moon, and never during an eclipse. A red harvest moon is best. Ebony is the principle material, but at the right moment a daedra heart must be thrown into the fire.', 0);
+I can only tell you tales of how to make Daedric armor. I have never seen it myself, nor do I know anyone that has. The stories say that it should always be worked on at night... ideally under a new or full moon, and never during an eclipse. A red harvest moon is best. Ebony is the principle material, but at the right moment a daedra heart must be thrown into the fire.', 0, '');
 
 -- AR-V-027 — Herbalist’s guide to Skyrim
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (130, 'AR-V-027', 'Herbalist’s guide to Skyrim', 'Agneta Falia', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (151, 'AR-V-027', 'Herbalist’s guide to Skyrim', 'Agneta Falia', 'Instruction & Research',
    'Those avoiding this northern province due to claims of barbarism or concerns over climate are doing themselves a disservice; in fact, Skyrim has a wealth of materials that every Alchemist would do well to avail himself of. I have traveled extensively throughout this land, and here are but a few of my findings.
 
 Bleeding Crown
@@ -1194,11 +1194,11 @@ Tundra Cotton
 Not all Nords are savages wrapped in animal skins, howling at the moon. There are a wide variety of fabrics worn throughout the land, thanks in no small part to the stubborn Tundra Cotton plant. It soaks up what rain it can in the plains west of Whiterun, and blooms frequently. While it does not exhibit any of the more striking alchemical properties, it is a staple in potions for not only fortifying magicka, but for resisting spells as well. I wonder if that quality is what allows it to have adapted so well to this climate.
 
 Nightshade
-The name and shape of this plant are known to all; long understood to be one of the more potent components in many poisons, the average Nord keeps his distance from the bright purple flowers nestled among dark leaves. It is exceedingly effective as a pure poison, but can also be combined with other compounds to stiffen joints as well. It is thus favored amongst those who wish to disable their opponents in battle, and can be found coating the blades of many of the more unsavory characters in Skyrim.', 0);
+The name and shape of this plant are known to all; long understood to be one of the more potent components in many poisons, the average Nord keeps his distance from the bright purple flowers nestled among dark leaves. It is exceedingly effective as a pure poison, but can also be combined with other compounds to stiffen joints as well. It is thus favored amongst those who wish to disable their opponents in battle, and can be found coating the blades of many of the more unsavory characters in Skyrim.', 0, '');
 
 -- AR-V-028 — Herbane’s Bestiary: Automatons, Hagravens, Ice Wraiths
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (131, 'AR-V-028', 'Herbane’s Bestiary: Automatons, Hagravens, Ice Wraiths', 'Herbane', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (152, 'AR-V-028', 'Herbane’s Bestiary: Automatons, Hagravens, Ice Wraiths', 'Herbane', 'Instruction & Research',
    '## Dwarven Automatons
 
 9 Hearthfire
@@ -1369,11 +1369,11 @@ It’s good that I’ve found I can make decent coin selling the
  Ice Wraith’s teeth, as they are a prized ingredient in
  alchemical potions. That will continue to afford me the
  opportunity to search these lands for a challenge worthy of
- story, for I have yet to see what would make me tremble.', 0);
+ story, for I have yet to see what would make me tremble.', 0, '');
 
 -- AR-V-029 — Horker Attacks
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (132, 'AR-V-029', 'Horker Attacks', 'Heidmir Starkad', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (153, 'AR-V-029', 'Horker Attacks', 'Heidmir Starkad', 'Instruction & Research',
    'Surviving a Horker Attack
 
 by Heidmir Starkad
@@ -1394,11 +1394,11 @@ After recovering from the stagger, Gromm was able to steady himself and with a f
 
 Drawing of Horker tusks
 
-Gromm’s parting comment was that if you do encounter a horker, remain calm and remember that if you survive, the meat and tusks will fetch a nice bit of gold at market.', 0);
+Gromm’s parting comment was that if you do encounter a horker, remain calm and remember that if you survive, the meat and tusks will fetch a nice bit of gold at market.', 0, '');
 
 -- AR-V-030 — Immortal Blood
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (133, 'AR-V-030', 'Immortal Blood', 'Anonymous', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (154, 'AR-V-030', 'Immortal Blood', 'Anonymous', 'Instruction & Research',
    'The moons and stars were hidden from sight, making that particular quiet night especially dark. The town guard had to carry torches to make their rounds; but the man who came to call at my chapel carried no light with him. I came to learn that Movarth Piquine could see in the dark almost as well as the light - an excellent talent, considering his interests were exclusively nocturnal.
 
 One of my acolytes brought him to me, and from the look of him, I at first thought he was in need of healing. He was pale to the point of opalescence with a face that looked like it had once been very handsome before some unspeakable suffering. The dark circles under his eyes bespoke exhaustion, but the eyes themselves were alert, intense, almost insane.
@@ -1471,11 +1471,11 @@ He did not return for a month, and on the night that he did, I could see his fru
 
 I brought the light up to my face and smiled. He was surprised, even stunned by the pallor of my flesh, the dark hunger in my ageless eyes, and the teeth. Oh, yes, I think the teeth definitely surprised the man who could not afford to be surprised.
 
-“I haven’t fed in seventy-two hours,” I explained, as I fell on him. He did not land the first blow or the last.', 0);
+“I haven’t fed in seventy-two hours,” I explained, as I fell on him. He did not land the first blow or the last.', 0, '');
 
 -- AR-V-031 — Imperial Report on Saarthal
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (134, 'AR-V-031', 'Imperial Report on Saarthal', 'Heseph Chirirnis, Mages Guild Scholar Assigned to Imperial Archaeologist Sentius Floronius', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (155, 'AR-V-031', 'Imperial Report on Saarthal', 'Heseph Chirirnis, Mages Guild Scholar Assigned to Imperial Archaeologist Sentius Floronius', 'Instruction & Research',
    'Let it be known that the esteemed archaeologist has chosen to focus his boundless talents on the cooking and baking habits of the early First Era Nords. While this work will no double bring great glory and benefit to the Empire, it is clear that my limited expertise is of no use to this effort.
 
 I have instead been using my considerable free time to investigate a particular avenue of study, namely that of the Fall of Saarthal. Every child of the Empire knows what happened here; that the first city of Man on Tamriel was sacked by the elves, jealous and fearful of the threat men posed to them. Relations have obviously improved considerably since then, but to be able to see the results of the destruction first-hand, it is quite striking to note the degree of effort that went into the venture.
@@ -1486,11 +1486,11 @@ Or rather, that is what I initially thought. Perhaps it was a mistaken sense of 
 
 And so I have no conclusive results to report at this time. I can say with certainty that the initial attack on Saarthal seems to have been very focused, and does not appear to correlate to any locations that have been established as points of defense or importance. While the eminent scholar Sentius has yet to examine my findings, or indeed show any interest in them, my inclination is to suggest that not only did the elves know the apparent layout of the city, but that their assault was based on a specific directive and perhaps a singular goal.
 
-My humble investigations shall continue as time persists.', 0);
+My humble investigations shall continue as time persists.', 0, '');
 
 -- AR-V-032 — Killing - Before You’re Killed
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (135, 'AR-V-032', 'Killing - Before You’re Killed', 'Eduardo Corvus', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (156, 'AR-V-032', 'Killing - Before You’re Killed', 'Eduardo Corvus', 'Instruction & Research',
    'I’ve seen many a man rush headlong into battle only to have their life cut short in an instant. I’ve been a trainer of the warrior arts for many spans - cut from the cloth of a great lineage of knights, Blades and even a distant sellsword or two.
 
 It’s with this knowledge that I’ll try to pen a brief treatise on the subtle art of war. Not mage fire, not archery or criminal throat-slitting. But war. Man on man with nothing but a fine bit of steel between them.
@@ -1515,11 +1515,11 @@ Bigger opponents cannot be staggered by heavy attacks. Only the power bash will 
 
 So again - block, counter, bash! Hit them when they’re down! They’ll show no mercy, so why should you? Battle is about the offense, about catching your foe early and never relenting. Keep moving, keep swinging. If you consider yourself overly powerful, pick up a two-handed weapon and see your foes fall before you like wheat stalks. They’re slow and unwieldy, but they shatter bones and cleave flesh better than anything.
 
-The graves are filled with many a mediocre swordsman. If you don’t have the stomach for war, try a monk’s work. But if you do travel the path of the warrior, learn the basics and keep your head firmly planted on your shoulders - or someone’s bound to lob it off.', 0);
+The graves are filled with many a mediocre swordsman. If you don’t have the stomach for war, try a monk’s work. But if you do travel the path of the warrior, learn the basics and keep your head firmly planted on your shoulders - or someone’s bound to lob it off.', 0, '');
 
 -- AR-V-033 — Light Armor Forging
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (136, 'AR-V-033', 'Light Armor Forging', 'Revus Sarvani', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (157, 'AR-V-033', 'Light Armor Forging', 'Revus Sarvani', 'Instruction & Research',
    'There are two classes of light armor, metallic and non-metallic. Elven and Glass are metallic light armor. You may be surprised to think that Glass can be thought of as metallic, but appearances are deceiving. What we call Glass is nothing like the windows panes you see in houses. The greenish material is far stronger and has a much higher melting point.
 
 Non-metallic armors are Hide, Studded, Leather, and Scaled. For these armor types, the forger is as much tailor as blacksmith. All use large pieces of leather, stitched together with leather strips.
@@ -1530,11 +1530,11 @@ For centuries the secret of making Elven armor was a closely guarded secret on S
 
 For Gilded Elven armor, you must also meld in Quicksilver. It melts at a much lower heat than Moonstone, making it tricky to work the two metals together.
 
-The trickiest of all is Glass. Hammer blows struck across the grain run the risk of shattering the armor. It’s principle ingredient is Malachite, although it also requires Moonstone to give it the right strength.', 0);
+The trickiest of all is Glass. Hammer blows struck across the grain run the risk of shattering the armor. It’s principle ingredient is Malachite, although it also requires Moonstone to give it the right strength.', 0, '');
 
 -- AR-V-034 — Liminal Bridges  [SEALED]
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (137, 'AR-V-034', 'Liminal Bridges', 'Camilonwe of Alinor', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (158, 'AR-V-034', 'Liminal Bridges', 'Camilonwe of Alinor', 'Instruction & Research',
    'Transliminal passage of quickened objects or entities without the persistent agency of hyperagonal media is not possible, and even if possible, would result in instantaneous retromission of the transported referents. Only a transpontine circumpenetration of the limen will result in transits of greater than infinitessimal duration.
 
 Though other hyperagonal media may exist in theory, the only known transliminal artifact capable of sustained transpontine circumpenetration is the sigil stone. A sigil stone is a specimen of pre-Mythic quasi-crystalline morpholith that has been transformed into an extra-dimensional artifact through the arcane inscription of a daedric sigil. Though some common morpholiths like soul gems may be found in nature, the exotic morpoliths used to make sigil stones occur only in pocket voids of Oblivion, and cannot be prospected or harvested without daedric assistance.
@@ -1553,22 +1553,22 @@ To open a gate to Oblivion, the mechanic must communicate directly, by spell or 
 
 [1] Interested students are invited to consult the works of Albrecht Theophannes Bombidius and Galerion The Mystic for the fundaments of this discipline.
 
-[2] Recommended examples of the conjurational charter may be found in Therion’s Book of Most Arcane Covenants or Ralliballah’s Eleven Ritual Forms.', 1);
+[2] Recommended examples of the conjurational charter may be found in Therion’s Book of Most Arcane Covenants or Ralliballah’s Eleven Ritual Forms.', 1, '');
 
 -- AR-V-035 — Mace Etiquette
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (138, 'AR-V-035', 'Mace Etiquette', 'Anonymous', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (159, 'AR-V-035', 'Mace Etiquette', 'Anonymous', 'Instruction & Research',
    'Warriors sometimes make the mistake of thinking that there are no tactics with a mace. They assume that the sword is all about skill and the mace is only about strength and stamina. As a veteran instructor of mace tactics, I can tell you they are wrong.
 
 Wielding a mace properly is all about timing and momentum. Once the swing of the mace has begun, stopping it or slowing it down is difficult. The fighter is committed to not just the blow, but also the recoil. Begin your strike when the opponent is leaning forward, hopefully off balance. It is completely predictable that he will lean backward, so aim for a point behind his head. By the time the mace gets there, his head will be in it’s path.
 
 The mace should be held at the ready, shoulder high. The windup should not extend past the shoulders by more than a hand’s width. When swinging, lead with the elbow. As the elbow passes the height of your collarbone, extend the forearm like a whip. The extra momentum will drive the mace faster and harder, causing far more damage.
 
-At the moment of impact, let the wrist loosen. The mace will bounce and hurt a stiff wrist. Allow the recoil of the blow to drive the mace back into the ready position, thereby preparing the warrior for a quicker second strike.', 0);
+At the moment of impact, let the wrist loosen. The mace will bounce and hurt a stiff wrist. Allow the recoil of the blow to drive the mace back into the ready position, thereby preparing the warrior for a quicker second strike.', 0, '');
 
 -- AR-V-036 — Magic from the Sky
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (139, 'AR-V-036', 'Magic from the Sky', 'Irlav Jarol', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (160, 'AR-V-036', 'Magic from the Sky', 'Irlav Jarol', 'Instruction & Research',
    'The ancient Ayleids believed that Nirn was composed of four basic elements – earth, water, air, and light – and of these four elements, they believed the most sublime form of light was star light. The stars are our links to the plane of Aetherius, the source of all magical power, and therefore, light from the stars is the most potent and exalted of all magical powers.
 
 From time to time, fragments of Aetherius fall from the heavens. The people know these fragments as ‘shooting stars’, and from time to time, such Aetherial fragments are found on Nirn. The most common varieties are known as ‘meteoric iron’; this metal is prized by armorers and enchanters for its properties in the forging of enchanted weapons and armors. This meteoric iron is also the primary component in ‘Ayleid Wells,’ ancient enchanted artifacts found throughout Cyrodiil.
@@ -1587,11 +1587,11 @@ Another rare enchanted item found in Ayleid ruins is called a Varla Stone [Aldme
 
 Ayleid Wells. Welkynd Stones. Varla Stones. Consider, then, these marvels of magical enchantment. Are we then to conclude that the Ayleids were a superior race and culture? Did they so exceed us in art and craft that they mock the feeble powers of Third Era Wizards?
 
-Never! The Ayleids were powerful, yes, and cunning, but they were neither good nor wise, and so they were struck down. Their works have passed from Nirn, save these rare and sparkling treasures. Their ancient cities are dark and empty, save for the grim revenants and restless spirits condemned forever to walk the halls, keeping their melancholy vigils over bones and dust.', 0);
+Never! The Ayleids were powerful, yes, and cunning, but they were neither good nor wise, and so they were struck down. Their works have passed from Nirn, save these rare and sparkling treasures. Their ancient cities are dark and empty, save for the grim revenants and restless spirits condemned forever to walk the halls, keeping their melancholy vigils over bones and dust.', 0, '');
 
 -- AR-V-037 — Mixed Unit Tactics
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (140, 'AR-V-037', 'Mixed Unit Tactics', 'Codus Callonus', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (161, 'AR-V-037', 'Mixed Unit Tactics', 'Codus Callonus', 'Instruction & Research',
    'The Legions could learn from the unconventional tactics used by the Khajiit in the Five Years War against Valenwood. I was stationed at the Sphinxmoth Legion Fort on the border near Dune and witnessed many of the northern skirmishes firsthand.
 
 The war started with the so-called “Slaughter of Torval.” The Khajiit claim that the Bosmer invaded the city without provocation and killed over a thousand citizens before being driven off by reinforcements from a nearby jungle tribe. The Bosmer claim that the attack was in retaliation for Khajiti bandits who were attacking wood caravans headed for Valenwood.
@@ -1610,11 +1610,11 @@ The Bosmer archers in the trees would have still won the battle were they not ha
 
 Apparently the Dagi and Dagi-raht have more magical ability than is widely believed if they were able to keep themselves magically silenced for so long. One of the surviving Bosmer told me that he saw a few ordinary cats among the Dagi and even claimed that these ordinary cats are known as ‘Alfiq’ and that they were the spellcasters, but Bosmer are almost as unreliable as the Khajiit when it comes to the truth, and I cannot believe that a housecat can cast spells.
 
-At the end of the day the Khajiit lost perhaps a half-dozen fighters out a force of no more than four dozen, while the Bosmer lost nearly an entire company of archers. The survivors were unable to report back before a second company of archers arrived and this strategy was repeated again, with similar results. Finally, a much larger force was sent and the Bosmer won that battle with the help of the native animals of Valenwood. That third skirmish and the Khajiti response I will discuss in the second volume of this series.', 0);
+At the end of the day the Khajiit lost perhaps a half-dozen fighters out a force of no more than four dozen, while the Bosmer lost nearly an entire company of archers. The survivors were unable to report back before a second company of archers arrived and this strategy was repeated again, with similar results. Finally, a much larger force was sent and the Bosmer won that battle with the help of the native animals of Valenwood. That third skirmish and the Khajiti response I will discuss in the second volume of this series.', 0, '');
 
 -- AR-V-038 — On Oblivion
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (141, 'AR-V-038', 'On Oblivion', 'Morian Zenas', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (162, 'AR-V-038', 'On Oblivion', 'Morian Zenas', 'Instruction & Research',
    'It is improper, however customary, to refer to the denizens of the dimension of Oblivion as “demons.” This practice probably dates to the Alessian Doctrines of the First Era prophet Marukh – which, rather amusingly, forbade “trafficke with daimons” and then neglected to explain what daimons were.
 
 It is most probable that “daimon” is a misspelling or etymological rendition of “Daedra,” the old Elven word for those strange, powerful creatures of uncertain motivation who hail from the dimension of Oblivion. ("Daedra” is actually the plural form; the singular is “Daedroth.") In a later tract by King Hale the Pious of Skyrim, almost a thousand years after the publication of the original Doctrines, the evil machinations of his political enemies are compared to “the wickedness of the demons of Oblivion... their depravity equals that of Sanguine itself, they are cruel as Boethiah, calculating as Molag Bal, and mad as Sheogorath.” Hale the Pious thus long-windedly introduced four of the Daedra lords to written record.
@@ -1627,11 +1627,11 @@ From my experience, Daedra are a very mixed lot. It is almost impossible to cate
 
 Mehrunes Dagon, Molag Bal, Peryite, Boethiah, and Vaernima are among the most consistently “demonic” of the Daedra, in the sense that their spheres seem to be destructive in nature. The other Daedra can, of course, be equally dangerous, but seldom purely for the sake of destruction as these five can. Nor are these previous five identical in their destructiveness. Mehrunes Dagon seems to prefer natural disasters – earthquakes and volcanoes – for venting his anger. Molag Bal elects the employment of other daedra, and Boethiah inspires the arms of mortal warriors. Peryite’s sphere seems to be pestilence, and Vaernima’s torture.
 
-In preparation for the next instalment in this series, I will be investigating two matters that have intrigued me since I began my career as a Daedra researcher. The first is on one particular Daedroth, perhaps yet another Daedra prince, referred to in multiple articles of incunabula as Hircine. Hircine has been called “the Huntsman of the Princes” and “the Father of Man-beasts,” but I have yet to find anyone who can summon him. The other, and perhaps more doubtful, goal I have is to find a practical means for mortal men to pass through to Oblivion. It has always been my philosophy that we need only fear that which we do not understand – and with that thought in mind, I ever pursue my objective.', 0);
+In preparation for the next instalment in this series, I will be investigating two matters that have intrigued me since I began my career as a Daedra researcher. The first is on one particular Daedroth, perhaps yet another Daedra prince, referred to in multiple articles of incunabula as Hircine. Hircine has been called “the Huntsman of the Princes” and “the Father of Man-beasts,” but I have yet to find anyone who can summon him. The other, and perhaps more doubtful, goal I have is to find a practical means for mortal men to pass through to Oblivion. It has always been my philosophy that we need only fear that which we do not understand – and with that thought in mind, I ever pursue my objective.', 0, '');
 
 -- AR-V-039 — Physicalities of Werewolves
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (142, 'AR-V-039', 'Physicalities of Werewolves', 'Reman Crex', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (163, 'AR-V-039', 'Physicalities of Werewolves', 'Reman Crex', 'Instruction & Research',
    'Far too many books such as this one begin with some sort of justification. Some reason for study is concocted, in the hopes that the writer’s obsession will be seen in a more noble light. I make no such pretensions. No werewolf killed my family, none ever threatened me personally, nor even an acquaintance of mine. My obsession is borne out of simple curiosity, with a strong dose of hatred for the unnatural. Is it possible to hate something without having been done harm by it? I am no philosopher, and thus here ends my introduction. On with my studies.
 
 I have endeavored, over the course of several decades, to perform a complete study of the physical nature of the creatures we call werewolves. I overlook entirely the origins of this plague, whether it is acquired voluntarily or inflicted, and how one might be cured. Such matters are filled with too much guesswork and rambling second-hand inanities from farmhands.
@@ -1672,22 +1672,22 @@ I believe I may have been the first to witness a werewolf transformation ply its
 
 More interesting were the changes observed in the muscles of the legs. I had expected a strengthening, as the beasts are known for great power and speed, but they also seemed to change color into a dusky brown. This could also be attributed to blood loss from the procedures.
 
-Before the subject expired, I worked applying some known “remedies” for the disease directly to internal organs. Wolfsbane petals applied to the bones seemed to render them brittle, and the ribcage nearly collapsed at the touch. The juice of ripened belladonna berries was pressed directly into the veins, and they could be seen to shrivel behind the flow as it moved through the system. Upon reaching the heart, the major vessels pulled away completely, and subject expired within minutes.', 0);
+Before the subject expired, I worked applying some known “remedies” for the disease directly to internal organs. Wolfsbane petals applied to the bones seemed to render them brittle, and the ribcage nearly collapsed at the touch. The juice of ripened belladonna berries was pressed directly into the veins, and they could be seen to shrivel behind the flow as it moved through the system. Upon reaching the heart, the major vessels pulled away completely, and subject expired within minutes.', 0, '');
 
 -- AR-V-040 — Proper Lock Design
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (143, 'AR-V-040', 'Proper Lock Design', 'Anonymous', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (164, 'AR-V-040', 'Proper Lock Design', 'Anonymous', 'Instruction & Research',
    'I have encountered many thieves whose sole interest in locks is how to open them and thereby pilfer the protected contents of the room or chest. I have taken it upon myself to devise a system of locks that can defeat such villianous intent.
 
 The materials used to create a lock are of utmost importance. Shoddy brass or copper will give way to a well placed kick, thereby rendering the lock itself useless. I recommend steel over iron when choosing a material. More robust materials tend to be prohibitively expensive and necessitate the door being made of similar metals. I have been chagrined to stumble across the shattered shell of a wooden chest, it’s dwarven lock intact and still locked.
 
 Once these basics are settled, pay particular attention to the offset of the tumblers. A seven degree offset to the keyhole will allow a torque style key to work smoothly, while at the same time causing numerous headaches for the thief attempting to insert non-torque lockpicks.
 
-In similar fashion, the springs of the tumblers should be made by different smiths. Each smith will unknowingly create a spring with different tension than his fellow smiths. This variance will also create difficulties for anyone attempting to pick the lock.', 0);
+In similar fashion, the springs of the tumblers should be made by different smiths. Each smith will unknowingly create a spring with different tension than his fellow smiths. This variance will also create difficulties for anyone attempting to pick the lock.', 0, '');
 
 -- AR-V-041 — Notes on Racial Phylogeny and Biology
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (144, 'AR-V-041', 'Notes on Racial Phylogeny and Biology', 'the Council of Healers', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (165, 'AR-V-041', 'Notes on Racial Phylogeny and Biology', 'the Council of Healers', 'Instruction & Research',
    'Seventh Edition
 
 by the Council of Healers, Imperial University
@@ -1696,31 +1696,31 @@ After much analysis of living specimens, the Council long ago determined that al
 
 The reproductive biology of orcs is at present not well understood, and the same is true of goblins, trolls, harpies, dreugh, tsaesci, imga, various daedra and many others. Certainly, there have been cases of intercourse between these “races,” generally in the nature of rape or magickal seduction, but there have been no documented cases of pregnancy. Still the interfertility of these creatures and the civilized hominids has yet to be empirically established or refuted, likely due to the deep cultural differences. Surely any normal Bosmer or Breton impregnated by an orc would keep that shame to herself, and there’s no reason to suppose that an orc maiden impregnated by a human would not be likewise ostracized by her society. Regrettably, our oaths as healers keep us from forcing a coupling to satisfy our scientific knowledge. We do know, however, that the sload of Thras are hermaphrodites in their youth and later reabsorb their reproductive organs once they are old enough to move about on land. It can be safely assumed that they are not interfertile with men or mer.
 
-One might further wonder whether the proper classification of these same “races,” to use the imprecise but useful term, should be made from the assumption of a common heritage and the differences between them have arisen from magickal experimentation, the manipulations of the so-called “Earth Bones,” or from gradual changes from one generation to the next.', 0);
+One might further wonder whether the proper classification of these same “races,” to use the imprecise but useful term, should be made from the assumption of a common heritage and the differences between them have arisen from magickal experimentation, the manipulations of the so-called “Earth Bones,” or from gradual changes from one generation to the next.', 0, '');
 
 -- AR-V-042 — Reality and Other Falsehoods
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (145, 'AR-V-042', 'Reality and Other Falsehoods', 'Anonymous', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (166, 'AR-V-042', 'Reality and Other Falsehoods', 'Anonymous', 'Instruction & Research',
    'It is easy to confuse Illusion and Alteration. Both schools of magic attempt to create what is not there. The difference is in the rules of nature. Illusion is not bound by them, while Alteration is. This may seem to indicate that Alteration is the weaker of the two, but this is not true. Alteration creates a reality that is recognized by everyone. Illusion’s reality is only in the mind of the caster and the target.
 
 To master Alteration, first accept that reality is a falsehood. There is no such thing. Our reality is a perception of greater forces impressed upon us for their amusement. Some say that these forces are the gods, others that they are something beyond the gods. For the wizard, it doesn’t really matter. What matters is the appeal couched in a manner that cannot be denied. It must be insistent without being insulting.
 
-To cast Alteration spells is to convince a greater power that it will be easier to change reality as requested than to leave it alone. Do not assume that these forces are sentient. Our best guess is that they are like wind and water. Persistent but not thoughtful. Just like directing the wind or water, diversions are easier than outright resistance. Express the spell as a subtle change and it is more likely to be successful.', 0);
+To cast Alteration spells is to convince a greater power that it will be easier to change reality as requested than to leave it alone. Do not assume that these forces are sentient. Our best guess is that they are like wind and water. Persistent but not thoughtful. Just like directing the wind or water, diversions are easier than outright resistance. Express the spell as a subtle change and it is more likely to be successful.', 0, '');
 
 -- AR-V-043 — Souls, Black and White  [SEALED]
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (146, 'AR-V-043', 'Souls, Black and White', 'Anonymous', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (167, 'AR-V-043', 'Souls, Black and White', 'Anonymous', 'Instruction & Research',
    'The nature of the soul is not knowable. Every wizard that has attempted it vanishes without a trace. What can be known is that souls are a source of mystic energy that can be harvested.
 
 Every creature, living or dead, is powered by a soul. Without it, they are just lumps of flesh or piles of bones. This animating force can be contained within a soul gem, if the soul gem has the capacity. From the gem, the power can be used to power magical items.
 
 Centuries of experimentation has demonstrated that there are black souls and white souls. Only the rare black soul gem can hold the soul of a higher creature, such as a man or an elf. While the souls of lesser creatures can be captured by gems of many colors, they are all categorized as white soul gems. Hence the division of souls into black and white.
 
-White souls are far safer than black souls, although not as powerful. Beginning students of Mysticism should not dabble in black souls or black soul gems. Even if one were to ignore the guild strictures against the necromatic arts used to power black soul gems, it is dangerous to the caster to handle them for long. If the gem is not precisely the size of the encased soul, small bits of the caster’s soul may leak into the gem when it is touched.', 1);
+White souls are far safer than black souls, although not as powerful. Beginning students of Mysticism should not dabble in black souls or black soul gems. Even if one were to ignore the guild strictures against the necromatic arts used to power black soul gems, it is dangerous to the caster to handle them for long. If the gem is not precisely the size of the encased soul, small bits of the caster’s soul may leak into the gem when it is touched.', 1, '');
 
 -- AR-V-044 — Sovngarde: A Reexamination
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (147, 'AR-V-044', 'Sovngarde: A Reexamination', 'Bereditte Jastal', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (168, 'AR-V-044', 'Sovngarde: A Reexamination', 'Bereditte Jastal', 'Instruction & Research',
    'Death. It is something we all face. Or do we?
 
 Just ask the nearest Nord what he thinks of the end of life, and you’ll likely be treated to a horrific story of blood, bone and viscera, of courageous deeds and heartbreaking sorrow. Carnage notwithstanding, there may be even more to death than the average Nord warrior realizes. New evidence suggests a life beyond the battlefield, where a valiant Nord may live forever, downing mead and engaging in contests of strength and skill. But in order to fully understand the possibility of a Nord’s eternal life after death, one must first reexamine the legends surrounding that most wondrous of warrior’s retreats - Sovngarde.
@@ -1735,11 +1735,11 @@ According to the parchments, Rolf had spent his entire life searching for the en
 
 Rolf could not believe his good fortune, and his foolishness for not having realized the truth so many years before. For death was the entrance to Sovngarde. So he was told by Shor himself, who greeted Rolf the Large as a brother, and personally handed him a leg of roast mutton and the hand of a comely wench. Sovngarde, Shor told him, can be entered by any Nord who dies valiantly in honorable combat.
 
-It is time for Nords to learn the truth. Eternal life can be theirs, without the need to spend an entire mortal life in vain pursuit of something completely unattainable. In the end, all valiant Nords can enter Sovngarde. Dismemberment, decapitation or evisceration seems a small price to pay for the chance to spend an eternity in Shor’s wondrous hall.', 0);
+It is time for Nords to learn the truth. Eternal life can be theirs, without the need to spend an entire mortal life in vain pursuit of something completely unattainable. In the end, all valiant Nords can enter Sovngarde. Dismemberment, decapitation or evisceration seems a small price to pay for the chance to spend an eternity in Shor’s wondrous hall.', 0, '');
 
 -- AR-V-045 — There be Dragons
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (148, 'AR-V-045', 'There be Dragons', 'Torhal Bjorik', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (169, 'AR-V-045', 'There be Dragons', 'Torhal Bjorik', 'Instruction & Research',
    'The last known sighting of a dragon in Tamriel was in the time of Tiber Septim. He made a pact with the few remaining dragons, swearing to protect them if they would serve him. Despite his promise, dragons were still hunted and slain. It’s not clear if the last ones fled Tamriel or if they were exterminated.
 
 There is no credible story of how dragons came to be. According to dremora that the College of Whispers have “questioned,” they just were, and are. Eternal, immortal, unchanging, and unyielding. They are not born or hatched. They do not mate or breed. There are no known examples of dragon eggs or dragonlings. The Iliac Bay area has stories of such things, but so far all have proven false. The eggs turned out to be eggs of other reptiles. The small dragons were merely oversized lizards and no relation to true dragons.
@@ -1752,11 +1752,11 @@ Most people think of dragons as mere beasts. However, logically they must have h
 
 The records of Reman’s hunts contain reports of dragons that breathe or spit fire. Recently some were unearthed that described dragons blowing freezing blasts of cold. The more fanciful tales have them summoning storms and even stopping time. These should be discounted as myths and faery tales. Even without this most fearsome weapon, their nearly impenetrable hide and granite-like teeth and claws made them terrifying opponents.
 
-There is some confusion over when the last dragon was killed. It seems the last few vanished all at once. Some tales speak of a dragon king who devoured all of them rather than let mankind kill them. One of the more far-fetched stories has Tiber Septim absorbing their essences when he ascended to godhood. Although the exact cause is unknown, they are all gone. No dragon has been seen for centuries. There are a few known examples of dragon bones fused with the stone and rocks of cliffs and caves. Just enough proof to make the stories undeniable.', 0);
+There is some confusion over when the last dragon was killed. It seems the last few vanished all at once. Some tales speak of a dragon king who devoured all of them rather than let mankind kill them. One of the more far-fetched stories has Tiber Septim absorbing their essences when he ascended to godhood. Although the exact cause is unknown, they are all gone. No dragon has been seen for centuries. There are a few known examples of dragon bones fused with the stone and rocks of cliffs and caves. Just enough proof to make the stories undeniable.', 0, '');
 
 -- AR-V-046 — Troll Slaying
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (149, 'AR-V-046', 'Troll Slaying', 'Finn', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (170, 'AR-V-046', 'Troll Slaying', 'Finn', 'Instruction & Research',
    '## Troll Slaying
 
 by
@@ -1818,20 +1818,20 @@ If you can find it, be sure to check the troll’s den as well. Perhaps you’ll
 
 No doubt you can put his coin to wiser use.
 
-Now you know everything that you need to make a living as a wealthy and reputable troll hunter. Go on, then! Get out there and find yourself some trolls!', 0);
+Now you know everything that you need to make a living as a wealthy and reputable troll hunter. Go on, then! Get out there and find yourself some trolls!', 0, '');
 
 -- AR-V-047 — The True Nature of Orcs
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (150, 'AR-V-047', 'The True Nature of Orcs', 'Anonymous', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (171, 'AR-V-047', 'The True Nature of Orcs', 'Anonymous', 'Instruction & Research',
    'Orcs were born during the latter days of the Dawn Era. History has mislabeled them beastfolk, related to the goblin races, but the Orcs are actually the children of Trinimac, strongest of the Altmeri ancestor spirits. When Trinimac was eaten by the Daedroth Prince Boethiah, and transformed in that foul god’s insides, the Orcs were transformed as well. The ancient name for the Orcs is ‘Orsimer,’ which means ‘The Pariah Folk.’ They now follow Malauch, the remains of Trinimac.
 
 Who is Malauch?
 
-He is more commonly know as the Daedroth Prince Malacath, ’whose sphere is the patronage of the spurned and ostracized, the sworn oath, and the bloody curse.’ He is not technically a Daedra Lord, nor do the other Daedra recognize him as such, but this is fitting for his sphere. Of old he was Trinimac, the champion of the High Elven pantheon, in some places more popular than Auri-El, who protected them against enemies without and within. When Trinimac and his followers attempted to halt the Velothi dissident movement, Boethiah ate him. Trinimac’s body and spirit were corrupted, and he emerged as Malacath. His followers were likewise changed for the worse. Despised by everyone, especially the inviolate Auri-El, they quickly fled to the northern wastes, near Saarthal. They fought Nords and Chimer for a place in the world, but did not get much. In Skyrim, Malacath is called Orkey, or Old Knocker, and his battles with Ysmir are legendary.', 0);
+He is more commonly know as the Daedroth Prince Malacath, ’whose sphere is the patronage of the spurned and ostracized, the sworn oath, and the bloody curse.’ He is not technically a Daedra Lord, nor do the other Daedra recognize him as such, but this is fitting for his sphere. Of old he was Trinimac, the champion of the High Elven pantheon, in some places more popular than Auri-El, who protected them against enemies without and within. When Trinimac and his followers attempted to halt the Velothi dissident movement, Boethiah ate him. Trinimac’s body and spirit were corrupted, and he emerged as Malacath. His followers were likewise changed for the worse. Despised by everyone, especially the inviolate Auri-El, they quickly fled to the northern wastes, near Saarthal. They fought Nords and Chimer for a place in the world, but did not get much. In Skyrim, Malacath is called Orkey, or Old Knocker, and his battles with Ysmir are legendary.', 0, '');
 
 -- AR-V-048 — Uncommon Taste
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (151, 'AR-V-048', 'Uncommon Taste', 'The Gourmet', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (172, 'AR-V-048', 'Uncommon Taste', 'The Gourmet', 'Instruction & Research',
    'Congratulations!
 
 By opening this volume you have taken the first step on a truly epic journey, a voyage through the vast landscape of Breton food and its myriad joys and wonders. You will explore scents, flavors and textures so exquisite, they will seem impossible. But they are more than possible!
@@ -1912,11 +1912,11 @@ But wait. I know what you’re wondering. “That’s it? Is that all there is t
 
 Do you really expect me to give away the secret to my most popular dish? Well guess what? I will! For that secret, my friends, is YOU! That’s right, the Potage le Magnifique is delicious, and extraordinary. Using just the simple ingredients listed, you will create a potage that is both hearty and delicious. But in order to make the Potage le Magnifique truly magnificent, it takes the imagination of a truly inspired chef. Do you have that gift?
 
-I have served bowls of the Potage le Magnifique that have caused grown men to weep with with joy. Can you guess what I added? Can you create... magic?', 0);
+I have served bowls of the Potage le Magnifique that have caused grown men to weep with with joy. Can you guess what I added? Can you create... magic?', 0, '');
 
 -- AR-V-049 — Varieties of Daedra
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (152, 'AR-V-049', 'Varieties of Daedra', 'Aranea Drethan', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (173, 'AR-V-049', 'Varieties of Daedra', 'Aranea Drethan', 'Instruction & Research',
    'There is little chance of our ever understanding the various orders of Daedra and their relationships to the Daedra Lords and their dominions. Of the varieties of Daedra that appear in our world, and the varieties of their relationships to their fellows and their Daedra patrons, there is no end. In one place and time they are seen to be this, and in another place and time they are seen to be the opposite, and in another place and time they are seen to be both this and that, in completely contradictory terms.
 
 What Daedra serves this Prince? What Daedra gives orders, and what Daedra serves, and in what hierarchy, and under what circumstances? What Daedra exist in fellowship with one another, and what Daedra have eternal enmity to one another, and what Daedra are solitary, or social, and by turns solitary or social? There are no limits to the varieties of behaviors that may be observed, and in one place they may be this, and in another place they may that, and all rules describing them are always found to be contradictory and in exception to others.
@@ -1963,11 +1963,11 @@ I did note, however, that when Divayth Fyr sought a Daedra of a character like u
 
 The feral, beastlike Daedra like the Clannfear and the Daedroth appear in the service of many different Daedric Powers, and may represent common creatures existing like wild animals in the wildernesses of Oblivion. Other savage, semi-intelligent creatures like Scamps and Spider Daedra may also be found in the realms of various Daedra Lords.
 
-The case of the Elemental Atronachs, on the other hand, is less certain. Flame and Frost Atronachs, for example, appear to be highly intelligent, but not all varieties of Elemental Atronachs seem to be social or to have the power of speech. Divayth Fyr preferred not to summon or deal with these creatures, had little experience with them, and showed no inclination to speculate upon their nature, so I learned little about them during my time at Tel Fyr.', 0);
+The case of the Elemental Atronachs, on the other hand, is less certain. Flame and Frost Atronachs, for example, appear to be highly intelligent, but not all varieties of Elemental Atronachs seem to be social or to have the power of speech. Divayth Fyr preferred not to summon or deal with these creatures, had little experience with them, and showed no inclination to speculate upon their nature, so I learned little about them during my time at Tel Fyr.', 0, '');
 
 -- AR-V-050 — The Wispmother
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (153, 'AR-V-050', 'The Wispmother', 'Mathias Etienne', 'Instruction & Research',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (174, 'AR-V-050', 'The Wispmother', 'Mathias Etienne', 'Instruction & Research',
    'Among the folk tales from the northern reaches of Skyrim, few subjects are as popular as the Wispmother: ghostly women who lure unsuspecting travelers to their doom, steal children, and takes vengeance on those who wronged them in life.
 
 Similar tales exist throughout Tamriel: The Melusanae of Stros Mkai, who lure ships to wreck on jagged shoals, then consume the souls of those aboard. The serpentine Chalass of Black Marsh. The Amronal of Valenwood.
@@ -1998,15 +1998,345 @@ Viliane argues that these Wisps are a sub-species of true Wisps, scavengers that
 
 Alternately, Sarethi posits that these "Wisps" are merely emanations or conjurations of the Wispmother, and not free-living creatures. This is supported by one incident in which an adventurer reportedly killed a Wispmother directly, only to observe the remaining Wisps immediately perish as well, though the source is considered highly unreliable.
 
-In summary, scholarly opinion about Wispmothers and Wisps is sharply divided, and is likely to remain so for some time. But all sources agree on one crucial point: these are highly dangerous foes, and should be avoided at all costs.', 0);
+In summary, scholarly opinion about Wispmothers and Wisps is sharply divided, and is likely to remain so for some time. But all sources agree on one crucial point: these are highly dangerous foes, and should be avoided at all costs.', 0, '');
+
+-- AR-V-051 — The Black Arts on Trial
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (175, 'AR-V-051', 'The Black Arts on Trial', 'Hannibal Traven', 'Instruction & Research',
+   'Necromancy, commonly called the Black Arts, has a history that dates back before recorded time. Virtually all the earliest laws of the land make mention of it as expressly forbidden on pain of death. Independent practitioners of the arts of sorcery, however, continued its study.
+
+The Psijic Order of the Isle of Artaeum, precursor to our own Mages Guild, also forbade its use, not only because it was dangerous, but their belief in the holy and unholy ancestor spirits made it heretical. Again, despite this, we hear many stories of students and masters who ignored this stricture. When Vanus Galerion left Artaeum, he may have disagreed with the Psijics on much, but he also refused to allow Necromancy to be taught in the Guild.
+
+Almost 1100 years have passed since the time of Vanus Galerion, and there have been many archmagisters to lead his guild. The question of Necromancy has continued to be asked. The strictures against it in the Guild have never been lifted, but attitudes about it have shifted back and forth over the years. Some archmagisters have been inclined to ignore it entirely, some have fought very actively against it, and still other archmagisters have been rumored to be Necromancers themselves.
+
+In my new role as Archmagister of the Mages Guild, it is my duty to set policy on this matter. Though I have my own opinions on the Black Arts, I took counsel with two of the most learned mages in the Empire, Magister Voth Karlyss of Corinth and Magister Ulliceta gra-Kogg of Orsinium, and we debated for two days.
+
+What follows are summaries of the salient points of the debate, arguments and counter-arguments, which led to the resolution of the Mages Guild on the subject of Necromancy.
+
+## ARGUMENT
+
+Argument by Master gra-Kogg: Necromancy is poorly understood. We will not make it disappear by ignoring it. As an intellectual institution dedicated to the study of the magickal arts and sciences, we have obligations to the truth. Censoring ourselves in our scholarship is antithetical to our mission of neutrality and objectivity.
+
+Counter-Argument by Master Karlyss: The Mages Guild must balance its quest for knowledge with responsible caution and ethical standards. It is not ''censoring'' a student''s course of study to have him proceed cautiously and with purity of purpose. It is not limiting a student''s freedom to set rules and boundaries - indeed, it is essential.
+
+Argument by Master Karlyss: Necromancy is an anathema throughout the civilized world. To embrace it publicly, the Mages Guild would inspire fear and hostility in the populace at large. Vanus Galerion wanted this institution to be unlike the Psijic Order, which was elitist and separatist. We ignore public opinion at our own risk. We will certainly lose our charters in many places including, very likely, the whole of Morrowind, where sentiment against Necromancy is very strong.
+
+Counter-Argument by Master gra-Kogg: Yes, we should be sensitive to the concerns of the community, but they should not and must not dictate our scholarship. ''Necromancer'' to many uneducated persons simply means an evil mage. It is madness to limit our work because of prejudices and half-formed understanding. It is an affront to the purpose of objective study to turn our back on a subject merely because of public opinion.
+
+Argument by Master gra-Kogg: Necromancers are the scourge of Tamriel. Whether operating independently or in concert with the sloads or King of Worms, Mannimarco, they are responsible for many horrors, animated zombies and skeletons and other forms of the undead. To best combat this menace, we must understand the powers of the Necromancer, and we cannot do that by restricting our study of the Black Arts.
+
+Counter-Argument by Master Karlyss: No one is disputing the threat of the Black Arts - in fact, that is the very essence of my argument against the Mages Guild making it a School to be taught to our initiates. We can and should know what our enemy is capable of, but we must be careful not to step into a trap of looking too deep into his ways, and making those ways our own. We do no one any good if by studying the evil ways, we become evil ourselves.
+
+Argument by Master Karlyss: Necromancy is inherently dangerous. One cannot ''dabble'' in it. The simplest spell requires the spilling of blood, and immediately begins to corrupt the caster''s soul. This is not conjecture, but simple fact. It is irresponsible of the Guild to teach and thereby encourage a sort of magickal study which has proven itself, time and time again, to bring nothing but terror and misery on the practitioner and world.
+
+Counter-Argument by Master gra-Kogg: All Schools of magicka are dangerous to the uninitiated. A simple fireball spell from the School of Destruction can cause great harm when cast by a novice, not only to others but to the mage himself. The School of Mysticism by its very nature forces the practitioner to divorce his mind from logic, to embrace a temporary sort of insanity, which one might argue is very like corrupting one''s soul.
+
+Argument by Master gra-Kogg: The Guild already permits some forms of Necromancy. The ''Schools'' of magicka are, as we know, artificial constructs, originally formulated by Vanus Galerion to divide and thereby simplify study. They have changed many times throughout the years, but at their heart, every Master knows, they are all linked together. When a student of Conjuration summons a guardian ghost, he is touching on the School of Necromancy. When a student of Enchantment uses a trapped soul, he too may be considered guilty of a Black Art. The School of Mysticism, as I have stated before, has some kinship with Necromancy as well. To state that students may not learn the ways of Necromancy is to stifle common skills in the other, more historically legitimate Schools of the Guild.
+
+Counter-Argument by Master Karlyss: Yes, the Schools are intertwined, but the standard spells of each School have passed the proof of time. We know that a student of Mysticism, properly instructed, will not be permanently harmed by his experience. In many ways, it is a question of extremes - how far we would permit our studies to take us. Necromancy by its nature relies on the practitioner going further into the darkness than is wise, virtually guaranteeing his destruction. It has no place in the Mages Guild.
+
+## CONCLUSION
+
+The risks of studying Necromancy outweigh its usefulness. The Guild does not wish to censor the study of any of its members, but it will not tolerate studies in the Black Arts, except in limited form for the purpose of combating its evil adherents. This may only been done by rare individuals who have proven themselves both highly skilled and highly cautious, and then only with my express permission and supervision.
+
+## AFTERWORD
+
+I regret to acknowledge the truth behind the rumor that Master Ulliceta gra-Kogg was more than an apologist for Necromancy, she was a Necromancer herself. Upon this revelation, the Knights of the Lamp attempted to arrest her at the Guildhouse in Orsinium, but she made good her escape. We have every confidence in the replacement Magister in Orsinium.
+
+Though I disagreed, I respected her logical reasoning enough to include her arguments in this book, and I see no reason to remove them. It is disappointing, however, to see that her interest in ''the truth'' was nothing more than a euphemism for her slavery to the Black Arts.
+
+This unfortunate situation merely illustrates how essential it is for Guildmembers to be wary of the lure of Necromancy, and be vigilant to its practitioners'' infiltration in our Mages Guild.
+
+— Hannibal Traven', 0, '');
+
+-- AR-V-052 — An Accounting of the Scrolls
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (176, 'AR-V-052', 'An Accounting of the Scrolls', 'Anonymous', 'Instruction & Research',
+   'After the supposed theft of an Elder Scroll from our Imperial Library, I endeavored to find any sort of index or catalogue of the Scrolls in our possession so that such situations may be avoided (or at least properly verified) in the future. To my dismay, I discovered that the Moth Priests are notoriously inexact when it comes to the actual physical manifestations of the Scrolls, and had no idea how many they held, or how they were organized. Merely asking the question evoked chuckles, as if a child was asking why dogs cannot talk.
+
+I will confess, my jealousy of the ones who can read the Scrolls grows, but I am not yet willing to sacrifice my sight to alleged knowledge. The older Moth Priests I attempt to engage in conversation seem as batty as any other elder who has lost their mind, so I fail to see what wisdom is imparted from the reading.
+
+In any case, I set out to create my own index of the Elder Scrolls, in cooperation with the monks. Day by day, we went through the tower halls, with them telling me the general nature of each Elder Scroll so that I might record its location. Always careful never to glimpse the writings myself, I had only their word to go on. I meticulously drew out a map of the chambers, where Scrolls relating to various specific prophecies were located, where particular periods of history were housed. In all, it took nearly a year of plodding, but at last I had rough notes on the entirety of the library to begin my collation.
+
+It was here that things began to go amiss. In studying my notes, I found many areas of overlap and outright contradiction. In some cases different monks would claim the same scroll to be at opposite ends of the tower. I know they have no taste for jesting, or else I would suspect I was being made the fool in some game of theirs.
+
+I spoke to one of the older monks to relate my concerns, and he hung his head in sorrow for my wasted time. "Did I not tell you," he coughed, "when you started this that all efforts would be futile? The Scrolls do not exist in countable form."
+
+"I had thought you meant there were too many to be counted."
+
+"There are, but that is not the least of their complexities. Turn to the repository behind you, and tell me how many Scrolls are locked therein."
+
+I ran my fingers over the metal casings, tallying each rounded edge that they encountered. I turned back -- "Fourteen," I said.
+
+"Hand me the eighth one," he said, reaching out his hand.
+
+I guided the cylinder into his palm, and he gave a slight nod to acknowledge it. "Now, count again."
+
+Humoring him, I again passed my hands over the Scrolls, but could not believe what I was feeling.
+
+"Now... now there are eighteen!" I gasped.
+
+The old monk chuckled, his cheeks pushing up his blindfold until it folded over itself. "And in fact," he said, "there always were."
+
+It was then that I enrolled as the oldest novice ever accepted into the Cult of the Ancestor Moth.', 0, '');
+
+-- AR-V-053 — De Rerum Dirennis
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (177, 'AR-V-053', 'De Rerum Dirennis', 'Anonymous', 'Instruction & Research',
+   'I am six-hundred-and-eleven years old. I have never had children of my own, but I have many nieces and nephews and cousins who have been raised with the tales and traditions of our ancient, illustrious, and occasionally notorious clan, the Direnni. Few families in Tamriel can boast so many famous figures, wielding so much power over the fate of so many. Our warriors and kings are stuff of legend, and it is not to dismiss their honor and their achievements to say you have heard quite enough about them.
+
+I myself have never picked up a sword or written an important law, but I am part of a lesser known but still important Direnni tradition: the way of the wizard. My own autobiography would be of little interest to posterity — though my nephew, nieces, and cousins indulge me to tell wild tales of life in the chaotic Second Era of Tamriel — but I have a few ancestors whose stories should be told. They may have changed history as we know it as dramatically as my better known relatives, but their names are in danger of being forgotten.
+
+Most recently, Lysandus, the King of Daggerfall, was able to conquer his ancient enemies of Sentinel in part thanks to his court sorceress, Medora Direnni. Her grandfather Jovron Direnni was Imperial Battlemage to the court of the Dunmer Empress of Tamriel, Katariah, assisting her in creating peace in a time of turmoil. His great great grandfather Pelladil Direnni had a similar role with the first Potentate, and encouraged the Guild Act without which we would not have all the professional organizations we have today. His ancestor, many times back, was the witch Raven Direnni, who with her better known cousins Aiden and Ryain, brought an end to the tyranny of the latter Alessian Empire. Before the Psijics of Artaeum, it is said, she created the art of enchantment, learning how to bind a soul into a gem and use that to ensorcel all manners of weaponry.
+
+But it is the story of an ancestor even more ancient, more distant than Raven I wish to tell.
+
+Asliel Direnni harkens back to the humble beginnings of our clan, in the tiny farming village of Tyrigel on the banks of the river Caomus which was then called the Diren, hence the family name. Like all on Summurset Isle in those days, he was a simple planter of the fields. But while others only grew enough to sustain their immediate kin, even distant cousins of the Dirennis worked together. They would decide as a group which fields were best for wheat, orchard, vine, livestock, or apiary, and thereby always have the best yields of any farm which worked alone, doing the best as it could with what it had.
+
+Asliel had a particularly poor farm for most kind of agriculture, but small herbs found its stony, loamless, acidic soil very comfortable. Out of necessity more than anything else he became an expert on all manners of herbs. For the most part, of course, they were used in flavoring cooking, but as you know, hardly any plant grows on the surface of our world without a magickal potential.
+
+Even so long ago, witches already were in existence. It would be ridiculous for me to suggest that Asliel Direnni invented alchemy. What he did, what we can all be grateful for, is that he formulated it into an art and science.
+
+There were no witches'' covens in Tyrigel, and, of course, there would be no Mages Guild yet for thousands of years, so people would come to him for cures. He learned for himself the exact formula for combining black lichen and roobrush to create a cure for all manners of poison, and the amount of willow anther to crush and mix with chokeweed to cure diseases.
+
+There were few much greater threats in Tyrigel in those peaceful days than disease or accidental poisonings. Yes, there were some dark forces in the wilderness, trolls, chimera, the occasional malevolent fairy folk and will-o''-the-wisp, but even the youngest, most foolish Altmer knew how to avoid them. There were, however, a few unusual threats which Asliel had a hand in defeating.
+
+One of the tales told of him that I believe to be true is how he was brought a young niece who had been suffering from an unknown disease. Despite his ministrations, she grew weaker and weaker every morning. Finally, he gave her a bitter tasting drink, and the next morning, ashes were found all around her bed. A vampire had been feeding on the poor girl, but Asliel''s potion had turned her very blood into poison, without harming her in the least.
+
+If only this formula had not been lost in the mists of history!
+
+This would have been enough to make him a minor but significant figure in the annals of early Summurset, but at that point in history, a barbarian tribe called the Locvar had found their way down the Diren River, and recognized Tyrigel as a rich target for raids. The Direnni, not being warriors yet but simple farmers, were helpless and could only flee and watch the Locvar take the best of their crops, raid after raid.
+
+Asliel, however, had been experimenting with the vampire dust, and brought his cousins to him with a plan. The next time the Locvar were sighted on the Diren, the word went out and all the most able-bodied came to Asliel''s laboratory. When the barbarians arrived in Tyrigel, they found the farms deserted, and assumed that all had fled as usual. As they set about stealing the bounty, they suddenly found themselves under attack by invisible forces. Believing the Direnni farms to be haunted, they ran away very quickly.
+
+They attempted a few more raids, for their greed would always eventually overpower their fear, and each time, they were set upon by attackers who they could not see. As barbaric as they were, they were not stupid, and they changed their mind about the source of their defeat. It could not be that the farms were haunted, because the crops were still being tended and harvested, and the animals seemed to show no fear. The Locvar decided to send a scout to the farm to see if he could spy their secrets.
+
+The scout sent word back to the Locvar that the Direnni farms were populated with flesh and blood, entirely visible Altmer. He continued to watch as his barbarian cohorts moved down the river, and he saw the elderly and children flee for the hills, while the able-bodied farmers and their wives went to Asliel''s laboratory. He saw them go in; he saw no one come out.
+
+As usual, the Locvar were repelled by invisible forces, but their scout soon told them what he saw happening in the laboratory.
+
+The next night, two of the Locvar approached Asliel''s farm very stealthily, and managed to kidnap him without alerting the rest of the Direnni. The Locvar chieftain, knowing that the farmers could no longer count on the alchemist to make them invisible, considered an immediate attack on the farms. But he was a vengeful sort, and felt he had been humiliated by these simple farmers. A crafty plan emerged in his mind. What if the Direnni, who always saw his barbarian tribe coming, for once did not? Imagine the slaughter if no one even had a chance to flee.
+
+The scout had told the chieftain that Asliel had used the dust of a vampire to make the farmers invisible, but he was not sure what the other ingredient had been. He described an incandescent powder that Asliel had mixed into the dust. Asliel, of course, refused to help the Locvar, but they were experts in torture as well as pillage, and he knew he would have to talk or die.
+
+Finally after hours of torture, he agreed to tell them what the incandescent powder was. He did not know the name, but he called it "Glow Dust," the only remains of a slain will-o''-the-wisp. He told them they would need a lot of it if they wanted to turn the whole tribe invisible for the raid.
+
+The Locvar grumbled that not only did they have to find and kill a vampire to attain his dust, but find and kill several will-o''-the-wisps to get theirs. In a few days time, they came back with the ingredients the alchemist asked for. The chieftain, not being a complete idiot, made Asliel taste the potion first. He did as he was told and turned invisible, demonstrating that it did truly work. The chieftain put him to work creating more. No one apparently noticed that while he did, he was nibbling on black lichen and roobrush.
+
+The Locvar took the potion as he doled it out, and soon, but not too soon that they didn''t suffer, they were all dead.
+
+The scout who had seen Asliel mixing the invisibility potion had apparently mistook the glow of the candlelight in the laboratory for an incandescence which the second ingredient of the invisibility potion did not possess. The second ingredient was actually dull, simple redwort, one of the most common herbs in Tamriel. When they had insisted during torture that Asliel tell them what the incandescent powder was, Asliel remembered that he had once experimentally mixed glow dust and vampire dust together once and created a powerful poison. It was simple enough to steal a little redwort from the barbarian''s camp, mix that with the vampire and glow dust mixture, and create a potion that was in fact an invisibility poison. After curing himself, he gave the poison to the barbarians.
+
+The Locvar, being dead, never again raided the Direnni farms, and having no other enemies, they were able to grow more and more prosperous and powerful. Generations later, they left Summurset and began their historic adventures on the Tamriel mainland. Asliel Direnni, because of his excellence as an alchemist, was invited to Artaeum and became a Psijic. It is not known how many more of the common formulas we know today were invented by him there, but I have no doubt, the science and art of alchemy as we know it today would not exist without him.
+
+But that is all in the distant past. Asliel''s innovations, like my modest ones, like the achievements of the Dirennis throughout history, are but a stepping stone to the wonders which will come in the future. I wish I could be there to witness them, but if I can only share some of the past with the children of Direnni and the children of Tamriel, then I will consider my life well spent.', 0, '');
+
+-- AR-V-054 — Racial Phylogeny
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (178, 'AR-V-054', 'Racial Phylogeny', 'Anonymous', 'Instruction & Research',
+   'After much analysis of living specimens, the Council long ago determined that all "races" of elves and humans may mate with each other and bear fertile offspring. Generally the offspring bear the racial traits of the mother, though some traces of the father''s race may also be present. It is less clear whether the Argonians and Khajiit are interfertile with both humans and elves. Though there have been many reports throughout the Eras of children from these unions, as well as stories of unions with daedra, there have been no well documented offspring. Khajiit differ from humans and elves not only their skeletal and dermal physiology -- the "fur" that covers their bodies -- but their metabolism and digestion as well. Argonians, like the dreugh, appear to be a semi-aquatic troglophile form of humans, though it is by no means clear whether the Argonians should be classified with dreugh, men, mer, or (in this author''s opinion), certain tree-dwelling lizards in Black Marsh.
+
+The reproductive biology of orcs is at present not well understood, and the same is true of goblins, trolls, harpies, dreugh, tsaesci, imga, various daedra and many others. Certainly, there have been cases of intercourse between these "races," generally in the nature of rape or magickal seduction, but there have been no documented cases of pregnancy. Still the interfertility of these creatures and the civilized hominids has yet to be empirically established or refuted, likely due to the deep cultural differences. Surely any normal Bosmer or Breton impregnated by an orc would keep that shame to herself, and there''s no reason to suppose that an orc maiden impregnated by a human would not be likewise ostracized by her society. Regrettably, our oaths as healers keep us from forcing a coupling to satisfy our scientific knowledge. We do know, however, that the sload of Thras are hermaphrodites in their youth and later reabsorb their reproductive organs once they are old enough to move about on land. It can be safely assumed that they are not interfertile with men or mer.
+
+One might further wonder whether the proper classification of these same "races," to use the imprecise but useful term, should be made from the assumption of a common heritage and the differences between them have arisen from magickal experimentation, the manipulations of the so-called "Earth Bones," or from gradual changes from one generation to the next.', 0, '');
+
+-- AR-V-055 — Response to Bero's Speech
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (179, 'AR-V-055', 'Response to Bero''s Speech', 'Anonymous', 'Instruction & Research',
+   'On the 14th of Last Seed, an illusionist by the name of Berevar Bero gave a very ignorant speech at the Chantry of Julianos in the Imperial City. As ignorant speeches are hardly uncommon, there was no reason to respond to it. Unfortunately, he has since had the speech privately printed as "Bero''s Speech to the Battlemages," and it''s received some small, undeserved attention in academic circles. Let us put his misconceptions to rest.
+
+Bero began his lecture with an occasionally factual account of famous Battlemages from Zurin Arctus, Tiber Septim''s Imperial Battlemage, to Jagar Tharn, Uriel Septim VII''s Imperial Battlemage. His intent was to show that where it matters, the Battlemage relies on other Schools of Magicka, not the School of Destruction which is supposedly a Battlemage''s particular forte. Allow me first to dispute these so-called historical facts.
+
+Zurin Arctus did not create the golem Numidium by spells of Mysticism and Conjuration as Bero alleges. The truth is that we don''t know how Numidium was created or if it was a golem or atronach in any traditional sense of those words. Uriel V''s Battlemage Hethoth was not an Imperial Battlemage — he was simply a sorcerer in the employ of the Empire, thus which spells he cast in the various battles on Akavir are irrelevant, not to mention heresay *[sic]*. Bero calls Empress Morihatha''s Battlemage Welloc "an accomplished diplomat" but not "a powerful student of the School of Destruction." I congratulate Bero on correctly identifying an Imperial Battlemage, but there are many written examples of Welloc''s skill in the School of Destruction. The sage Celarus, for example, wrote extensively about Welloc casting the Vampiric Cloud on the rebellious army of Blackrose, causing their strength and skill to pass on to their opponents. What is this, but an impressive example of the School of Destruction?
+
+Bero rather pathetically includes Jagar Tharn in his list of underachieving Battlemages. To use an insane traitor as example of rational behavior is an untenable position. What would Bero prefer? That Tharn used the School of Destruction to destroy Tamriel by a more traditional means?
+
+Bero uses his misrepresentation of history as the basis for his argument. Even if he had found four excellent examples from history of Battlemages casting spells outside their School — and he didn''t — he would only have anecdotal evidence, which isn''t enough to support an argument. I could easily find four examples of illusionists casting healing spells, or nightblades teleporting. There is a time and a place for everything.
+
+Bero''s argument, built on this shaky ground, is that the School of Destruction is not a true school. He calls it "narrow and shallow" as an avenue of study, and its students impatient, with megalomaniac tendencies. How can one respond to this? Someone who knows nothing about casting a spell of Destruction criticizing the School for being too simple? Summarizing the School of Destruction as learning how to do the "maximum amount of damage in the minimum amount of time" is clearly absurd, and he expounds on his ignorance by listing all the complicated factors studied in his own School of Illusion.
+
+Allow me in response to list the factors studied in the School of Destruction. The means of delivering the spell matters more in the School of Destruction than any other school, whether it is cast at a touch, at a range, in concentric circles, or cast once to be triggered later. What forces must be reigned in to cast the spell: fire, lightning, or frost? And what are the advantages and dangers of each? What are the responses from different targets from the assault of different spells of destruction? What are the possible defenses and how may they be assailed? What environmental factors must be taken into consideration? What are the advantages of a spell of delayed damage? Bero suggests that the School of Destruction cannot be subtle, yet he forgets about all the Curses that fall under the mantle of the school, sometimes affecting generation after generation in subtle yet sublime ways.
+
+The School of Alteration is a distinct and separate entity from the School of Destruction, and Bero''s argument that they should be merged into one is patently ludicrous. He insists — again, a man who knows nothing about the Schools of Alteration and Destruction, is the one insisting this — that "damage" is part of the changing of reality dealt with by the spells of Alteration. The implication is that Levitation, to list a spell of Alteration, is a close cousin of Shock Bolt, a spell of Destruction. It would make as much sense to say that the School of Alteration, being all about the actuality of change, should absorb the School of Illusion, being all about the appearance of change.
+
+It certainly isn''t a coincidence that a master of the School of Illusion cast this attack on the School of Destruction. Illusion is, after all, all about masking the truth.', 0, '');
+
+-- AR-V-056 — The Doors of Oblivion  [SEALED]
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (180, 'AR-V-056', 'The Doors of Oblivion', 'Anonymous', 'Instruction & Research',
+   'When thou enterest into Oblivion, Oblivion entereth into thee.
+Nai Tyrol-Llar
+The greatest mage who ever lived was my master Morian Zenas. You have heard of him as the author of the book ''On Oblivion,'' the standard text for all on matters Daedric. Despite many entreaties over the years, he refused to update his classic book with his new discoveries and theories because he found that the more one delves into these realms, the less certain one is. He did not want conjecture, he wanted facts.
+For decades before and after the publication of ''On Oblivion,'' Zenas compiled a vast personal library on the subject of Oblivion, the home of the Daedra. He divided his time between this research and personal magickal growth, on the assumption that should he succeed in finding a way into the dangerous world beyond and behind ours, he would need much power to wander its dark paths.
+Twelve years before Zenas began the journey he had prepared his life to make, he hired me as his assistant. I possessed the three attributes he required for the position: I was young and eager to help without question; I could read any book once and memorize its contents; and, despite my youth, I was already a Master of Conjuration.
+Zenas too was a Master of Conjuration - indeed, a Master at all the known and unknown Schools - but he did not want to rely on his ability alone in the most perilous of his research. In an underground vault, he summoned Daedra to interview them on their native land, and for that he needed another Conjurer to make certain they came, were bound, and were sent away again without incident.
+I will never forget that vault, not for its look which was plain and unadorned, but for what you couldn''t see. There were scents that lingered long after the summoned creatures had left, flowers and sulfur, sex and decay, power and madness. They haunt me still to this very day.
+Conjuration, for the layman unacquainted with its workings, connects the caster''s mind with that of the summoned. It is a tenuous link, meant only to lure, hold, and dismiss, but in the hands of a Master, it can be much stronger. The Psijics and Dwemer can (in the Dwemer''s case, perhaps I should say, could) connect with the minds of others, and converse miles apart - a skill that is sometimes called telepathy.
+Over the course of my employment, Zenas and I developed such a link between one another. It was accidental, a result of two powerful Conjurers working closely together, but we decided that it would be invaluable should he succeed in traveling to Oblivion. Since the denizens of that land could be touched even by the skills of an amateur Conjurer, it was possible we could continue to communicate while he was there, so I could record his discoveries.
+The ''Doors to Oblivion,'' to use Morian Zenas''s phrase, are not easily found, and we exhausted many possibilities before we found one where we held the key.
+The Psijics of Artaeum have a place they call The Dreaming Cave, where it is said one can enter into the Daedric realms and return. Iachesis, Sotha Sil, Nematigh, and many others have been recorded as using this means, but despite many entreaties to the Order, we were denied its use. Celarus, the leader of the Order, has told us it has been sealed off for the safety of all.
+We had hopes of using the ruins of the Battlespire to access Oblivion. The Weir Gate still stands, though the old proving grounds of the Imperial Battlemages itself was shattered some years ago in Jagar Tharn''s time. Sadly, after an exhaustive search through the detritus, we had to conclude that when it was destroyed, all access to the realms beyond, the Soul Cairn, the Shade Perilous, and the Havoc Wellhead, had been broken. It was probably for the good, but it frustrated our goal.
+The reader may have heard of other Doors, and he may be assured we attempted to find them all.
+Some are pure legend, or at any rate, not traceable based on the information left behind. There are references in lore to Marukh''s Abyss, the Corryngton Mirror, the Mantellan Crux, the Crossroads, the Mouth, a riddle of an alchemical formula called Jacinth and Rising Sun, and many other places and objects that are said to be Doors, but we could not find.
+Some exist, but cannot be entered safely. The whirlpool in the Abecean called the Maelstrom of Bal can make ships disappear, and may be a portal into Oblivion, but the trauma of riding its waters would surely slay any who tried. Likewise, we did not consider it worth the risk to leap from the Pillar of Thras, a thousand foot tall spiral of coral, though we witnessed the sacrifices the sloads made there. Some victims were killed by the fall, but some, indeed, seemed to vanish before being dashed on the rocks. Since the sload did not seem certain why some were taken and some died, we did not favor the odds of the plunge.
+The simplest and most maddeningly complex way to go to Oblivion was simply to cease to be here, and begin to be there. Throughout history, there are examples of mages who seemed to travel to the realms beyond ours seemingly at will. Many of these voyagers are long dead, if they ever existed, but we were able to find one still living. In a tower off Zafirbel Bay on the island of Vvardenfell in the province of Morrowind there exists a very old, very reclusive wizard named Divayth Fyr.
+He was not easy to reach, and he was reluctant to share with Morian Zenas the secret Door to Oblivion. Fortunately, my master''s knowledge of lore impressed Fyr, and he taught him the way. I would be breaking my promise to Zenas and Fyr to explain the procedure here, and I would not divulge it even if I could. If there is dangerous knowledge to be had, that is it. But I do not reveal too much to say that Fyr''s scheme relied on exploiting a series of portals to various realms created by a Telvanni wizard long missing and presumed dead. Against the disadvantage of this limited number of access points, we weighed the relative reliability and security of passage, and considered ourselves fortunate in our informant.
+Morian Zenas then left this world to begin his exploration. I stayed at the library to transcribe his information and help him with any research he needed.
+''Dust,'' he whispered to me on the first day of his voyage. Despite the inherent dreariness of the word, I could hear his excitement in his voice, echoing in my mind. ''I can see from one end of the world to the other in a million shades of gray. There is no sky or ground or air, only particles, floating, falling, whirling about me. I must levitate and breathe by magickal means …''
+Zenas explored the nebulous land for some time, encountering vaporous creatures and palaces of smoke. Though he never met the Prince, we concluded that he was in Ashpit, said to be the home of Malacath, where anguish, betrayal, and broken promises like ash filled the bitter air.
+''The sky is on fire,'' I heard him say as he moved on to the next realm. ''The ground is sludge, but traversable. I see blackened ruins all around me, like a war was fought here in the distant past. The air is freezing. I cast blooms of warmth all around me, but it still feels like daggers of ice stabbing me in all directions.''
+This was Coldharbour, where Molag Bal was Prince. It appeared to Zenas as if it were a future Nirn, under the King of Rape, desolate and barren, filled with suffering. I could hear Morian Zenas weep at the images he saw, and shiver at the sight of the Imperial Palace, spattered with blood and excrement.
+''Too much beauty,'' Zenas gasped when he went to the next realm. ''I am half blind. I see flowers and waterfalls, majestic trees, a city of silver, but it is all a blur. The colors run like water. It''s raining now, and the wind smells like perfume. This surely is Moonshadow, where Azura dwells.''
+Zenas was right, and astonishingly, he even had audience with the Queen of Dusk and Dawn in her rose palace. She listened to his tale with a smile, and told him of the coming of the Nevevarine *[sic]*. My master found Moonshadow so lovely, he wished to stay there, half-blind, forever, but he knew he must move on and complete his journey of discovery.
+''I am in a storm,'' he told me as he entered the next realm. He described the landscape of dark twisted trees, howling spirits, and billowing mist, and I thought he might have entered the Deadlands of Mehrunes Dagon. But then he said quickly, ''No, I am no longer in a forest. There was a flash of lightning, and now I am on a ship. The mast is tattered. The crew is slaughtered. Something is coming through the waves … oh, gods … Wait, now, I am in a dank dungeon, in a cell …''
+He was not in the Deadlands, but Quagmire, the nightmare realm of Vaernima. Every few minutes, there was a flash of lightning and reality shifted, always to something more horrible and horrifying. A dark castle one moment, a den of ravening beasts the next, a moonlit swamp, a coffin where he was buried alive. Fear got the better of my master, and he quickly passed to the next realm.
+I heard him laugh, ''I feel like I''m home now.''
+Morian Zenas described to me an endless library, shelves stretching on in every direction, stacks on top of stacks. Pages floated on a mystical wind that he could not feel. Every book had a black cover with no title. He could see no one, but felt the presence of ghosts moving through the stacks, rifling through books, ever searching.
+It was Apocrypha. The home of Hermaeus-Mora, where all forbidden knowledge can be found. I felt a shudder in my mind, but I could not tell if it was my master''s or mine.
+Morian Zenas never traveled to another realm that I know of.
+Throughout his visits to the first four realms, my master spoke to me constantly. Upon entering the Apocrypha, he became quieter, as he was lured into the world of research and study, the passions that had controlled his heart while on Nirn. I would frantically try to call to him, but he closed his mind to me.
+Then he would whisper, ''This cannot be …''
+''No one would ever guess the truth …''
+''I must learn more …''
+''I see the world, a last illusion''s shimmer, it is crumbling all around us …''
+I would cry back to him, begging him to tell me what was happening, what he was seeing, what he was learning. I even tried using Conjuration to summon him as if he were a Daedra himself, but he refused to leave. Morian Zenas was lost.
+I last received a whisper from him six months ago. Before then, it had been five years, and three before that. His thoughts are no longer intelligible in any language. Perhaps he is still in Apocrypha, lost but happy, in a trap he refuses to escape.
+Perhaps he slipped between the stacks and passed into the Madhouse of Sheogorath, losing his sanity forever.
+I would save him if I could.
+I would silence his whispers if I could.', 1, '');
+
+-- AR-V-057 — The Importance of Where
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (181, 'AR-V-057', 'The Importance of Where', 'Anonymous', 'Instruction & Research',
+   'The chieftain of Othrobar gathered his wise men together and said, "Every morning a tenfold of my flock are found butchered. What is the cause?"
+
+Fangbith the Warleader said, "A Monster may be coming down from the Mountain and devouring your flock."
+
+Ghorick the Healer said, "A strange new disease perhaps is to blame."
+
+Beran the Priest said, "We must sacrifice to the Goddess for her to save us."
+
+The wise men made sacrifices, and while they waited for their answers from the Goddess, Fangbith went to Mentor Joltereg and said, "You taught me well how to forge the cudgel of Zolia, and how to wield it in combat, but I must know now when it is wise to use my skill. Do I wait for the Goddess to reply, or the medicine to work, or do I hunt the Monster which I know is in the Mountain?"
+
+"When is not important," said Joltereg. "Where is all that is important."
+
+So Fangbith took his Zolic cudgel in hand and walked far through the dark forest until he came to the base of the Great Mountain. There he met two Monsters. One bloodied with the flesh of the chieftain of Othrobar''s flock fought him while its mate fled. Fangbith remembered what his master had taught him, that "where" was all that was important.
+
+He struck the Monster on each of its five vital points: head, groin, throat, back, and chest. Five blows to the five points and the Monster was slain. It was too heavy to carry with him, but still triumphant, Fangbith returned to Othrobar.
+
+"I say I have slain the Monster that ate your flock," he cried.
+
+"What proof have you that you have slain any Monster?" asked the chieftain.
+
+"I say I have saved the flock with my medicine," said Ghorick the Healer.
+
+"I say The Goddess has saved the flock by my sacrifices," said Beran the Priest.
+
+Two mornings went by and the flocks were safe, but on the morning of the third day, another tenfold of the chieftain''s flock was found butchered. Ghorick the Healer went to his study to find a new medicine. Beran the Priest prepared more sacrifices. Fangbith took his Zolic cudgel in hand, again, and walked far through the dark forest until he came to the base of the Great Mountain. There he met the other Monster, bloodied with the flesh of the chieftain of Othrobar''s flock. They did battle, and again Fangbith remembered what his master had taught him, that "where" was all that was important.
+
+He struck the Monster five times on the head and it fled. Chasing it along the mountain, he struck it five times in the groin and it fled. Running through the forest, Fangbith overtook the Monster and struck it five times in the throat and it fled. Entering into the fields of Othrobar, Fangbith overtook the Monster and struck it five times in the back and it fled. At the foot of the stronghold, the chieftain and his wise men emerged to the sound of the Monster wailing. There they beheld the Monster that had slain the chieftain''s flock. Fangbith struck the Monster five times in the chest and it was slain.
+
+A great feast was held in Fangbith''s honor, and the flock of Othrobar was never again slain. Joltereg embraced his student and said, "You have at last learned the importance of where you strike your blows."
+
+***Publisher''s Note:***
+
+*This tale is another, which has an obvious origin among the Ashlander tribes of Vvardenfell and is one of their oldest tales. "Marobar Sul" merely changed the names of the character to sound more "Dwarven" and resold it as part of his collection. The Great Mountain in the tale is clearly "Red Mountain," despite its description of being forested. The Star-Fall and later eruptions destroyed the vegetation on Red Mountain, giving it the wasted appearance it has today.*
+
+*This tale does have some scholarly interest, as it suggests a primitive Ashlander culture, but it talks of living in "strongholds" much like the ruined strongholds on Vvardenfell today. There are even references to a stronghold of "Othrobar" somewhere between Vvardenfell and Skyrim, but few strongholds outside of sparsely-settled Vvardenfell have survived to the present. Scholars do not agree on who built these strongholds or when, but I believe it is clear from this story and other evidence that the Ashlander tribes used these strongholds in the ancient past instead of making camps of wickwheat huts as they do today.*
+
+*The play on words that forms the lesson of the fable -- that it is as important to know where the monster should be slain, at the stronghold, as it is to know where the monster must be struck on its body to be slain -- is typical of many Ashlander tales. Riddles, even ones as simple as this one, are loved by both the Ashlanders and the vanished Dwemer. Although the Dwemer are usually portrayed as presenting the riddles, rather than being the ones who solve it as in Ashlander tales.*', 0, '');
+
+-- AR-V-058 — Words and Philosophy
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (182, 'AR-V-058', 'Words and Philosophy', 'Anonymous', 'Instruction & Research',
+   'Lady Allena Benoch, former master of the Valenwood Fighter''s Guild and head of the Emperor''s personal guard in the Imperial City, has been leading a campaign to reacquaint the soldiers of Tamriel with the sword. I met with her on three different occasions for the purposes of this book. The first time was at her suite in the palace, on the balcony overlooking the gardens below.
+
+I was early for the interview, which had taken me nearly six months to arrange, but she gently chided me for not being even earlier.
+
+"I''ve had time to put up my defenses now," she said, her bright green eyes smiling.
+
+Lady Benoch is a Bosmer, a Wood Elf, and like her ancestors, took to the bow in her early years. She excelled at the sport, and by the age of fourteen, she had joined the hunting party of her tribe as a Jaqspur, a long distance shooter. During the black year of 396, when the Parikh tribe began their rampage through southeastern Valenwood with the aid of powers from the Summurset Isle, Lady Benoch fought the futile battle to keep her tribe''s land.
+
+"I killed someone for the first time when I was sixteen," she says now. "I don''t remember it very well -- he or she was just a blur on the horizon where I aimed my bow. It meant no more to me than shooting animals. I probably killed a hundred people like that during that summer and fall. I didn''t really feel like a killer until that wintertide, when I learned what it was like to look into a man''s eyes as you spilled his blood.
+
+"It was a scout from the Parikh tribe who surprised me while I was on camp watch. We surprised each other, I suppose. I had my bow at my side, and I just panicked, trying to string an arrow when he was half a yard away from me. It was the only thing I knew to do. Of course, he struck first with his blade, and I just fell back in shock.
+
+"You always remember the mistakes of your first victim. His mistake was assuming because he had drawn blood and I had fallen, that I was dead. I rushed at him the moment he turned from me towards the sleeping camp of my tribesmen. He was caught off guard, and I wrested his blade away from him.
+
+"I don''t know how many times I stabbed at him. By the time I stopped, when the next watch came to relieve me, my arms were black and blue with strain, there was not a solid piece of him left. I had literally cut him into pieces. You see, I had no concept of how to fight or how much it took to kill a man."
+
+Lady Benoch, aware of this deficiency in her education, began teaching herself swordsmanship at once.
+
+"You can''t learn how to use a sword in Valenwood," she says. "Which isn''t to say Bosmer can''t use blades, but we''re largely self-taught. As much as it hurt when my tribe found itself homeless, pushed to the north, it did have one good aspect: it afforded me the opportunity to meet Redguards."
+
+Studying all manners of weapon wielding under the tutelage of Warday A''kor, Lady Benoch excelled. She became a freelance adventurer, traveling through the wilds of southern Hammerfell and northern Valenwood, protecting caravans and visiting dignitaries from the various dangers indigenous to the population.
+
+Unfortunately, before we were able to pursue her story of her early years any further, Lady Benoch was called away on urgent summons from the Emperor. Such is often the case with the Imperial Guard, and in these troubled times, perhaps, more so than in the past. When I tried to contact her for another talk, her servants informed me than *[sic]* their mistress was in Skyrim. Another month passed, and when I visited her suite, I was told she was in High Rock.
+
+To her credit, Lady Benoch actually sought me out for our second interview on Sun''s Dusk of that year. I was in a tavern in the City called the Blood and Rooster, when I felt her hand on my shoulder. She sat down at the rude table and continued her tale as if it had never been interrupted.
+
+She returned to the theme of her days as an adventurer, and told me about the first time she ever felt confident with a sword.
+
+"I owned at that time an enchanted daikatana, quite a good one, of daedric metal. It wasn''t an original Akaviri, not even of design. I didn''t have that kind of money, but it served my primary purpose of delivering as much damage with as little effort on my part as possible. A''kor had taught me how to fence, but when faced with a life or death situation, I always fell back on the old overhand wallop.
+
+"A pack of orcs had stolen some gold from a local chieftain in Meditea, and I went looking for them in one of the ubiquitous dungeons that dot the countryside in that region. There were the usual rats and giant spiders, and I was enough of a veteran by then to dispatch them with relative ease. The problem came when I found myself in a pitch black room, and all around me, I heard the grunts of orcs nearing in.
+
+"I waved my sword around me, connecting with nothing, hearing their footsteps coming ever nearer. Somehow, I managed to hold back my fear and to remember the simple exercises Master A''kor had taught me. I listened, stepped sideways, swung, twisted, stepped forward, swung a circle, turned around, side-stepped, swung.
+
+"My instinct was right. The orcs had gathered in a circle around me, and when I found a light, I saw that they were all dead.
+
+"That''s when I focused on my study of swordplay. I''m stupid enough to require a near death experience to see the practical purposes, you see."
+
+Lady Benoch spent the remainder of the interview, responding in her typically blunt way to the veracity of various myths that surrounded her and her career. It was true that she became the master of the Valenwood Fighter''s Guild after winning a duel with the former master, who was a stooge of the Imperial Battlemage, the traitor Jagar Tharn. It was not true that she was the one responsible for the Valenwood Guild''s disintegration two years later ("Actually, the membership in the Valenwood chapter was healthy, but in Tamriel overall the mood was not conducive for the continued existence of a nonpartisan organization of freelance warriors.") It was true that she first came to the Emperor''s attention when she defended Queen Akorithi of Sentinel from a Breton assassin. It was not true that the assassin was hired by someone in the high court of Daggerfall ("At least," she says wryly, "That has never been proven."). It was also true that she married her former servant Urken after he had been in her service for eleven years ("No one knows how to keep my weaponry honed like he does," she says. "It''s a practical business. I either had to give him a raise or marry him.").
+
+The only story I asked her that she would neither admit nor refute was the one about Calaxes, the Emperor''s bastard. When I brought up the name, she shrugged, professing no knowledge of the affair. I pressed on with the details of the story. Calaxes, though not in line for succession, had been given the Archbishopric of The One: a powerful position in the Imperial City, and indeed over all Tamriel where that religion is honored. Whispering began immediately that Calaxes believed that the Gods were angered with the secular governments of Tamriel and the Emperor specifically. It was even said that Calaxes advocated full-scale rebellion to establish a theocracy over the Empire.
+
+It is certainly true, I pressed on, that the Emperor''s relationship with Calaxes had become very stormy, and that legislation had been passed to limit the Church''s authority. That is, up until the moment when Calaxes disappeared, suddenly, without notice to his closest of friends. Many said that Lady Benoch and the Imperial Guard assassinated the Archbishop Calaxes in the sacristy of his church -- the date usually given was the 29th of Sun''s Dusk 3E 498 *[sic]*.
+
+"Of course," responds Lady Benoch with one of her mysterious grins. "I don''t need to tell you that the Imperial Guard''s position is as protectors of the throne, not assassins."
+
+"But surely, no one is more trusted that *[sic]* the Guard for such a sensitive operation," I say, carefully.
+
+Lady Benoch acknowledges that, but merely says that such details of her duties must remain secret as a matter of Imperial security. Unfortunately, her ladyship had to leave early the next morning, as the Emperor had business down south -- of course, I couldn''t be told more specifics. She promised to send me word when she returned so we could continue our interview.
+
+As it turned out, I had business of my own in the Summurset Isle, compiling a book on the Psijic Order. It was therefore with surprise that I met her ladyship three months later in Firsthold. We managed to get away from our respective duties to complete our third and final interview, on a walk along the Diceto, the great river that passes through the royal parks of the city.
+
+Steering away from questions of her recent duties and assignments, which I guessed rightly she was loath to answer, I returned to the subject of swordfighting.
+
+"Frandar Hunding," she says. "Lists thirty-eight grips, seven hundred and fifty offensive and eighteen hundred defensive positions, and nearly nine thousand moves essential to sword mastery. The average hack-and-slasher knows one grip, which he uses primarily to keep from dropping his blade. He knows one offensive position, facing his target, and one defensive position, fleeing. Of the multitudinous rhythms and inflections of combat, he knows less than one.
+
+"The ways of the warrior were never meant to be the easiest path. The archetype of the idiot fighter is as solidly ingrained as that of the brilliant wizard and the shrewd thief, but it was not always so. The figure of the philosopher swordsman, the blade-wielding artist are creatures of the past, together with the swordsinger of the Redguards, who was said to be able to create and wield a blade with but the power of his mind. The future of the intelligent blade-wielder looks bleak in comparison to the glories of the past."
+
+Not wanting to end our interviews on a sour note, I pressed Lady Allena Benoch for advice for young blade-swingers just beginning their careers.
+
+"When confronted with a wizard," she says, throwing petals of Kanthleaf into the Diceto. "Close the distance and hit ''im hard."', 0, '');
+
+-- AR-V-059 — Enchanter's Primer
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (183, 'AR-V-059', 'Enchanter''s Primer', 'Sergius Turrianus', 'Instruction & Research',
+   'A guide for novices in enchanting issued by the College of Winterhold
+
+Enchanting was raised to a fine art by the wizards of the Arcane University. Sadly, some of the nuances of this skill were lost when the Imperial City was sacked. Yet we are not without capability. This text will cover only the basics of Enchanting. It is but a primer for students of the College of Winterhold.
+
+Before a weapon or bit of armor can be enchanted, the wizard must first learn the enchantment. This is a personal task. Enchantments cannot easily be passed from one mage to another. They must be understood at a primal level that can only be achieved by destroying an enchanted item and absorbing its nature.
+
+The Arcane Enchanter is specifically designed for this task. Merely place an enchanted item in the device and will it to relent. The magic will flow into the mage, imbuing him with the knowledge of how the enchantment is formed. The utter destruction of the enchanted item is the unavoidable consequence of this process.
+
+Items that already have enchantments cannot be enchanted further, so choose carefully when you enchant a blade or helmet. Before beginning an enchantment, make sure you have a filled soul gem. The enchantment will use this soul as a source of power. Place the item and the soul gem on the Arcane Echanter [sic]. Concentrate on the enchantment. The device will meld the two together, enchanting your weapon or armor.
+
+Armor enchantments are permanent and do not need to be charged or powered. The reasons for this are not known. Some in the College have postulated that the wearer contributes small amounts of his own energy to keep the armor enchanted. Others say it is just the will of Magnus that it works that way. Regardless of the reason, enchanted armor and clothing never wear out.
+
+Weapon enchantments are a different story. They slowly use up the soul energy in them until they are depleted. The enchantment remains, but a filled soul gem must be used to recharge the weapon. Perhaps it is the destructive nature of the weapon enchantment that makes it deplete. One intriguing theory is that the soul leaks out a little at a time into the victims that the weapon harms. As a novice enchanter, the reason is immaterial.
+
+At first you will find that your enchantments require a lot of the soul energy. As you become more skilled, you can achieve the same effects with less and less soul energy. So practice your lessons and pay heed to your masters in the magical arts.', 0, '');
 
 -- Cross-references, derived from the titles named in these bodies.
-INSERT INTO citations (from_tome, cites_call_number) VALUES (110, 'AR-X-011');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (117, 'AR-III-033');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (117, 'AR-V-043');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (120, 'AR-IV-033');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (124, 'AR-IV-017');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (137, 'AR-I-003');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (141, 'AR-V-034');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (148, 'AR-X-011');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (152, 'AR-III-033');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (131, 'AR-X-011');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (138, 'AR-III-033');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (138, 'AR-V-043');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (141, 'AR-IV-033');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (145, 'AR-IV-017');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (158, 'AR-I-003');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (162, 'AR-V-034');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (169, 'AR-X-011');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (173, 'AR-III-033');

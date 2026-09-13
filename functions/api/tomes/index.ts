@@ -26,6 +26,7 @@ interface TomeSummary {
   title: string;
   author: string;
   school: string;
+  volume?: string | null;
   restricted: number;
 }
 
@@ -43,7 +44,7 @@ interface TomeSummary {
  * A new volume is a new row with the next free id, wherever its call number
  * puts it on the shelf. Sorting 250 rows in the Worker costs nothing.
  */
-const BASE = 'SELECT id, call_number, title, author, school, restricted FROM tomes';
+const BASE = 'SELECT id, call_number, title, author, school, restricted, volume FROM tomes';
 
 const ACCESSION = /-(\d+)$/;
 

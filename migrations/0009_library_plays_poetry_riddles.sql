@@ -7,8 +7,8 @@
 -- See PROVENANCE.md.
 
 -- AR-VIII-001 — The Betrayed
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (175, 'AR-VIII-001', 'The Betrayed', 'Engwe Emeloth; Calcelmo of Markarth, trans.', 'Plays, Poetry & Riddles',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (205, 'AR-VIII-001', 'The Betrayed', 'Engwe Emeloth; Calcelmo of Markarth, trans.', 'Plays, Poetry & Riddles',
    '*Translated from Falmer Text*
 
 *by*
@@ -45,11 +45,11 @@ What once was light turned to blackness.
 
 Alone and betrayed,
 
-Sinking deeper into madness.', 0);
+Sinking deeper into madness.', 0, '');
 
 -- AR-VIII-002 — Death Blow of Abernanit
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (176, 'AR-VIII-002', 'Death Blow of Abernanit', 'Geocrates Varnus, ed.', 'Plays, Poetry & Riddles',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (206, 'AR-VIII-002', 'Death Blow of Abernanit', 'Geocrates Varnus, ed.', 'Plays, Poetry & Riddles',
    'The Death Blow of Abernanit
 
 With Explains by the sage
@@ -266,11 +266,11 @@ Geocrates Varnus explains:
 
 (4) “Mother, Lord, and Wizard” refers to the Tribunal of Almalexia, Vivec, and Sotha Sil.
 
-(5) “Dagoth Thras” was a powerful daedra-worshipper of unknown origin who declared himself the heir of the Sixth House, though there is little evidence he descended from the vanished family.', 0);
+(5) “Dagoth Thras” was a powerful daedra-worshipper of unknown origin who declared himself the heir of the Sixth House, though there is little evidence he descended from the vanished family.', 0, '');
 
 -- AR-VIII-003 — Five Songs of King Wulfharth
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (177, 'AR-VIII-003', 'Five Songs of King Wulfharth', 'Anonymous', 'Plays, Poetry & Riddles',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (207, 'AR-VIII-003', 'Five Songs of King Wulfharth', 'Anonymous', 'Plays, Poetry & Riddles',
    '## Shor’s Tongue
 
 The first song of King Wulfharth is ancient, circa 1E500. After the defeat of the Alessian army at Glenumbria Moors, where King Hoag Merkiller was slain, Wulfharth of Atmora was elected by the Pact of Chieftains. His thu’um was so powerful that he could not verbally swear into the office, and scribes were used to draw up his oaths. Immediately thereafter the scribes wrote down the first new law of his reign: a fiery reinstatement of the traditional Nordic pantheon. The Edicts were outlawed, their priests put to the stake, and their halls set ablaze. The shadow of King Borgas had ended for a span. For his zealotry, King Wulfharth was called Shor’s Tongue, and Ysmir, Dragon of the North.
@@ -295,11 +295,11 @@ The Armies Grow
  And Lorkhan (for that is what they called Shor in Resdayn) said: “I do not wreak vengeance on the Dwarves for the reasons that the Tribunal might believe I do. Nevertheless, it is true that they will die by my hand, and any whoever should side with them. This Nerevar is the son of Boethiah, one of the strongest Padomaics. He is a hero to his people despite his Tribunal, and he shall muster enough that this battle will be harder going still. We will need more than what we have.” And so Dagoth-Ur, who wanted the Dwarves as dead as the Tribunal did, went to Kogoran and summoned his House chap’thil, his nix-hounds, his wizards, archers, his stolen men of brass. And the Ash King, Wulfharth, hoary Ysmir, went and made peace with the Orcs in spite of his Nordic blood, and they brought many warriors but no wizards at all. Many Nords could not bring themselves to ally with their traditional enemies, even in the face of Red Mountain. They were close to desertion. Then Wulfharth said: “Don’t you see where you really are? Don’t you know who Shor really is? Don’t you know what this war is?” And they looked from the King to the God to the Devils and Orcs, and some knew, really knew, and they are the ones that stayed.
 
 The Doom Drum
- Nerevar carried Keening, a dagger made of the sound of the shadow of the moons. His champions were Dumac Dwarfking, who carried a hammer of divine mass, and Alandro Sul, who was the immortal son of Azura and wore the Wraith Mail. They met Lorkhan at the last battle of Red Mountain. Lorkhan had his Heart again, but he had long been from it, and he needed time. Wulfharth met Sul but could not strike him, and he fell from grievous wounds, but not before shouting Sul blind. Dagoth-Ur met Dumac and slew him, but not before Sunder struck his lord’s Heart. Nerevar turned away from Lorkhan and struck down Dagoth-Ur in rage, but he took a mortal wound from Lorkhan in turn. But Nerevar feigned the death that was coming early and so struck Lorkhan with surprise on his side. The Heart had been made solid by Sunder’s tuning blow and Keening could now cut it out. And it was cut out and Lorkhan was defeated and the whole ordeal was thought over.', 0);
+ Nerevar carried Keening, a dagger made of the sound of the shadow of the moons. His champions were Dumac Dwarfking, who carried a hammer of divine mass, and Alandro Sul, who was the immortal son of Azura and wore the Wraith Mail. They met Lorkhan at the last battle of Red Mountain. Lorkhan had his Heart again, but he had long been from it, and he needed time. Wulfharth met Sul but could not strike him, and he fell from grievous wounds, but not before shouting Sul blind. Dagoth-Ur met Dumac and slew him, but not before Sunder struck his lord’s Heart. Nerevar turned away from Lorkhan and struck down Dagoth-Ur in rage, but he took a mortal wound from Lorkhan in turn. But Nerevar feigned the death that was coming early and so struck Lorkhan with surprise on his side. The Heart had been made solid by Sunder’s tuning blow and Keening could now cut it out. And it was cut out and Lorkhan was defeated and the whole ordeal was thought over.', 0, '');
 
 -- AR-VIII-004 — The Four Totems of Volkygge
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (178, 'AR-VIII-004', 'The Four Totems of Volkygge', 'Anonymous', 'Plays, Poetry & Riddles',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (208, 'AR-VIII-004', 'The Four Totems of Volkygge', 'Anonymous', 'Plays, Poetry & Riddles',
    'All four are bound to the same land as we.
 
 Some lay low, consumed in shadow,
@@ -324,11 +324,11 @@ But only when alone.
 
 All must be activated in order,
 
-If you wish to go home.', 0);
+If you wish to go home.', 0, '');
 
 -- AR-VIII-005 — Horror of Castle Xyr
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (179, 'AR-VIII-005', 'Horror of Castle Xyr', 'Baloth-Kul', 'Plays, Poetry & Riddles',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (209, 'AR-VIII-005', 'Horror of Castle Xyr', 'Baloth-Kul', 'Plays, Poetry & Riddles',
    'THE HORROR OF CASTLE XYR
  A One Act Play
  
@@ -551,11 +551,11 @@ ANANA/IACHILLA: Fascinating.
 
 There are several more flashes of lightning as the curtain closes.
 
-THE END', 0);
+THE END', 0, '');
 
 -- AR-VIII-006 — A Hypothetical Treachery
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (180, 'AR-VIII-006', 'A Hypothetical Treachery', 'Anthil Morvir', 'Plays, Poetry & Riddles',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (210, 'AR-VIII-006', 'A Hypothetical Treachery', 'Anthil Morvir', 'Plays, Poetry & Riddles',
    'A HYPOTHETICAL TREACHERY
  A One Act Play
  
@@ -704,11 +704,11 @@ MALVASIAN: And ... hypothetically ... would she be likely to help her fallen foe
 
 INZOLIAH: From my experience, hypothetically, no. She doesn’t sound like a fool.
 
-As Inzoliah lugs the chest off toward Silvenar, and Malvasian expires on the stage, we drop the curtain.', 0);
+As Inzoliah lugs the chest off toward Silvenar, and Malvasian expires on the stage, we drop the curtain.', 0, '');
 
 -- AR-VIII-007 — King Olaf’s Verse
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (181, 'AR-VIII-007', 'King Olaf’s Verse', 'Anonymous', 'Plays, Poetry & Riddles',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (211, 'AR-VIII-007', 'King Olaf’s Verse', 'Anonymous', 'Plays, Poetry & Riddles',
    'O, Olaf, our subjugator, the one-eyed betrayer;
 
 death-dealing demon and dragon-killing King.
@@ -727,11 +727,11 @@ Olaf’s vengeance was instant, inspired and wicked.
 
 So ends the story of Olaf the liar, a thief and a scoundrel we of Solitude commit to the fire.
 
-In Solitude bards train for their service, they also gather each year and burn a King who deserves it.', 0);
+In Solitude bards train for their service, they also gather each year and burn a King who deserves it.', 0, '');
 
 -- AR-VIII-008 — Legend of the Krately House
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (182, 'AR-VIII-008', 'Legend of the Krately House', 'Baloth-Kul', 'Plays, Poetry & Riddles',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (212, 'AR-VIII-008', 'Legend of the Krately House', 'Baloth-Kul', 'Plays, Poetry & Riddles',
    'Dramatis Personae
  
  THEOPHON - Imperial man, 24, thief
@@ -1093,11 +1093,11 @@ You promised me you refilled the lamp!
 
 More footsteps and a horrible, horrible HOWL. The men SCREAM.
 
-The curtain falls.', 0);
+The curtain falls.', 0, '');
 
 -- AR-VIII-009 — Love Poem
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (183, 'AR-VIII-009', 'Love Poem', 'Calcelmo', 'Plays, Poetry & Riddles',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (213, 'AR-VIII-009', 'Love Poem', 'Calcelmo', 'Plays, Poetry & Riddles',
    'My lover’s heart is numbing stone
 
 That hides in ice beneath our sight.
@@ -1152,11 +1152,11 @@ My city carved from rugged stone.
 
 So in that burrow I will creep,
 
-And warm the soul which makes my home.', 0);
+And warm the soul which makes my home.', 0, '');
 
 -- AR-VIII-010 — The Lusty Argonian Maid
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (184, 'AR-VIII-010', 'The Lusty Argonian Maid', 'Crassius Curio', 'Plays, Poetry & Riddles',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (214, 'AR-VIII-010', 'The Lusty Argonian Maid', 'Crassius Curio', 'Plays, Poetry & Riddles',
    '## Volume 1
 
 By:
@@ -1253,11 +1253,11 @@ Crantius Colto
 
 Plenty of time, my sweet. Plenty of time.
 
-END OF ACT VII, SCENE II', 0);
+END OF ACT VII, SCENE II', 0, 'Volume 1');
 
 -- AR-VIII-011 — Ode to the Tundrastriders
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (185, 'AR-VIII-011', 'Ode to the Tundrastriders', 'Anonymous', 'Plays, Poetry & Riddles',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (215, 'AR-VIII-011', 'Ode to the Tundrastriders', 'Anonymous', 'Plays, Poetry & Riddles',
    'Oh mighty tundrastrider!
 
 How you and your mighty tusked beast silhouette against the great orange expanse.
@@ -1282,11 +1282,11 @@ We’d snack on the roasted skeever we’d freshly caught that day before laying
 
 I’d slowly fade to dream nested in the radiating heat of mammoth fur. It’s cold resisting properties keeping me snug.
 
-What a grand time we would have.', 0);
+What a grand time we would have.', 0, '');
 
 -- AR-VIII-012 — Pirate King of the Abecean
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (186, 'AR-VIII-012', 'Pirate King of the Abecean', 'Velehk Sain', 'Plays, Poetry & Riddles',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (216, 'AR-VIII-012', 'Pirate King of the Abecean', 'Velehk Sain', 'Plays, Poetry & Riddles',
    'Poke out your eyes lad, pour lead in your ears
 
 Those sails portend madness, dark horror and fear
@@ -1317,11 +1317,11 @@ His eyes gleam red, his heart will never thaw
 
 Mark well these words, you quaking babes
 
-Blood on the water follows Captain Velehk Sain', 0);
+Blood on the water follows Captain Velehk Sain', 0, '');
 
 -- AR-VIII-013 — Power of the Elements
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (187, 'AR-VIII-013', 'Power of the Elements', 'Anonymous', 'Plays, Poetry & Riddles',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (217, 'AR-VIII-013', 'Power of the Elements', 'Anonymous', 'Plays, Poetry & Riddles',
    'Northward, haunted
 
 northern coastline
@@ -1354,11 +1354,11 @@ does scrape the sky.
 
 Here unleash a chilling cry
 
-And gild this stand with frost.', 0);
+And gild this stand with frost.', 0, '');
 
 -- AR-VIII-014 — The Red Book of Riddles
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (188, 'AR-VIII-014', 'The Red Book of Riddles', 'Anonymous', 'Plays, Poetry & Riddles',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (218, 'AR-VIII-014', 'The Red Book of Riddles', 'Anonymous', 'Plays, Poetry & Riddles',
    '*The posing and puzzling of riddles is a convention of polite aristocratic Western society. Nobles and social aspirants collect books of riddles and study them, hoping thereby to increase the chances of their appearing sly and witty in conversation.*
 
 The question:
@@ -1395,11 +1395,11 @@ Two lids open when it knocks
 
 The answer:
 
-It must have been a great hit.', 0);
+It must have been a great hit.', 0, '');
 
 -- AR-VIII-015 — The Secret of Ragnvald
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (189, 'AR-VIII-015', 'The Secret of Ragnvald', 'Anonymous', 'Plays, Poetry & Riddles',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (219, 'AR-VIII-015', 'The Secret of Ragnvald', 'Anonymous', 'Plays, Poetry & Riddles',
    'Two hero-hearts
 
 Two hidden keys
@@ -1454,11 +1454,11 @@ but never destroyed
 
 Bound instead, contained
 
-Two Heroes, Two Keys', 0);
+Two Heroes, Two Keys', 0, '');
 
 -- AR-VIII-016 — Song of Hrormir
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (190, 'AR-VIII-016', 'Song of Hrormir', 'Anonymous', 'Plays, Poetry & Riddles',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (220, 'AR-VIII-016', 'Song of Hrormir', 'Anonymous', 'Plays, Poetry & Riddles',
    'Hrormir
 
 Son of Hrorgar
@@ -1839,11 +1839,11 @@ Did Darfang return to Eversnow
 
 With Hrormir
 
-Son of Hrorgar.', 0);
+Son of Hrorgar.', 0, '');
 
 -- AR-VIII-017 — Song of the Askelde Men
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (191, 'AR-VIII-017', 'Song of the Askelde Men', 'Atheneum Monks at Old Anthel', 'Plays, Poetry & Riddles',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (221, 'AR-VIII-017', 'Song of the Askelde Men', 'Atheneum Monks at Old Anthel', 'Plays, Poetry & Riddles',
    'Fifty Nights from home I last awoke
 
 upon a sky-flung cliff in Hjaalmarch Hold
@@ -1934,11 +1934,11 @@ into the vapor-soul of me, his nostrils flared
 
 He bellowed ancient words, his beard aflame
 
-And my vision fell away, Peace at last came', 0);
+And my vision fell away, Peace at last came', 0, '');
 
 -- AR-VIII-018 — Songs of Skyrim
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (192, 'AR-VIII-018', 'Songs of Skyrim', 'Various', 'Plays, Poetry & Riddles',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (222, 'AR-VIII-018', 'Songs of Skyrim', 'Various', 'Plays, Poetry & Riddles',
    '*Ragnar the Red is a traditional song of Whiterun. Despite the grim final image the song is generally regarded as light and rollicking and a favorite in inns across Skyrim.*
 
 ## Ragnar The Red
@@ -2075,11 +2075,11 @@ Alduin, Bane of Kings, ancient shadow unbound, with a hunger to swallow the worl
 
 But a day, shall arise, when the dark dragon’s lies, will be silenced forever and then!
 
-Fair Skyrim will be free from foul Alduin’s maw, Dragonborn be the savior of men!', 0);
+Fair Skyrim will be free from foul Alduin’s maw, Dragonborn be the savior of men!', 0, '');
 
 -- AR-VIII-019 — The Sultry Argonian Bard
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (193, 'AR-VIII-019', 'The Sultry Argonian Bard', 'Ellya Erdain', 'Plays, Poetry & Riddles',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (223, 'AR-VIII-019', 'The Sultry Argonian Bard', 'Ellya Erdain', 'Plays, Poetry & Riddles',
    '## Volume 1
 
 By:
@@ -2127,11 +2127,11 @@ Ellya Erdain
 
 Indeed I do, my sweet. Indeed I do.
 
-END OF ACT VI, SCENE II', 0);
+END OF ACT VI, SCENE II', 0, 'Volume 1');
 
 -- AR-VIII-020 — The Third Door
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (194, 'AR-VIII-020', 'The Third Door', 'Annanar Orme', 'Plays, Poetry & Riddles',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (224, 'AR-VIII-020', 'The Third Door', 'Annanar Orme', 'Plays, Poetry & Riddles',
    '## I.
 
 I sing of Ellabeth, the Queen of the Axe,
@@ -2223,11 +2223,11 @@ Nienolas was largely behind the first door she opened.
 IV.
  Ellabeth had lied; there was no demon of lore.
 
-The top third of Nienolas was behind the third door.', 0);
+The top third of Nienolas was behind the third door.', 0, '');
 
 -- AR-VIII-021 — The Yellow Book of Riddles
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (195, 'AR-VIII-021', 'The Yellow Book of Riddles', 'Anonymous', 'Plays, Poetry & Riddles',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (225, 'AR-VIII-021', 'The Yellow Book of Riddles', 'Anonymous', 'Plays, Poetry & Riddles',
    '*The posing and puzzling of riddles is a convention of polite aristocratic Western society. Nobles and social aspirants collect books of riddles and study them, hoping thereby to increase the chances of their appearing sly and witty in conversation.*
 
 A metal neither black nor red
@@ -2246,7 +2246,289 @@ A man says, “If you lie to me I will slay you with my sword. If you tell me th
 
 A Bosmer, was slain. The Altmer claims the Dunmer is guilty. The Dunmer says the Khajiit did it. The Orc swears he didn’t kill the Bosmer. The Khajiit says the Dunmer is lying. If only one of these speaks the truth, who killed the Bosmer?
 
-crO ehT :rewsnA ehT', 0);
+crO ehT :rewsnA ehT', 0, '');
+
+-- AR-VIII-022 — Song of the Alchemists
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (226, 'AR-VIII-022', 'Song of the Alchemists', 'Anonymous', 'Plays, Poetry & Riddles',
+   'When King Maraneon''s alchemist had to leave his station
+After a laboratory experiment that yielded detonation,
+The word went out that the King did want
+A new savant
+To mix his potions and brews.
+But he declared he would only choose
+A fellow who knew the tricks and the tools.
+The King refused to hire on more fools.
+
+After much deliberation, discussions, and debates,
+The King picked two well-learned candidates.
+Ianthippus Minthurk and Umphatic Faer,
+An ambitious pair,
+Vied to prove which one was the best.
+Said the King, "There will be a test."
+They went to a large chamber with herbs, gems, tomes,
+Pots, measuring cups, all under high crystalline domes.
+
+"Make me a tonic that will make me invisible,"
+Laughed the King in a tone some would call risible.
+So Umphatic Faer and Ianthippus Minthurk
+Began to work,
+Mincing herbs, mashing metal, refining strange oils,
+Cautiously setting their cauldrons to burbling boils,
+Each on his own, sending mixing bowls mixing,
+Sometimes peeking to see what the other was fixing.
+
+After they had worked for nearly three-quarters an hour,
+Both Ianthippus Minthurk and Umphatic Faer
+Winked at the other, certain he won.
+Said King Maraneon,
+"Now you must taste the potions you''ve wrought,
+Take a spoon and sample it right from your pot."
+Minthurk vanished as his lips touched his brew,
+But Faer tasted his and remained apparent in view.
+
+"You think you mixed silver, blue diamonds, and yellow grass!"
+The King laughed, "Look up, Faer, up to the ceiling glass.
+The light falling makes the ingredients you choose
+Quite different hues."
+"What do you get," asked the floating voice, bold,
+"Of a potion of red diamonds, blue grass, and gold?"
+"By [Dwemer God]," said Faer, his face in a wince,
+"I''ve made a potion to fortify my own intelligence."
+
+***Publisher''s Note:***
+
+*This poetry is so clearly in the style of Gor Felim that it really does not need any commentary. Note the simple rhyming scheme of AA/BB/CC, the sing-song but purposefully clumsy meter, and the recurring jokes at the obviously absurd names, Umphatic Faer and Ianthippus Minthurk. The final joke that the stupid alchemist invents a potion to make himself smarter by pure accident would have appealed to the anti-intellectualism of audiences in the Interregnum period, but would certainly be rejected by the Dwemer.*
+
+*Note that even "Marobar Sul" refuses to name any Dwemer gods. The Dwemer religion, if it can even be called that, is one of the most complex and difficult puzzles of their culture.*
+
+*Over the millennia, the song became a popular tavern song in High Rock before eventually disappearing from everything but scholarly books. Much like the Dwemer themselves.*', 0, '');
+
+-- AR-VIII-023 — Mannimarco, King of Worms  [SEALED]
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (227, 'AR-VIII-023', 'Mannimarco, King of Worms', 'Anonymous', 'Plays, Poetry & Riddles',
+   'O sacred isle Artaeum, where rosy light infuses air,
+
+O''er towers and through flowers, gentle breezes flow,
+
+Softly sloping green-kissed cliffs to crashing foam below,
+
+Always springtide afternoon housed within its border,
+
+This mystic, mist-protected home of the Psijic Order:
+
+Those counselors of kings, cautious, wise, and fair.
+
+Ten score years and thirty since the mighty Remans fell,
+
+Two brilliant students studied within the Psijics'' fold.
+
+One''s heart was light and warm, the other dark and cold.
+
+The madder latter, Mannimarco, whirled in a deathly dance,
+
+His soul in bones and worms, the way of the necromance.
+
+Entrapping and enslaving souls, he cast a wicked spell.
+
+The former, Galerion had magic bold and bright as day.
+
+He confronted Mannimarco beneath gray Ceporah Tower,
+
+Saying, ''Your wicked mysticism is no way to wield your power,
+
+Bringing horror to the spirit world, your studies must cease.''
+
+Mannimarco scoffed, hating well the ways of life and peace,
+
+And returned to his dark artistry; his paints, death and decay.
+
+O sacred isle Artaeum, how slow to perceive the threat,
+
+When the ghastly truth revealed, how weak the punishment.
+
+The ghoulish Mannimarco from the isle of the wise was sent
+
+To the mainland Dawn''s Beauty, more death and souls to reap.
+
+''You have found a wolf, and sent the beast to flocks of sheep,''
+
+Galerion told his Masters, ''A terror on Tamriel has set.''
+
+''Speak no more of him,'' the sage Cloaks of Gray did say.
+
+''Twas not the first time Galerion thought his Masters callous,
+
+Unconcerned for men and mer, aloof in their island palace.
+
+''Twas not the first time Galerion thought ''twas time to build
+
+A new Order to bring true magic to all, a mighty Mages Guild.
+
+But ''twas the time he left, at last, fair Artaeum''s azure bay.
+
+O, but sung we have of Vanus Galerion many times before,
+
+How cast he off the Psijics'' chains, bringing magic to the land.
+
+Throughout the years, he saw the touch of Mannimarco''s hand,
+
+Through Tamriel''s deserts, forests, towns, mountains, and seas.
+
+The dark grip stretching out, growing like some dread disease
+
+By his dark Necromancers, collecting cursed artifacts of yore.
+
+They brought to him these tools, mad wizards and witches,
+
+And brought blood-tainted herbs and oils to his cave of sin,
+
+Sweet Akaviri poison, dust from saints, sheafs of human skin,
+
+Toadstools, roots, and much more cluttered his alchemical shelf,
+
+Like a spider in his web, he sucked all their power into himself,
+
+Mannimarco, Worm King, world''s first of the undying liches.
+
+Corruption on corruption, ''til the rot sunk to his very core,
+
+Though he kept the name Mannimarco, his body and his mind
+
+Were but a living, moving corpse as he left humanity behind.
+
+The blood in his veins became instead a poison acid stew.
+
+His power and his life increased as his fell collection grew.
+
+Mightiest were these artifacts, long cursed since days of yore.
+
+They say Galerion left the Guild, calling it ''a morass,''
+
+But untruth is a powerful stream, polluting the river of time.
+
+Galerion beheld Mannimarco''s rise through powers sublime,
+
+To his mages and Lamp Knights, ''Before my last breath,
+
+Face I must the tyranny of worms, and kill at last, undeath.''
+
+He led them north to cursed lands, to a mountain pass.
+
+O those who survived the battle say its like was never seen.
+
+Armored with magicka, armed with ensorcelled sword and axe,
+
+Galerion cried, echoing, ''Worm King, surrender your artifacts,
+
+And their power to me, and you shall live as befits the dead.''
+
+A hollow laugh answered, ''You die first,'' Mannimarco said.
+
+The mage army then clashed with the unholy force obscene.
+
+Imagine waves of fire and frost, and the mountain shivers,
+
+Picture lightning arching forth, crackling in a dragon''s sigh.
+
+Like leaves, the battlemages fly to rain down from the sky,
+
+At the Necromancers'' call, corpses burst from earth to fight,
+
+To be shattered into nothingness with a flood of holy light.
+
+A maelstrom of energy unleashed, blood cascades in rivers.
+
+Like a thunderburst in blue skies or a lion''s sudden roar,
+
+Like sharp razors tearing over delicate embroidered lace,
+
+So at a touch did Galerion shake the mountain to its base.
+
+The deathly horde fell fatally, but heeding their dying cries
+
+From the depths, the thing they called Worm King did rise.
+
+Nirn itself did scream in the Mages'' and Necromancers'' war
+
+His eyes burning dark fire, he opened his toothless maw,
+
+Vomiting darkness with each exhalation of his breath,
+
+All sucking in the fetid air felt the icy touch of death.
+
+In the skies above the mountain, darkness overcame pale,
+
+Then Mannimarco Worm King felt his dismal powers fail:
+
+The artifacts of death pulled from his putrid skeletal claw.
+
+A thousand good and evil perished then, history confirms.
+
+Among, alas, Vanus Galerion, he who showed the way,
+
+It seemed once that Mannimarco had truly died that day.
+
+Scattered seemed the Necromancers, wicked, ghastly fools,
+
+Back to the Mages Guild, victors kept the accursed tools,
+
+Of him, living still in undeath, Mannimarco, King of Worms.
+
+Children, listen as the shadows cross your sleeping hutch,
+
+And the village sleeps away, streets emptied of the crowds,
+
+And the moons do balefully glare through the nightly clouds,
+
+And the graveyard''s people rest, we hope, in eternal sleep,
+
+Listen and you''ll hear the whispered tap of the footsteps creep,
+
+Then pray you''ll never feel the Worm King''s awful touch.', 1, '');
+
+-- AR-VIII-024 — The Warrior's Charge
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (228, 'AR-VIII-024', 'The Warrior''s Charge', 'Anonymous', 'Plays, Poetry & Riddles',
+   'The star sung far-flung tales
+
+Wreathed in the silver of Yokuda fair,
+
+Of a Warrior who, arrayed in hue sails
+
+His charges through the serpent''s snare
+
+And the Lord of runes, so bored so soon,
+
+Leaves the ship for an evening''s dare,
+
+Perchance to wake, the coiled snake,
+
+To take its shirt of scales to wear
+
+And the Lady East, who e''ery beast,
+
+Asleep or a''prowl can rouse a scare,
+
+Screams as her eye, alight in the sky
+
+A worm no goodly sight can bear
+
+And the mailed Steed, ajoins the deed
+
+Not to be undone from his worthy share,
+
+Rides the night, towards scale bright,
+
+Leaving the seasoned Warrior''s care
+
+Then the serpent rose, and made stead to close,
+
+The targets lay plain and there,
+
+But the Warrior''s blade the Snake unmade,
+
+And the charges wander no more, they swear', 0, '');
 
 -- Cross-references, derived from the titles named in these bodies.
-INSERT INTO citations (from_tome, cites_call_number) VALUES (191, 'AR-XI-002');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (221, 'AR-XI-002');

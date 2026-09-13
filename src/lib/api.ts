@@ -6,6 +6,8 @@ export interface TomeSummary {
   title: string;
   author: string;
   school: string;
+  /** Optional volume label carried by the source metadata when available. */
+  volume?: string | null;
   /** On the College's restricted register, and shelved at L1. */
   restricted: boolean;
 }

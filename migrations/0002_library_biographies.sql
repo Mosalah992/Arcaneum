@@ -12,7 +12,7 @@ DELETE FROM citations;
 DELETE FROM tomes;
 
 -- AR-I-001 — Biography of Barenziah
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
   (1, 'AR-I-001', 'Biography of Barenziah', 'Stern Gamboge', 'Biographies',
    '## Volume One
 
@@ -64,10 +64,10 @@ As all now know, the courageous, indefatigable, and forever nameless Champion wa
 
 Barenziah and good King Eadwyre had come to care deeply for one another during their trials and adventures, and were married in the same year shortly after their flight from the Imperial City. Her two children from her previous marriage with Symmachus remained with her, and a regent was appointed to rule Mournhold in her absence.
 
-Up to the present time, Queen Barenziah has been in Wayrest with Prince Helseth and Princess Morgiah. She plans to return to Mournhold after Eadwyre’s death. Since he was already elderly when they wed, she knows that that event, alas, could not be far off as the Elves reckon time. Until then, she shares in the government of the kingdom of Wayrest with her husband, and seems glad and content with her finally quiet, and happily unremarkable, life.', 0);
+Up to the present time, Queen Barenziah has been in Wayrest with Prince Helseth and Princess Morgiah. She plans to return to Mournhold after Eadwyre’s death. Since he was already elderly when they wed, she knows that that event, alas, could not be far off as the Elves reckon time. Until then, she shares in the government of the kingdom of Wayrest with her husband, and seems glad and content with her finally quiet, and happily unremarkable, life.', 0, 'Volume One');
 
 -- AR-I-002 — Biography of the Wolf Queen
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
   (2, 'AR-I-002', 'Biography of the Wolf Queen', 'Katar Eriphanes', 'Biographies',
    'Few historic figures are viewed as unambiguously evil, but Potema, the so-called Wolf Queen of Solitude, surely qualifies for that dishonor. Born to the Imperial Family in the sixty-seventh year of the third era, Potema was immediately presented to her grandfather, the Emperor Uriel Septim II, a famously kindhearted man, who viewed the solemn, intense babe and whispered, “She looks like a she-wolf about ready to pounce.”
 
@@ -103,10 +103,10 @@ Potema died after a month long siege on her castle in the year 3E 137 at the age
 
 Her death has hardly diminished her notoriety. Though there is little direct evidence of this, some theologians maintain that her spirit was so strong, she became a daedra after her death, inspiring mortals to mad ambition and treason. It is also said that her madness so infused Castle Solitude that it infected the next king to rule there. Ironically, that was her 18-year-old nephew Pelagius, the son of Magnus. Whatever the truth of the legend, it is undeniable that when Pelagius left Solitude in 3E 145 to assume the title of the Emperor Pelagius III, he quickly became known as Pelagius The Mad. It is even widely rumored that he murdered his father Magnus.
 
-The Wolf Queen must surely have had the last laugh.', 0);
+The Wolf Queen must surely have had the last laugh.', 0, '');
 
 -- AR-I-003 — Galerion the Mystic
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
   (3, 'AR-I-003', 'Galerion the Mystic', 'Asgrim Kolsgreg', 'Biographies',
    'During the early bloody years of the Second Era, Vanus Galerion was born under the name Trechtus, a serf on the estate of a minor nobleman, Lord Gyrnasse of Sollicich-on-Ker. Trechtus’ father and mother were common laborers, but his father had secretly, against the law of Lord Gyrnasse, taught himself and then Trechtus to read. Lord Gyrnasse had been advised that literate serfs were an abomination of nature and dangerous to themselves and their lords, and had closed all bookstalls within Sollicich-on-Ker. All booksellers, poets, and teachers were forbidden, except within Gyrnasse’s keep. Nevertheless, a small-scale smuggling operation kept a number of books and scrolls in circulation right under Gyrnasse’s shadow.
 
@@ -116,10 +116,10 @@ Three months later, Trechtus ran away from Lord Gyrnasse’s estate. He made it 
 
 When the troupe was performing in the village of Potansa on the far eastern end of Summurset, Heliand took Trechtus, then a boy of eleven, to the Isle of Artaeum. The Magister of the Isle, Iachesis, recognized potential in Trechtus and took him on as pupil, giving him the name of Vanus Galarion. Vanus trained his mind on the Isle of Artaeum, as well as his body.
 
-Thus was the first Archmagister of the Mages Guild trained. From the Psijics of the Isle of Artaeum, he received his training. From his childhood of want and injustice, he received his philosophy of sharing knowledge.', 0);
+Thus was the first Archmagister of the Mages Guild trained. From the Psijics of the Isle of Artaeum, he received his training. From his childhood of want and injustice, he received his philosophy of sharing knowledge.', 0, '');
 
 -- AR-I-004 — Life of Uriel Septim VII
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
   (4, 'AR-I-004', 'Life of Uriel Septim VII', 'Rufus Hayn', 'Biographies',
    '3E 368-389: Strategist and Conciliator
 
@@ -149,10 +149,10 @@ Following the ‘Miracle of Peace’ (best described in Per Vetersen’s *Dagger
 
 Exploiting conflicts at the heart of Morrowind’s monolithic Tribunal religion and the long-established Great House system of government, and taking advantage of the terrible threat that the corrupted divine beings at the heart of the Tribunal religion presented to the growing colonies on Vvardenfell, Uriel worked through shadowy agents of the Blades and through the court of King Helseth in Mournhold to shift the center of political power in Morrowind from the Great House councils to Helseth’s court, and took advantage of the collapse of the orthodox Tribunal cults to establish the Nine Divines as the dominant faiths in Hlaalu and Vvardenfell Districts.
 
-Hasphat Anabolis’s treatment of the establishment of the Nine in the East in his four-volume *Life and Times of the Nerevarine* is comprehensive; however, he fails to resolve the central mystery of this period – how much did Uriel know about the prophecies of the Nerevarine, and how did he learn of their significance? The definitive resolution of this and other mysteries must await the future release of the Emperor’s private papers, or a relenting of the Blades’ strict policies of secrecy concerning their agents.', 0);
+Hasphat Anabolis’s treatment of the establishment of the Nine in the East in his four-volume *Life and Times of the Nerevarine* is comprehensive; however, he fails to resolve the central mystery of this period – how much did Uriel know about the prophecies of the Nerevarine, and how did he learn of their significance? The definitive resolution of this and other mysteries must await the future release of the Emperor’s private papers, or a relenting of the Blades’ strict policies of secrecy concerning their agents.', 0, '');
 
 -- AR-I-005 — The Madness of Pelagius
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
   (5, 'AR-I-005', 'The Madness of Pelagius', 'Tsathenes', 'Biographies',
    'The man who would be Emperor of all Tamriel was born Thoriz Pelagius Septim, a prince of the royal family of Wayrest in 3E 119 at the end of the glorious reign of his uncle, Antiochus I. Wayrest had been showered by much preference during the years before Pelagius’ birth, for King Magnus was Antiochus’ favorite brother.
 
@@ -190,10 +190,10 @@ Traitors to the Empire have many lies to spread about this period. Whispered sto
 
 On a warm night in Suns Dawn, in his 34th year, Pelagius III died after a brief fever in his cell at the Temple of Kynareth in the Isle of Betony. Katariah I reigned for another forty six years before passing the scepter onto the only child she had with Pelagius, Cassynder.
 
-Pelagius’ wild behavior has made him perversely dear to the province of his birth and death. The 2nd of Suns Dawn, which may or may not be the anniversary of his death (records are not very clear) is celebrated as Mad Pelagius, the time when foolishness of all sorts is encouraged. And so, one of the least desirable Emperors in the history of the Septim Dynasty, has become one of the most famous ones.', 0);
+Pelagius’ wild behavior has made him perversely dear to the province of his birth and death. The 2nd of Suns Dawn, which may or may not be the anniversary of his death (records are not very clear) is celebrated as Mad Pelagius, the time when foolishness of all sorts is encouraged. And so, one of the least desirable Emperors in the history of the Septim Dynasty, has become one of the most famous ones.', 0, '');
 
 -- AR-I-006 — The Night Mother’s Truth
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
   (6, 'AR-I-006', 'The Night Mother’s Truth', 'Gaston Bellefort', 'Biographies',
    'Although various works have been written on the subjects of both Morrowind’s Morag Tong, and Tamriel’s more widespread Dark Brotherhood, there remains confusion as to precisely when and how these two feared assassins’ guilds formed. Or, more specifically, when and how the Dark Brotherhood split from the Morag Tong, as the former is widely accepted to have sprung from the latter.
 
@@ -215,10 +215,10 @@ And so the Unholy Matron set her servant on his path - he would found a new orga
 
 In the early days of the Dark Brotherhood, the bodies of the Night Mother and her children were recovered from their original burial site, and interred in a crypt beneath the site of her house. And there they remain, even today.
 
-So if, in your travels, you find yourself in the city of Bravil, and make a wish at the statue of the Lucky Old Lady (as is the local custom), know that you stand on sacred, if evil, ground. For you stand above the Night Mother, the Unholy Matron herself, and your luck has just run out.', 0);
+So if, in your travels, you find yourself in the city of Bravil, and make a wish at the statue of the Lucky Old Lady (as is the local custom), know that you stand on sacred, if evil, ground. For you stand above the Night Mother, the Unholy Matron herself, and your luck has just run out.', 0, '');
 
 -- AR-I-007 — The Real Barenziah
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
   (7, 'AR-I-007', 'The Real Barenziah', 'Plitinius Mero', 'Biographies',
    '## Volume 1
 
@@ -452,7 +452,7 @@ The man shook his head sadly. “Not among Dark Elves it isn’t, my dear. But y
 
 “Who are you?” Barenziah demanded.
 
-“Ai. So much for fame,” the man shrugged, smiling wryly. “I am Symmachus, Milady Barenziah. General Symmachus of His Awesome and Terrible Majesty Tiber Septim I’s Imperial Army. And I must say it’s a merry chase you’ve led me throughout Tamriel. Or this part of it, anyway. Although I guessed, and guessed correctly, that you’d head for Morrowind eventually. You had a bit of luck. A body was found in Whiterun that was thought to be Straw’s. So we stopped looking for the pair of you. That was careless of me. Yet I’d not have thought you’d', 0);
+“Ai. So much for fame,” the man shrugged, smiling wryly. “I am Symmachus, Milady Barenziah. General Symmachus of His Awesome and Terrible Majesty Tiber Septim I’s Imperial Army. And I must say it’s a merry chase you’ve led me throughout Tamriel. Or this part of it, anyway. Although I guessed, and guessed correctly, that you’d head for Morrowind eventually. You had a bit of luck. A body was found in Whiterun that was thought to be Straw’s. So we stopped looking for the pair of you. That was careless of me. Yet I’d not have thought you’d', 0, 'Volume 1');
 UPDATE tomes SET body = body || ' have stayed together this long.”
 
 “Where is he? Is he all right?” she asked in genuine trepidation.
@@ -1257,7 +1257,7 @@ Wayrest was equally distrustful of her, but Eadwyre was fanatically loved by his
 Barenziah could only hope that he wouldn’t take very long, whoever this unnamed Champion was. She was a Dark Elf, and she had all the time in the world. All the time. But no more love left to give, and no more hatred left to burn. She had nothing left, nothing but pain, and memories... and her children. She only wanted to raise her family, and provide them a good life, and be left to live out what remained of hers. She had no doubt it was going to be a long life yet. And during it she wanted peace, and quiet, and serenity, of her soul as well as of her heart. Peasant dreams. That was what she wanted. That was what the real Barenziah wanted. That was what the real Barenziah was. Peasant dreams.' WHERE id = 7;
 
 -- AR-I-008 — Sacred Witness
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
   (8, 'AR-I-008', 'Sacred Witness', 'Enric Milnes', 'Biographies',
    'I have met countesses and courtesans, empresses and witches, ladies of war and slatterns of peace, but I have never met a woman like The Night Mother. And I never will again.
 
@@ -1329,10 +1329,10 @@ I helped the Night Mother and the Dark Brotherhood in acts too despicable, too b
 
 And I wrote this. The true history of the Night Mother, from the interview she gave me on the night we met. It will be the last thing I ever write, this I know. And every word is true.
 
-Pray for me.', 0);
+Pray for me.', 0, '');
 
 -- AR-I-009 — Saint Jiub’s Opus
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
   (9, 'AR-I-009', 'Saint Jiub’s Opus', 'Jiub', 'Biographies',
    'I am a hunter. I am a redeemer. I am Jiub.
 
@@ -1350,10 +1350,10 @@ When I awoke, all I felt was my back on a cold stone floor. Every muscle in my b
 
 Suddenly I understood everything. Suddenly I realized that I was brought here for a reason. I should have died in those ash wastes, but Lord Vivec must have seen something inside me that he hadn’t seen in millennia and decided to spare me from my fate.
 
-Thus began my ascent to Sainthood. Thus began the rise of Jiub!', 0);
+Thus began my ascent to Sainthood. Thus began the rise of Jiub!', 0, '');
 
 -- AR-I-010 — The Wolf Queen
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
   (10, 'AR-I-010', 'The Wolf Queen', 'Waughin Jarth', 'Biographies',
    '## Book One
 
@@ -1679,7 +1679,7 @@ Potema handed her brother the letter and left the room. For a few moments, out i
 
 Ten years after being crowned Emperor of Tamriel, Antiochus Septim had impressed his subjects with little but the enormity of his lust for carnal pleasures. By his second wife, Gysilla, he had a daughter in the year 104, who he named Kintyra, after his great-great-great grandaunt, the Empress. Enormously fat and marked by every venereal disease known to the Healers, Antiochus spent little time on politics. His siblings, by marked contrast, excelled in this field. Magnus had married Hellena, the Cyrodiil Queen of Lilmoth – the Argonian priest-king having been executed – and was representing the Imperial interests in Black Marsh admirably. Cephorus and his wife Bianki were ruling the Hammerfell kingdom of Gilane with a healthy brood of children. But no one was more politically active than Potema, the Wolf-Queen of the Skyrim kingdom of Solitude.
 
-Nine years after the death of her husband, King Mantiarco, Potema still ruled as regent for her young son, Uriel. Their court had become very fashionable, particularly for rulers who had a grudge to bear against the Emperor. All the kings of Skyrim ', 0);
+Nine years after the death of her husband, King Mantiarco, Potema still ruled as regent for her young son, Uriel. Their court had become very fashionable, particularly for rulers who had a grudge to bear against the Emperor. All the kings of Skyrim ', 0, 'Book One');
 UPDATE tomes SET body = body || 'visited Castle Solitude regularly, and over the years, emissaries from the lands of Morrowind and High Rock did as well. Some guests came from even farther away.
 
 3E 110:
@@ -2055,9 +2055,65 @@ Pelagius, King of Solitude, is recorded as “occasionally eccentric” in the I
 
 The Emperor Magnus Septim dies. His son, who will be known as Pelagius the Mad, is coronated.' WHERE id = 10;
 
+-- AR-I-011 — Rislav The Righteous
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (11, 'AR-I-011', 'Rislav The Righteous', 'Anonymous', 'Biographies',
+   'Like all true heroes, Rislav Larich had inauspicious beginnings. We are told by chroniclers that the springtide night in the 448th year of the first era on which he was born was unseasonably cold, and that his mother Queen Lynada died very shortly after setting eyes upon her son. If he were much beloved of his father, King Mhorus of Skingrad, who already had plenty of heirs, three sons and four daughters before him, the chroniclers make no mention of it.
+
+His existence was so very undistinguished that we hear virtually nothing of him for the first twenty years of his life. His schooling, we can suppose, was similar to that of any "spare prince" in the Colovian West, with Ayleid tutors to teach him the ways of hunting and battle. Etiquette, religious instruction, and even basic statecraft were seldom a part of the training of a prince of the Highlands, as it was in the more civilized valley of Nibenay.
+
+There is a brief reference to him, together with his family, as part of the rolls of honor during the coronation of the Emperor Gorieus on the 23rd of Sun''s Dawn 1E 461. The ceremony, of course, held during the time of the Alessian Doctrines of Marukh, and so was without entertainment, but the thirteen-year-old Rislav was still witness to some of the greatest figures of legend. The Beast of Anequina, Darloc Brae, represented his kingdom, giving honor to the Empire. The Chieftain of Skyrim Kjoric the White and his son Hoag were in attendance. And despite the Empire''s intolerance of all elves, chimer Indoril Nerevar and dwemer Dumac Dwarfking were evidently there as well, diplomatically representing Resdayn, all in relative peace.
+
+Also mentioned on the rolls was a young mer in service to the Imperial court of High Rock, who was to have a great history with Rislav. Ryain Direnni.
+
+Whether the two young men of about the same age met and conversed is entirely the stuff of historian''s fancy. Ryain is spoken of in praising words as a powerful land-owner, eventually buying the island of Balfiera in the Iliac Bay and gradually conquering all of High Rock and large parts of Hammerfell and Skyrim, but Rislav is not heard of again in history''s books for another seventeen years. We can only offer supposition based on the facts that follow.
+
+Children of kings are, of course, married to the children of other kings to bind alliances. The kingdoms of Skingrad and Kvatch skirmished over common territory throughout the fifth century, until they reached a peace in the year 472. The details of this accord are not recorded, but since we know that Prince Rislav was in the court of Kvatch six years later, as husband to Belene, the daughter of King Justinius, it is fair to make an educated guess that they were married then to make peace.
+
+This brings us to the year 478, when a great plague swept through all of Cyrodiil and seemed particularly concentrated in the independent Colovian West. Among the victims were King Mhorus and the rest of the entire royal family in Skingrad. Rislav''s only surviving elder brother, Dorald, survived, being in the Imperial City as a priest of Marukh. He returned to his homeland to assume the throne.
+
+Of Dorald, we have some history. The King''s second son, he was slightly simple-minded and evidently very pious. All the chroniclers spoke of his sweetness and decency, how he saw a vision in his early years that brought him - with his father''s blessing - from Skingrad to the Imperial City and the priesthood. The priesthood of Marukh, of course, saw no difference between spiritual and political matters. It was the religion of the Alessian Empire, and it taught that to resist the Emperor was to resist the Gods. Given that, it is scarcely a surprise what Dorald did when he became King of the independent kingdom of Skingrad.
+
+His first edict, on his very first day, was to cede the kingdom to the Empire.
+
+The reaction throughout the Colovian Estates was shock and outrage, nowhere more so than in the court of Kvatch. Rislav Larich, we are told, rode forth to his brother''s kingdom, together with his wife and two dozen of his father-in-law''s cavalry. It was surely not an impressive army, no matter how the chroniclers embellish it, but they had little trouble defeating all the guards Dorald sent to stop them. In truth, there was no actual battling, for the soldiers of Skingrad resented their new king''s decision to give up their autonomy.
+
+The brothers faced one another in the castle courtyard where they had grown up.
+
+In typical Colovian fashion, there was no trial, no accusations of treason, no jury, no judge. Only an executioner.
+
+"Thou art no brother of mine," Rislav Larich said, and struck Dorald''s head from his shoulders in one blow. He was crowned King of Skingrad still holding the same bloody axe in his arms.
+
+If King Rislav had no battle experience beforehand, that was shortly to change. Word spread quickly to the Imperial City that Skingrad, once offered, was now being taken back. Gorieus was an accomplished warrior even before taking the throne, and the seventeen years he had as Emperor were scarcely peaceful. Only eight months before Dorald''s assassination and Rislav''s ascendancy, Gorieus and the Alessian army had faced another of his coronation guests, Kjoric the White, on the fields of the frozen north. The High Chieftain of Skyrim lost his life in the Battle of Sungard. While the pact of chieftains was selecting a new leader, Cyrodiil was busily grabbing back the land of southern Skyrim that it had lost.
+
+In short, Emperor Gorieus knew how to deal with rebellious vassals.
+
+The Alessian army poured westward "like a flood of death," to borrow the chronicler''s phrase, in numbers far exceeding what would be required to conquer Skingrad. Gorieus could not have thought actual battle was likely. Rislav, as we said, had little to no experience at warfare, and only a few days'' practice at kingcraft. His kingdom and all of the Colovian West had just been ravaged by plague. The Alessians anticipated that a mere show of arms, and a surrender.
+
+Rislav instead prepared for battle. He quickly inspected his troops and drew up plans.
+
+The chroniclers who had heretofore ignored the life of Rislav now devote verse after verse describing the king''s aspect with fetishistic delight. While it may lack literary merit and taste, we are at least given some details at last. Not surprisingly, the king wore the finest armor of his era, as the Colovian Estates then had the finest leathersmiths - the only type of armor available - in all of Tamriel. The king''s klibanion mail, boiled and waxed for hardness, and studded with inch-long spikes, was a rich chestnut red, and he wore it over his black tunic but under his black cloak. The statue of Rislav the Righteous which now stands in Skingrad is a romanticized version of king, but not inaccurate except in the armor represented. No bard of the Colovian West would have gone to the market so lightly protected. But it does, as we will see, include the most important accouterments of Rislav: his trained hawk and his fast horse.
+
+The winter rains had washed through the roads to the south, sending much of the West Weald spilling into Valenwood. The Emperor took the northern route, and King Rislav with a small patrol of guards met him at a low pass on what is now the Gold Road. The Emperor''s army, it is said, was so large that the Beast of Anequina could hear its march from hundreds of miles away, and despite himself, the chroniclers say, he quaked in fear.
+
+Rislav, it was said, did not quake. With perfect politeness, he told the Emperor that his party was too large to be accommodated in the tiny kingdom of Skingrad.
+
+"Next time," Rislav said. "Write before you come."
+
+The Emperor was, like most Alessian Emperors, not a man of great humor, and he thought Rislav touched by Sheogorath. He ordered his personal guards to arrest the poor madman, but at that moment, the King of Skingrad raised his arm and sent his hawk flying into the sky. It was a signal his army had been waiting for. The Alessian were all within the pass and the range of their arrows.
+
+King Rislav and his guard began riding westward as fast as if they had been "kissed by wild Kynareth," as the chroniclers said. He did not dare to look behind him, but his plan went faultlessly. The far eastern end of the pass was sealed by rolling boulders, giving the Alessian no direction to go but westward. The Skingrad archers rained arrows down upon the Imperial army from far above on the plateaus, remaining safe from reprisal. The furious Emperor Gorieus chased Rislav from the Weald to the Highlands, leaving Skingrad far behind, all the while his army growing steadily smaller and smaller.
+
+In the ancient Highland forest, the Imperial army met the army of Rislav''s father-in-law, the King of Kvatch. The Alessian army likely still outnumbered their opponents, but they were exhausted and their morale had been obliterated by the chase amid a sea of arrows. After an hour''s battle, they retreated north into what is now the Imperial Reserve, and from there, further north and east, to slip back to nurse their wounds and pride in Nibenay.
+
+It was the beginning of the end of the Alessian hegemony. The Kings of the Colovian West joined with Kvatch and Skingrad to resist Imperial incursions. The Clan Direnni under Ryain was inspired to outlaw the religion of the Alessian Reform throughout his lands in High Rock, and began pushing into Imperial territories. The new High Chief of Skyrim, Hoag, now called Hoag Merkiller, though sharing the Emperor''s official xenophobia, also joined the resistance. His heir, King Ysmir Wulfharth of Atmora, helped continue the struggle upon Hoag''s death in battle, and also insured his place in history.
+
+The heroic King of Skingrad, who faced the Emperor''s army virtually alone, and triggered its end, justly deserves his sobriquet of Rislav the Righteous.', 0, '');
+
 -- Cross-references, derived from the titles named in these bodies.
 INSERT INTO citations (from_tome, cites_call_number) VALUES (2, 'AR-I-010');
 INSERT INTO citations (from_tome, cites_call_number) VALUES (4, 'AR-I-001');
 INSERT INTO citations (from_tome, cites_call_number) VALUES (6, 'AR-II-004');
 INSERT INTO citations (from_tome, cites_call_number) VALUES (8, 'AR-II-002');
 INSERT INTO citations (from_tome, cites_call_number) VALUES (8, 'AR-II-004');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (8, 'AR-II-009');
