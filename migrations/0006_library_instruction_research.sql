@@ -811,7 +811,7 @@ The mysteries the dwarves have left us with could easily
  our threadbare tapestry of dwarven artifacts is a careful,
  intelligent, industrious, and highly advanced culture whose
  secrets we as students and teachers of their works can only
- hope to uncover some day.', 0, 'Volume I: Architecture and Designs');
+ hope to uncover some day.', 0, 'Volume 1');
 
 -- AR-V-018 — Dwemer Inquiries
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
@@ -866,7 +866,7 @@ I have found in a small number of ruins reference to a geological anomaly or pla
 
 The most reasonable translation of “” I have managed to decipher is “Blackest Kingdom Reaches", but I cannot imagine what that means.
 
-I suspect there may be some pattern I am failing to notice. This creeping doubt has haunted my career in recent years, and I have begun to doubt if I will unravel some grand secret of the Dwarves in my lifetime, though it lies just under my nose - or indeed, under my feet.', 0, 'Vol I');
+I suspect there may be some pattern I am failing to notice. This creeping doubt has haunted my career in recent years, and I have begun to doubt if I will unravel some grand secret of the Dwarves in my lifetime, though it lies just under my nose - or indeed, under my feet.', 0, 'Volume 1');
 
 -- AR-V-019 — Effects of the Elder Scrolls
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES

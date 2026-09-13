@@ -534,7 +534,7 @@ But such was not enough with Ynaleigh.
 
 “The man who marries my daughter must prove himself a intelligent fellow, for I would not have an ignoramus as a son-in-law and business partner,” he declared.
 
-This eliminated a large part of the wealthy suitors, who, through their lives of luxury, had never needed to think very much if at all. Still some came forward over the next few days, demonstrating their wit and learning, quoting the great sages of the past and offering their philosophies of metaphysics and alchemy. Welyn Naerillic too came and asked Ynaleigh to dine at the villa he had rented outside of Gunal. There the landowner saw scores of scribes working on translations of Aldmeri tracts, and enjoyed the young man’s so', 0, 'Part I: The Ransom of Zarek');
+This eliminated a large part of the wealthy suitors, who, through their lives of luxury, had never needed to think very much if at all. Still some came forward over the next few days, demonstrating their wit and learning, quoting the great sages of the past and offering their philosophies of metaphysics and alchemy. Welyn Naerillic too came and asked Ynaleigh to dine at the villa he had rented outside of Gunal. There the landowner saw scores of scribes working on translations of Aldmeri tracts, and enjoyed the young man’s so', 0, 'Volume 1');
 UPDATE tomes SET body = body || 'mewhat irreverent but intriguing intelligence.
 
 Nevertheless, though he was much impressed with Welyn Naerillic, Ynaleigh had another challenge.
@@ -900,7 +900,7 @@ Unfortunately for them, gravity being the same in Black Marsh as elsewhere in Ta
 
 ## Book 4
 
-Decumus Scotti was drowning, and he didn’t think much of it. He couldn’t move his arms or his legs to swim because of the paralysis spell the Argonia', 0, 'Book 1');
+Decumus Scotti was drowning, and he didn’t think much of it. He couldn’t move his arms or his legs to swim because of the paralysis spell the Argonia', 0, 'Volume 1');
 UPDATE tomes SET body = body || 'n peasant had lobbed at him, but he wasn’t quite sinking. The Onkobra River was a crashing force of white water and currents that could carry along large rocks with ease, so Scotti tumbled head over heels, spinning, bumping, bouncing along.
 
 He figured that soon enough he would be dead, and that would be better than being in Black Marsh. He wasn’t too panicked about it all when he felt his lungs fill with water and cold blackness fell upon him.
@@ -1187,7 +1187,7 @@ I actually met Missun Akin years later, while I was in Morrowind to entertain so
 
 I told him that I had heard that Lady Villea had decided not to leave the city, and that the village of Modiva had been rebuilt. He was happy to hear that, but I could not find a way to ask him what I really wanted to know. I felt like a fool just wondering if what I thought were true, that he had been behind Prolyssa’s tree across the road from the gate every morning that summer, firing an arrow through the gate, across the lawn, across the moat, through a keyhole, and into a portrait of the Duchess of Woda until he struck the Duchess herself. It was clearly an impossibility. I chose not to ask.
 
-As we left one another that day, and he was waving good-bye, he said, “I am pleased to see you doing so well, my friend. I am happy you moved that chair.”', 0, 'Part I');
+As we left one another that day, and he was waving good-bye, he said, “I am pleased to see you doing so well, my friend. I am happy you moved that chair.”', 0, 'Volume 1');
 
 -- AR-III-006 — Breathing Water
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
@@ -1670,7 +1670,7 @@ Scotti helped the weeping mer out of the sail, murmuring words of reassurance. T
 
 “Then it looks like Athay’s on fire,” said Scotti, pointing.
 
-A great plume of smoke black as pitch was rising above the trees. As they drifted around the bend, they next saw the flames, and then the blackened skeletal remains of the village. Dying, blazing villagers leapt from rocks into the river. A cacophony of wailing met their ears, and they could see, roaming along the edges of the town, the figures of Khaj', 0, '');
+A great plume of smoke black as pitch was rising above the trees. As they drifted around the bend, they next saw the flames, and then the blackened skeletal remains of the village. Dying, blazing villagers leapt from rocks into the river. A cacophony of wailing met their ears, and they could see, roaming along the edges of the town, the figures of Khaj', 0, 'Volume 1');
 UPDATE tomes SET body = body || 'iiti soldiers bearing torches.
 
 “Baan Dar bless me!” slurred the captain. “The war’s back on!”
@@ -2517,7 +2517,7 @@ Vanderthil showed the healer Thaurbad’s last Bulletin, and Telemichiel agreed 
 
 “The will was surely altered by Feyfolken,” said Taksim, “And that’s the sort of thing a servitor of Clavicus Vile would do to perpetuate the curse.”
 
-“As an appropriate ending to the tale of the scribe and his cursed quill,” smiled the Great Sage. “I will let you read into it as you will.”', 0, 'Book I');
+“As an appropriate ending to the tale of the scribe and his cursed quill,” smiled the Great Sage. “I will let you read into it as you will.”', 0, 'Volume 1');
 
 -- AR-III-014 — Final Lesson
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
@@ -3475,7 +3475,7 @@ There was an explosion of energy that filled the night, and an echoing boom that
 
 Gyna never saw the Emperor’s agent Lady Brisienna again, but she kept her promise. Proseccus, a nightblade in the service of the Empire, arrived at Lord Strale’s house in disguise. She was an apt pupil, and within days, he had taught what she needed to know.
 
-“It is a simple charm, not the sort of spell that could turn a raging daedroth into a love-struck puppy,” said Proseccus. “If you do or say anything that would normally anger or offend your target, the power will weaken. It will alter temporarily his perception of you, as spells of the scho', 0, 'Part 1');
+“It is a simple charm, not the sort of spell that could turn a raging daedroth into a love-struck puppy,” said Proseccus. “If you do or say anything that would normally anger or offend your target, the power will weaken. It will alter temporarily his perception of you, as spells of the scho', 0, 'Volume 1');
 UPDATE tomes SET body = body || 'ol of illusion do, but his feelings of respect and admiration for you must be supported by means of a charm of a less magickal nature.”
 
 “I understand,” smiled Gyna, thanking her tutor for the two spells of illusion he had taught her. The time had come to use her new-found skill.
@@ -3885,7 +3885,7 @@ The witches raised their heads, and screamed, ruining the sanctity of the ceremo
 
 “Who art thee who dares profane?” The Princess hissed, as the pitch shadows flew from her body enveloping the girl in their lethal chill.
 
-In the last instant before she was swallowed alive by darkness, the girl looked to the ground and saw that the cloak was gone, and she answered, as she understood, “Oh, who am I? I’m the distraction.”', 0, '');
+In the last instant before she was swallowed alive by darkness, the girl looked to the ground and saw that the cloak was gone, and she answered, as she understood, “Oh, who am I? I’m the distraction.”', 0, 'Volume 1');
 
 -- AR-III-029 — The Rear Guard
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES

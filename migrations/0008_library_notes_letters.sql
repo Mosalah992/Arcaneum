@@ -367,7 +367,7 @@ Second, the Tsaesci appear to possess no navy to speak of. The Expeditionary For
 
 Third, much longer-term study needs to be made of Akavir before another invasion could even be contemplated. The information gathered over the four years prior to the invasion was extensive, but clearly inadequate. The weather conditions were completely unexpected; the Tsaesci much stronger than expected; and the attempted negotiations by the Emperor with the Tsaesci a disaster. Akavir proved alien beyond expectation, and the Commission believes any future attempt to invade Akavir should not be contemplated without much greater knowledge of the conditions, politics, and peoples of that continent than presently obtains.
 
-Finally, the Commission unanimously concludes that given what we now know, any attempt to invade Akavir is folly, at least in the present state of the Empire. The Empire’s legions are needed at home. One day, a peaceful, united Empire will return to Akavir and exact severe retribution for the disaster at Ionith and for our fallen Emperor. But that day is not now, nor in the foreseeable future.', 0, 'Part I: Preparations');
+Finally, the Commission unanimously concludes that given what we now know, any attempt to invade Akavir is folly, at least in the present state of the Empire. The Empire’s legions are needed at home. One day, a peaceful, united Empire will return to Akavir and exact severe retribution for the disaster at Ionith and for our fallen Emperor. But that day is not now, nor in the foreseeable future.', 0, 'Volume 1');
 
 -- AR-VII-006 — The Windhelm Letters
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES

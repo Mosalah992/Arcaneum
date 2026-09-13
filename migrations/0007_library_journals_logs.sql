@@ -196,7 +196,7 @@ Sanctuary from all.
 
 I have sent the letter to Astrid. We leave soon. But Cicero will keep this Sanctuary as his Sanctuary!
 
-A place to rest and ply my trade, for I once more take up the blade, and send some lucky souls to Him, when laughter strikes, as fits my whim!', 0, 'Cicero’s Journal: Volume 1');
+A place to rest and ply my trade, for I once more take up the blade, and send some lucky souls to Him, when laughter strikes, as fits my whim!', 0, 'Volume 1');
 
 -- AR-VI-002 — Confessions of a Khajiit Fur Trader
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
@@ -452,7 +452,7 @@ While the Empire is content to secure inconsequential corners of its vast holdin
 
 Soon after Lathenil of Sunhold commissioned to have these volumes printed and distributed far and wide in the Empire with his own coin, he himself met a violent end. In light of the events that followed his death, we must consider that he may very well have been murdered by Thalmor assassins.
 
--- Praxis Erratuim, Imperial Historian', 0, 'Rising Threat, Vol. I');
+-- Praxis Erratuim, Imperial Historian', 0, 'Volume 1');
 
 -- AR-VI-009 — Ruins of Kemel-Ze
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES

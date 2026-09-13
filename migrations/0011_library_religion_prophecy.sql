@@ -727,7 +727,7 @@ Suns were riven as your red legions moved from Lyg to the hinterlands of chill, 
 
 Under the mires, Malbioge was thrown down, that old City of Chains, slaked in newbone-warmth and set Free. Galg and Mor-Galg were thrown down together in a single night of day and shall it be again under the time of Gates.
 
-Nothing but woe for NRN which has become The Pit and seven curses on its Dreugh, the Vermae NI-MOHK! But for it the Crusades would be as my lord’s Creation, Get by the Ge and do as thou wilt, of no fetters but your own conscience! Know that your Hell is Broken, people of the Aurbis, and praise the Nu-Mantia which is Liberty!', 0, 'Vol. 1');
+Nothing but woe for NRN which has become The Pit and seven curses on its Dreugh, the Vermae NI-MOHK! But for it the Crusades would be as my lord’s Creation, Get by the Ge and do as thou wilt, of no fetters but your own conscience! Know that your Hell is Broken, people of the Aurbis, and praise the Nu-Mantia which is Liberty!', 0, 'Volume 1');
 
 -- AR-X-020 — Myths of Sheogorath
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
@@ -1050,7 +1050,7 @@ Asgeir continued his swift run, to inform the other crews as quickly as they cou
 
 For indeed the stories tell that Rhorlak, the most battle-hardened and unflinching of all captains, did collapse with grief, and never again lifted his mighty axe. And all around Tamriel, as the news spread as dark cloud washes from horizon to horizon, did brilliant lights go out in silent honor of their fallen general and war-leader.
 
-So ended the period of the Return, and the original glories of the Five Hundred Companions of Ysgramor, harbinger to us all.', 0, 'Songs of the Return, Volume 2, The First Tale of the Darumzu');
+So ended the period of the Return, and the original glories of the Five Hundred Companions of Ysgramor, harbinger to us all.', 0, 'Volume 2');
 
 -- AR-X-030 — Spirit of Nirn
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES

@@ -377,7 +377,7 @@ A storm billeted the windows of the Prince’s bedchamber, bringing a smell of m
 
 The Isle of Artaeum, Summurset
 
-The initiates stood quietly in', 0, '2920, Morning Star, Book 1');
+The initiates stood quietly in', 0, 'Volume 1');
 UPDATE tomes SET body = body || ' a row along the arbor loggia, watching the long, deep, marble-lined trench ahead of them flash with fire. The air above it vibrated with the waves of heat. Though each student kept his or her face sturdy and emotionless, as a true Psijic should, their terror was nearly as palpable as the heat. Sotha Sil closed his eyes and uttered the charm of fire resistance. Slowly, he walked across the basin of leaping flames, climbing to the other side, unscathed. Not even his white robe had been burned.
 
 “The charm is intensified by the energy you bring to it, by your own skills, just as all spells are,” he said. “Your imagination and your willpower are the keys. There is no need for a spell to give you a resistance to air, or a resistance to flowers, and after you cast the charm, you must forget there is even a need for a spell to give you resistance to fire. Do not confuse what I am saying: resistance is not about ignoring the fire’s reality. You will feel the substance of flame, the texture of it, its hunger, and even the heat of it, but you will know that it will not hurt or injure you.”
@@ -1706,7 +1706,7 @@ Our current Emperor, His Awesome and Terrible Majesty, Uriel Septim VII, son of 
 
 Uriel VII was imprisoned in a dimension of Tharn’s creation, and Tharn used his sorcery of illusion to assume the Emperor’s aspect. For the next ten years, Tharn abused imperial privilege but did not continue Uriel VII’s schedule of reconquest. It is not yet entirely known what Tharn’s goals and personal accomplishments were during the ten years he masqueraded as his liege lord. In 3E399, an enigmatic Champion defeated the Battlemage in the dungeons of the Imperial Palace and freed Uriel VII from his other-dimensional jail.
 
-Since his emancipation, Uriel Septim VII has worked diligently to renew the battles that would reunite Tamriel. Tharn’s interference broke the momentum, it is true – but the years since then have proven that there is hope of the Golden Age of Tiber Septim’s rule glorifying Tamriel once again.', 0, 'Part One');
+Since his emancipation, Uriel Septim VII has worked diligently to renew the battles that would reunite Tamriel. Tharn’s interference broke the momentum, it is true – but the years since then have proven that there is hope of the Golden Age of Tiber Septim’s rule glorifying Tamriel once again.', 0, '');
 
 -- AR-IV-012 — Chronicles of Nchuleft
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
@@ -2768,7 +2768,7 @@ These loyal knights did go by no name then, but were known by their eastern swor
 
 Long glory was wife to the all the knights of the dragon-banner, who knew no other and were brothers before beyond many seas and now were brothers under the law named the blade-surrender of Pale Pass. And having vampire blood these brother-knights lived for ages through and past Reman and then kept guard over his ward, the coiled king, Versidue-Shaie. The snake-captain Vershu became Renald became the protector of the northern west when the black dart was hooked into Savirien-Chorak.
 
-*[Here torn pages indicate that the rest of this ancient book has been lost.]*', 0, '');
+*[Here torn pages indicate that the rest of this ancient book has been lost.]*', 0, 'Volume 1');
 
 -- AR-IV-040 — The Rise and Fall of the Blades
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
@@ -2865,7 +2865,7 @@ And it is said that he emerged into the world like a Padomaic, that is, borne by
 
 ## Volume 8: On His Revalation at the Death of the Al-Esh
 
-And left you to gather sinew with my other half, who will bring light thereby to that mortal idea that brings [the Gods] great joy, that is, freedom, which even the Heavens do not truly know, [which is] why our Father, the... [Text lost]... in those first [days/spirits/swirls] before Convention... that which we echoed in our earthly madness. [Let us] now take you Up. We will [show] our true faces... [which eat] one another in amnesia each Age.”', 0, 'Volume 1: On His Name');
+And left you to gather sinew with my other half, who will bring light thereby to that mortal idea that brings [the Gods] great joy, that is, freedom, which even the Heavens do not truly know, [which is] why our Father, the... [Text lost]... in those first [days/spirits/swirls] before Convention... that which we echoed in our earthly madness. [Let us] now take you Up. We will [show] our true faces... [which eat] one another in amnesia each Age.”', 0, 'Volume 1');
 
 -- AR-IV-043 — War of the First Council
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES

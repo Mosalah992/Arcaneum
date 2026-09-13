@@ -153,7 +153,7 @@ Dralsi willingly struck the Oath of the Nightingales and performed her duties we
 
 As Karliah slowly climbed the ranks in the Guild, I watched her progress and saw much of her mother in her methods. After several years passed, I received word that Dralsi had been killed defending the Twilight Sepulcher from a band of mercenaries and so it became time for the mantle to be passed. I traveled to Nightingale Hall with Mercer Frey and together, we inducted Karliah into the Nightingales.
 
-I will relate my own history in my next volume and perhaps, as I uncover more information, the history of Mercer Frey as well', 0, 'Volume I: Who We Are');
+I will relate my own history in my next volume and perhaps, as I uncover more information, the history of Mercer Frey as well', 0, 'Volume 1');
 
 -- AR-II-006 — Nords Arise!
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
