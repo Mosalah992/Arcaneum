@@ -10,22 +10,35 @@ function romanValue(s) {
   return total;
 }
 
+function parseVolumeNumber(raw = '') {
+  const token = String(raw || '').trim();
+  if (!token) return NaN;
+  if (/^[ivxlcdm]+$/i.test(token)) return romanValue(token.toUpperCase());
+  const numeric = Number(token);
+  return Number.isFinite(numeric) ? numeric : NaN;
+}
+
 export function normalizeVolumeFromHeading(heading = '') {
   const text = String(heading || '').trim();
   if (!text) return '';
 
-  const match = text.match(/\b(?:volume|vol(?:ume)?\.?|book|chapter|part)\b\s*(?:[.:\-]\s*)?((?:[ivxlcdm]+)|\d+)/i);
+  const cleaned = text
+    .replace(/^#+\s*/, '')
+    .replace(/\b(?:the)\b\s+/i, ' ')
+    .trim();
+
+  const match = cleaned.match(/\b(?:volume|vol(?:ume)?\.?|book|chapter|part)\b\s*(?:[.:\-]\s*)?([ivxlcdm]+|\d+)/i);
   if (!match) {
-    const upper = text.toLowerCase();
-    const volumeMatch = upper.match(/\bvolume\b\s+([ivxlcdm]+|\d+)/);
-    if (volumeMatch) return `Volume ${volumeMatch[1]}`;
+    const explicit = cleaned.match(/\bvolume\b\s+([ivxlcdm]+|\d+)/i);
+    if (explicit) {
+      const numeric = parseVolumeNumber(explicit[1]);
+      return Number.isFinite(numeric) ? `Volume ${numeric}` : '';
+    }
     return '';
   }
 
-  const raw = match[1].trim();
-  const numeric = /^[ivxlcdm]+$/i.test(raw) ? romanValue(raw.toUpperCase()) : Number(raw);
+  const numeric = parseVolumeNumber(match[1]);
   if (!Number.isFinite(numeric)) return '';
-
   return `Volume ${numeric}`;
 }
 
@@ -33,20 +46,19 @@ export function normalizeVolumeLabel(value = '') {
   const text = String(value || '').trim();
   if (!text) return '';
 
-  // Accept the common expressing forms from body headings and frontmatter.
+  if (/^Volume\s+\d+$/i.test(text)) return text.replace(/^volume\s+/i, 'Volume ');
+
   const direct = normalizeVolumeFromHeading(text);
   if (direct) return direct;
 
-  // If the content already has a real canonical value preserve it.
-  if (/^Volume\s+\d+$/i.test(text)) return text.replace(/^volume\s+/i, 'Volume ');
-
-  // In some files there is an author/title phrase in the string.
-  // Remove boilerplate title words that can masquerade as the volume token.
+  // In some files there is a title phrase in the string that can masquerade as
+  // the volume marker. Remove the known title phrases while keeping volume labels.
   const stripped = text
     .replace(/\bSongs of the Return\b/gi, '')
     .replace(/\b2920,\s*Morning Star\b/gi, '')
     .replace(/\bThe Lusty Argonian Maid\b/gi, '')
     .replace(/\s+/g, ' ')
+    .replace(/\s*,\s*/g, ', ')
     .trim();
 
   const fallback = normalizeVolumeFromHeading(stripped);
