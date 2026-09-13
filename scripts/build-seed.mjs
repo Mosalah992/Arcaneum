@@ -24,6 +24,7 @@
 
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, rmSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { normalizeVolumeLabel } from './volume-normalize.mjs';
 
 const CONTENT_DIR = join('content', 'library');
 const MIGRATIONS = 'migrations';
@@ -71,9 +72,8 @@ function inferVolumeFromBody(body) {
     const match = trimmed.match(/^##\s+(.+?)\s*$/);
     if (!match) continue;
     const heading = match[1];
-    if (/(volume|vol|book|part)\s*\.?(?:\s|[0-9ivxlcdm]+)/i.test(heading)) {
-      return heading;
-    }
+    const normalized = normalizeVolumeLabel(heading);
+    if (normalized) return normalized;
   }
   return '';
 }
@@ -119,7 +119,7 @@ function parse(file) {
   }
   if (body.length === 0) throw new Error(`${file}: empty body`);
 
-  const volume = String(meta.volume ?? inferVolumeFromBody(body));
+  const volume = normalizeVolumeLabel(String(meta.volume ?? inferVolumeFromBody(body)));
 
   return {
     call_number: meta.call_number,
