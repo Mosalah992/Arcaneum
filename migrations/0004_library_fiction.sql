@@ -7,8 +7,8 @@
 -- See PROVENANCE.md.
 
 -- AR-III-001 — The Adventures of Eslaf Errol
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (19, 'AR-III-001', 'The Adventures of Eslaf Errol', 'Reven', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (23, 'AR-III-001', 'The Adventures of Eslaf Errol', 'Reven', 'Fiction',
    '## Beggar
 
 Eslaf Erol was the last of the litter of five born to the Queen of the prosperous Nordic kingdom of Erolgard, Lahpyrcopa, and her husband, the King of Erolgard, Ytluaf. During pregnancy, the Queen had been more than twice as wide as she was tall, and the act of delivery took three months and six days after it had begun. It is perhaps understandable that the Lahpyrcopa elected, upon expelling Eslaf to frown, say, ‘Good riddance,’ and die.
@@ -221,11 +221,11 @@ The new Ynohp called in his favor with Laicifitra, using her army to restore pea
 
 Eslaf used part of the gold to buy the vineyards of The Aalto, after hearing great things of it from Ynohp.
 
-And so it was that Erolgard was returned to its previous prosperity by the fifth born child of King Ytluaf - Eslaf Erol, beggar, thief, warrior (of sorts), and king.', 0);
+And so it was that Erolgard was returned to its previous prosperity by the fifth born child of King Ytluaf - Eslaf Erol, beggar, thief, warrior (of sorts), and king.', 0, 'Volume 1');
 
 -- AR-III-002 — Ancient Tales of the Dwemer
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (20, 'AR-III-002', 'Ancient Tales of the Dwemer', 'Marobar Sul', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (24, 'AR-III-002', 'Ancient Tales of the Dwemer', 'Marobar Sul', 'Fiction',
    '## Part I: The Ransom of Zarek
 
 Jalemmil stood in her garden and read the letter her servant had brought to her. The bouquet of joss roses in her hand fell to the ground. For a moment it was as if all birds had ceased to sing and a cloud had passed over the sky. Her carefully cultivated and structured haven seemed to flood over with darkness.
@@ -534,7 +534,7 @@ But such was not enough with Ynaleigh.
 
 “The man who marries my daughter must prove himself a intelligent fellow, for I would not have an ignoramus as a son-in-law and business partner,” he declared.
 
-This eliminated a large part of the wealthy suitors, who, through their lives of luxury, had never needed to think very much if at all. Still some came forward over the next few days, demonstrating their wit and learning, quoting the great sages of the past and offering their philosophies of metaphysics and alchemy. Welyn Naerillic too came and asked Ynaleigh to dine at the villa he had rented outside of Gunal. There the landowner saw scores of scribes working on translations of Aldmeri tracts, and enjoyed the young man’s so', 0);
+This eliminated a large part of the wealthy suitors, who, through their lives of luxury, had never needed to think very much if at all. Still some came forward over the next few days, demonstrating their wit and learning, quoting the great sages of the past and offering their philosophies of metaphysics and alchemy. Welyn Naerillic too came and asked Ynaleigh to dine at the villa he had rented outside of Gunal. There the landowner saw scores of scribes working on translations of Aldmeri tracts, and enjoyed the young man’s so', 0, 'Volume 1');
 UPDATE tomes SET body = body || 'mewhat irreverent but intriguing intelligence.
 
 Nevertheless, though he was much impressed with Welyn Naerillic, Ynaleigh had another challenge.
@@ -609,11 +609,11 @@ In the Aldmeris versions, Azura is tricked not by an empty box, but by a box con
 
 “Marobar Sul” left even the character of Nchylbar alone, and he represents many “Dwemer” virtues. His skepticism, while not nearly as absolute as in the Aldmeris version, is celebrated even though it brings a curse upon the Dwemer and the unnamed House of the poor priest.
 
-Whatever the true nature of the Gods, and how right or wrong the Dwemer were about them, this tale might explain why the dwarves vanished from the face of Tamriel. Though Nchylbar and his kind may not have intended to mock the Aedra and Daedra, their skepticism certainly offended the Divine Orders.' WHERE id = 20;
+Whatever the true nature of the Gods, and how right or wrong the Dwemer were about them, this tale might explain why the dwarves vanished from the face of Tamriel. Though Nchylbar and his kind may not have intended to mock the Aedra and Daedra, their skepticism certainly offended the Divine Orders.' WHERE id = 24;
 
 -- AR-III-003 — The Argonian Account
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (21, 'AR-III-003', 'The Argonian Account', 'Waughin Jarth', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (25, 'AR-III-003', 'The Argonian Account', 'Waughin Jarth', 'Fiction',
    '## Book 1
 
 On a minor but respectable plaza in the Imperial City sat, or perhaps lounged, Lord Vanech’s Building Commission. It was an unimaginative, austere building not noted so much for its aesthetic or architectural design as for its prodigious length. If any critics wondered why such an unornamented, extended erection held such fascination for Lord Vanech, they kept it to themselves.
@@ -900,7 +900,7 @@ Unfortunately for them, gravity being the same in Black Marsh as elsewhere in Ta
 
 ## Book 4
 
-Decumus Scotti was drowning, and he didn’t think much of it. He couldn’t move his arms or his legs to swim because of the paralysis spell the Argonia', 0);
+Decumus Scotti was drowning, and he didn’t think much of it. He couldn’t move his arms or his legs to swim because of the paralysis spell the Argonia', 0, 'Volume 1');
 UPDATE tomes SET body = body || 'n peasant had lobbed at him, but he wasn’t quite sinking. The Onkobra River was a crashing force of white water and currents that could carry along large rocks with ease, so Scotti tumbled head over heels, spinning, bumping, bouncing along.
 
 He figured that soon enough he would be dead, and that would be better than being in Black Marsh. He wasn’t too panicked about it all when he felt his lungs fill with water and cold blackness fell upon him.
@@ -1001,11 +1001,11 @@ Black Marsh simply was, is, and always shall be unable to sustain a large-scale,
 
 Scotti’s solution to each of their dilemmas had been the same. Ten percent of the gold they gave him went to Lord Vanech’s Building Commission. The rest Scotti kept for himself, and did exactly nothing about the requests.
 
-Within a year, Decumus Scotti had embezzled enough to retire very comfortably, and Black Marsh was better off than it had been in forty years.' WHERE id = 21;
+Within a year, Decumus Scotti had embezzled enough to retire very comfortably, and Black Marsh was better off than it had been in forty years.' WHERE id = 25;
 
 -- AR-III-004 — Beggar Prince
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (22, 'AR-III-004', 'Beggar Prince', 'Anonymous', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (26, 'AR-III-004', 'Beggar Prince', 'Anonymous', 'Fiction',
    'We look down upon the beggars of the Empire. These lost souls are the poor and wretched of the land. Every city has its beggars. Most are so poor they have only the clothes on their backs. They eat the scraps the rest of us throw out. We toss them a coin so that we don’t have to think too long about their plight.
 
 Imagine my surprise when I heard the tale of the Beggar Prince. I could not imagine what a Prince of Beggars would be. Here is the tale I heard. It takes place in the first age, when gods walked like men and daedra stalking the wilderness with impunity. It is a time before they were all confined to Oblivion.
@@ -1056,11 +1056,11 @@ Wheedle was aghast. These were not boons from which a fortune could be made. The
 
 It was as Namira predicted. Wheedle was an irresistible beggar. None could see the wretch without desperately wanting to toss a coin at the huddled form. However, Wheedle also discovered that the power of disregard gave great access to the secrets of the realms. People unknowingly said important things where Wheedle could hear them. Wheedle grew to know the comings and goings of every citizen in the city.
 
-To this day, it is said that if you really want to know something, go ask the beggars. They have eyes and ears throughout the cities. They know all the little secrets of the daily lives of its citizens.', 0);
+To this day, it is said that if you really want to know something, go ask the beggars. They have eyes and ears throughout the cities. They know all the little secrets of the daily lives of its citizens.', 0, '');
 
 -- AR-III-005 — The Black Arrow
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (23, 'AR-III-005', 'The Black Arrow', 'Gorgic Guine', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (27, 'AR-III-005', 'The Black Arrow', 'Gorgic Guine', 'Fiction',
    '## Part I
 
 I was young when the Duchess of Woda hired me as an assistant footman at her summer palace. My experience with the ways of the titled aristocracy was very limited before that day. There were wealthy merchants, traders, diplomats, and officials who had large operations in Eldenroot, and ostentatious palaces for entertaining, but my relatives were all far from those social circles.
@@ -1187,11 +1187,11 @@ I actually met Missun Akin years later, while I was in Morrowind to entertain so
 
 I told him that I had heard that Lady Villea had decided not to leave the city, and that the village of Modiva had been rebuilt. He was happy to hear that, but I could not find a way to ask him what I really wanted to know. I felt like a fool just wondering if what I thought were true, that he had been behind Prolyssa’s tree across the road from the gate every morning that summer, firing an arrow through the gate, across the lawn, across the moat, through a keyhole, and into a portrait of the Duchess of Woda until he struck the Duchess herself. It was clearly an impossibility. I chose not to ask.
 
-As we left one another that day, and he was waving good-bye, he said, “I am pleased to see you doing so well, my friend. I am happy you moved that chair.”', 0);
+As we left one another that day, and he was waving good-bye, he said, “I am pleased to see you doing so well, my friend. I am happy you moved that chair.”', 0, 'Volume 1');
 
 -- AR-III-006 — Breathing Water
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (24, 'AR-III-006', 'Breathing Water', 'Haliel Myrm', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (28, 'AR-III-006', 'Breathing Water', 'Haliel Myrm', 'Fiction',
    'He walked through the dry, crowded streets of Bal Fell, glad to be among so many strangers. In the wharfs of Vivec, he had no such anonymity. They knew him to be a smuggler, but here, he could be anyone. A lower-class peddler perhaps. A student even. Some people even pushed against him as he walked past as if to say, “We would not dream of being so rude as to acknowledge that you don’t belong here.”
 
 Seryne Relas was not in any of the taverns, but he knew she was somewhere, perhaps behind a tenement window or poking around in a dunghill for an exotic ingredient for some spell or another. He knew little of the ways of sorceresses, but that they always seemed to be doing something eccentric. Because of this prejudice, he nearly passed by the old Dunmer woman having a drink from a well. It was too prosaic, but he knew from the look of her that she was Seryne Relas, the great sorceress.
@@ -1252,11 +1252,11 @@ Then, suddenly, Thalien Winloth felt reality.
 
 He had not been paying attention to the grim, tireless advance of the world on his spell. It was fading away, his ability to breath water. There was no time to surface. There was no time to do anything. As he sucked in, his lungs filled with cold, briny water.
 
-A few days later, the smugglers working on the wharf came upon the drowned body of the former Tollman. Finding a body in the water in Vivec was not in itself noteworthy, but the subject that they discussed over many bottles of flin was how did it happen that he drowned with two potions of water breathing in his hands.', 0);
+A few days later, the smugglers working on the wharf came upon the drowned body of the former Tollman. Finding a body in the water in Vivec was not in itself noteworthy, but the subject that they discussed over many bottles of flin was how did it happen that he drowned with two potions of water breathing in his hands.', 0, '');
 
 -- AR-III-007 — The Cabin in the Woods
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (25, 'AR-III-007', 'The Cabin in the Woods', 'Mogen Son of Molag', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (29, 'AR-III-007', 'The Cabin in the Woods', 'Mogen Son of Molag', 'Fiction',
    'Late one night a few seasons ago, a soldier was returning home after several bloody battles. He decided he would save some gold and decided to cross the pine forest on foot.
 
 The first day of his journey was rather uneventful, the soldier stuck to the main path and kept a brisk pace. When it started getting dark he setup his bedroll, built a small fire and cooked up some rabbit he had caught. “A fine day indeed” he thought to himself as he fell asleep.
@@ -1293,11 +1293,11 @@ The ordeal was over, the ghost was gone.
 
 The soldier slept well that night and the next day made excellent distance through the woods. As the sun began to set he came out on the other side of the forest and looked back, remembering the days before.
 
-As he turned and started walking away from the woods he could swear he heard the sobbing again.', 0);
+As he turned and started walking away from the woods he could swear he heard the sobbing again.', 0, '');
 
 -- AR-III-008 — The Cake and the Diamond
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (26, 'AR-III-008', 'The Cake and the Diamond', 'Athyn Muendil', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (30, 'AR-III-008', 'The Cake and the Diamond', 'Athyn Muendil', 'Fiction',
    'I was in the Rat and the Pot, a foreigner cornerclub in Ald’ruhn, talking to my fellow Rats when I first saw the woman. Now, Breton women are fairly common in the Rat and the Pot: as a breed, they seem inclined to wander far from their perches in High Rock. Old Breton women, however, are not so migratory, and the wizened old biddy drew attention to herself, wandering about the room, talking to everyone. Still, having noted her, I moved on to join my mates.
 
 Nimloth and Oediad were at their usual places, drinking their usual stuff. Oediad was showing off a prize he had picked up in some illicit manner – a colossal diamond, large as a baby’s hand, and clear as spring water. I was admiring it when I heard the creaking of old bones behind me.
@@ -1358,11 +1358,11 @@ Abelle and all the bags she was carrying vanished from sight almost instantly. N
 
 “Because the diamond dust was only on the left-hand side of the blade,” said the old alchemist through me. I felt her control lessening as the distance grew and she hurried invisibly down the dark Ald’ruhn street away from the Rat and the Pot.
 
-We never found Abelle Chriditte or the diamond. Whether she completed her pilgrimage to Ald Redaynia is anyone’s guess. The cakes had no effect, except to give Oediad a bad case of droops that lasted for nearly a week.', 0);
+We never found Abelle Chriditte or the diamond. Whether she completed her pilgrimage to Ald Redaynia is anyone’s guess. The cakes had no effect, except to give Oediad a bad case of droops that lasted for nearly a week.', 0, '');
 
 -- AR-III-009 — Chance’s Folly
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (27, 'AR-III-009', 'Chance’s Folly', 'Zylmoc Golge', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (31, 'AR-III-009', 'Chance’s Folly', 'Zylmoc Golge', 'Fiction',
    'By the time she was sixteen, Minevah Iolos had been an unwelcome guest in every shop and manor in Balmora. Sometimes, she would take everything of value within; other times, it was enough to experience the pure pleasure of finding a way past the locks and traps. In either situation, she would leave a pair of dice in a prominent location as her calling card to let the owners know who had burgled them. The mysterious ghost became known to the locals as Chance.
 
 A typical conversation in Balmora at this time:
@@ -1405,11 +1405,11 @@ She formulated her plan on how best to desert the Breton as they continued down 
 
 Chance quietly slipped her glove off her hand, exposing the ring as she stepped into the room. There were fifty-three bags of gold within. As she turned, the door closed between her and the Breton. On her side, it did not resemble a door anymore, but a wall. Walls beyond doors.
 
-For many days, Chance screamed and screamed, as she tried to find a way out of the room. For some days after that, she listened dully to the laughter of Sheogorath within her own head. Two months later, when Ulstyr returned, she was dead. He used a rock to prop open the door and remove the gold.', 0);
+For many days, Chance screamed and screamed, as she tried to find a way out of the room. For some days after that, she listened dully to the laughter of Sheogorath within her own head. Two months later, when Ulstyr returned, she was dead. He used a rock to prop open the door and remove the gold.', 0, '');
 
 -- AR-III-010 — A Dance in Fire
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (28, 'AR-III-010', 'A Dance in Fire', 'Waughin Jarth', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (32, 'AR-III-010', 'A Dance in Fire', 'Waughin Jarth', 'Fiction',
    '## Chapter 1
 
 Scene: The Imperial City, Cyrodiil
@@ -1670,7 +1670,7 @@ Scotti helped the weeping mer out of the sail, murmuring words of reassurance. T
 
 “Then it looks like Athay’s on fire,” said Scotti, pointing.
 
-A great plume of smoke black as pitch was rising above the trees. As they drifted around the bend, they next saw the flames, and then the blackened skeletal remains of the village. Dying, blazing villagers leapt from rocks into the river. A cacophony of wailing met their ears, and they could see, roaming along the edges of the town, the figures of Khaj', 0);
+A great plume of smoke black as pitch was rising above the trees. As they drifted around the bend, they next saw the flames, and then the blackened skeletal remains of the village. Dying, blazing villagers leapt from rocks into the river. A cacophony of wailing met their ears, and they could see, roaming along the edges of the town, the figures of Khaj', 0, 'Volume 1');
 UPDATE tomes SET body = body || 'iiti soldiers bearing torches.
 
 “Baan Dar bless me!” slurred the captain. “The war’s back on!”
@@ -1909,7 +1909,7 @@ Finally, while Mallon was searching for a reference to some minor point in his n
 
 “So,” murmured Scotti, feeling a shiver. “We’re trapped in Valenwood.”
 
-“Not at all. I need to leave fairly shortly myself, as my publisher has set a very definite deadline for my new book of translations. From what I understand, one merely petitions to the Silvenar for special border p' WHERE id = 28;
+“Not at all. I need to leave fairly shortly myself, as my publisher has set a very definite deadline for my new book of translations. From what I understand, one merely petitions to the Silvenar for special border p' WHERE id = 32;
 UPDATE tomes SET body = body || 'rotection and one can cross into Cyrodiil with impunity.”
 
 “Petition the Silvenar, or petition at Silvenar?”
@@ -2128,11 +2128,11 @@ Scotti went to take a slice, but then he saw something imbedded deep in the drie
 
 “From our client, the Silvenar,” beamed his lordship. “It’s some kind of local delicacy they call Unthrappa.”
 
-Scotti vomited, and didn’t stop for some time. It cast rather a temporary pall on the evening, but when Decumus Scotti was carried off to his manor house, the guests continued to dine. The Unthrappa was the delight of all. Even more so when Lord Vanech himself took a slice and found the first of two rubies buried within. How very clever of the Bosmer to invent such a dish, the Cyrodiils agreed.' WHERE id = 28;
+Scotti vomited, and didn’t stop for some time. It cast rather a temporary pall on the evening, but when Decumus Scotti was carried off to his manor house, the guests continued to dine. The Unthrappa was the delight of all. Even more so when Lord Vanech himself took a slice and found the first of two rubies buried within. How very clever of the Bosmer to invent such a dish, the Cyrodiils agreed.' WHERE id = 32;
 
 -- AR-III-011 — The Death of a Wanderer
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (29, 'AR-III-011', 'The Death of a Wanderer', 'Anonymous', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (33, 'AR-III-011', 'The Death of a Wanderer', 'Anonymous', 'Fiction',
    'The last time I saw the old Argonian, I was taken by how alive he seemed, even though he was in the throes of death.
 
 “The secret,” he said, “of staying alive... is not in running away, but swimming directly at danger. Catches it off-guard.”
@@ -2185,11 +2185,11 @@ He was broken up by a coughing fit. It was the most I had heard him speak in mon
 
 “Were never meant to keep people out. They were meant to keep the Draugr in.”
 
-And with that, he fell back asleep. When he awoke several days later, he refused to talk about the Draugr at all, and would only wince and clutch his shoulder if I tried to bring them up.', 0);
+And with that, he fell back asleep. When he awoke several days later, he refused to talk about the Draugr at all, and would only wince and clutch his shoulder if I tried to bring them up.', 0, '');
 
 -- AR-III-012 — The Exodus
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (30, 'AR-III-012', 'The Exodus', 'Waughin Jarth', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (34, 'AR-III-012', 'The Exodus', 'Waughin Jarth', 'Fiction',
    'Vralla was a little girl, beautiful and sweet-natured, beautiful and smart, beautiful and energetic. Everything that her parents had dreamed she would be. As perfect as she was, they could not help but have dreams for her. Her father, a bit of a social climber named Munthen, thought she would marry well, perhaps become a Princess of the Empire. Her mother, an insecure woman named Cinneta, thought she would reach greatness on her own, as a knight or a sorceress. As much as they wanted the very best for their daughter, they argued about what her fate would be, but both were wrong. Instead of growing up, she grew very ill.
 
 The Temples told them to give up hope, and The Mages Guild told them that what afflicted Vralla was so rare, so deadly, that there was no cure. She was doomed to die, and soon.
@@ -2290,11 +2290,11 @@ From the other room came the sound of tiny footsteps.
 
 ‘Vralla, go give your parents a big hug,’ said Jalmar.
 
-Munthen and Cinneta turned, and the screaming began.', 0);
+Munthen and Cinneta turned, and the screaming began.', 0, '');
 
 -- AR-III-013 — Feyfolken
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (31, 'AR-III-013', 'Feyfolken', 'Waughin Jarth', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (35, 'AR-III-013', 'Feyfolken', 'Waughin Jarth', 'Fiction',
    '## Book I
 
 The Great Sage was a tall, untidy man, bearded but bald. His library resembled him: all the books had been moved over the years to the bottom shelves where they gathered in dusty conglomerations. He used several of the books in his current lecture, explaining to his students, Taksim and Vonguldak, how the Mages Guild had first been founded by Vanus Galerion. They had many questions about Galerion’s beginnings in the Psijic Order, and how the study of magic there differed from the Mages Guild.
@@ -2517,11 +2517,11 @@ Vanderthil showed the healer Thaurbad’s last Bulletin, and Telemichiel agreed 
 
 “The will was surely altered by Feyfolken,” said Taksim, “And that’s the sort of thing a servitor of Clavicus Vile would do to perpetuate the curse.”
 
-“As an appropriate ending to the tale of the scribe and his cursed quill,” smiled the Great Sage. “I will let you read into it as you will.”', 0);
+“As an appropriate ending to the tale of the scribe and his cursed quill,” smiled the Great Sage. “I will let you read into it as you will.”', 0, 'Volume 1');
 
 -- AR-III-014 — Final Lesson
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (32, 'AR-III-014', 'Final Lesson', 'Aegrothius Goth', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (36, 'AR-III-014', 'Final Lesson', 'Aegrothius Goth', 'Fiction',
    '“It is time for you to leave your apprenticeship here,” said the Great Sage to his students, Taksim and Vonguldak.
 
 “So soon?” cried Vonguldak, for it had been but a few years since the training began. “Are we such poor pupils?”
@@ -2562,11 +2562,11 @@ The gray-haired men sat before the fire and reminisced of the old days. The sad 
 
 In the years ahead, before they left the mortal world to join their great teacher Dalak, they both achieved their desires. Uthrac went on to become respected if minor enchanter in the service of Clan Direnni. Loreth took the skills he had learned on his own, and used them to fashion the Balac-thurm, the Staff of Chaos.
 
-My boys, the lesson is you have to learn from a teacher to avoid those small but essential errors that claimed the life of such self-taught enchanters as Peothil. And yet, the only way to become truly great is to try all the possibilities on your own.', 0);
+My boys, the lesson is you have to learn from a teacher to avoid those small but essential errors that claimed the life of such self-taught enchanters as Peothil. And yet, the only way to become truly great is to try all the possibilities on your own.', 0, '');
 
 -- AR-III-015 — Ghosts in the Storm
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (33, 'AR-III-015', 'Ghosts in the Storm', 'Adonato Leotelli', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (37, 'AR-III-015', 'Ghosts in the Storm', 'Adonato Leotelli', 'Fiction',
    'For many years now, I have traveled the length and breadth of Skyrim, writing of my experiences and my adventures.
 
 I have seen many wondrous sights and many strange creatures in my travels, but one encounter remains fixed in my memory, though I wish it were not.
@@ -2589,11 +2589,11 @@ Alerted to the presence of our foes, the Khajiit drew their blades and formed a 
 
 The storm abated and we arrived in Windhelm the next morning. I have taken up residence in Candlehearth Hall and I find I am quite comfortable behind the towering stone walls of the city.
 
-Comfortable, at least until I go to sleep and visions of those awful creatures return to haunt my dreams.', 0);
+Comfortable, at least until I go to sleep and visions of those awful creatures return to haunt my dreams.', 0, '');
 
 -- AR-III-016 — The Gold Ribbon of Merit
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (34, 'AR-III-016', 'The Gold Ribbon of Merit', 'Ampyrian Brum', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (38, 'AR-III-016', 'The Gold Ribbon of Merit', 'Ampyrian Brum', 'Fiction',
    'In that early springtime morning, pale sunlight flickered behind the morning mist floating through the trees as Templer and Stryngpool made their way to the clearing. Neither had been back in High Rock, let alone in their favorite woods for four years. The trees had changed little even if they had. Stryngpool had a handsome blond moustache now, stiffened and spiked with wax, and Templer seemed to be a completely alien creature to the young lad who searched for adventure in the ancient grove. He was much quieter, as if scarred within as well as without.
 
 They each carried their bows and quivers with extra care as they maneuvered their way through the clusters of vine and branch.
@@ -2652,11 +2652,11 @@ Stryngpool relaxed, shook away the tensions that had been building. He did his e
 
 The two shot a few more practice bolts before parting ways. Templer began the long trek east to his unit’s camp, and Stryngpool wound his way down through the woods to the valley and his family’s mansion. He hummed a little tune he learned at the academy as he passed the great lawn and walked up to the front door, pleased with himself for helping his old friend. It entirely escaped his attention that the large picture window was broken.
 
-But he noticed right away when he came into the Great Hall, and saw Templer’s wild-shot bolt sticking in his gold ribbon of merit.', 0);
+But he noticed right away when he came into the Great Hall, and saw Templer’s wild-shot bolt sticking in his gold ribbon of merit.', 0, '');
 
 -- AR-III-017 — Hallgerd’s Tale
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (35, 'AR-III-017', 'Hallgerd’s Tale', 'Tavi Dromio', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (39, 'AR-III-017', 'Hallgerd’s Tale', 'Tavi Dromio', 'Fiction',
    'I think the greatest warrior who ever lived had to be Vilus Nommenus,” offered Xiomara. “Name one other warrior who conquered more territory.”
 
 “Tiber Septim, obviously,” said Hallgerd.
@@ -2717,11 +2717,11 @@ His great skill wasn’t in the use of weaponry, though he was decent enough wit
 
 “Like I said,” replied Hallgerd. “This is a story about someone who was more agile and accomplished in his armor than out of it.”
 
-“Now, that’s skill,” said Garaz.', 0);
+“Now, that’s skill,” said Garaz.', 0, '');
 
 -- AR-III-018 — The Hope of the Redoran
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (36, 'AR-III-018', 'The Hope of the Redoran', 'Turiul Nirith', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (40, 'AR-III-018', 'The Hope of the Redoran', 'Turiul Nirith', 'Fiction',
    'One of the few magical arts the Psijics of Artaeum have kept to themselves, away from the common spells and schools of the Mages Guild, is the gift of divination. Despite this, or perhaps because of it, omens and prophesies abound in Tamriel, some of substance, others of pure folly, and still others so ambiguous as to be unverifiable. There are still other prophesies kept secret, from the prophesies of Dro’Jizad in Elsweyr and the Nerevarine in Morrowind, to the Elder Scrolls themselves.
 
 The Nord nobility have a tradition of having omens read for their children. In general, these readings are of the obscure variety. One of my acquaintances told me that her parents were told, for example, that their daughter would have her life rescued by a snake, and so gave her the name Serpentkin in a special ceremony. And this young lady, Eria Valkor Serpentkin, was indeed saved by a snake many years later, when an assassin creeping on her stepped on a danswyrm viper.
@@ -2760,11 +2760,11 @@ As Shardie had suggested, Athyn allowed Andas to attack first. The Hope of the R
 
 The less said about the end of the battle, the better. Suffice it to say that Athyn, wielding a simple club, battered Andas to death without spilling a drop of blood.
 
-Athyn took his father’s seat as councilor, and it was then said that the hope in the omen referred to Athyn, not Andas. After all, had Andas not tried to take the councilor seat away from his cousin, Athyn, being not very ambitious, might have never tried to get it. It can certainly be argued that way, I suppose.', 0);
+Athyn took his father’s seat as councilor, and it was then said that the hope in the omen referred to Athyn, not Andas. After all, had Andas not tried to take the councilor seat away from his cousin, Athyn, being not very ambitious, might have never tried to get it. It can certainly be argued that way, I suppose.', 0, '');
 
 -- AR-III-019 — Incident at Necrom
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (37, 'AR-III-019', 'Incident at Necrom', 'Jonquilla Bothe', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (41, 'AR-III-019', 'Incident at Necrom', 'Jonquilla Bothe', 'Fiction',
    '“The situation simply is this,” said Phlaxith, his face as chiseled and resolute as any statue. “Everyone knows that the cemetery west of the city is haunted by some malevolent beings, and has been for many years now. The people have come to accept it. They bury their dead by daylight, and are away before Masser and Secunda have risen and the evil comes forth. The only victims to fall prey to the devils within are the very stupid and the outsiders.”
 
 “It sounds like a natural solution to filtering out the undesirables then,” laughed Nitrah, a tall, middle-aged woman with cold eyes and thin lips. “Where is the gold in saving them?”
@@ -2839,11 +2839,11 @@ Nitrah laughed. “Those spells of illusion won’t help her track us down, as u
 
 They closed the door behind them.
 
-“Invisibility is another spell of illusion,” said Massitha’s disembodied voice. The gold on the table rose in the air and vanished from sight as she slipped it into her purse. The door again opened and closed, and all was silent until Osmic and Nitrah returned a few minutes later.', 0);
+“Invisibility is another spell of illusion,” said Massitha’s disembodied voice. The gold on the table rose in the air and vanished from sight as she slipped it into her purse. The door again opened and closed, and all was silent until Osmic and Nitrah returned a few minutes later.', 0, '');
 
 -- AR-III-020 — Kolb & the Dragon
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (38, 'AR-III-020', 'Kolb & the Dragon', 'Anonymous', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (42, 'AR-III-020', 'Kolb & the Dragon', 'Anonymous', 'Fiction',
    '1
 
 Kolb was a brave Nord warrior. One day his Chief asked Kolb to slay an evil dragon that threatened their village. “Go through the mountain pass, Kolb”, his Chief said. “You will find the Dragon on the other side.”
@@ -2964,11 +2964,11 @@ Take the smelly tunnel (4)
 
 Take the windy tunnel (8)
 
-Climb the ladder (12)', 0);
+Climb the ladder (12)', 0, '');
 
 -- AR-III-021 — Last Scabbard of Akrash
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (39, 'AR-III-021', 'Last Scabbard of Akrash', 'Tabar Vunqidh', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (43, 'AR-III-021', 'Last Scabbard of Akrash', 'Tabar Vunqidh', 'Fiction',
    'For several warm summer days in the year 3E 407, a young, pretty Dunmer woman in a veil regularly visited one of the master armorers in the city of Tear. The locals decided that she was young and pretty by her figure and her poise, though no one ever saw her face. She and the armorer would retire to the back of his shop, and he would close down his business and dismiss his apprentices for a few hours. Then, at mid-afternoon, she would leave, only to return at precisely the same time the next day. As gossip goes, it was fairly meager stuff, though what the old man was doing with such a well dressed and attractively proportioned woman was the source of several crude jokes. After several weeks, the visits stopped, and life returned to normal in the slums of Tear.
 
 It was not until a month or two after the visits had stopped, that in one of the many taverns in the neighborhood, a young local tailor, having imbibed too much sauce, asked the armorer, “So whatever happened to your lady friend? You break her heart?”
@@ -3041,11 +3041,11 @@ The excitement over, the old man dropped the sword and turned to the door to cal
 
 A week later, after the official investigations, the slave was buried in an unmarked grave in the manor field, and Serjo Dres Minegaur found his resting place in a modest corner of the family’s opulent mausoleum. A larger crowd of curious onlookers came to view the funeral of the noble slaver whose secret life was as the savage Lopper of his competitors. The audience was respectfully quiet, though there was not a person there not imagining the final moments of the man’s life. Attacking his own daughter in his madness, luckily defended by the loyal, hapless slave, before turning the blade on himself.
 
-Among the viewers was an old armorer who saw for one last time the veiled young lady before she disappeared forever from Tear.', 0);
+Among the viewers was an old armorer who saw for one last time the veiled young lady before she disappeared forever from Tear.', 0, '');
 
 -- AR-III-022 — The Locked Room
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (40, 'AR-III-022', 'The Locked Room', 'Porbert Lyttumly', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (44, 'AR-III-022', 'The Locked Room', 'Porbert Lyttumly', 'Fiction',
    'Yana was precisely the kind of student her mentor Arthcamu despised: the professional amateur. He enjoyed all the criminal types who were his usual pupils at the stronghold, from the common burglar to the more sophisticated blackmailers, children and young people with strong career ambitions which the art and science of lockpicking could facilitate. They were always interested in simple solutions, the easy way, but people like Yana were always looking for exceptions, possibilities, exotica. For pragmatists like Arthcamu, it was intensely vexing.
 
 The Redguard maiden would spend hours in front of a lock, prodding at it with her wires and picks, flirting with the key pins and driver pins, exploring the hull with a sort of casual fascination that no delinquent possesses. Long after her fellow students had opened their test locks and moved on, Yana was still playing with hers. The fact that she always opened it eventually, no matter how advanced a lock it was, irked Arthcamu even further.
@@ -3092,11 +3092,11 @@ But there was no reply, only the sound of footfall disappearing down the corrido
 
 The tools could not stand very much twisting and tapping from Arthcamu’s hysterical hands. The wire snapped in the keyhole. Just like a student. Arthcamu screamed and pounded on the door, but he knew that no one could possibly hear him. It was while sucking in his breath to scream again, he heard the distinct creak of the crate opening behind him.
 
-The vampire ancient regarded the master locksmith with insane, hungry eyes, and flew at him in a frenzy. Before Arthcamu died, he saw it: on a chain that had been placed around the vampire’s neck while it had been sleeping was a key.', 0);
+The vampire ancient regarded the master locksmith with insane, hungry eyes, and flew at him in a frenzy. Before Arthcamu died, he saw it: on a chain that had been placed around the vampire’s neck while it had been sleeping was a key.', 0, '');
 
 -- AR-III-023 — The Marksmanship Lesson
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (41, 'AR-III-023', 'The Marksmanship Lesson', 'Alla Llaleth', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (45, 'AR-III-023', 'The Marksmanship Lesson', 'Alla Llaleth', 'Fiction',
    'Kelmeril Brin had very definite opinions on how things should be done. Every slave he bought on the day he bought him or her was soundly whipped in the courtyard for a period of one to three hours, depending on the individual degree of independent spirit. The whip he used – or had his castellan use – was of wet, knotted cloth, which regularly drew blood but very seldom maimed. To his great satisfaction and personal pride, few slaves ever needed to be whipped more than once. The memory of their first day, and the sight and sound of every subsequent slave’s first day, stayed with them throughout their lives.
 
 When Brin bought his first Bosmer slave, he ordered his castellan to whip him only for an hour. The creature, which Brin had named Dob, seemed so much more delicate than the Argonians and Khajiiti and Orcs who made up the bulk of his slaves. Dob was clearly ill suited for work in the mines or in the fields, but he seemed presentable enough for domestic service.
@@ -3163,11 +3163,11 @@ Wodilic’s plaintive yell drifted in from the meadow: “I can’t! Father, I c
 
 The boy’s arrow sailed high over the target and kept climbing, reaching a pinnacle at the edge of the plantation house before coming down in a magnificent arc. Brin tasted the blood before he realized he’d been hit. Gingerly, he raised his hands and felt the arrowhead protruding out of the back of his neck. He looked at Dob crouching under the wagon, and thought he saw a thin smile cross the slave’s lips. Just for an instant before he died, Brin saw the face of the rogue highwayman on Dob.
 
-“Bullseye, Master Wodilic!” Dob crowed.', 0);
+“Bullseye, Master Wodilic!” Dob crowed.', 0, '');
 
 -- AR-III-024 — The Mirror
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (42, 'AR-III-024', 'The Mirror', 'Berdier Wreans', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (46, 'AR-III-024', 'The Mirror', 'Berdier Wreans', 'Fiction',
    'The wind blew over the open plain, jostling the few trees within to move back and forth with the irritation of it. A young man in bright green turban approached the army and gave his chieftain’s terms for peace to the commander. He was refused. It was to be battle, the battle of Ain-Kolur.
 
 So the chief Iymbez had decreed his open defiance and his horsemen were at war once again. Many times the tribe had moved into territory that was not theirs to occupy, and many times the diplomatic approach had failed. It had come to this, at long last. It was just as well with Mindothrax. His allies may win or lose, but he would always survive. Though he had occasionally been on the losing side of a war, never once in all his thirty-four years had he lost in hand-to-hand combat.
@@ -3226,11 +3226,11 @@ Jurrifax returned to his commander and was well paid for his part in the day’s
 
 “But there is one,” said Jurrifax, looking to the stars. “My master, before he set me free, said that my mother had twin sons when I was born. She could only afford to raise but one child, but somewhere out there, there is a man just like me. My brother. I hope to meet him.”
 
-The witch saw the spirits before her and knew the truth that the twins had met already. She remained silent and stared into the fire, banishing the thoughts from her head, too wise to tell all.', 0);
+The witch saw the spirits before her and knew the truth that the twins had met already. She remained silent and stared into the fire, banishing the thoughts from her head, too wise to tell all.', 0, 'Volume 1');
 
 -- AR-III-025 — Mystery of Talara
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (43, 'AR-III-025', 'Mystery of Talara', 'Mera Llykith', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (47, 'AR-III-025', 'Mystery of Talara', 'Mera Llykith', 'Fiction',
    '## Part 1
 
 The year was 3E 405. The occasion was the millennial celebration of the founding of the Breton Kingdom of Camlorn. Every grand boulevard and narrow alley was strung with gold and purple banners, some plain, some marked with the heraldic symbols of the Royal Family or the various principalities and dukedoms which were vassals of the King. Musicians played in the plazas great and small, and on every street corner was a new exotic entertainer: Redguard snake charmers, Khajiiti acrobats, magicians of genuine power and those whose flamboyant skill was equally impressive if largely illusion.
@@ -3475,7 +3475,7 @@ There was an explosion of energy that filled the night, and an echoing boom that
 
 Gyna never saw the Emperor’s agent Lady Brisienna again, but she kept her promise. Proseccus, a nightblade in the service of the Empire, arrived at Lord Strale’s house in disguise. She was an apt pupil, and within days, he had taught what she needed to know.
 
-“It is a simple charm, not the sort of spell that could turn a raging daedroth into a love-struck puppy,” said Proseccus. “If you do or say anything that would normally anger or offend your target, the power will weaken. It will alter temporarily his perception of you, as spells of the scho', 0);
+“It is a simple charm, not the sort of spell that could turn a raging daedroth into a love-struck puppy,” said Proseccus. “If you do or say anything that would normally anger or offend your target, the power will weaken. It will alter temporarily his perception of you, as spells of the scho', 0, 'Volume 1');
 UPDATE tomes SET body = body || 'ol of illusion do, but his feelings of respect and admiration for you must be supported by means of a charm of a less magickal nature.”
 
 “I understand,” smiled Gyna, thanking her tutor for the two spells of illusion he had taught her. The time had come to use her new-found skill.
@@ -3634,11 +3634,11 @@ Jyllia stared at Lord Strale, aghast. “My father -”
 
 “I don’t understand,” cried the poor girl, her eyes wide, because she did understand. Here memory was falling together like a terrible flood.
 
-“Let me explain it like this,” said her cousin, wrapping her in her arms. “I know who I am now. My real name is Jyllia Raze. That man who was arrested was my father, the man who murdered the King - your father. YOU are the Princess Talara.”' WHERE id = 43;
+“Let me explain it like this,” said her cousin, wrapping her in her arms. “I know who I am now. My real name is Jyllia Raze. That man who was arrested was my father, the man who murdered the King - your father. YOU are the Princess Talara.”' WHERE id = 47;
 
 -- AR-III-026 — Of Fjori and Holgeir
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (44, 'AR-III-026', 'Of Fjori and Holgeir', 'Anonymous', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (48, 'AR-III-026', 'Of Fjori and Holgeir', 'Anonymous', 'Fiction',
    'In her 29th summer of life, Fjori the huntress met the warlord Holgeir on the field of battle. None remember what they fought over, for their love to come was so great it overshadowed all rivalries or disputes. They fought to a standstill, as their followers looked on - till her sword broke his axe and his shield dulled her blade and all could see that they were equals.
 
 As the Eagle finds its mates, so too did Fjori find hers in Holgeir, and a time of peace came to the clans of the forest. But as the summer’s warmth gives way to winter’s chill, so too would this peace pass.
@@ -3653,11 +3653,11 @@ Though Holgeir could smell the winds of Sovngarde, she gave him the elixir and h
 
 But the Snake bit Fjori as she poured the last drop into Holgeir’s mouth, and fatigued from her journey, she joined the ancestors immediately.
 
-Holgeir’s grief was such that he built a tomb and upon completion, took his own life that he might rejoin her.', 0);
+Holgeir’s grief was such that he built a tomb and upon completion, took his own life that he might rejoin her.', 0, '');
 
 -- AR-III-027 — Palla
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (45, 'AR-III-027', 'Palla', 'Vojne Mierstyyd', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (49, 'AR-III-027', 'Palla', 'Vojne Mierstyyd', 'Fiction',
    '## Volume 1
 
 Palla. Pal La. I remember when I first heard that name, not long ago at all. It was at a Tales and Tallows ball at a very fine estate west of Mir Corrup, to which I and my fellow Mages Guild initiates had found ourselves unexpectedly invited. Truth be told, we needn’t have been too surprised. There were very few other noble families in Mir Corrup – the region had its halcyon days as a resort for the wealthy far back in the 2nd era – and on reflection, it was only appropriate to have sorcerers and wizards present at a supernatural holiday. Not that we were anything more exotic than students at a small, nonexclusive charterhouse of the Guild, but like I said, there was a paucity of other choices available.
@@ -3810,11 +3810,11 @@ I turned the lonely bend that intersected with the outskirts of Mir Corrup, and 
 
 “Kiss me,” it howled.
 
-And that brings my story up to the present moment. Love is red, like blood.', 0);
+And that brings my story up to the present moment. Love is red, like blood.', 0, 'Volume 1');
 
 -- AR-III-028 — Purloined Shadows
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (46, 'AR-III-028', 'Purloined Shadows', 'Waughin Jarth', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (50, 'AR-III-028', 'Purloined Shadows', 'Waughin Jarth', 'Fiction',
    '## Chapter 1
 
 The candle was lit, and the thief was standing there, blinking, caught. She was young, rather dirty, wearing ragged black clothes that were surely quite smart and expensive weeks ago when she had stolen them from one of the city’s best tailors. The look of surprise slipped from her face, and she took on a blank expression as she put the gold back on the table.
@@ -3885,11 +3885,11 @@ The witches raised their heads, and screamed, ruining the sanctity of the ceremo
 
 “Who art thee who dares profane?” The Princess hissed, as the pitch shadows flew from her body enveloping the girl in their lethal chill.
 
-In the last instant before she was swallowed alive by darkness, the girl looked to the ground and saw that the cloak was gone, and she answered, as she understood, “Oh, who am I? I’m the distraction.”', 0);
+In the last instant before she was swallowed alive by darkness, the girl looked to the ground and saw that the cloak was gone, and she answered, as she understood, “Oh, who am I? I’m the distraction.”', 0, 'Volume 1');
 
 -- AR-III-029 — The Rear Guard
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (47, 'AR-III-029', 'The Rear Guard', 'Tenace Mourl', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (51, 'AR-III-029', 'The Rear Guard', 'Tenace Mourl', 'Fiction',
    'The castle would hold. No matter the forces, the walls of Cascabel Hall would never fail, but that was small consolation for Menegur. He was hungry. In fact, he had never been so hungry. The well in the atrium of the fortress supplied him with enough water to hold there until the Fourth Era, but his stomach reminded Menegur minute to minute that he needed food.
 
 The wagonload of supplies mocked him. When his army, the forces of the King of Solitude, had left Cascabel Hall, and he had manned the battlements as the rear-guard to protect their retreat, they had left a wagon behind to supply him with enough food for months. It was not until the night after they left that he inspected the larder and found that nothing edible was in the wagon. Trunk after trunk was filled with netch armor from the army’s incursion into Morrowind. Apparently his Nord confederates had assumed that the lightly opaque material was hard tack in aspic. If the Dunmer whose caravan had been raided knew about this, they would never be able to stop laughing.
@@ -3938,11 +3938,11 @@ The Kings of Solitude and Farrun, and the Count of Cascabel stared at the Bosmer
 
 “We agreed to abide to the strictest old rules of law, and I’ve had time to read a great many books over the time you were making your truce. In 3E 246, during the reign of Uriel IV, the Imperial Council, in an attempt to clear up some questions of property rights in Skyrim during those chaotic days, decreed that any man without a liege who occupied a castle for more than three months would be granted the rights and titles of that estate. It’s a good law, of course, meant to discourage absent and foreign landlords.” Menegur smiled, feeling the now familiar sensation of a glancing strike diverting. “By the rule of law, I am the Count of Cascabel.”
 
-The rear-guard’s son still hold the title of Count of Cascabel. And he grows the finest, most delectable apples in the Empire.', 0);
+The rear-guard’s son still hold the title of Count of Cascabel. And he grows the finest, most delectable apples in the Empire.', 0, '');
 
 -- AR-III-030 — Surfeit of Thieves
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (48, 'AR-III-030', 'Surfeit of Thieves', 'Aniis Noru', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (52, 'AR-III-030', 'Surfeit of Thieves', 'Aniis Noru', 'Fiction',
    '“This looks interesting,” said Indyk, his eyes narrowing to observe the black caravan making its way to the spires of the secluded castle. A gaudy, alien coat of arms marked each carriage, the lacquer glistening in the light of the moons. “Who do you suppose they are?”
 
 “They’re obviously well-off,” smiled his partner, Heriah. “Perhaps some new Imperial Cult dedicated to the acquisition of wealth?”
@@ -4025,11 +4025,11 @@ The last crumb of sand fell in the hour glass as the man pulled back his hood. I
 
 Heriah fell back into the chair of the figure they called Esruoc Tsrif. His hood fell open, revealing the pallid, bloodless face of Indyk. As she began to scream, they fell on her.
 
-In her last living moment, Heriah finally spelled “Tressed” backwards.', 0);
+In her last living moment, Heriah finally spelled “Tressed” backwards.', 0, '');
 
 -- AR-III-031 — The Tale of Dro’Zira
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (49, 'AR-III-031', 'The Tale of Dro’Zira', 'Sonia Vette', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (53, 'AR-III-031', 'The Tale of Dro’Zira', 'Sonia Vette', 'Fiction',
    '*The following is a tale overheard, as told by a Khajiit father to his cub, while making camp with one of their caravans. I have attempted to transcribe it as he told it, for the Khajiit do not often speak of their history to outsiders. In truth I do not believe he would have spoken at all, but for the vast helping of Moonsugar he had consumed that night.*
 
 Come and warm your fur by the fire, Ma’rashirr, and I will tell you of how our Dro’Zira came to be the greatest of all Kahjiit! (*ed: Dro’Zira I took in this case to be an honored ancestor*)
@@ -4050,11 +4050,11 @@ As for the rest of the “Rhojiit” They grew small and lost their cunning alto
 
 Now, be a good cub and go fetch me some more moonsugar for these sweet cakes.
 
-*Much of the tale seemed to me, little more than a boast, but certain facts do seem to line up with what we believe is the truth behind the legends. It does raise questions as to why we do not know more about history of the Khajiit and what parts they have played that might not have been recorded by our written histories.*', 0);
+*Much of the tale seemed to me, little more than a boast, but certain facts do seem to line up with what we believe is the truth behind the legends. It does raise questions as to why we do not know more about history of the Khajiit and what parts they have played that might not have been recorded by our written histories.*', 0, '');
 
 -- AR-III-032 — Three Thieves
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (50, 'AR-III-032', 'Three Thieves', 'Anonymous', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (54, 'AR-III-032', 'Three Thieves', 'Anonymous', 'Fiction',
    '“The problem with thieves today,” said Lledos, “Is the lack of technique. I know there’s no honor among thieves, and there never was, but there used to be some pride, some skill, some basic creativity. It really makes those of us with a sense of history despair.”
 
 Imalyn sneered, slamming down his flagon of greef violently on the rough-hewn table. “B’vek, what do you want us to say? You asks us ‘What do you do when you see a guard?’ and I says, ‘Stab the fetcher in the back.’ What d’you prefer? We challenge ‘em to a game of chits?”
@@ -4107,11 +4107,11 @@ Sathis woke up some time later from a nightmare. For a second after he opened hi
 
 The song returned, and Sathis heard the vault door in his study swing open. The smell of stoneflower filled his nose and he opened his eyes. Only a little of the afternoon sunlight could pierce the inside of the burlap sack.
 
-A strong, feminine hand clamped over the mouth and a thumb jabbed under his chin. Just as his throat opened and his head was shoved to the side, he heard Galsiah in her typical calm voice, “Thank you for the lesson, Sathis.”', 0);
+A strong, feminine hand clamped over the mouth and a thumb jabbed under his chin. Just as his throat opened and his head was shoved to the side, he heard Galsiah in her typical calm voice, “Thank you for the lesson, Sathis.”', 0, '');
 
 -- AR-III-033 — A Tragedy in Black  [SEALED]
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (51, 'AR-III-033', 'A Tragedy in Black', 'Anonymous', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (55, 'AR-III-033', 'A Tragedy in Black', 'Anonymous', 'Fiction',
    'The dremora looked on the young boy with disdain. He looked to be no more than seventeen or eighteen, on the cusp of manhood.
 
 “You? You have summoned me?”
@@ -4158,11 +4158,11 @@ The tendrils of the soul trap spell spilled from his fingers and surrounded the 
 
 Quickly the dremora snatched back the black soul gem, just as the youth died. His soul tried to flee, but was trapped by the spell and drawn into the gem. Only black soul gems can hold the souls of men and elves.
 
-“Your mother obviously never told you never to accept a freely given gift from a summoned dremora,” he said to the corpse. “You see, it breaks the conjuration, freeing the summoned from the summoner. Now, let’s go find your mother. After all, I have another black soul gem.”', 1);
+“Your mother obviously never told you never to accept a freely given gift from a summoned dremora,” he said to the corpse. “You see, it breaks the conjuration, freeing the summoned from the summoner. Now, let’s go find your mother. After all, I have another black soul gem.”', 1, '');
 
 -- AR-III-034 — Vernaccus and Bourlor
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (52, 'AR-III-034', 'Vernaccus and Bourlor', 'Tavi Dromio', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (56, 'AR-III-034', 'Vernaccus and Bourlor', 'Tavi Dromio', 'Fiction',
    'Hallgerd walked into the King’s Ham that Loredas evening, his face clouded with sadness. While he ordered a mug of greef, his mates Garaz and Xiomara joined him with moderately sincere concern.
 
 “What’s wrong with you, Hallgerd?” asked Xiomara. “You’re later than usual, and there’s a certain air of tragedy you’ve dragged in with you. Have you lost money, or a nearest and dearest?”
@@ -4249,11 +4249,11 @@ With a roar of humiliation, the daedra bounded into the shrine, chased by the on
 
 Vernaccus nodded. He dropped forward, revealing the deep wound in his back. A rusted arrowhead buried in a whorl in the wood of the door had jolted loose in the assault and impaled him. The daedra vanished in a whirlwind of dust.
 
-The shrines were abandoned shortly thereafter, though Vernaccus did have a brief resurgence as the Patron Spirit of Limitations and Impotence before fading from memory altogether. The legend of Bourlor himself never became very well known either, but there are still some who tell the tale, like myself. And we have the advantage of knowing what the Great Archer himself didn’t know on his deathbed – his final arrow found its target after all.', 0);
+The shrines were abandoned shortly thereafter, though Vernaccus did have a brief resurgence as the Patron Spirit of Limitations and Impotence before fading from memory altogether. The legend of Bourlor himself never became very well known either, but there are still some who tell the tale, like myself. And we have the advantage of knowing what the Great Archer himself didn’t know on his deathbed – his final arrow found its target after all.', 0, '');
 
 -- AR-III-035 — Withershins
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (53, 'AR-III-035', 'Withershins', 'Yaqut Tawashi', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (57, 'AR-III-035', 'Withershins', 'Yaqut Tawashi', 'Fiction',
    '“All right,” said Kazagha. “Why don’t you want to talk?”
 
 Zaki put down his mug of mead and just stared at his wife for a few seconds. Finally, grudgingly: “Because everything I have a conversation, darling, it flows in alphabetical order. Just like I told you. I think the only way to stop it is not to talk at all.”
@@ -4330,11 +4330,11 @@ Octoplasm took the zoetrope and the book from Zaki’s hands. Nothing seemed to 
 
 At the counter, when Zaki pulled out his sachel of gold pieces, Octoplasm merely shook his head: “Are treatment radical such of effects term long the what sure be can’t we, naturally. Charge no.”
 
-Feeling the first real relief he had felt in days, Zaki walked backwards out of the shop and down the road to his shop.', 0);
+Feeling the first real relief he had felt in days, Zaki walked backwards out of the shop and down the road to his shop.', 0, 'Volume 1');
 
 -- AR-III-036 — The Woodcutter’s Wife
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (54, 'AR-III-036', 'The Woodcutter’s Wife', 'Mogen Son of Molag', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (58, 'AR-III-036', 'The Woodcutter’s Wife', 'Mogen Son of Molag', 'Fiction',
    'Legend tells of a woodcutter who built a shack deep within the pine forest. There, he hoped to live in peace with his family.
 
 The woodcutter’s family lived well for a time, but without warning, the weather turned bitterly cold and spoiled the harvest. Before long, with their meager supply of food all but gone, the family was starving.
@@ -4357,11 +4357,11 @@ Awakened by the horrified scream, the woodcutter and his children rushed into th
 
 With his last gasp of breath, the traveler laid a fearful curse on the woodcutter’s wife. After her mortal death, she was damned to rise once again and walk the woods alone only to burn at the rising of the sun.
 
-To this day, those who walk the pine forest late at night tell tales of a weeping woman glimpsed between the trees. She carries a bloody axe, the stories say, and is terrifying to behold.', 0);
+To this day, those who walk the pine forest late at night tell tales of a weeping woman glimpsed between the trees. She carries a bloody axe, the stories say, and is terrifying to behold.', 0, '');
 
 -- AR-III-037 — The Wraith’s Wedding Dowry
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (55, 'AR-III-037', 'The Wraith’s Wedding Dowry', 'Voltha gra-Yamwort', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (59, 'AR-III-037', 'The Wraith’s Wedding Dowry', 'Voltha gra-Yamwort', 'Fiction',
    '“The poets are right. There is something life-changing about being in love,” said Kepkajna gra-Minfang, sometimes called the Wraith. “I haven’t wanted to rob anyone or anything in weeks. Why, the other day, I saw the door wide open at a wealthy merchant’s house, but my mind was fully occupied with what I should wear on my wedding day.”
 
 “You have been out of the right society for very long now,” frowned her friend Khargol approvingly. “You never told me what happened to your first husband, you know, the one the shaman gave you?”
@@ -4402,11 +4402,11 @@ At precisely midnight, Wodworg and Kepkajna were united together. He was delight
 
 “Did it occur to you to put on the armor when you knew that it was an ambush?” he asked.
 
-“I didn’t want to dent your present,” she replied, between kisses. “And I certainly didn’t want to wrinkle my gown.”', 0);
+“I didn’t want to dent your present,” she replied, between kisses. “And I certainly didn’t want to wrinkle my gown.”', 0, '');
 
 -- AR-III-038 — Thief of Virtue
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (56, 'AR-III-038', 'Thief of Virtue', 'Anonymous', 'Fiction',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (60, 'AR-III-038', 'Thief of Virtue', 'Anonymous', 'Fiction',
    'Let me tell the tale of the Thief of Virtue. In the land of Hammerfell in the city of Sutch there lived a Baron who was quite wealthy. He was a noted collector of rare coins. The Baroness Veronique found the whole thing quite tedious. However, she did appreciate the lifestyle that the Baron’s wealth provided.
 
 Ravius Terinus was a noted thief. He claimed to be a master thief in the mythical guild of thieves. However, that was most likely just braggadocio. The only known Thieves Guild was wiped out over 450 years ago.
@@ -4437,9 +4437,877 @@ Ravius looked deeply into her eyes and saw the only path by which he would escap
 
 With that Ravius set down the coins he had worked so hard to steal. The Baroness swooned into his arms. When the captain of the guard asked to search her quarters, she hid Ravius most skillfully. She turned over the coins, claiming the thief dropped them when he fled out the window.
 
-With that sacrifice made, Ravius steeled himself for the second. He robbed the lady Veronique of her virtue that night. He robbed her of it several times, lasting well into the wee hours of the morning. Exhausted, yet sated, he stole away in the pre-dawn hours.', 0);
+With that sacrifice made, Ravius steeled himself for the second. He robbed the lady Veronique of her virtue that night. He robbed her of it several times, lasting well into the wee hours of the morning. Exhausted, yet sated, he stole away in the pre-dawn hours.', 0, '');
+
+-- AR-III-039 — King
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (61, 'AR-III-039', 'King', 'Anonymous', 'Fiction',
+   'Gentle reader, you will not understand a word of what follows unless you have read and commited *[sic]* to memory the first three volumes in this series, ''Beggar,'' ''Thief,'' and ''Warrior,'' which leads up to this, the conclusion. I encourage you to seek them out at your favorite bookseller.
+
+We last left Eslaf Erol fleeing for his life, which was a common enough occurance *[sic]* for him. He had stolen a lot of gold, and one particularly large gem, from a rich man in Jallenheim named Suoibud. The thief fled north, spending the gold wildly, as thieves generally do, for all sorts of illicit pleasures, which would no doubt disturb the gentleman or lady reading this, so I will not go into detail.
+
+The one thing he held onto was the gem.
+
+He didn''t keep it because of any particular attachment, but because he did not know anyone rich enough to buy it from him. And so he found himself in the ironic situation of being penniless and having in his possession a gem worth millions.
+
+''Will you give me a room, some bread, and a flagon of beer in exchange for this?'' he asked a tavernkeep in the little village of Kravenswold, which was so far north, it was half situated on the Sea of Ghosts.
+
+The tavernkeep looked at it suspiciously.
+
+''It''s just crystal,'' Eslaf said quickly. ''But isn''t it pretty?''
+
+''Let me see that,'' said a young armor-clad woman at the end of the bar. Without waiting permission, she picked up the gem, studied it, and smiled not very sweetly at Eslaf. ''Would you join me at my table?''
+
+''I''m actually in a bit of a hurry,'' replied Eslaf, holding out his hand for the stone. ''Another time?''
+
+''Out of respect for my friend, the tavernkeep here, my men and I leave our weapons behind when we come in here,'' the woman said casually, not handing the gem back, but picking up a broom that was sitting against the bar. ''I can assure you, however, that I can use this quite effectively as a blunt instrument. Not a weapon, of course, but an instrument to stun, medicinally crush a bone or two, and then - once it is on the inside ...''
+
+''Which table?'' asked Eslaf quickly.
+
+The young woman led him to a large table in the back of the tavern where ten of the biggest Nord brutes Eslaf had ever seen were sitting. They looked at him with polite disinterest, as if he were a strange insect, worth briefly studying before crushing.
+
+''My name is Laicifitra,'' she said, and Eslaf blinked. That was the name Suoibud had uttered before Eslaf had made his escape. ''And these are my lieutenants. I am the commander of a very large independent army of noble knights. The very best in Skyrim. Most recently we were given a job to attack a vineyard in The Aalto to force its owner, a man named Laernu, to sell to our employer, a man named Suoibud. Our payment was to be a gem of surpassing size and quality, quite famous and unmistakable.
+
+''We did as we were asked, and when we went to Suoibud to collect our fee, he told us he was unable to pay, due to a recent burglary. In the end, though, he saw things our way, and paid us an amount of gold almost equal to the worth of the prize jewel … It did not empty out his treasury entirely, but it meant he was unable to buy the land in the Aalto after all. So we were not paid enough, Suoibud has taken a heavy financial blow, and Laernu''s prize crop of Jazbay has been temporarily destroyed for naught,'' Laicifitra took a long, slow drink of her mead before continuing. ''Now, I wonder, could you tell me, how came you in the possession of the gem we were promised?''
+
+Eslaf did not answer at once.
+
+Instead, he took a piece of bread from the plate of the savage bearded barbarian on his left and ate it.
+
+''I''m sorry,'' he said, his mouth full. ''May I? Of course, I couldn''t stop you from taking the gem even if I wanted to, and as a matter of fact, I don''t mind at all. It''s also useless to deny how it came into my possession. I stole it from your employer. I certainly didn''t mean you or your noble knights any harm by it, but I can understand why the word of a thief is not suitable for one such as yourself.''
+
+''No,'' replied Laicifitra, frowning, but her eyes showing amusement. ''Not suitable at all.''
+
+''But before you kill me,'' Eslaf said, grabbing another piece of bread. ''Tell me, how suitable is it for noble knights such as yourself to be paid twice for one job? I have no honor myself, but I would have thought that since Suoibud took a profit loss to pay you, and now you have the gem, your handsome profit is not entirely honorable.''
+
+Laicifitra picked up the broom and looked at Eslaf. Then she laughed, ''What is your name, thief?''
+
+''Eslaf,'' said the thief.
+
+''We will take the gem, as it was promised to us. But you are right. We should not be paid twice for the same job. So,'' said the warrior woman, putting down the broomstick. ''You are our new employer. What would you have your own army do for you?''
+
+Many people could find quite a few good uses for their own army, but Eslaf was not among them. He searched his brain, and finally it was decided that it was a debt to be paid later. For all her brutality, Laicifitra was an *[sic]* simple woman, raised, he learned, by the very army she commanded. Fighting and honor were the only things she knew.
+
+When Eslaf left Kravenswold, he had an army at his beck and call, but not a coin to his name. He knew he would have to steal something soon.
+
+As he wandered the woods, scrounging for food, he was beset with a strange feeling of familiarity. These were the very woods he had been in as a child, also starving, also scrounging. When he came out on the road, he found that he had come back on the kingdom where he had been raised by the dear, stupid, shy maid Drusba.
+
+He was in Erolgard.
+
+It had fallen even deeper into despair since his youth. The shops that had refused him food were boarded up, abandoned. The only people left were hollow, hopeless figures, so ravaged by taxation, despotism, and barbaric raids that they were too weak to flee. Eslaf realized how lucky he was to have gotten out in his youth.
+
+There was, however, a castle and a king. Eslaf immediately made plans to raid the treasury. As usual, he watched the place carefully, taking note of the security and the habits of the guards. This took some time. In the end, he realized there was no security and no guards.
+
+He walked in the front door, and down the empty corridors to the treasury. It was full of precisely nothing, except one man. He was Eslaf''s age, but looked much older.
+
+''There''s nothing to steal,'' he said. ''Would that there was.''
+
+King Ynohp, though prematurely aged, had the same white blond hair and blue eyes like broken glass that Eslaf had. In fact, he resembled Suoibud and Laicifitra as well. And though Eslaf had never met the ruined landlord of the Aalto, Laernu, he looked him too. Not surprisingly, since they were quintuplets.
+
+''So, you have nothing?'' asked Eslaf, gently.
+
+''Nothing except my poor kingdom, curse it,'' the King grumbled. ''Before I came to the throne, it was powerful and rich, but I inherited none of that, only the title. For my entire life, I''ve had responsibility thrust on my shoulders, but never had the means to handle it properly. I look over the desolation which is my birthright, and I hate it. If it were possible to steal a kingdom, I would not lift a finger to stop you.''
+
+It was, it turned out, quite possible to steal a kingdom. Eslaf became known as Ynohp, a deception easily done given their physical similarities. The real Ynohp, taking the name of Ylekilnu, happily left his demesne, becoming eventually a simple worker in the vineyards of The Aalto. For the first time free of responsibility, he fell into his new life with gusto, the years melting off him.
+
+The new Ynohp called in his favor with Laicifitra, using her army to restore peace to the kingdom of Erolgard. Now that it was safe, business and commerce began to return to the land, and Eslaf reduced the tyrannical taxes to encourage it to grow. Upon hearing that, Suoibud, ever nervous about losing his money, elected to return to the land of his birth. When he died years later, out of greed, he had refused to name someone an heir, so the kingdom received its entire fortune.
+
+Eslaf used part of the gold to buy the vineyards of The Aalto, after hearing great things of it from Ynohp.
+
+And so it was that Erolgard was returned to its previous prosperity by the fifth born child of King Ytluaf - Eslaf Erol, beggar, thief, warrior (of sorts), and king.', 0, '');
+
+-- AR-III-040 — Legend of Krately House
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (62, 'AR-III-040', 'Legend of Krately House', 'Anonymous', 'Fiction',
+   'DRAMATIS PERSONAE
+
+THEOPHON - Imperial man, 24, thief
+
+NIRIM - Bosmer man, 20, thief
+
+SILANUS *[sic]* KRATELY - Imperial man, 51, merchant
+
+DOMINITIA KRATELY - His wife, 40
+
+AELVA KRATELY - Their daughter, 16
+
+MINISTES KRATELY - Their son, 11
+
+Setting: The famous haunted Krately House in Cheydinhal, first and second floors, requiring a stage with a second story where most of the action takes place.
+
+*The stage is dark.*
+*There is a CREAKING noise, footsteps on the stairs, the sound of a man breathing, but still we see nothing.*
+*Then, a voice calls from above.*
+
+AELVA (off stage): Hello? Is someone down there?
+
+MINESTES *[sic]* (off stage): Should I wake up Papa?
+
+AELVA (off stage): No... Maybe I was imagining it...
+
+*A light from a lantern can be seen coming from the upstairs, and the slim form of a beautiful young girl, AELVA, descends the staircase at stage right, nervously.*
+*From the light of the lantern, we can see that we are looking at the second floor of a dusty old house, with a set of stairs going up and another one going down on stage right. An unlit stone fireplace sits at stage left. A table, a locked chest, and a wardrobe complete the furnishings.*
+MINESTES *[sic]* (off stage): Aelva, what are you doing?
+
+AELVA: I''m just making certain... Go back to bed, Minestes *[sic]*.
+
+*As the girl passes the table, we see a Bosmer NIRIM slide gracefully up from behind and around her field of sight, carefully avoiding the pool of light. She doesn''t appear to see him as he creeps closer to her, his footsteps silent on the hard wooden floor.*
+*When he is almost on her, there is a sudden CRASH from down below. This causes the Bosmer to leap away, hiding again behind the table.*
+*The girl does not seem to notice the sound, and Nirim, peeking out from behind the table, watches her.*
+MINESTES *[sic]* (off stage): Found anything?
+
+AELVA: No. Probably just my imagination, but I''m just going to check downstairs.
+
+MINESTES *[sic]* (off stage): Is there a fire? I''m cold...
+
+*Aelva looks towards the long dead fireplace, and so does Nirim.*
+AELVA: Of course there is. Can''t you hear it crackling?
+
+MINESTES *[sic]* (off stage): I guess so...
+
+*Aelva suddenly jumps as if she heard something which we do not. She turns her attention down the stairs to the first floor.*
+AELVA: Hello?
+
+*Aelva, lantern ahead of her, begins the descent. She does not seem to notice as an Imperial, THEOPHON, carrying a big bag of loot and a lantern of his own, calmly walks up right past her.*
+THEOPHON: Excuse me, young lady. Just robbing you.
+
+*Aelva continues her slow, nervous walk downstairs, which we can now see thanks to her light. She looks around the low-ceilinged, thoroughly looted room as the action continues upstairs *[sic]**
+*Theophon''s lantern provides the dim light for the second floor.*
+THEOPHON: Why are you hiding, Nirim? I told you. They can''t see you, and they can''t hear you.
+
+*Nirim sheepishly steps out from behind the table.*
+NIRIM: I can''t believe they''re all ghosts. They seem so alive.
+
+THEOPHON: That''s what spooks them superstitians. But they ain''t going to hurt us. Just reliving the past, the way ghosts do.
+
+NIRIM: The night they was murdered.
+
+THEOPHON: Stop thinking about that or you''ll get yourself all willy spooked. I got all kinds of stuff on the first floor - silver candlesticks, silk, even some gold... What''d you get?
+
+*Nirim holds up his empty bag.*
+NIRIM: Sorry, Theophon, I was just about to start...
+
+THEOPHON: Get to work on that chest then. That''s what you''re here for.
+
+NIRIM: Oh yeah. I got the talent, you got the ideas... and the equipment. You refilled that lantern before we came here, right? I can''t work in the dark...
+
+THEOPHON: Don''t worry, Nirim. I promise. No surprises.
+
+*Nirim jumps when a young boy, MINESTES *[sic]*, appears on the stairs. The lad creeps down quietly and goes to the fire. He acts as if he''s stoking a fire, feeding it wood, poking at the embers, though there is no wood, no poker, no fire.*
+THEOPHON: We got all the time in the world, friend. No one comes near this house. If they sees our lantern light, they''ll just assume it''s the ghosts.
+
+*Nirim begins picking the lock on a chest of drawers, while Theophon opens a wardrobe and begins going through the contents, which are mostly rotten cloth.*
+*Nirim is distracted, looking at the young boy.*
+NIRIM: Hey, Theophon, how long ago did they die?
+
+THEOPHON: About five years ago. Why you asking?
+
+NIRIM: Just making conversation.
+
+*As they talk, Aelva, downstairs, finally having searched the small room, acts as if she''s locking the front door.*
+THEOPHON: Didn''t I already tell you the story?
+
+NIRIM: No, you just said, hey, I know a place we can burgle where no one''s at home, except for the ghosts. I thought you was joking.
+
+THEOPHON: No joking, partner. Five years ago, the Kratelys lived here. Nice people. You seen the daughter Aelva and the boy Minestes *[sic]*. The parents were Silenus and Dominitia, if I remembers rightly.
+
+*Nirim successfully unlocks the chest and begins rummaging through it. While he does so, Ministes gets up from the ''fire,'' apparently warmed up, and stands at the top of the stairs down.*
+MINISTES: Hey!
+
+*The boy''s voice causes Nirim, Theophon, and Aelva to all jump.*
+AELVA: Why aren''t you in bed? I''m just going to check the cellar.
+
+MINISTES: I''ll wait for you.
+
+NIRIM: So, what happened?
+
+THEOPHON: Oh, they was rip to piece. Halfway eaten. No one ever knew who or what did it neither. Though there was rumors...
+
+*Aelva opens the door to the cellar, and goes in. The light disappears from the first floor. Ministes patiently waits at the top of the stairs, humming a little song to himself.*
+NIRIM: What kind of rumors?
+
+*Theophon, having exhausted the possibilities in the wardrobe, helps Nirim sort through the gold in the chest.*
+THEOPHON: Pretty good haul, eh? Oh, the rumors. Well, they says old lady Dominitia was a witch before she married Silenus. Gave it all up for him, to be a good wife and mother. But the witches didn''t take too kindly to it. They found her and sent some kind of creature here, late at night. Something horrible, right out of a nightmare.
+
+MINISTES: Aelva? Aelva, what''s taking you so long?
+
+NIRIM: Ye Gods, are we going to watch them get killed, right in front of us?
+
+MINISTES: Aelva!
+
+SILENUS (off stage): What''s happening down there? Stop playing around, boy, and go to sleep.
+
+MINISTES: Papa!
+
+*Ministes, frightened, runs to the stairs up. Along the way, he bumps into Nirim, who falls down. The boy does not seem to notice but continues on up to the dark third floor sleeping porch, off-stage.*
+THEOPHON: Are you all right?
+
+*Nirim jumps to his feet, white-faced.*
+NIRIM: Never mind that! He touched me?! How can a ghost touch me?!
+
+THEOPHON: Well... Of course they can. Some anyhow. You heard of ancestor spirits guarding tombs, and that ghost of the king they had in Daggerfall. If they don''t touch you, what good are they ? Why you so surprised? You thought he''d move right through you, I figger.
+
+NIRIM: Yes!
+
+SILENUS, the man of the house, comes down the stairs, cautiously.
+
+DOMINITIA (off stage): Don''t leave us alone, Silenus! We''re coming with you!
+
+SILENUS: Wait, it''s dark. Let me get some light.
+
+*Silenus goes to the cold fireplace, sticks his hand forward, and suddenly in his arm, there''s a lit, burning torch. Nirim scrambles back, horrified.*
+NIRIM: I felt that! I felt the heat of the fire!
+
+SILENUS: Come on down. It''s all right.
+
+*Ministes leads his mother DOMINITIA down the stairs where they join Silenus.*
+THEOPHON: I don''t know why you so scared, Nirim. I must say I''m disappointed. I didn''t figger you for a supersitionalist *[sic]*.
+
+*Theophon goes for the stairs up.*
+NIRIM: Where are you going?
+
+THEOPHON: One more floor to search.
+
+NIRIM: Can''t we just go?
+
+*Nirim watches as the family of three, following Silenus and his torch, walk down towards the first floor.*
+SILENUS: Aelva? Say something, Aelva.
+
+THEOPHON: There, you see? If you don''t like ghosts, third floor''s the place to be. All four of em are downstairs now.
+
+*Theophon goes upstairs, off-stage, but Nirim stands at the top of the stairs, looking down at the family. The three look around the first floor as Aelva did, finally turning towards the cellar door.*
+NIRIM: All... four?
+
+*Silenus opens the cellar door.*
+SILENUS: Aelva? What are you doing down in the cellar, girl?
+
+DOMINITIA: You see her?
+
+NIRIM: All four, Theophon?
+
+SILENUS: I think so... I see someone... Hello?
+
+NIRIM: What if there''s five ghosts, Theophon?!
+
+*Silenus thrusts his torch in through the cellar door, and it is suddenly extinguished. The first floor falls into darkness.*
+*Ministes, Dominitia, and Silenus SCREAM, but we cannot see what is happening to them.*
+*Nirim is nearly hysterical, screaming along with them. Theophon runs downstairs from the third floor.*
+THEOPHON: What is it?!
+
+NIRIM: What if there is five ghosts?! The man, the wife, the girl, the boy... and what killed them?!
+
+THEOPHON: And what killed them?
+
+NIRIM: And what if it''s a ghost that can touch us too?! Just like the others!
+
+*From the darkened first floor, there is a CREAK of a door opening, though we cannot see it. And then, there is a heavy, clawed footfall. One step at a time, coming towards the stairs.*
+THEOPHON: Don''t get so upset. If it can touch us, what''d make you think it''d wants to? All the others didn''t even notice we was here.
+
+*Theophon''s lantern dims slightly. He adjusts it carefully.*
+NIRIM: Only... only what if it ain''t a ghost, Theophon. What if it''s the same creature, and it''s still alive... and it ain''t ate nothing since five years ago...
+
+*The footsteps begin the slow, heavy stomp up the stairs, though whatever it is, we cannot see it. Nirim notices the light beginning to dim from the lantern despite Theophon frantically trying to fix it.*
+NIRIM: You said you refilled the lamp!
+
+*The light goes out entirely, and the stage is filled with darkness.*
+NIRIM: You promised me you refilled the lamp!
+
+*More footsteps and a horrible, horrible HOWL. The men SCREAM.*
+*The curtain falls.*', 0, '');
+
+-- AR-III-041 — Night Falls on Sentinel
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (63, 'AR-III-041', 'Night Falls on Sentinel', 'Anonymous', 'Fiction',
+   'No music played in the Nameless Tavern in Sentinel, and indeed there was very little sound except for discreet, cautious murmurs of conversation, the soft pad of the barmaid''s feet on stone, and the delicate slurping of the regular patrons, tongues lapping at their flagons, eyes focused on nothing at all. If anyone were less otherwise occupied, the sight of the young Redguard woman in a fine black velvet cape might have aroused surprise. Even suspicion. As it were, the strange figure, out of place in an underground cellar so modest it had no sign, blended into the shadows.
+
+"Are you Jomic?"
+
+The stout, middle-aged man with a face older than his years looked up and nodded. He returned to his drink. The young woman took the seat next to him.
+
+"My name is Haballa," she said and pulled out a small bag of gold, placing it next to his mug.
+
+"Sure it be," snarled Jomic, and met her eyes again. "Who d''you want dead?"
+
+She did not turn away, but merely asked, "Is it safe to talk here?"
+
+"No one cares about nobody else''s problems but their own here. You could take off your cuirass and dance bare-breasted on the table, and no one''d even spit," the man smiled. "So who d''you want dead?"
+
+"No one, actually," said Haballa. "The truth is, I only want someone ... removed, for a while. Not harmed, you understand, and that''s why I need a professional. You come highly recommended."
+
+"Who you been talking to?" asked Jomic dully, returning to his drink.
+
+"A friend of a friend of a friend of a friend."
+
+"One of them friends don''t know what he''s talking about," grumbled the man. "I don''t do that any more."
+
+Haballa quietly took out another purse of gold and then another, placing them at the man''s elbow. He looked at her for a moment and then poured the gold out and began counting. As he did, he asked, "Who d''you want removed?"
+
+"Just a moment," smiled Haballa, shaking her head. "Before we talk details, I want to know that you''re a professional, and you won''t harm this person very much. And that you''ll be discreet."
+
+"You want discreet?" the man paused in his counting. "Awright, I''ll tell you about an old job of mine. It''s been - by Arkay, I can hardly believe it - more ''n twenty years, and no one but me''s alive who had anything to do with the job. This is back afore the time of the War of Betony, remember that?"
+
+"I was just a baby."
+
+"''Course you was," Jomic smiled. "Everyone knows that King Lhotun had an older brother Greklith what died, right? And then he''s got his older sister Aubki, what married that King fella in Daggerfall. But the truth''s that he had two elder brothers."
+
+"Really?" Haballa''s eyes glistened with interest.
+
+"No lie," he chuckled. "Weedy, feeble fella called Arthago, the King and Queen''s first born. Anyhow, this prince was heir to the throne, which his parents wasn''t too thrilled about, but then the Queen she squeezed out two more princes who looked a lot more fit. That''s when me and my boys got hired on, to make it look like the first prince got took off by the Underking or some such story."
+
+"I had no idea!" the young woman whispered.
+
+"Of course you didn''t, that''s the point," Jomic shook his head. "Discretion, like you said. We bagged the boy, dropped him off deep in an old ruin, and that was that. No fuss. Just a couple fellas, a bag, and a club."
+
+"That''s what I''m interested in," said Haballa. "Technique. My... friend who needs to be taken away is weak also, like this Prince. What is the club for?"
+
+"It''s a tool. So many things what was better in the past ain''t around no more, just ''cause people today prefer ease of use to what works right. Let me explain: there''re seventy-one prime pain centers in an average fella''s body. Elves and Khajiiti, being so sensitive and all, got three and four more respectively. Argonians and Sloads, almost as many at fifty-two and sixty-seven," Jomic used his short stubby finger to point out each region on Haballa''s body. "Six in your forehead, two in your brow, two on your nose, seven in your throat, ten in your chest, nine in your abdomen, three on each arm, twelve in your groin, four in your favored leg, five in the other."
+
+"That''s sixty-three," replied Haballa.
+
+"No, it''s not," growled Jomic.
+
+"Yes, it is," the young lady cried back, indignant that her mathematical skills were being question *[sic]*: "Six plus two plus two plus seven plus ten plus nine plus three for one arm and three for the other plus twelve plus four plus five. Sixty-three."
+
+"I must''ve left some out," shrugged Jomic. "The important thing is that to become skilled with a staff or club, you gotta be a master of these pain centers. Done right, a light tap could kill, or knock out without so much as a bruise."
+
+"Fascinating," smiled Haballa. "And no one ever found out?"
+
+"Why would they? The boy''s parents, the King and Queen, they''re both dead now. The other children always thought their brother got carried off by the Underking. That''s what everyone thinks. And all my partners are dead."
+
+"Of natural causes?"
+
+"Ain''t nothing natural that ever happens in the Bay, you know that. One fella got sucked up by one of them Selenu. Another died a that same plague that took the Queen and Prince Greklith. ''Nother fella got hisself beat up to death by a burglar. You gotta keep low, outta sight, like me, if you wanna stay alive." Jomic finished counting the coins. "You must want this fella out of the way bad. Who is it?"
+
+"It''s better if I show you," said Haballa, standing up. Without a look back, she strode out of the Nameless Tavern.
+
+Jomic drained his beer and went out. The night was cool with an unrestrained wind surging off the water of the Iliac Bay, sending leaves flying like whirling shards. Haballa stepped out of the alleyway next to the tavern, and gestured to him. As he approached her, the breeze blew open her cape, revealing the armor beneath and the crest of the King of Sentinel.
+
+The fat man stepped back to flee, but she was too fast. In a blur, he found himself in the alley on his back, the woman''s knee pressed firmly against his throat.
+
+"The King has spent years since he took the throne looking for you and your collaborators, Jomic. His instructions to me what to do when I found you were not specific, but you''ve given me an idea."
+
+From her belt, Haballa removed a small sturdy cudgel.
+
+A drunk stumbling out of the bar heard a whimpered moan accompanied by a soft whisper coming from the darkness of the alley: "Let''s keep better count this time. One. Two. Three. Four. Five. Six. Seven..."', 0, '');
+
+-- AR-III-042 — The Armorer's Challenge
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (64, 'AR-III-042', 'The Armorer''s Challenge', 'Anonymous', 'Fiction',
+   'Three hundred years ago, when Katariah became Empress, the first and only Dunmer to rule all of Tamriel, she faced opposition from the Imperial Council. Even after she convinced them that she would be the best regent to rule the Empire while her husband Pelagius sought treatment for his madness, there was still conflict. In particular from the Duke of Vengheto, Thane Minglumire, who took a particular delight in exposing all of the Empress''s lack of practical knowledge.
+
+In this particular instance, Katariah and the Council were discussing the unrest in Black Marsh and the massacre of Imperial troops outside the village of Armanias. The sodden swampland and the sweltering climate, particular in summertide, would endanger the troops if they wore their usual armor.
+
+"I know a very clever armorer," said Katariah, "His name is Hazadir, an Argonian who knows the environments our army will be facing. I knew him in Vivec where he was a slave to the master armorer there, before he moved to the Imperial City as a freedman. We should have him design armor and weaponry for the campaign."
+
+Minglumire gave a short, barking laugh: "She wants a slave to design the armor and weaponry for our troops! Sirollus Saccus is the finest armorer in the Imperial City. Everyone knows that."
+
+After much debate, it was finally decided to have both armorers contend for the commission. The Council also elected two champions of equal power and prowess, Nandor Beraid and Raphalas Eul, to battle using the arms and armaments of the real competitors in the struggle. Whichever champion won, the armorer who supplied him would earn the Imperial commission. It was decided that Beraid would be outfitted by Hazadir, and Eul by Saccus.
+
+The fight was scheduled to commence in seven days.
+
+Sirollus Saccus began work immediately. He would have preferred more time, but he recognized the nature of the test. The situation in Armanias was urgent. The Empire had to select their armorer quickly, and once selected, the preferred armorer had to act swiftly and produce the finest armor and weaponry for the Imperial army in Black Marsh. It wasn''t just the best armorer they were looking for. It was the most efficient.
+
+Saccus had only begun steaming the half-inch strips of black virgin oak to bend into bands for the flanges of the armor joints when there was a knock at his door. His assistant Phandius ushered in the visitor. It was a tall reptilian of common markings, a dull, green-fringed hood, bright black eyes, and a dull brown cloak. It was Hazadir, Katariah''s preferred armorer.
+
+"I wanted to wish you the best of luck on the — is that ebony?"
+
+It was indeed. Saccus had bought the finest quality ebony weave available in the Imperial City as soon as he heard of the competition and had begun the process of smelting it. Normally it was a six-month procedure refining the ore, but he hoped that a massive convection oven stoked by white flames born of magicka would shorten the operation to three days. Saccus proudly pointed out the other advancements in his armory. The acidic lime pools to sharpen the blade of the dai-katana to an unimaginable degree of sharpness. The Akaviri forge and tongs he would use to fold the ebony back and forth upon itself. Hazadir laughed.
+
+"Have you been to my armory? It''s two tiny smoke-filled rooms. The front is a shop. The back is filled with broken armor, some hammers, and a forge. That''s it. That''s your competition for the millions of gold pieces in Imperial commission."
+
+"I''m sure the Empress has some reason to trust you to outfit her troops," said Sirollus Saccus, kindly. He had, after all, seen the shop and knew that what Hazadir said was true. It was a pathetic workshop in the slums, fit only for the lowliest of adventurers to get their iron daggers and cuirasses repaired. Saccus had decided to make the best quality regardless of the inferiority of his rival. It was his way and how he became the best armorer in the Imperial City.
+
+Out of kindness, and more than a bit of pride, Saccus showed Hazadir how, by contrast, things should be done in a real professional armory. The Argonian acted as an apprentice to Saccus, helping him refine the ebony ore, and to pound it and fold it when it cooled. Over the next several days, they worked together to create a beautiful dai-katana with an edge honed sharp enough to trim a mosquito''s eyebrows, enchanted with flames along its length by one of the Imperial Battlemages, as well as a suit of armor of bound wood, leather, silver, and ebony to resist the winds of Oblivion.
+
+On the day of the battle, Saccus, Hazadir, and Phandius finished polishing the armor and brought in Raphalas Eul for the fitting. Hazadir left only then, realizing that Nandor Beraid would be at his shop shortly to be outfitted.
+
+The two warriors met before the Empress and Imperial Council in the arena, which had been flooded slightly to simulate the swampy conditions of Black Marsh. From the moment Saccus saw Eul in his suit of heavy ebony and blazing dai-katana and Beraid in his collection of dusty, rusted lizard-scales and spear from Hazadir''s shop, he knew who would win. And he was right.
+
+The first blow from the dai-katana lodged in Beraid''s soft shield, as there was no metal trim to deflect it. Before Eul could pull his sword back, Beraid let go of the now-flaming shield, still stuck on the sword, and poked at the joints of Eul''s ebony armor with his spear. Eul finally retrieved his sword from the ruined shield and slashed at Beraid, but his light armor was scaled and angled, and the attacks rolled off into the water, extinguishing the dai-katana''s flames. When Beraid struck at Eul''s feet, he fell into the churned mud and was unable to move. The Empress, out of mercy, called a victor.
+
+Hazadir received the commission and thanks to his knowledge of Argonian battle tactics and weaponry and how best to combat them, he designed implements of war that brought down the insurrection in Armanias. Katariah won the respect of Council, and even, grudgingly, that of Thane Minglumire. Sirollus Saccus went to Morrowind to learn what Hazadir learned there, and was never heard from again.', 0, '');
+
+-- AR-III-043 — The Dowry
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (65, 'AR-III-043', 'The Dowry', 'Anonymous', 'Fiction',
+   'Ynaleigh was the wealthiest landowner in Gunal, and he had over the years saved a tremendous dowry for the man who would marry his daughter, Genefra. When she reached the age of consent, he locked the gold away for safe-keeping, and announced his intention to have her marry. She was a comely lass, a scholar, a great athlete, but dour and brooding in aspect. This personality defect did not bother her potential suitors any more than her positive traits impressed them. Every man knew the tremendous wealth that would be his as the husband of Genefra and son-in-law of Ynaleigh. That alone was enough for hundreds to come to Gunal to pay court.
+
+"The man who will marry my daughter," said Ynaleigh to the assembled. "Must not be doing so purely out of avarice. He must demonstrate his own wealth to my satisfaction."
+
+This simple pronouncement removed a vast majority of the suitors, who knew they could not impress the landowner with their meager fortunes. A few dozen did come forward within a few days, clad in fine killarc cloth of spun silver, accompanied by exotic servants, traveling in magnificent carriages. Of all who came who met with Ynaleigh''s approval, none arrived in a more resplendent fashion that *[sic]* Welyn Naerillic. The young man, who no one had ever heard of, arrived in a shining ebon coach drawn by a team of dragons, his clothing of rarest manufacture, and accompanied by an army of the most fantastical servants any of Gunal had ever seen. Valets with eyes on all sides of their heads, maidservants that seemed cast in gemstones.
+
+But such was not enough with Ynaleigh.
+
+"The man who marries my daughter must prove himself a intelligent fellow, for I would not have an ignoramus as a son-in-law and business partner," he declared.
+
+This eliminated a large part of the wealthy suitors, who, through their lives of luxury, had never needed to think very much if at all. Still some came forward over the next few days, demonstrating their wit and learning, quoting the great sages of the past and offering their philosophies of metaphysics and alchemy. Welyn Naerillic too came and asked Ynaleigh to dine at the villa he had rented outside of Gunal. There the landowner saw scores of scribes working on translations of Aldmeri tracts, and enjoyed the young man''s somewhat irreverent but intriguing intelligence.
+
+Nevertheless, though he was much impressed with Welyn Naerillic, Ynaleigh had another challenge.
+
+"I love my daughter very much," said Ynaleigh. "And I hope that the man who marries her will make her happy as well. Should any of you make her smile, she and the great dowry are yours."
+
+The suitors lined up for days, singing her songs, proclaiming their devotion, describing her beauty in the most poetic of terms. Genefra merely glared at all with hatred and melancholia. Ynaleigh who stood by her side began to despair at last. His daughter''s suitors were failing to a man at this task. Finally Welyn Naerillic came to the chamber.
+
+"I will make your daughter smile," he said. "I dare say, I''ll make her laugh, but only after you''ve agreed to marry us. If she is not delighted within one hour of our engagement, the wedding can be called off."
+
+Ynaleigh turned to his daughter. She was not smiling, but her eyes had sparked with some morbid curiosity in this young man. As no other suitor had even registered that for her, he agreed.
+
+"The dowry is naturally not to be paid ''til after you''ve wed," said Ynaleigh. "Being engaged is not enough."
+
+"Might I see the dowry still?" asked Welyn.
+
+Knowing how fabled the treasure was and understanding that this would likely be the closest the young man would come to possessing it, Ynaleigh agreed. He had grown quite found *[sic]* of Welyn. On his orders, Welyn, Ynaleigh, glum Genefra, and the castellan delved deep into the stronghold of Gunal. The first vault had to be opened by touching a series of runic symbols: should one of the marks be mispressed, a volley of poisoned arrows would have struck the thief. Ynaleigh was particularly proud of the next level of security -- a lock composed of blades with eighteen tumblers required three keys to be turned simultaneously to allow entry. The blades were designed to eviscerate any who merely picked one of the locks. Finally, they reached the storeroom.
+
+It was entirely empty.
+
+"By Lorkhan, we''ve been burgled!" cried Ynaleigh. "But how? Who could have done this?"
+
+"A humble but, if I may say so, rather talented burglar," said Welyn. "A man who has loved your daughter from afar for many years, but did not possess the glamour or the learning to impress. That is, until the gold from her dowry afforded me the opportunity."
+
+"You?" bellowed Ynaleigh, scarcely able to believe it. Then something even more unbelievable happened.
+
+Genefra began to laugh. She had never even dreamed of meeting anyone like this thief. She threw herself into his arms before her father''s outraged eyes. After a moment, Ynaleigh too began to laugh.
+
+Genefra and Welyn were married in a month''s time. Though he was in fact quite poor and had little scholarship, Ynaleigh was amazed how much his wealth increased with such a son-in-law and business partner. He made certain never to ask from whence *[sic]* the excess gold came.
+
+***Publisher''s Note***
+
+*The tale of a man trying to win the hand of a maiden whose father (usually a wealthy man or a king) tests each suitor is quite common. See, for instance, the more recent "Four Suitors of Benitah" by Jole Yolivess. The behavior of the characters is quite out of character for the Dwemer. No one today knows their marriage customs, or even if they had marriage at all.
+*
+
+*One rather odd theory of the Disappearance of the Dwarves came from this and a few other tales of "Marobar Sul." It was proposed that the Dwemer never, in fact, left. They did not depart Nirn, much less the continent of Tamriel, and they are still among us, disguised. These scholars use the story of "Azura and the Box" to suggest that the Dwemer feared Azura, a being they could neither understand nor control, and they adopted the dress and manner of Chimer and Altmer in order to hide from Azura''s gaze.*', 0, '');
+
+-- AR-III-044 — The Ransom of Zarek
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (66, 'AR-III-044', 'The Ransom of Zarek', 'Anonymous', 'Fiction',
+   'Jalemmil stood in her garden and read the letter her servant had brought to her. The bouquet of joss roses in her hand fell to the ground. For a moment it was as if all birds had ceased to sing and a cloud had passed over the sky. Her carefully cultivated and structured haven seemed to flood over with darkness.
+
+"We have thy son," it read. "We will be in touch with thee shortly with our ransom demands."
+
+Zarek had never made it as far as Akgun after all. One of the brigands on the road, Orcs probably, or accursed Dunmer, must have seen his well-appointed carriage, and taken him hostage. Jalemmil clutched at a post for support, wondering if her boy had been hurt. He was but a student, not the sort to fight against well-armed men, but had they beaten him? It was more than a mother''s heart could bear to imagine.
+
+"Don''t tell me they sent the ransom note so quickly," called a family voice, and a familiar face appeared through the hedge. It was Zarek. Jalemmil hurried to embrace her boy, tears running down her face.
+
+"What happened?" she cried. "I thought thou had been kidnapped."
+
+"I was," said Zarek. "Three huge soaring Nords attacked by *[sic]* carriage on the Frimvorn Pass. Brothers, as I learned, named Mathais, Ulin, and Koorg. Thou should have seen these men, mother. Each one of them would have had trouble fitting through the front door, I can tell thee."
+
+"What happened?" Jalemmil repeated. "Were thou rescued?"
+
+"I thought about waiting for that, but I knew they''d send off a ransom note and I know how thou does worry. So I remembered what my mentor at Akgun always said about remaining calm, observing thy surroundings, and looking for thy opponent''s weakness," Zarek grinned. "It took a while, though, because these fellows were truly monsters. And then, when I listened to them, bragging to one another, I realized that vanity was their weakness."
+
+"What did thou do?"
+
+"They had me chained at their camp in the woods not far from Cael, on a high knoll over-looking a wide river. I heard one of them, Koorg, telling the others that it would take the better part of an hour to swim across the river and back. They were nodding in agreement, when I spoke up.
+
+"''I could swim that river and back in thirty minutes,'' I said.
+
+"''Impossible,'' said Koorg. ''I can swim faster than a little whelp like thee.''
+
+"So it was agreed that we would dive off the cliff, swim to the center island, and return. As we went to our respective rocks, Koorg took it upon himself to lecture me about all the fine points of swimming. The importance of synchronized movements of the arms and legs for maximum speed. How essential it was to breathe after only third or fourth stroke, not too often to slow thyself down, but not too often to lose one''s air. I nodded and agreed to all his fine points. Then we dove off the cliffs. I made it to the island and back in a little over an hour, but Koorg never returned. He had dashed his brains at the rocks at the base of the cliff. I had noticed the telltale undulations of underwater rocks, and had taken the diving rock on the right."
+
+"But thou returned?" asked Jalemmil, astounded. "Was that not then when thou escaped?"
+
+"It was too risky to escape then," said Zarek. "They could have easily caught me again, and I wasn''t keen to be blamed for Koorg''s disappearance. I said I did not know what happened to him, and after some searching, they decided he had forgotten about the race and had swum ashore to hunt for food. They could not see how I could have had anything to do with his disappearance, as fully visible as I was throughout my swim. The two brothers began making camp along the rocky cliff-edge, picking an ideal location so that I would not be able to escape.
+
+"One of the brothers, Mathais, began commenting on the quality of the soil and the gradual incline of the rock that circled around the bay below. Ideal, he said, for a foot race. I expressed my ignorance of the sport, and he was keen to give me details of the proper technique for running a race. He made absurd faces, showing how one must breathe in through the nose and out through the mouth; how to bend one''s knees to the proper angle on the rise; the importance of sure foot placement. Most important, he explained, was that the runner keep an aggressive but not too strenuous pace if one intends to win. It is fine to run in second place through the race, he said, provided one has the willpower and strength to pull out in the end.
+
+"I was an enthusiastic student, and Mathais decided that we ought to run a quick race around the edge of the bay before night fell. Ulin told us to bring back some firewood when we came back. We began at once down the path, skirting the cliff below. I followed his advice about breath, gait, and foot placement, but I ran with all my power right from the start. Despite his much longer legs, I was a few paces ahead as we wround the first corner.
+
+"With his eyes on my back, Mathais did not see the gape in the rock that I jumped over. He plummeted over the cliff before he had a chance to cry out. I spent a few minutes gathering some twigs before I returned to Ulin at camp."
+
+"Now thou were just showing off," frowned Jalemmil. "Surely that would have been a good time to escape."
+
+"Thou might think so," agreed Zarek. "But thou had to see the topography -- a few large trees, and then nothing but shrubs. Ulin would have noticed my absence and caught up with me in no time, and I would have had a hard time explaining Mathais''s absence. However, the brief forage around the area allowed me to observe some of the trees close up, and I could formulate my final plan.
+
+"When I got back to camp with a few twigs, I told Ulin that Mathais was slow coming along, dragging a large dead tree behind him. Ulin scoffed at his brother''s strength, saying it would take him time to pull up a live tree by the roots and drop it on the bonfire. I expressed reasonable doubt.
+
+"''I''ll show thee,'' he said, ripping up a ten foot tall specimen effortlessly.
+
+"''But that''s scarcely a sapling,'' I objected. ''I thought thou could rip up a tree.'' His eyes followed mine to a magnificent, heavy-looking one at the edge of the clearing. Ulin grabbed it and began to shake it with a tremendous force to loosen its roots from the dirt. With that, he loosened the hive from the uppermost branches, dropping it down onto his head.
+
+"That was when I made my escape, mother," said Zarek, in conclusion, showing a little schoolboy pride. "While Mathais and Koorg were at the base of the cliff, and Ulin was flailing about, engulfed by a swarm."
+
+Jalemmil embraced her son once again.
+
+***Publisher''s Note**
+*
+
+*I was reluctant to publish the works of Marobar Sul, but when the University of Gwylim Press asked me to edit this edition, I decided to use this as an opportunity to set the record straight once and for all.
+*
+
+*Scholars do not agree on the exact date of Marobar Sul''s work, but it is generally agreed that they were written by the playwright "Gor Felim," famous for popular comedies and romances during the Interregnum between the fall of the First Cyrodilic Empire and the rise of Tiber Septim. The current theory holds that Felim heard a few genuine Dwemer tales and adapted them to the stage in order to make money, along with rewritten versions of many of his own plays.
+*
+
+*Gor Felim created the persona of "Marobar Sul" who could translate the Dwemer language in order to add some sort of validity to the work and make it even more valuable to the gullible. Note that while "Marobar Sul" and his works became the subject of heated controversy, there are no reliable records of anyone actually meeting "Marobar Sul," nor was there anyone of that name employed by the Mages Guild, the School of Julianos, or any other intellectual institution.
+*
+
+*In any case, the Dwemer in most of the tales of "Marobar Sul" bear little resemblance to the fearsome, unfathomable race that frightened even the Dunmer, Nords, and Redguards into submission and built ruins that even now have yet to be understood.*', 0, '');
+
+-- AR-III-045 — The Red Kitchen Reader
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (67, 'AR-III-045', 'The Red Kitchen Reader', 'Anonymous', 'Fiction',
+   'Though naturally modest, I must admit to some pleasure in being dubbed by our Emperor''s father, the late Pelagius IV, as "the finest connoisseur in Tamriel." He was also good enough to appoint me the first, and to this day, the only Master of Cuisine in the Imperial Court. Other Emperors, of course, had master chefs and cooks in their staff, but only during the reign of Pelagius was there someone of rarefied tastes to plan the menus and select the finest produce to be served at court. His son Uriel requested that I continue in that position, but I was forced to graciously decline the invitation, because of age and poor health.
+
+This book, however, is not intended to be autobiography. I have had a great many adventures in my life as a knight of fine dining, but my intention for this book is much more specific. Many times I have been asked, "What is the best thing you ever ate?"
+
+The answer to that is not a simple one. Much of the pleasure of a great meal is not only in the food: it is in the setting, the company, the mood. Eat an indifferently cooked roast or a simple stew with your one true love, and it is a meal to be remembered. Have an excellent twelve-course feast with dull company, while feeling slightly ill, and it will be forgotten, or remembered only with distaste.
+
+Sometimes meals are memorable for the experiences that come before them.
+
+Fairly recently, in northern Skyrim, I had a bit of bad luck. I was with a group of fishermen, observing their technique of capturing a very rare, very delicious fish called Merringar. The fish is found only far from shore, so it was a week''s voyage out beyond civilization. Well, we found our school of Merringar, but as the fishermen began spearing them, the blood in the water attracted a family of Dreugh, who capsized the boat and everyone on it. I managed to save myself, but the fishermen and all our supplies were lost. Sailing is not, alas, a skill I have picked up over the years, and it took me three weeks, with no provisions, to find my way back to the kingdom of Solitude. I had managed to catch enough small fish to eat raw, but I was still delirious from hunger and thirst. The first meal I had on shore, of Nordic roast boar, Jazbay wine, and, yes, filet of Merringar would have been excellent under any circumstances, but because of the threat of starvation I had faced, it was divine beyond words.
+
+Sometimes meals are even memorable for the experiences that follow them.
+
+In a tavern in Falinesti, I was introduced to a simple peasant dish called Kollopi, delicious little balls of flesh, thick with spices and juice, so savory I asked the proprietress whence they came. Mother Pascost explained that the Kollopi were an arboreal rodent that fed exclusively on the most tender branches of the graht-oak, and I was fortunate enough to be in Valenwood at the time of the annual harvest. I was invited to join with a small colony of Imga monkeys, who alone could gather these succulent little mice. Because they lived only on the slenderest branches of the trees, and only on the ends of those same branches, the Imga had to climb beneath them and jump up to "pick" the Kollopi from their perches. Imga are, of course, naturally dexterous, but I was then relatively young and spry, and they let me help them. While I could never jump as high they could, with practice, I found that if I kept my head and upper body rigid, and launched off the ground with a scissors-like kick, I could reach the Kollopi on the lowest branches of the tree. I believe I gathered three Kollopi myself, though with considerable effort.
+
+To this day, I salivate at the thought of Kollopi, but my mind is on the image of myself and several dozen Imgas leaping around beneath the shade of the graht-oaks.
+
+Then, of course, there are the rare meals memorable for what came before, after, and during the meal, which brings me to the finest thing I ever ate, the meal that began my lifelong obsession with excellent cuisine.
+
+As a child growing up in Cheydinhal, I did not care for food at all. I recognized the value of nutrition, for I was not a complete dullard, but I cannot say that mealtime brought me any pleasure at all. Partly, of course, this was the fault of my family''s cook, who believed that spices were an invention of the Daedra, and that good Imperials should like their food boiled, textureless and flavorless. Though I think she was alone in assigning a religious significance to this, my sampling of traditional Cyrodilic cuisine suggests that the philosophy is regrettably common in my homeland.
+
+Though I did not enjoy food per se, I was not a morose, unadventurous child in other respects. I enjoyed the fights in the Arena, of course, and nothing made me happier than wandering the streets of my town, with my imagination as my only companion. It was on one such jaunt on a sunny Fredas in Mid Year that I made a discovery that changed my heart and my life.
+
+There were several old abandoned houses down the street from my own home, and I often played around them, imagining them to be filled with desperate outlaws or haunted by hundreds of evil spirits. I never had the nerve to go inside. In fact, had I not that day seen some other children who had delighted in teasing me in the past, I would never have gone in. But I needed a sanctuary, so I ran into the closest one.
+
+The house seemed to be as desolate on the inside as on the outside, further proof that no one lived there, and had not for some time. When I heard footsteps, I could only assume that the loathsome little urchins I hoped to avoid had followed me in. I escaped to the basement, and from there, past a broken-down wall that led to a well. I could still hear the footsteps above, and I decided that I was still loath to confront my tormentors. Knocking aside the rusty locks on the well, I slipped down below.
+
+The well was dry, but I discovered it was far from empty. There was a sort of a sub-basement to the house, three large rooms that were clean, furnished, and evidently not abandoned at all. My senses told me someone was living in the house, after all: not only my sense of sight, but my sense of smell. For one of the rooms was a large red-painted kitchen, and spread out on the coals of the oven was a roast, carved into small morsels. Passing a beautiful and appropriate bas-relief of a mother carving a roast for her grateful children, I beheld the kitchen and the wonders within.
+
+Like I said, food had never interested me before, but I was transfixed, and even now as I write this, words fail me in describing the rich aroma that hung in the air. It was like nothing I had ever smelled in my family''s kitchen, and I was unable to stop myself from popping one of the steaming chunks of meat into my mouth. The taste was magical, the flesh tender and sweet. Before I knew it, I had eaten everything on the stove, and I learned at that very second the truth that that food can and should be sublime.
+
+After gorging myself and having my culinary epiphany, I was conflicted on what to do. Part of me wanted to wait down in that red kitchen until the chef returned, so I could ask him what his secret recipe was for the delicious meat. Part of me recognized that I had stolen into someone''s house and eaten their dinner, and it would be wise to leave while I could. That was what I did.
+
+Time and again, I''ve tried to return to that strange, wonderful place, but Cheydinhal has changed over time. Old houses have been reclaimed, and new houses abandoned. I know what to look for on the inside of the house - the well, the beautiful etching of a woman preparing to carve out a roast for her children, the red kitchen itself - but I have never been able to find the house again. After a while, as I grew older, I stopped trying. It is better as it remains in my memory, the most perfect meal I ever ate.
+
+The inspiration for my life that followed all was cooked up, together with that fabulous meat, right there in the Red Kitchen.', 0, 'Volume 1');
+
+-- AR-III-046 — The Seed
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (68, 'AR-III-046', 'The Seed', 'Anonymous', 'Fiction',
+   'The hamlet village of Lorikh was a quiet, peaceful Dwemer community nestled in the monochrome grey and tan dunes and boulders of the Dejasyte. No vegetation of any kind grew in Lorikh, though there were blackened vestiges of long dead trees scattered throughout the town. Kamdida arriving by caravan looked at her new home with despair. She was used to the forestland of the north where her father''s family had haled. Here there was no shade, little water, and a great open sky. It looked like a dead land.
+
+Her mother''s family took Kamdida and her younger brother Nevith in, and was very kind to the orphans, but she felt lonely in the alien village. It was not until she met an old Argonian woman who worked at the water factory that Kamdida found a friend. Her name was Sigerthe, and she said that her family had lived in Lorikh centuries before the Dwemer arrived, when it was a great and beauteous forest.
+
+"Why did the trees die?" asked Kamdida.
+
+"When there were Argonians only in this land, we never cut trees for we had no need for fuel or wooden structures such as you use. When the Dwemer came, we allowed them to use the plants as they needed them, provided they never touched the Hist, which are sacred to us and to the land. For many years, we lived peaceably. No one wanted for anything."
+
+"What happened?"
+
+"Some of your scientists discovered that distilling a certain tree sap, molding it and drying it, they could create a resilient kind of armor called resin," said Sigerthe. "Most of the trees that grew here had very thin ichor in their branches, but not the Hist. Many of them fairly glistened with sap, which made the Dwemer merchants greedy. They hired a woodsman named Juhnin to start clearing the sacred arbors for profit."
+
+The old Argonian woman looked to the dusty ground and sighed, "Of course, we Argonians cried out against it. It was our home, and the Hist, once gone, would never return. The merchants reconsidered, but Juhnin took it on his own to break our spirit. He proved one terrible, bloody day that his prodigious skill with the axe could be used against people as well as trees. Any Argonian who stood in his way was hewn asunder, children as well. The Dwemer people of Lorikh closed their doors and their ears to the cries of murder."
+
+"Horrible," gasped Kamdida.
+
+"It is difficult to explain," said Sigerthe. "But the deaths of our living ones was not nearly as horrible to us as the death of our trees. You must understand that to my people, the Hist are where we come from and where we are going. To destroy our bodies is nothing; to destroy our trees is to annihilate us utterly. When Juhnin then turned his axe on the Hist, he killed the land. The water disappeared, the animals died, and all the other life that the trees nourished crumbled and dried to dust."
+
+"But you are still here?" asked Kamdida. "Why didn''t you leave?"
+
+"For us, we are trapped. I am one of the last of a dying people. Few of us are strong enough to live away from our ancestral groves, and sometimes, even now, there is a perfume in the air of Lorikh that gives us life. It will not be long until we are all gone."
+
+Kamdida felt tears welling up in her eyes. "Then I will be alone in this horrible place with no trees and no friends."
+
+''We Argonians have an expression," said Sigerthe with a sad smile, taking Kamdida''s hand. "That the best soil for a seed is found in your heart."
+
+Kamdida looked into the palm of her hand and saw that Sigerthe had given her a small black pellet. It was a seed. "It looks dead."
+
+"It can only grow in one place in all Lorikh," said the old Argonian. "Outside an old cottage in the hills outside town. I cannot go there, for the owner would kill me on sight and like all my people, I am too frail to defend myself now. But you can go there and plant the seed."
+
+"What will happen?" asked Kamdida. "Will the Hist return?"
+
+"No. But some part of their power will."
+
+That night, Kamdida stole from her house and into the hills. She knew the cottage Sigerthe had spoken of. Her aunt and uncle had told her never to go there. As she approached it, the door opened and an old but powerfully built man appeared, a mighty axe slung over his shoulder.
+
+"What are you doing here, child?" he demanded. "In the dark, I almost took you to be a lizard man."
+
+"I''ve lost my way in the dark," she said quickly. "I''m trying to get back to my home in Lorikh."
+
+"Be on your way then."
+
+"Do you have a candle I might have?" she asked piteously. "I''ve been walking in circles and I''m afraid I''ll only return back here without any light."
+
+The old man grumbled and walked into his house. Quickly, Kamdida dug a hole in the dry dirt and buried the seed as deeply as she could. He returned with a lit candle.
+
+"See to it you don''t come back here," he growled. "Or I''ll chop you in half."
+
+He returned to his house and fire. The next morning when he awoke and opened the door, he found that his cottage was entirely sealed within an enormous tree. He picked up his axe and delivered blow and after blow to the wood, but he could never break through. He tried side chops, but the wood healed itself. He tried an upper chop followed by an under chop to form a wedge, but the wood sealed.
+
+Much time went by before someone discovered old Juhnin''s emaciated body lying in front of his open door, still holding his blunted, broken axe. It was a mystery to all what he had been chopping with it, but the legend began circulating through Lorikh that Hist sap was found on the blade.
+
+Shortly thereafter, small desert flowers began pushing through the dry dirt in the town. Trees and plants newly sown began to live tolerably well, if not luxuriantly. The Hist did not return, but Kamdida and the people of Lorikh noticed that at a certain time around twilight, long, wide shadows of great, bygone trees would fill the streets and hills.
+
+***Publisher''s Note***
+
+*"The Seed" is one of Marobar Sul''s tales whose origins are well known. This tale originated from the Argonian slaves of southern Morrowind. "Marobar Sul" merely replaced the Dunmer with Dwemer and claimed he found it in a Dwemer ruin. Furthermore, he later claimed that the Argonian version of the tale was merely a retelling of his "original!"*
+
+*Lorikh, while clearly not a Dwemer name, simply does not exist, and in fact "Lorikh" was a name commonly used, incorrectly, for Dunmer men in Gor Felim''s plays. The Argonian versions of the story usually take place on Vvardenfell, usually in the Telvanni city of Sadrith Mora. Of course the so-called "scholars" of Temple Zero will probably claim this story has something to do with "Lorkhan" simply because the town starts with the letter L.*', 0, '');
+
+-- AR-III-047 — Beggar
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (69, 'AR-III-047', 'Beggar', 'Anonymous', 'Fiction',
+   'Eslaf Erol was the last of the litter of five born to the Queen of the prosperous Nordic kingdom of Erolgard, Lahpyrcopa, and her husband, the King of Erolgard, Ytluaf. During pregnancy, the Queen had been more than twice as wide as she was tall, and the act of delivery took three months and six days after it had begun. It is perhaps understandable that the Lahpyrcopa elected, upon expelling Eslaf to frown, say, ''Good riddance,'' and die.
+
+Like many Nords, Ytluaf did not care very much for his wife and less for his children. His subjects were puzzled, therefore, when he announced that he would follow the ancient tradition of his people of Atmora of following his beloved spouse to the grave. They had not thought they were particularly in love, nor were they aware that such a tradition existed. Still, the simple people were grateful, for the little royal drama alleviated their boredom, which was and is a common problem in the more obscure parts of northern Skyrim, particularly in wintertide.
+
+He gathered his household staff and his five fat, bawling little heirs in front of him, and divided his estate. To his son Ynohp, he gave his title; to his son Laernu, he gave his land; to his son Suoibud, he gave his fortune; to his daughter Laicifitra, he gave his army. Ytluaf''s advisors had suggested he keep the inheritance together for the good of the kingdom, but Ytluaf did not particularly care for his advisors, or the kingdom, for that matter. Upon making his announcement, he drew his dagger across his throat.
+
+One of the nurses, who was rather shy, finally decided to speak as the King''s life ebbed away. ''Your highness, you forgot your fifth child, little Eslaf.''
+
+Good Ytluaf groaned. It is somewhat hard to concentrate with blood gushing from one''s throat, after all. The King tried in vain to think of something to bequeath, but there was nothing left.
+
+Finally he sputtered, irritably, ''Eslaf should have taken something then'' and died.
+
+That a babe but a few days old was expected to demand his rightful inheritance was arguably unfair. But so Eslaf Erol was given his birthright with his father''s dying breath. He would have nothing, but what he had taken.
+
+Since no one else would have him, the shy nurse, whose name was Drusba, took the baby home. It was a decrepit little shack, and over the years that followed, it became more and more decrepit. Unable to find work, Drusba sold all of her furnishings to buy food for little Eslaf. By the time he was old enough to walk and talk, she had sold the walls and the roof as well, so they had nothing but a floor to call home. And if you''ve ever been to Skyrim, you can appreciate that that is scarcely sufficient.
+
+Drusba did not tell Eslaf the story of his birth, or that his brothers and sister were leading quite nice lives with their inheritances, for, as we have said, she was rather shy, and found it difficult to broach the subject. She was so painfully shy, in fact, that whenever he asked any questions about where he came from, Drusba would run away. That was more or less her answer to everything, to flee.
+
+In order to communicate with her at all, Eslaf learned how to run almost as soon as he could walk. He couldn''t keep up with his adopted mother at first, but in time he learned to go toe-heel toe-heel if he anticipated a short but fast sprint, and heel-toe heel-toe if it seemed Drusba was headed for a long distance marathon flight. He never did get all the answers he needed from her, but Eslaf did learn how to run.
+
+The kingdom of Erolgard had, in the years that Eslaf was growing, become quite a grim place. King Ynohp did not have a treasury, for Suoibud had been given that; he did not have any property for income, for Laernu had been given that; he did not have an army to protect the people, for Laicifitra had been given that. Futhermore *[sic]*, as he was but a child, all decisions in the kingdom went through Ynohp''s rather corrupt council. It had become a bureaucratic exploitative land of high taxes, rampant crime, and regular incursions from neighboring kingdoms. Not a particular unusual situation for a kingdom of Tamriel, but an unpleasant one nonetheless.
+
+The time finally came when the taxcollector arrived to Drusba''s hovel, such as it was, to collect the only thing he could - the floor. Rather than protest, the poor shy maid ran away, and Eslaf never saw her again.
+
+Without a home or a mother, Eslaf did not know what to do. He had grown accustomed to the cold open air in Drusba''s shack, but he was hungry.
+
+''May I have a piece of meat?'' he asked the butcher down the street. ''I''m very hungry.''
+
+The man had known the boy for years, often spoke to his wife about how sorry he felt for him, growing up in a home with no ceilings or walls. He smiled at Eslaf and said, ''Go away, or I''ll hit you.''
+
+Eslaf hurriedly left the butcher and went to a nearby tavern. The tavernkeeper had been a former valet in the king''s court and knew that the boy was by right a prince. Many times, he had seen the poor ragged lad in the streets, and sighed at the way fate had treated him.
+
+''May I have something to eat?'' Eslaf asked this tavernkeeper. ''I''m very hungry.''
+
+''You''re lucky I don''t cook you up and eat you,'' replied the tavernkeeper.
+
+Eslaf hurriedly left the tavern. For the rest of the day, the boy approached the good citizens of Erolgard, begging for food. One person had thrown something at him, but it turned out to be an inedible rock.
+
+As night fell, a raggedy man came up to Eslaf and, without saying a word, handed him a piece of fruit and a piece of dried meat. The lad took it, wide-eyed, and as he devoured it, he thanked the man very sweetly.
+
+''If I see you begging on the streets tomorrow,'' the man growled. ''I''ll kill you myself. There are only so many beggars we of the guild allow in any one town, and you make it one too many. You''re ruining business.''
+
+It was a good thing Eslaf Erol knew how to run. He ran all night.
+
+Eslaf Erol''s story is continued in the book *Thief*.', 0, '');
+
+-- AR-III-048 — Thief
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (70, 'AR-III-048', 'Thief', 'Anonymous', 'Fiction',
+   'If the reader has not yet had the pleasure of reading the first volume in these series on the life of Eslaf Erol, ''Beggar,'' he should close this book immediately, for I shan''t recap.
+
+I will tell you this much, gentle reader. When we last saw Eslaf, he was a boy, an orphan, a failed beggar, running through the wild winter woods of Skyrim, away from his home of Erolgard. He continued running, stopping here and there, for many more years, until he was a young man.
+
+Eslaf discovered that among the ways of getting food, asking for it was the most troublesome. Far easier was finding it in the wilderness, or taking it from unguarded market stalls. The only thing worse than begging to get food was begging for the opportunity to work for the money to buy it. That seemed needlessly complicated.
+
+No, as far as Eslaf was concerned, he was best off being a scavenger, a beggar, and a thief.
+
+He commited *[sic]* his first act of thievery shortly after leaving Erolgard, while in the southern woods of Tamburkar in the rugged land near Mount Jensen just east of the village of Hoarbeld. Eslaf was starving, having not eaten anything but a rather scrawny raw squirrel in four days, and he smelled meat cooking and then found the smoke. A band of minstral *[sic]* bards was making camp. He watched them from the bushes as they cooked, and joked, and flirted, and sang.
+
+He could''ve asked them for some food, but so many others had refused him before. Instead, he rushed out, grabbed a piece of meat from the fire, and wincing from the burns, scrambled up the nearest tree to devour it while the bards stood under him and laughed.
+
+''What is your next move, thief?'' giggled a fair, red-headed woman who was covered with tattoos. ''How do you intend to disappear without us catching and punishing you?''
+
+As the hunger subsided, Eslaf realized she was right. The only way to get out of the tree without falling in their midst was to take the branch down to where it hung over a creek. It was a drop off a cliff of about fifty feet. That seemed like the wisest strategy, so Eslaf began crawling in that direction.
+
+''You do know how to fall, boy?'' called out a young Khajiiti, but a few years older than Eslaf, thin but muscular, graceful in his slightest movements. ''If you don''t, you should just climb down here and take what''s coming to you. It''s idiotic to break your neck, when we''d just give you some bruises and send you on your way.''
+
+''Of course I know how to fall,'' Eslaf called back, but he didn''t. He just thought the trick of falling was to have nothing underneath you, and let nature take its course. But fifty feet up, when you''re looking down, is enough to give anyone pause.
+
+''I''m sorry to doubt your abilities, Master Thief,'' said the Khajiiti, grinning. ''Obviously you know to fall feet first with your body straight but loose to avoid cracking like an egg. It seems you are destined to escape us.''
+
+Eslaf wisely followed the Khajiiti''s hints, and leapt into the river, falling without much grace but without hurting himself. In the years that followed, he had to make several more drops from even greater heights, usually after a theft, sometimes without water beneath him, and he improved the basic technique.
+
+When he arrived in the western town of Jallenheim on the morning of his twenty-first birthday, it didn''t take him long to find out who was the richest person, most deserving of being burgled. An impregnable palace in a park near the center of town was owned by a mysterious young man named Suoibud. Eslaf wasted no time in finding the palace and watching it. A fortified palace he had come to learn was like a person, with quirks and habits beneath its hard shell.
+
+It was not an old place, evidently whatever money this Suoibud had come into was fairly recent. It was regularly patrolled by guards, implying that the rich man was fearful of been *[sic]* burgled, with good reason. The most distinctive feature of the palace was its tower, rising a hundred feet above the stone walls, doubtless giving the occupant a good defensive view. Eslaf guessed that that *[sic]* if Suoibud was as paranoid as he guessed him to be, the tower would also provide a view of the palace storehouse. The rich man would want to keep an eye on his fortune. That meant that the loot couldn''t be directly beneath the tower, but somewhere in the courtyard within the walls.
+
+The light in the tower shone all night long, so Eslaf boldly decided that the best time to burgle was by the light of day, when Suoibud must sleep. That would be the time the guards would least expect a thief to pounce.
+
+And so, when the noon sun was shining over the palace, Eslaf quickly scaled the wall near the front gate and waited, hidden in the crenelations. The interior courtyard was plain and desolate, with few places to hide, but he saw that there were two wells. One the guards used from time to time to draw up water and slake their thirst, but Eslaf noticed that guards would pass by the other well, never using it.
+
+He waited until the guards were distracted, just for a second, by the arrival of a merchant in a wagon, bearing goods for the palace. While they were searching his wagon, Eslaf leapt, elegantly, feet first, from the wall into the well.
+
+It was not a particularly soft landing for, as Eslaf had guessed, the well was not full of water, but gold. Still, he knew how to roll after a fall, and he didn''t hurt himself. In the dank subterranean storehouse, he stuffed his pockets with gold and was about to go to the door which he assumed would lead to the tower when he noticed a gem the size of an apple, worth more than all the gold that was left. Eslaf found room for it down his pants.
+
+The door did indeed lead to the tower, and Eslaf followed its curving stairwell up, walking quietly but quickly. At the top, he found the master of the palace''s private quarters, ornate and cold, with invaluable artwork and decorative swords and shields on the walls. Eslaf assumed the snoring lump under the sheets was Suoibud, but he didn''t investigate too closely. He crept to the windows and looked out.
+
+It was going to be a difficult fall, for certes. He needed to jump from the tower, past the walls, and hit the tree on the other side. The tree branches would hurt, but they would break his fall, and there was a pile of hay he had left under the tree to prevent further injury.
+
+Eslaf was about to leap when the occupant of the room woke up with a start, yelling, ''My gem!''
+
+Eslaf and *[sic]* stared at him for a second, wide-eyed. They looked alike. Not surprising, since they were brothers.
+
+Eslaf Erol''s story is continued in the book *Warrior*.', 0, 'Volume 1');
+
+-- AR-III-049 — Warrior
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (71, 'AR-III-049', 'Warrior', 'Anonymous', 'Fiction',
+   'This is the third book in a four-book series. If you have not read the first two books, ''Beggar'' and ''Thief,'' you would be well advised to do so.
+
+Suoibud Erol did not know much of his past, nor did he care to.
+
+As a child, he had lived in Erolgard, but the kingdom was very poor and taxes were as a result very high. He was too young to manage his abundant inheritance, but his servants, fearing that their master would be ruined, moved him to Jallenheim. No one knew why that location was picked. Some old maid, long dead now, had thought it was a good place to raise a child. No one else had a better idea.
+
+There may have been children with a more pampered, more spoiled existence than young Suoibud, but that is doubtful. As he grew, he understood that he was rich, but he had nothing else. No family, no social position, no security at all. Loyalty, he found out on more than one occasion, cannot truly be bought. Knowing that he had but one asset, a vast fortune, he was determined to protect it, and, if possible, increase it.
+
+Some otherwise perfectly nice people are greedy, but Suoibud was that rare accident of nature or breeding who has no other interest but acquiring and hoarding gold. He was willing to do anything to increase his fortune. Most recently, he had begun secretly hiring mercenaries to attack desirable properties, and then buying them when no one wanted to live there any more. The attacks would then, of course, cease, and Suoibud would have profitable land which he had purchased for a song. It had begun small with a few farms, but recently he had begun a more ambitious campaign.
+
+In north-central Skyrim, there is an area called The Aalto, which is of unique geographical interest. It is a dormant volcanic valley surrounded on all sides by glaciers, so the earth is hot from the volcano, but the constant water drizzle and air is frigid. A grape called Jazbay grows there comfortably, and everywhere else in Tamriel it withers and dies. The strange vineyard is a *[sic]* privately owned, and the wine produced from it is thus rare and extremely expensive. It is said that the Emperor needs the permission of the Imperial Council to have a glass of it once a year.
+
+In order to harass the owner of The Aalto into selling his land cheap, Suoibud had to hire more than a few mercenaries. He had to hire the finest private army in Skyrim.
+
+Suoibud did not like spending money, but he had agreed to pay the general of the army, a woman called Laicifitra, a gem the size of an apple. He had not given it to her yet — payment was to be delivered on the success of the mission — but he had trouble sleeping knowing that he was going to giving *[sic]* up such a prize. He always slept during the day so he could watch his storehouse by night, when he knew thieves were about.
+
+That brings us up to this moment when, after a fitful sleep, Suoibud woke up at about noon, and surprised a thief in his bedroom. The thief was Eslaf.
+
+Eslaf had been contemplating a leap from the window, a hundred feet down, into the branches of a tree beyond the walls of the fortified palace, and a tumble into a stack of hay. Anyone who has ever attempted such a feat will testify that it takes some concentration and nerve to do such a thing. When he saw that the rich man sleeping in the room had awakened, both left him, and Eslaf slipped behind a tall ornamental shield on display to wait for Suoibud to go back to sleep.
+
+Suoibud did not go back to sleep. He had heard nothing, but could feel someone in the room with him. He stood up and began pacing the room.
+
+Suoibud paced and paced, and gradually decided that he was imagining things. No one was there. His fortune was safe and secure.
+
+He was returning to his bed when he heard a clunk. Turning around, he saw the gem, the one he was to give to Laicifitra on the floor by the Atmoran cavalry shield. A hand reached out from behind the shield and grabbed it up.
+
+''Thief!'' Suoibud cried out, grabbing a jeweled Akaviri katana from the wall and lunging at the shield.
+
+The ''fight'' between Eslaf and Suoibud will not go down in the annals of great duels. Suoibud did not know how to use a sword, and Eslaf was no expert at blocking with a shield. It was clumsy, it was awkward. Suoibud was furious, but was psychologically incapable of using the sword in any way that could damage its fine filligree, reducing its market value. Eslaf kept moving, dragging the shield with him, trying to keep it between him and the blade, which is, after all, the most essential part of any block.
+
+Suoibud screamed in frustration as he struck at the shield, bumping its way across the room. He even tried negotiating with the thief, explaining that the gem was promised to a great warrior named Laicifitra, and if he would give it back, Suoibud would happily give him something else in return. Eslaf was not a genius, but he did not believe that.
+
+By the time Suoibud''s guards came to the bedroom in response to their master''s calls, he had succeeded in backing the shield into a window.
+
+They fell on the shield, having considerable *[sic]* more expertise with their swords than Suoibud did, but they discovered that there was no one behind it. Eslaf had leapt out the window and escaped.
+
+As he ran heavily through the streets of Jallenheim, making jingling noises from the gold coins in his pockets, and feeling the huge gem chafe where he had hidden it, Eslaf did not know where he should go next. He knew only that he could never go back to that town, and he must avoid this warrior named Laicifitra who had claims on the jewel.
+
+Eslaf Erol''s story is continued in the book *King*.', 0, 'Volume 1');
+
+-- AR-III-050 — Jornibret's Last Dance
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (72, 'AR-III-050', 'Jornibret''s Last Dance', 'Anonymous', 'Fiction',
+   '(Traditional)
+
+**Women''s Verse I**
+
+Every winter season,
+Except for the reason
+Of one war or another
+(Really quite a bother),
+The Queen of Rimmen and her consort
+Request their vassals come and cavort.
+On each and every ball,
+The first man at the Hall
+Is Lord Ogin Jornibret of Gaer,
+The Curse of all the Maidens Fair.
+**Women''s Refrain**
+
+Oh, dear ladies, beware.
+Dearest, dearest ladies, take care.
+Though he''s a very handsome man,
+If you dare to take his handsome hand,
+The nasty little spell will be cast
+And your first dance with him will be the last.
+**Men''s Verse I**
+
+At this social event
+Everyone who went
+Knew the bows and stances
+And steps to all the dances.
+The Queen of Rimmen and her consort
+Would order a trumpet''s wild report,
+And there could be no indecision
+As the revelers took position.
+The first dance only ladies, separate
+Away from such men as Lord Jornibret.
+**Men''s Refrain**
+
+Oh, dear fellows, explain.
+Brothers, can you help make it plain:
+The man''s been doing this for years,
+Leaving maidens fair in tears
+Before the final tune''s been blast.
+And her first dance with him will be the last.
+**Women''s Verse II**
+
+Lord Ogin Jornibret of Gaer
+Watched the ladies dance on air
+The loveliest in the realm.
+A fellow in a ursine-hide helm
+Said, "The Queen of Rimmen and her consort
+Have put together quite a sport.
+Which lady fair do you prefer?"
+Lord Jornibret pointed, "Her.
+See that bosom bob and weave.
+Well-suited for me to love and leave."
+***Women''s Refrain***
+
+**Men''s Verse II**
+
+The man in the mask of a bear
+Had left the Lord of Gaer
+Before the ladies'' dance was ending.
+Then a trumpet sounded, portending
+That the Queen of Rimmen and her consort
+Called for the men to come to court.
+Disdainful, passing over all the rest,
+Ogin approached she of bobbing breast.
+She was rejected, saved a life of woe,
+For a new maiden as fair as snow.
+***Men''s Refrain***
+
+**Women''s Verse III**
+
+At the first note of the band,
+The beauty took Ogin''s hand.
+She complimented his stately carriage
+Dancing to the tune about the marriage
+Of the Queen of Rimmen and her consort.
+It is very difficult indeed to comport
+With grace, neither falling nor flailing,
+Wearing ornate hide and leather mailing,
+Dancing light as the sweetest of dreams
+Without a single squeak of the seams.
+***Women''s Refrain.***
+
+**Men''s Verse III**
+
+The rhythms rose and fell
+No one dancing could excel
+With masculine grace and syncopation,
+Lord Jornibret even drew admiration
+From the Queen of Rimmen and her consort.
+Like a beauteous vessel pulling into port,
+He silently slid, belying the leather''s weight.
+She whispered girlishly, "The hour is late,
+But I''ve never seen such grace in hide armor."
+It ''twas a pity he knew he had to harm her.
+***Men''s Refrain***
+
+**Women''s Verse IV**
+
+The tune beat was furious
+He began to be curious
+Where had the maiden been sequest''ed.
+"Before this dance was requested
+By the consort and his Queen of Rimmen
+I didn''t see you dance with the women."
+"My dress was torn as I came to the dance,"
+She said smiling in a voice deep as a man''s,
+"My maids worked quickly to repair,
+While I wore a suit of hide, a helm of a bear."
+***Women''s Refrain***', 0, '');
 
 -- Cross-references, derived from the titles named in these bodies.
-INSERT INTO citations (from_tome, cites_call_number) VALUES (20, 'AR-X-002');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (21, 'AR-X-023');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (28, 'AR-IV-038');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (24, 'AR-III-044');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (24, 'AR-V-057');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (24, 'AR-VIII-022');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (24, 'AR-X-002');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (24, 'AR-X-038');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (25, 'AR-X-023');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (32, 'AR-IV-038');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (65, 'AR-X-038');

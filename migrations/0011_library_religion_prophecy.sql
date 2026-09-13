@@ -7,8 +7,8 @@
 -- See PROVENANCE.md.
 
 -- AR-X-001 — 16 Accords of Madness
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (203, 'AR-X-001', '16 Accords of Madness', 'Anonymous', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (236, 'AR-X-001', '16 Accords of Madness', 'Anonymous', 'Religion & Prophecy',
    '## 16 Accords of Madness, v. VI
 
 Hircine’s Tale
@@ -123,11 +123,11 @@ Panting from the unexpected immediacy and fury of his own kill, Malacath rested 
 
 To his horror, Malacath recognized only now that the man he had killed was not only one of his Orismer children, but very literally a son he had blessed an Orc maiden with years hence. For achingly long moments the two looked upon each other, despondent and shocked.
 
-Then, silent as oiled steel, Sheogorath strode into the clearing. He hefted Emmeg Gro-Kayra’s disembodied head and bundled it into a small, grey sack. Sheogorath reclaimed Neb-Crescen from the corpse and turned to walk away. Malacath began to stand, but kneeled again, knowing he had irreversibly damned his own offspring to the realm of Sheogorath, and mourned his failure as the sound of his son’s hoarse pleas faded into the frozen horizon.', 0);
+Then, silent as oiled steel, Sheogorath strode into the clearing. He hefted Emmeg Gro-Kayra’s disembodied head and bundled it into a small, grey sack. Sheogorath reclaimed Neb-Crescen from the corpse and turned to walk away. Malacath began to stand, but kneeled again, knowing he had irreversibly damned his own offspring to the realm of Sheogorath, and mourned his failure as the sound of his son’s hoarse pleas faded into the frozen horizon.', 0, '');
 
 -- AR-X-002 — Aedra and Daedra
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (204, 'AR-X-002', 'Aedra and Daedra', 'Anonymous', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (237, 'AR-X-002', 'Aedra and Daedra', 'Anonymous', 'Religion & Prophecy',
    'The designations of Gods, Demons, Aedra, and Daedra, are universally confusing to the layman. They are often used interchangeably.
 
 “Aedra” and “Daedra” are not relative terms. They are Elvish and exact. Azura is a Daedra both in Skyrim and Morrowind. “Aedra” is usually translated as “ancestor,” which is as close as Cyrodilic can come to this Elven concept. “Daedra” means, roughly, “not our ancestors.” This distinction was crucial to the Dunmer, whose fundamental split in ideology is represented in their mythical genealogy.
@@ -138,11 +138,11 @@ Aedra created the mortal world and are bound to the Earth Bones. Daedra, who can
 
 As part of the divine contract of creation, the Aedra can be killed. Witness Lorkhan and the moons.
 
-The protean Daedra, for whom the rules do not apply, can only be banished.', 0);
+The protean Daedra, for whom the rules do not apply, can only be banished.', 0, '');
 
 -- AR-X-003 — Alduin is Real
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (205, 'AR-X-003', 'Alduin is Real', 'Thromgar Iron-Head, prowd Nord', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (238, 'AR-X-003', 'Alduin is Real', 'Thromgar Iron-Head, prowd Nord', 'Religion & Prophecy',
    'As my da used to say - Imperials are idiutts!
 
 That is why I am riting this book. I ent never rote a book before, and I do not reckon to rite one agenn, but sometimes a man must do what a man must do. And what I must do is set the recerd strate about the god called Akatosh and the dragon called Alduin. They ent the same thing, no matter what them Imperials mite say, or how thay mite wish it to be so.
@@ -159,11 +159,11 @@ Akatosh is some kind of spirit dragon I think, wen he bothers to be a dragon at 
 
 So I got to ask - does that sound like Akatosh to you? No, frend. No it do not.
 
-And so I, Thromgar Iron-Head do firmly say, with the utmost connvicshun, that Alduin is real, and he ent Akatosh!', 0);
+And so I, Thromgar Iron-Head do firmly say, with the utmost connvicshun, that Alduin is real, and he ent Akatosh!', 0, 'Volume 1');
 
 -- AR-X-004 — The Alduin/Akatosh Dichotomy
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (206, 'AR-X-004', 'The Alduin/Akatosh Dichotomy', 'Alexandre Simon', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (239, 'AR-X-004', 'The Alduin/Akatosh Dichotomy', 'Alexandre Simon', 'Religion & Prophecy',
    'As High Priest of the Akatosh Chantry, I have dedicated my life to the service of the Great Dragon. He who was first at the Beginning. He who is greatest and most powerful of all the Divines. He who is the very embodiment of infinity.
 
 I am, quite obviously, a man of deep and unwavering faith. But not blind faith, for I am also a man of scholarly endeavors, and have always valued education and the pursuit of truth, in all its forms. And so, I have had the honor and privilege of making it my life’s work to discover the truth about Akatosh, in all of our beloved Divine’s incarnations.
@@ -190,11 +190,11 @@ The Nords of Skyrim place a high value on their oral traditions, but such is the
 
 The answer to such a question is simple - he cannot.
 
-And so, it is my conclusion that the Alduin of Nord legend is in fact mighty Akatosh, whose story grew twisted and deformed through centuries of retelling and embellishment. Through no real fault of their own, the primitive peoples of Skyrim failed to understand the goodness and greatness of the Great Dragon, and it was this lack of understanding that formed the basis of what became, ironically, their most impressive creative achievement - “Alduin,” the World Eater, phantom of bedtime stories and justification for ancient (if imagined deeds).', 0);
+And so, it is my conclusion that the Alduin of Nord legend is in fact mighty Akatosh, whose story grew twisted and deformed through centuries of retelling and embellishment. Through no real fault of their own, the primitive peoples of Skyrim failed to understand the goodness and greatness of the Great Dragon, and it was this lack of understanding that formed the basis of what became, ironically, their most impressive creative achievement - “Alduin,” the World Eater, phantom of bedtime stories and justification for ancient (if imagined deeds).', 0, '');
 
 -- AR-X-005 — Boethiah’s Proving
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (207, 'AR-X-005', 'Boethiah’s Proving', 'Anonymous', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (240, 'AR-X-005', 'Boethiah’s Proving', 'Anonymous', 'Religion & Prophecy',
    'On a certain day, at a certain time, the faithful gathered to perform certain rituals, hoping to gain a glimpse of their master. The day was correct, the summoning true.
 
 Slashing a smoking tear through the Veil, She, her-very-self, appeared before them, terrible and resplendent. She came arrayed in ebony darker than a moonless night, wielding a blade burning hotter than the surface of the sun. And though she wore the guise of a Dunmer warrior-queen, she towered above them like a statue carved from the Red Mountain itself.
@@ -261,11 +261,11 @@ Accepting my gift, she nodded and said:
 
 ~~~
 
-~If in the reading, your blood boils in your veins, and your mind blazons with fire, then Boethiah calls you. It is then most wise to heed her call. Find her on the mount which overlooks Windhelm. Meet us there and be tested.~', 0);
+~If in the reading, your blood boils in your veins, and your mind blazons with fire, then Boethiah calls you. It is then most wise to heed her call. Find her on the mount which overlooks Windhelm. Meet us there and be tested.~', 0, '');
 
 -- AR-X-006 — Boethiah’s Glory
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (208, 'AR-X-006', 'Boethiah’s Glory', 'Anonymous', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (241, 'AR-X-006', 'Boethiah’s Glory', 'Anonymous', 'Religion & Prophecy',
    'Look upon the face of Boethiah and wonder. Raise your arms that Boethiah may look on them and bestow a blessing. Know that battle is a blessing. Know that death is an eventuality. Know that you are dust in the eyes of Boethiah.
 
 Long is the arm of Boethiah, and swift is the blade.
@@ -276,11 +276,11 @@ Worship, o faithful. Pray your death is short.
 
 Worship, o faithful. Pray your death is quiet.
 
-Worship, o faithful. Worship the glory that is Boethiah.', 0);
+Worship, o faithful. Worship the glory that is Boethiah.', 0, '');
 
 -- AR-X-007 — The Book of Daedra
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (209, 'AR-X-007', 'The Book of Daedra', 'Anonymous', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (242, 'AR-X-007', 'The Book of Daedra', 'Anonymous', 'Religion & Prophecy',
    'Azura, whose sphere is dusk and dawn, the magic in-between realms of twilight, known as Moonshadow, Mother of the Rose, and Queen of the Night Sky.
 
 Boethiah, whose sphere is deceit and conspiracy, and the secret plots of murder, assassination, treason, and unlawful overthrow of authority.
@@ -317,11 +317,11 @@ Vaernima, whose sphere is the realm of dreams and nightmares, and from whose rea
 
 “Of the legendary artifacts of the Daedra, many are well known, like Azura’s Star, and Sheogorath’s Wabbajack. Others are less well known, like Scourge, Mackkan’s Hammer, Bane of Daedra....”
 
-“...yet though Malacath blessed Scourge to be potent against his Daedra kin, he thought not that it should fall into Daedric hands, then to serve as a tool for private war among caitiff and forsaken. Thus did Malacath curse the device such that, should any dark kin seek to invoke its powers, that a void should open and swallow that Daedra, and purge him into Oblivion’s voidstreams, from thence to pathfind back to the Real and Unreal Worlds in the full order of time.”', 0);
+“...yet though Malacath blessed Scourge to be potent against his Daedra kin, he thought not that it should fall into Daedric hands, then to serve as a tool for private war among caitiff and forsaken. Thus did Malacath curse the device such that, should any dark kin seek to invoke its powers, that a void should open and swallow that Daedra, and purge him into Oblivion’s voidstreams, from thence to pathfind back to the Real and Unreal Worlds in the full order of time.”', 0, '');
 
 -- AR-X-008 — The Book of Life and Service
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (210, 'AR-X-008', 'The Book of Life and Service', 'Anonymous', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (243, 'AR-X-008', 'The Book of Life and Service', 'Anonymous', 'Religion & Prophecy',
    '## The Ranks of the Blessed
 
 Blessed are the Bonemen, for they serve without self in spirit forever.
@@ -348,11 +348,11 @@ The Master’s Voice
 
 To Serve.
 
-Your Lord.', 0);
+Your Lord.', 0, '');
 
 -- AR-X-009 — The Book of the Dragonborn
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (211, 'AR-X-009', 'The Book of the Dragonborn', 'Prior Emelene Madrine', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (244, 'AR-X-009', 'The Book of the Dragonborn', 'Prior Emelene Madrine', 'Religion & Prophecy',
    'Many people have heard the term “Dragonborn” - we are of course ruled by the “Dragonborn Emperors” - but the true meaning of the term is not commonly understood. For those of us in the Order of Talos, this is a subject near and dear to our hearts, and in this book I will attempt to illuminate the history and significance of those known as Dragonborn down through the ages.
 
 Most scholars agree that the term was first used in connection with the Covenant of Akatosh, when the blessed St. Alessia was given the Amulet of Kings and the Dragonfires in the Temple of the One were first lit. “Akatosh, looking with pity upon the plight of men, drew precious blood from his own heart, and blessed St. Alessia with this blood of Dragons, and made a Covenant that so long as Alessia’s generations were true to the dragon blood, Akatosh would endeavor to seal tight the Gates of Oblivion, and to deny the armies of daedra and undead to their enemies, the Daedra-loving Ayleids.” Those blessed by Akatosh with “the dragon blood” became known more simply as Dragonborn.
@@ -379,11 +379,11 @@ When the Dragonborn Ruler loses his throne, and the White Tower falls
 
 When the Snow Tower lies sundered, kingless, bleeding
 
-The World-Eater wakes, and the Wheel turns upon the Last Dragonborn.', 0);
+The World-Eater wakes, and the Wheel turns upon the Last Dragonborn.', 0, 'Volume 1');
 
 -- AR-X-010 — A Children’s Anuad
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (212, 'AR-X-010', 'A Children’s Anuad', 'Anonymous', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (245, 'AR-X-010', 'A Children’s Anuad', 'Anonymous', 'Religion & Prophecy',
    'The first ones were brothers: Anu and Padomay. They came into the Void, and Time began.
 
 As Anu and Padomay wandered the Void, the interplay of Light and Darkness created Nir. Both Anu and Padomay were amazed and delighted with her appearance, but she loved Anu, and Padomay retreated from them in bitterness.
@@ -416,11 +416,11 @@ On the other continents, the Wandering Ehlnofey became the Men -- the Nords of A
 
 The Hist were bystanders in the Ehlnofey war, but most of their realm was destroyed as the war passed over it. A small corner of it survived to become Black Marsh in Tamriel, but most of their realm was sunk beneath the sea.
 
-Eventually, Men returned to Tamriel. The Nords were the first, colonizing the northern coast of Tamriel before recorded history, led by the legendary Ysgramor. The thirteenth of his line, King Harald, was the first to appear in written history. And so the Mythic Era ended.', 0);
+Eventually, Men returned to Tamriel. The Nords were the first, colonizing the northern coast of Tamriel before recorded history, led by the legendary Ysgramor. The thirteenth of his line, King Harald, was the first to appear in written history. And so the Mythic Era ended.', 0, '');
 
 -- AR-X-011 — The Dragon War
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (213, 'AR-X-011', 'The Dragon War', 'Torhal Bjorik', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (246, 'AR-X-011', 'The Dragon War', 'Torhal Bjorik', 'Religion & Prophecy',
    'In the Merethic Era, when Ysgramor first set foot on Tamriel, his people brought with them a faith that worshipped animal gods. Certain scholars believe these primitive people actually worshipped the divines as we know them, just in the form of these totem animals. They deified the hawk, wolf, snake, moth, owl, whale, bear, fox, and the dragon. Every now and then you can stumble across the broken stone totems in the farther reaches of Skyrim.
 
 Foremost among all animals was the dragon. In the ancient nordic tongue it was drah-gkon. Occasionally the term dov-rha is used, but the language or derivation of that is not known. Using either name was forbidden to all except the dragon priests. Grand temples were built to honor the dragons and appease them. Many of them survive today as ancient ruins haunted by draugr and undead dragon priests.
@@ -433,11 +433,11 @@ When the populace rebelled, the dragon priests retaliated. When the dragon pries
 
 At first, men died by the thousands. The ancient texts reveal that a few dragons took the side of men. Why they did this is not known. The priests of the Nine Divines claim it was Akatosh himself that intervened. From these dragons men learned magics to use against dragons. The tide began to turn and dragons began to die too.
 
-The war was long and bloody. The dragon priests were overthrown and dragons were slaughtered in large numbers. The surviving dragons scattered, choosing to live in remote places away from men. The dragon cult itself adapted and survived. They built the dragon mounds, entombing the remains of dragons that fell in the war. They believed that one day the dragons would rise again and reward the faithful.', 0);
+The war was long and bloody. The dragon priests were overthrown and dragons were slaughtered in large numbers. The surviving dragons scattered, choosing to live in remote places away from men. The dragon cult itself adapted and survived. They built the dragon mounds, entombing the remains of dragons that fell in the war. They believed that one day the dragons would rise again and reward the faithful.', 0, '');
 
 -- AR-X-012 — An Overview of Gods and Worship
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (214, 'AR-X-012', 'An Overview of Gods and Worship', 'Brother Hetchfeld', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (247, 'AR-X-012', 'An Overview of Gods and Worship', 'Brother Hetchfeld', 'Religion & Prophecy',
    'Editor’s Note:
 
 Brother Hetchfeld is an Associate Scribe at the Imperial University, Office of Introductory Studies
@@ -456,11 +456,11 @@ It has been theorized that gods do in fact gain strength from such things as wor
 
 There are reports of the existence of spirits in our world that have the same capacity to use the actions and deeds of mortals to strengthen themselves as do the Gods. The understanding of the exact nature of such creatures would allow us to understand with more clarity the connection between a Deity and the Deity’s worshipers.
 
-The implication of the existence of such spirits leads to the speculation that these spirits may even be capable of raising themselves to the level of a God or Goddess. Motusuo of the Imperial Seminary has suggested that these spirits may be the remains of Gods and Goddesses who through time lost all or most of their following, reverting to their earliest most basic form. Practioners of the Old Ways say that there are no Gods, just greater and lesser spirits. Perhaps it is possible for all three theories to be true.', 0);
+The implication of the existence of such spirits leads to the speculation that these spirits may even be capable of raising themselves to the level of a God or Goddess. Motusuo of the Imperial Seminary has suggested that these spirits may be the remains of Gods and Goddesses who through time lost all or most of their following, reverting to their earliest most basic form. Practioners of the Old Ways say that there are no Gods, just greater and lesser spirits. Perhaps it is possible for all three theories to be true.', 0, '');
 
 -- AR-X-013 — Invocation of Azura
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (215, 'AR-X-013', 'Invocation of Azura', 'Sigillah Parate', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (248, 'AR-X-013', 'Invocation of Azura', 'Sigillah Parate', 'Religion & Prophecy',
    'For three hundred years I have been a priestess of Azura, the Daedric Princess of Moonshadow, Mother of the Rose, and Queen of the Night Sky. Every Hogithum, which we celebrate on the 21st of First Seed, we summon her for guidance, as well as to offer things of worth and beauty to Her Majesty. She is a cruel but wise mistress. We do not invoke her on any Hogithum troubled by thunderstorms, for those nights belong to the Mad One, Sheogorath, even if they do coincide with the occasion. Azura at such times understands our caution.
 
 Azura’s invocation is a very personal one. I have been priestess to three other Daedric Princes, but Azura values the quality of her worshippers, and the truth behind our adoration of her. When I was a Dark Elven maid of sixteen, I joined my grandmother’s coven, worshippers of Molag Bal, the Schemer Princess. Blackmail, extortion, and bribery are as much the weapons of the Witches of Molag Bal as is dark magic. The Invocation of Molag Bal is held on the 20th of Evening Star, except during stormy weather. This ceremony is seldom missed, but Molag Bal often appears to her cultists in mortal guise on other dates. When my grandmother died in an attempt to poison the heir of Firewatch, I re-examined my faith in the cult.
@@ -469,11 +469,11 @@ My brother was a wizard of the cult of Boethiah-and from what he told me, the Da
 
 I left the cult soon after that. Boethiah was too impersonal for me, too cold. I wanted a mistress of greater depth. For the next eighteen years of my life, I worshipped no one. Instead I read and researched. It was in an old and profane tome that I came upon the name of Nocturnal-Nocturnal the Night Mistress, Nocturnal the Unfathomable. As the book prescribed, I called to her on her holy day, the 3rd of Hearth Fire. At last I had found the personal mistress I had so long desired. I strove to understand her labyrinthine philosophy, the source of her mysterious pain. Everything about her was dark and shrouded, even the way she spoke and the acts she required of me. It took years for me to understand the simple fact that I could never understand Nocturnal. Her mystery was as essential to her as savagery was to Boethiah or treachery was to Molag Bal. To understand Nocturnal is to negate her, to pull back the curtains cloaking her realm of darkness. As much as I loved her, I recognized the futility of unraveling her enigmas. I turned instead to her sister, Azura.
 
-Azura is the only Daedra Princess I have ever worshipped who seems to care about her followers. Molag Bal wanted my mind, Boethiah wanted my arms, and Nocturnal perhaps my curiosity. Azura wants all of that, and our love above all. Not our abject slavering, but our honest and genuine caring in all its forms. It is important to her that our emotions be engaged in her worship. And our love must also be directed inward. If we love her and hate ourselves, she feels our pain. I will, for all time, have no other mistress.', 0);
+Azura is the only Daedra Princess I have ever worshipped who seems to care about her followers. Molag Bal wanted my mind, Boethiah wanted my arms, and Nocturnal perhaps my curiosity. Azura wants all of that, and our love above all. Not our abject slavering, but our honest and genuine caring in all its forms. It is important to her that our emotions be engaged in her worship. And our love must also be directed inward. If we love her and hate ourselves, she feels our pain. I will, for all time, have no other mistress.', 0, '');
 
 -- AR-X-014 — The Legend of Red Eagle
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (216, 'AR-X-014', 'The Legend of Red Eagle', 'Tredayn Dren', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (249, 'AR-X-014', 'The Legend of Red Eagle', 'Tredayn Dren', 'Religion & Prophecy',
    'This tale was transcribed from the memory of Clarisse Vien, student of Winterhold. Elements of the legend suggest a date c.1E 1030, though as with any oral tradition, much of it is likely a later anachronism. Curiously, stories of a similar king and his legendary blade appear in other ancient myths of the Reach.
 
 Long ago, a child was born in the Sundered Hills. They named him Faolan, which means ‘Red Eagle’ in the tongue of the Reach, for the screeching bird-call that greeted his birth, and the crimson blooms on the autumn hills.
@@ -500,11 +500,11 @@ Such peace could not last, however, and a great host fell upon them, a swift arm
 
 He was taken to the place prepared for him, a tomb hidden deep within the rock. With his remaining strength he presented his sword to his people, and swore an oath: Fight on, and when at last the Reach is free, his blade should be returned, that he might rise and lead them again.
 
-Thus was given for his people: his life, his dream, his sword. But when every debt is repaid in blood, these he shall reclaim once more.', 0);
+Thus was given for his people: his life, his dream, his sword. But when every debt is repaid in blood, these he shall reclaim once more.', 0, '');
 
 -- AR-X-015 — Lost Legends of Skyrim
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (217, 'AR-X-015', 'Lost Legends of Skyrim', 'Talsgar the Elder, Archivist of Winterhold', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (250, 'AR-X-015', 'Lost Legends of Skyrim', 'Talsgar the Elder, Archivist of Winterhold', 'Religion & Prophecy',
    'The history of Skyrim is vast, predating even the most ancient records of man and mer. Much has been lost, fallen to the ravages of war or the turning of the ages. But nothing is ever truly forgotten. Where no records exist, legends and folk tales offer us a key to the past, a way to piece together truths half-remembered in the minds of men.
 
 For generations, the people of Morthal have told whispered tales of the Pale Lady, a ghostly woman who wanders the northern marshes, forever seeking her lost daughter. Some say she steals children who wander astray, others that her sobbing wail strikes dead all those who hear it. But behind these tales may lie a kernel of truth, for ancient records speak of ‘Aumriel’, a mysterious figure Ysgramor’s heirs battled for decades, and finally sealed away.
@@ -519,22 +519,22 @@ And then he was murdered. Some say one of his sons killed him, others that King 
 
 A great chase ensued, from the wilds of the Reach to the glacial north. One brother is said to have perished in the ruins of Folgunthur, at the foot of Solitude. The others were run to ground soon thereafter. And once it was done, King Harald ordered every record of their murders destroyed, and Gauldur’s name and deeds were struck from the rolls of history.
 
-Even today, few sources remain, and no bard will tell the tale. But perhaps the truth yet remains in some ancient ruin, waiting to be unearthed. For nothing is ever truly forgotten.', 0);
+Even today, few sources remain, and no bard will tell the tale. But perhaps the truth yet remains in some ancient ruin, waiting to be unearthed. For nothing is ever truly forgotten.', 0, '');
 
 -- AR-X-016 — The Lunar Lorkhan
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (218, 'AR-X-016', 'The Lunar Lorkhan', 'Fal Droon', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (251, 'AR-X-016', 'The Lunar Lorkhan', 'Fal Droon', 'Religion & Prophecy',
    'I will not go into the varying accounts of what happened at Adamantine Tower, nor will I relate the War of Manifest Metaphors that rendered those stories unable to support most qualities of what is commonly known as “narrative.” We all have our favorite Lorkhan story and our favorite Lorkhan motivation for the creation of Nirn and our favorite story of what happened to His Heart. But the Theory of the Lunar Lorkhan is of special note.
 
 In short, the Moons were and are the two halves of Lorkhan’s ‘flesh-divinity’. Like the rest of the Gods, Lorkhan was a plane(t) that participated in the Great Construction... except where the Eight lent portions of their heavenly bodies to create the mortal plane(t), Lorkhan’s was cracked asunder and his divine spark fell to Nirn as a shooting star “to impregnate it with the measure of its existence and a reasonable amount of selfishness.”
 
 Masser and Secunda therefore are the personifications of the dichotomy-- the “Cloven Duality,” according to Artaeum-- that Lorkhan legends often rail against: ideas of the anima/animus, good/evil, being/nothingness, the poetry of the body, throat, and moan/silence-as-the- abortive, and so on -- set in the night sky as Lorkhan’s constant reminder to his mortal issue of their duty.
 
-Followers of this theory hold that all other “Heart Stories” are mythical degradations of the true origin of the moons (and it needn’t be said that they observe the “hollow crescent theory” as well).', 0);
+Followers of this theory hold that all other “Heart Stories” are mythical degradations of the true origin of the moons (and it needn’t be said that they observe the “hollow crescent theory” as well).', 0, '');
 
 -- AR-X-017 — Lycanthropic Legends of Skyrim
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (219, 'AR-X-017', 'Lycanthropic Legends of Skyrim', 'Lentulus Inventius Order of the Horn', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (252, 'AR-X-017', 'Lycanthropic Legends of Skyrim', 'Lentulus Inventius Order of the Horn', 'Religion & Prophecy',
    'I had heard the same rumors as everyone else -- that the province of Skyrim was awash in various forms of Lycanthropy. I had studied werewolves for some time, and was keen to see if these rumors of werebears were actually substantiated. I elected to pursue these studies in the warmer summer months in deference to my fragile constitution.
 
 One quickly finds that common villagers are of practically no use in this land. Whereas in Cyrodiil, even the youngest child can tell you the true fauna that inhabit its environs, here I find alleged “wise men” recounting tales of unicorns and flying horses directly alongside their stories of werebears, so I don’t put any stock in the rumors. They certainly have their traditions for warding off werebears (certain plants and ceremonies), but nobody can attest to even having seen one first-hand, much less possess any sort of artifact. Everyone has a cousin or a friend who saw one once, but when pressed, these stories fall apart.
@@ -547,11 +547,11 @@ Thinking that perhaps the common folk were simply more cowardly than I had been 
 
 Pressing into the wilderness, away from any sort of settlement, I would often find hunters, willing to recount stories of their kills. It was finally through one of them (a certain Karsten Hammer-Back) that I heard my first (and unfortunately only) verifiable stories of werewolves in the province, accompanied by pelts and claws to prove the killing. Just as I was thrilling to finding some actual evidence of the local beasts, he got a wild, conspiratorial look in his eyes and began spinning tales of some band of werewolf hunters and their exploits in hunting down the creatures. I left him to mop his drool and continued my journeys.
 
-In the end, I regret that my trip to Skyrim did not prove more productive. If it is indeed true that their breeds of lycanthropes are distinct from and more powerful than our local ones, they could prove to be powerful allies in our conflict against the influx of werevultures in Valenwood. If they have grown as great and terrible as my friend Gaelian asserts, they could soon threaten the interior of Tamriel. When the summer next crests, I plan to travel there for a better accounting of the winged cretins, so that I may make more fitting report to the council.', 0);
+In the end, I regret that my trip to Skyrim did not prove more productive. If it is indeed true that their breeds of lycanthropes are distinct from and more powerful than our local ones, they could prove to be powerful allies in our conflict against the influx of werevultures in Valenwood. If they have grown as great and terrible as my friend Gaelian asserts, they could soon threaten the interior of Tamriel. When the summer next crests, I plan to travel there for a better accounting of the winged cretins, so that I may make more fitting report to the council.', 0, '');
 
 -- AR-X-018 — The Monomyth
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (220, 'AR-X-018', 'The Monomyth', 'Anonymous', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (253, 'AR-X-018', 'The Monomyth', 'Anonymous', 'Religion & Prophecy',
    'Simply put, the schism in the Human/Aldmeri worldview is the mortal’s relationship to the divine. Humans take the humble path that they were created by the immortal forces, while the Aldmer claim descent from them. It doesn’t seem like much, but it is a distinction that colors the rest of their diverging mythologies.
 
 All Tamrielic religions begin the same. Man or mer, things begin with the dualism of Anu and His Other. These twin forces go by many names: Anu-Padomay, Anuiel-Sithis, Ak-El, Satak-Akel, Is-Is Not. Anuiel is the Everlasting Ineffable Light, Sithis is the Corrupting Inexpressible Action. In the middle is the Gray Maybe (‘Nirn’ in the Ehlnofex).
@@ -634,11 +634,11 @@ Altmeri “The Heart of the World”
 
 “Auriel could not save Altmora, the Elder Wood, and it was lost to Men. They were chased south and east to Old Ehlnofey, and Lorkhan was close behind. He shattered that land into many. Finally Trinimac, Auriel’s greatest knight, knocked Lorkhan down in front of his army and reached in with more than hands to take his Heart. He was undone. The Men dragged Lorkhan’s body away and swore blood vengeance on the heirs of Auriel for all time.
 
-“But when Trinimac and Auriel tried to destroy the Heart of Lorkhan it laughed at them. It said, “This Heart is the heart of the world, for one was made to satisfy the other.” So Auriel fastened the thing to an arrow and let it fly long into the sea, where no aspect of the new world may ever find it.”', 0);
+“But when Trinimac and Auriel tried to destroy the Heart of Lorkhan it laughed at them. It said, “This Heart is the heart of the world, for one was made to satisfy the other.” So Auriel fastened the thing to an arrow and let it fly long into the sea, where no aspect of the new world may ever find it.”', 0, 'Volume 1');
 
 -- AR-X-019 — Mythic Dawn Commentaries
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (221, 'AR-X-019', 'Mythic Dawn Commentaries', 'Mankar Camoran', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (254, 'AR-X-019', 'Mythic Dawn Commentaries', 'Mankar Camoran', 'Religion & Prophecy',
    '## Vol. 1
 
 Greetings, novitiate, and know first a reassurance: Mankar Camoran was once like you, asleep, unwise, protonymic. We mortals leave the dreaming-sleeve of birth the same, unmantled save for the symbiosis with our mothers, thus to practice and thus to rapprochement, until finally we might through new eyes leave our hearths without need or fear that she remains behind. In this moment we destroy her forever and enter the demesne of Lord Dagon.
@@ -727,11 +727,11 @@ Suns were riven as your red legions moved from Lyg to the hinterlands of chill, 
 
 Under the mires, Malbioge was thrown down, that old City of Chains, slaked in newbone-warmth and set Free. Galg and Mor-Galg were thrown down together in a single night of day and shall it be again under the time of Gates.
 
-Nothing but woe for NRN which has become The Pit and seven curses on its Dreugh, the Vermae NI-MOHK! But for it the Crusades would be as my lord’s Creation, Get by the Ge and do as thou wilt, of no fetters but your own conscience! Know that your Hell is Broken, people of the Aurbis, and praise the Nu-Mantia which is Liberty!', 0);
+Nothing but woe for NRN which has become The Pit and seven curses on its Dreugh, the Vermae NI-MOHK! But for it the Crusades would be as my lord’s Creation, Get by the Ge and do as thou wilt, of no fetters but your own conscience! Know that your Hell is Broken, people of the Aurbis, and praise the Nu-Mantia which is Liberty!', 0, 'Volume 1');
 
 -- AR-X-020 — Myths of Sheogorath
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (222, 'AR-X-020', 'Myths of Sheogorath', 'Mymophonus', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (255, 'AR-X-020', 'Myths of Sheogorath', 'Mymophonus', 'Religion & Prophecy',
    '## Sheogorath Invents Music
 
 In the earliest of days, in a time when the world was still raw, Sheogorath decided to walk amongst the mortals. He donned his guise of Gentleman With a Cane, and moved from place to place without being recognized. After eleven days and eleven nights, Sheogorath decided that life among mortals was even more boring than his otherworldly existence.
@@ -786,22 +786,22 @@ It was then that Sheogorath appeared to him. Ravate cried out, “You have set t
 
 Sheogorath replied, “Actually, I have done nothing. You have driven yourself mad with your fears. Your delusions prove that you are truly deranged, and therefore I win. While you wanted to make a thousand men mad, I only wanted to break one man’s mind, yours.”
 
-From that day forward Ravate served Sheogorath’s every whim. Whenever daring travelers try to approach Sheogorath, Ravate warns them, “Sheogorath is already inside each of us. You have already lost.”', 0);
+From that day forward Ravate served Sheogorath’s every whim. Whenever daring travelers try to approach Sheogorath, Ravate warns them, “Sheogorath is already inside each of us. You have already lost.”', 0, '');
 
 -- AR-X-021 — Nerevar Moon and Star
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (223, 'AR-X-021', 'Nerevar Moon and Star', 'Anonymous', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (256, 'AR-X-021', 'Nerevar Moon and Star', 'Anonymous', 'Religion & Prophecy',
    'In ancient days, the Deep Elves and a great host of outlanders from the West came to steal the land of the Dunmer. In that time, Nerevar was the great khan and warleader of the House People, but he honored the Ancient Spirits and the Tribal law, and became as one of us.
 
 So, when Nerevar pledged upon his great Ring of the Ancestors, One-Clan-Under-Moon-and-Star, to honor the ways of the Spirits and rights of the Land, all the Tribes joined the House People to fight a great battle at Red Mountain.
 
 Though many Dunmer, Tribesman and Houseman, died at Red Mountain, the Dwemer were defeated and their evil magicks destroyed, and the outlanders driven from the land. But after this great victory, the power-hungry khans of the Great Houses slew Nerevar in secret, and, setting themselves up as gods, neglected Nerevar’s promises to the Tribes.
 
-But it is said that Nerevar will come again with his ring, and cast down the false gods, and by the power of his ring will make good his promises to the Tribes, to honor the Spirits and drive the outsiders from the land.', 0);
+But it is said that Nerevar will come again with his ring, and cast down the false gods, and by the power of his ring will make good his promises to the Tribes, to honor the Spirits and drive the outsiders from the land.', 0, '');
 
 -- AR-X-022 — Nightingales: Fact or Fiction?
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (224, 'AR-X-022', 'Nightingales: Fact or Fiction?', 'Wilmina Roth', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (257, 'AR-X-022', 'Nightingales: Fact or Fiction?', 'Wilmina Roth', 'Religion & Prophecy',
    'Mention the word “Nightingale” to any thief worth his salt and he’ll laugh in your face. He’ll tell you that the supposed avengers of the Daedric Lord Nocturnal are nothing but fictional characters who live nowhere else but within tales designed to scare young footpads into doing what they’re told. But are they fictional or simply misunderstood?
 
 While it’s true that most scholars would scoff at the notion of a holy sect appearing within the normally unethical and unorganized rabble that is the Thieves Guild, evidence suggests that such a group existed at the time within the borders of Skyrim. One hundred and twenty years before the publication of this tome, a corpse was discovered wearing a strange suit of armor that was described as “forged midnight.” The tattered armor bore a crest of some sort, the symbol of a bird embracing a circle of undetailed blackness. The remains and the armor was taken to the College of Winterhold for study, but mysteriously vanished only a day after it arrived.
@@ -812,11 +812,11 @@ The second piece of evidence pointing to the existence of the Nightingales exist
 
 This is the first and only time that a solid connection between Nocturnal and the Nightingale has been made. The unusual nature of the passage, the religious connotations towards Nocturnal made by a career criminal, kept discussions lively for years regarding the possibility of this group actually existing. Sadly, since not a single passage of evidence beyond this has surfaced to date, this exciting discovery faded into obscurity and the debate subsided.
 
-With these scant samples of evidence, conclusions are difficult to formulate. All we’re left with are more questions than answers. Can religion and thievery coexist? Does the Daedric Lord Nocturnal have active agents roaming Skyrim with a no-doubt nefarious purpose? Does the Thieves Guild have extensive knowledge of the Nightingales, but remain sworn to secrecy? Perhaps one day the answers to these questions will be revealed, but at present it falls to you, the reader, to decide whether the Nightingales are fact or merely fiction.', 0);
+With these scant samples of evidence, conclusions are difficult to formulate. All we’re left with are more questions than answers. Can religion and thievery coexist? Does the Daedric Lord Nocturnal have active agents roaming Skyrim with a no-doubt nefarious purpose? Does the Thieves Guild have extensive knowledge of the Nightingales, but remain sworn to secrecy? Perhaps one day the answers to these questions will be revealed, but at present it falls to you, the reader, to decide whether the Nightingales are fact or merely fiction.', 0, '');
 
 -- AR-X-023 — The Old Ways
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (225, 'AR-X-023', 'The Old Ways', 'Celarus the Loremaster', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (258, 'AR-X-023', 'The Old Ways', 'Celarus the Loremaster', 'Religion & Prophecy',
    'We who know the Old Ways are well aware of the existence of a spiritual world invisible to the unenlightened. Just as one living in a kingdom but unaware of the political machinations underneath may see a new tax or battle preparation as the caprices of fortune, many observe floods, famines, and madness with helpless incomprehension. This is deplorable. As the great Cuilean Darnizhaan moaned, “The power of ignorance can shatter ebony like glass.”
 
 What, after all, is the origin of these spiritual forces that move the invisible strings of Mundus? Any neophyte of Artaeum knows that these spirits are our ancestors -- and that, while living, they too were bewildered by the spirits of their ancestors, and so on back to the original Acharyai. The Daedra and gods to whom the common people turn are no more than the spirits of superior men and women whose power and passion granted them great influence in the afterworld.
@@ -827,11 +827,11 @@ Primarily, it is easy to grasp the necessity both of endowing good men with grea
 
 How, then, are our counsellors “faithful”? We are faithful only to the Old Ways -- it is essential always to remember the spiritual world while keeping our eyes open in the physical one. Performing the Rites of Moawita on the 2nd of Hearth Fire and the Vigyld on the 1st of Second Seed are essential means of empowering salutary spirits and debilitating unclean ones. How, then, are we at once faithful to those we counsel and to the Isle of Artaeum? Perhaps the sage Taheritae said it best: “In Mundus, conflict and disparity are what bring change, and change is the most sacred of the Eleven Forces. Change is the force without focus or origin. It is the duty of the disciplined Psijic [“Enlightened One”] to dilute change where it brings greed, gluttony, sloth, ignorance, prejudice, cruelty... [here Taheritae lists the rest of the 111 Prodigalities], and to encourage change where it brings excellence, beauty, happiness, and enlightenment. As such, the faithful counsel has but one master: His mind. If the man the Psijic counsels acts wickedly and brings oegnithr [“bad change”] and will otherwise not be counselled, it is the Psijic’s duty to counterbalance the oegnithr by any means necessary [emphasis mine].”
 
-A student of the Old Ways may indeed ally himself to a lord -- but it is a risky relationship. It cannot be stressed enough that the choice be wisely made. Should the lord refuse wise counsel and order the Psijic (to use Taheritae’s outmoded word) to perform an act contrary to the teachings of the Old Ways, there are few available options. The Psijic may obey, albeit unwillingly, and fall prey to the dark forces against which he has devoted his life. The Psijic may abandon his lord, which will bring shame on him and the Isle of Artaeum, and so may never be allowed home again. Or the Psijic may simply kill himself.', 0);
+A student of the Old Ways may indeed ally himself to a lord -- but it is a risky relationship. It cannot be stressed enough that the choice be wisely made. Should the lord refuse wise counsel and order the Psijic (to use Taheritae’s outmoded word) to perform an act contrary to the teachings of the Old Ways, there are few available options. The Psijic may obey, albeit unwillingly, and fall prey to the dark forces against which he has devoted his life. The Psijic may abandon his lord, which will bring shame on him and the Isle of Artaeum, and so may never be allowed home again. Or the Psijic may simply kill himself.', 0, '');
 
 -- AR-X-024 — Opusculus Lamae Bal
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (226, 'AR-X-024', 'Opusculus Lamae Bal', 'Mabei Aywenil, Translation by University of Gwylim Press; 3E 105', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (259, 'AR-X-024', 'Opusculus Lamae Bal', 'Mabei Aywenil, Translation by University of Gwylim Press; 3E 105', 'Religion & Prophecy',
    'As brighter grows light, darker becomes shadow. So it passed that the Daedra Molag Bal looked on Arkay and thought the Aedra prideful of his dominion o’er the death of man and mer, and it was sooth.
 
 Bal, whose sphere is the wanton oppression and entrapment of mortal souls, sought to thwart Arkay, who knew that not man, nor mer, nor beastfolk of all Nirn could escape eventual death. The Aedra was doubtless of his sphere, and so Molag Bal set upon Nirn to best death.
@@ -840,11 +840,11 @@ Tamriel was still young, and filled with danger and wondrous magick when Bal wal
 
 Violated and comatose, Lamae was found by nomads, and cared for. A fortnight hence, the nomad wyrd-woman enshrouded Lamae in pall for she had passed into death. In their way, the nomads built a bonfire to immolate the husk. That night, Lamae rose from her funeral pyre, and set upon the coven, still aflame. She ripped the throats of the women, ate the eyes of the children, and raped their men as cruelly as Bal had ravished her.
 
-And so; Lamae, (who is known to us as blood-matron) imprecated her foul aspect upon the folk of Tamriel, and begat a brood of countless abominations, from which came the vampires, most cunning of the night-horrors. And so was the scourge of undeath wrought upon Tamriel, cruelly mocking Arkay’s rhythm of life and death through all the coming eras of the et’Ada, and for all his sadness, Arkay knew this could not be undone.', 0);
+And so; Lamae, (who is known to us as blood-matron) imprecated her foul aspect upon the folk of Tamriel, and begat a brood of countless abominations, from which came the vampires, most cunning of the night-horrors. And so was the scourge of undeath wrought upon Tamriel, cruelly mocking Arkay’s rhythm of life and death through all the coming eras of the et’Ada, and for all his sadness, Arkay knew this could not be undone.', 0, '');
 
 -- AR-X-025 — The Posting of the Hunt
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (227, 'AR-X-025', 'The Posting of the Hunt', 'Anonymous', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (260, 'AR-X-025', 'The Posting of the Hunt', 'Anonymous', 'Religion & Prophecy',
    'Let no man say before a witness that the Hunt has not been called, nor the Rites declared, or the Ancient Offices observed.
 
 The Ritual of the Innocent Quarry, also called the Wild Hunt, is an ancient rite drawing magical energy from the powerful magicka stream that engulfs this realm. The creators and times of the rituals are long forgotten. But followed properly, the rite brings great power and prestige to the Huntsman.
@@ -867,11 +867,11 @@ In practice, this condition has been defined as the availability of six keys, wh
 
 The Ritual of the Hunt grants the Huntsman protection from all forms of attack, including mortal and immortal weapons, and sorceries of all schools. Huntsman are cautioned, however, that the ritual does not protect the Huntsman from the potent energies of his own Spear, and cautions against reckless wielding of the Spear in close melee, darkness, or other dangerous circumstances, for a single touch of the Spear of Bitter Mercy means instant and certain death for innocent Hare or fellow Huntsman alike.
 
-The right to name a Wild Hunt is a grand and grave right indeed, as all but the High Daedra Lords are vulnerable to the potent sorceries of the Spear of Bitter Mercy. The Spear itself is therefore a terrible weapon, and it is forbidden to remove it from the Grounds of the Ritual Hunt.', 0);
+The right to name a Wild Hunt is a grand and grave right indeed, as all but the High Daedra Lords are vulnerable to the potent sorceries of the Spear of Bitter Mercy. The Spear itself is therefore a terrible weapon, and it is forbidden to remove it from the Grounds of the Ritual Hunt.', 0, '');
 
 -- AR-X-026 — Ruminations on the Elder Scrolls
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (228, 'AR-X-026', 'Ruminations on the Elder Scrolls', 'Septimus Signus, College of Winterhold', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (261, 'AR-X-026', 'Ruminations on the Elder Scrolls', 'Septimus Signus, College of Winterhold', 'Religion & Prophecy',
    'Imagine living beneath the waves with a strong-sighted blessing of most excellent fabric. Holding the fabric over your gills, you would begin to breathe-drink its warp and weft. Though the plantmatter fibers imbue your soul, the wretched plankton would pollute the cloth until it stank to heavens of prophecy. This is one manner in which the Scrolls first came to pass, but are we the sea, or the breather, or the fabric? Or are we the breath itself?
 
 Can we flow through the Scrolls as knowledge flow through, being the water, or are we the stuck morass of sea-filth that gathers on the edge?
@@ -890,11 +890,11 @@ One final imagining before your mind closes from the shock of ever-knowing. You 
 
 A sea of pinpoints, a constellation of memories. Each burns bright, then flickers. Then two more take its place but not forever lest the void fills with rancid light that sucks the thought.
 
-Each of our minds is actually the emptiness, and the learnings of the Scrolls are the pinpoints. Without their stabbing light, my consciousness would be as a vast nothingness, unknowing its emptiness as a void is unknowing of itself. But the burnings are dangerous, and must be carefully tended and minded and brought to themselves and spread to their siblings.', 0);
+Each of our minds is actually the emptiness, and the learnings of the Scrolls are the pinpoints. Without their stabbing light, my consciousness would be as a vast nothingness, unknowing its emptiness as a void is unknowing of itself. But the burnings are dangerous, and must be carefully tended and minded and brought to themselves and spread to their siblings.', 0, '');
 
 -- AR-X-027 — Shezarr and the Divines
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (229, 'AR-X-027', 'Shezarr and the Divines', 'Faustillus Junius', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (262, 'AR-X-027', 'Shezarr and the Divines', 'Faustillus Junius', 'Religion & Prophecy',
    'The position Shezarr enjoys in Cyrodilic worship if often misconstrued. He, and a thousand other deities, have sizeable cults in the Imperial City. Shezarr is especially venerated in the Colovian West, though he is called Shor there, as the West Kings are resolutely, and religiously, Nordic.
 
 The haziness of Shezarr’s relationship to the Divines (he is often called their ‘Missing Sibling’) begins with St. Alessia, the so-called ‘Slave Queen of Cyrodiil, the founder figure of the original Cyrodilic Empire. In the earliest Cyro-Nordic stories of the Heartland, Shezarr fought against the Ayleids (the ‘Heartland Highelves’) on mankind’s behalf. Then, for some unknown reason, he vanishes from the stage (presumably to help other humans elsewhere), and, without his leadership, the Ayleids conquer the humans and enslave them.
@@ -907,11 +907,11 @@ Akatosh was an Aldmeri god, and Alessia’s subjects were as-yet unwilling to re
 
 Shezarr, as a result, had to change. He could no longer be the bloodthirsty anti-Aldmer warlord of old. He could not disappear altogether either, or the Nords would have withdrawn their support of her rule. In the end, he had become “the spirit behind all human undertaking.” Even though this was merely a thinly-disguised, watered-down version of Shor, it was good enough for the Nords.
 
-As for why Tiber Septim has not attempted to ‘revitalize’ Shezarr during his wars against the Aldmeri Dominion, we can only speculate that, at this time, memories of the Alessian Order’s follies (the Dragon Break, the War of Righteousness, the defeat at Gelnumbria Moors) would only damage his campaign for the Imperial Crown.', 0);
+As for why Tiber Septim has not attempted to ‘revitalize’ Shezarr during his wars against the Aldmeri Dominion, we can only speculate that, at this time, memories of the Alessian Order’s follies (the Dragon Break, the War of Righteousness, the defeat at Gelnumbria Moors) would only damage his campaign for the Imperial Crown.', 0, '');
 
 -- AR-X-028 — Sithis
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (230, 'AR-X-028', 'Sithis', 'Anonymous', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (263, 'AR-X-028', 'Sithis', 'Anonymous', 'Religion & Prophecy',
    'Sithis is the start of the house. Before him was nothing, but the foolish Altmer have names for and revere this nothing. That is because they are lazy slaves. Indeed, from the Sermons, ‘stasis asks merely for itself, which is nothing.’
 
 Sithis sundered the nothing and mutated the parts, fashioning from them a myriad of possibilities. These ideas ebbed and flowed and faded away and this is how it should have been.
@@ -924,11 +924,11 @@ Lorkhan had found the Aedric weakness. While each rebel was, by their nature, im
 
 Go unto the Sharmat Dagoth Ur as a friend.
 
-AE HERMA MORA ALTADOON PADHOME LKHAN AE AI.', 0);
+AE HERMA MORA ALTADOON PADHOME LKHAN AE AI.', 0, '');
 
 -- AR-X-029 — Songs of the Return
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (231, 'AR-X-029', 'Songs of the Return', 'Anonymous', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (264, 'AR-X-029', 'Songs of the Return', 'Anonymous', 'Religion & Prophecy',
    '## Songs of the Return, Volume 2, The First Tale of the Darumzu
 
 Our great lord Ysgramor, the harbinger of us all, did then sent forth his two beloved sons (with him the only other survivors of the brutalities of Saarthal) to seek out the bravest warriors of the land and mount the great return.
@@ -1050,16 +1050,16 @@ Asgeir continued his swift run, to inform the other crews as quickly as they cou
 
 For indeed the stories tell that Rhorlak, the most battle-hardened and unflinching of all captains, did collapse with grief, and never again lifted his mighty axe. And all around Tamriel, as the news spread as dark cloud washes from horizon to horizon, did brilliant lights go out in silent honor of their fallen general and war-leader.
 
-So ended the period of the Return, and the original glories of the Five Hundred Companions of Ysgramor, harbinger to us all.', 0);
+So ended the period of the Return, and the original glories of the Five Hundred Companions of Ysgramor, harbinger to us all.', 0, 'Volume 2');
 
 -- AR-X-030 — Spirit of Nirn
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (232, 'AR-X-030', 'Spirit of Nirn', 'Anonymous', 'Religion & Prophecy',
-   'Lorkhan is the Spirit of Nirn, the god of all mortals. This does not mean that all mortals necessarily like him or even know him. Most elves hate him, thinking creation as the act which sundered them from the spirit realm. Most humans rever him, or aspects of him as the herald of existence. The creation of the Mortal Plane, the Mundus, Nirn, is a source of mental anguish to all living things; all souls know deep down they came originally from somewhere else, that Nirn is a cruel and crusial step to what comes next. What is this next? Some which to return to the original state, the spirit realm, and that Lorkhan is the Demon that hinders their way; to them Nirn is a prison, and illustion of escape. Others think that Lorkahn created the world as the testing ground for transcendence; to them the spirit realm was alreayd a prison, that true escape is now finally possible.', 0);
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (265, 'AR-X-030', 'Spirit of Nirn', 'Anonymous', 'Religion & Prophecy',
+   'Lorkhan is the Spirit of Nirn, the god of all mortals. This does not mean that all mortals necessarily like him or even know him. Most elves hate him, thinking creation as the act which sundered them from the spirit realm. Most humans rever him, or aspects of him as the herald of existence. The creation of the Mortal Plane, the Mundus, Nirn, is a source of mental anguish to all living things; all souls know deep down they came originally from somewhere else, that Nirn is a cruel and crusial step to what comes next. What is this next? Some which to return to the original state, the spirit realm, and that Lorkhan is the Demon that hinders their way; to them Nirn is a prison, and illustion of escape. Others think that Lorkahn created the world as the testing ground for transcendence; to them the spirit realm was alreayd a prison, that true escape is now finally possible.', 0, '');
 
 -- AR-X-031 — Spirit of the Daedra
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (233, 'AR-X-031', 'Spirit of the Daedra', 'Anonymous', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (266, 'AR-X-031', 'Spirit of the Daedra', 'Anonymous', 'Religion & Prophecy',
    'HOW YOU SHOULD KNOW US
 
 DEATH, DEFEAT, AND FEAR
@@ -1120,11 +1120,11 @@ MAN’S MYSTERY
 
 Man is mortal, and doomed to death and failure and loss.
 
-This lies beyond our comprehension - why do you not despair?', 0);
+This lies beyond our comprehension - why do you not despair?', 0, '');
 
 -- AR-X-032 — The Totems of Hircine
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (234, 'AR-X-032', 'The Totems of Hircine', 'Anonymous', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (267, 'AR-X-032', 'The Totems of Hircine', 'Anonymous', 'Religion & Prophecy',
    'Among those of us to whom Lord Hircine bestowed his most precious gift of Lycanthropy, there are legends that he also set into the world specific artifacts of his power. They date to a period when men could neither write, nor speak, nor barely think, but the powers of blood of the beast were yet flowing strong among the selected.
 
 The first: a carved skull, of the wolf itself. Used by those ancient shamans in the blood ceremonies that created our lineage, it is said to grant a great presence to those who prostrate themselves before it, such that those who witness their forms cower in a terror unknown except to those who have glimpsed the face of Hircine himself.
@@ -1133,31 +1133,31 @@ The second: a thigh bone, carved as the skull, but from some animal unknown. Use
 
 The third: a simple drum, its mundane appearance meaning it is most likely lost to the mists of long ago time. As our fathers would beat time to summon their brethren from the fields, so too would our forebears in the blood call their allies to them with its pounding.
 
-Through these totems, we channel and focus our energies of the beast. While werewolves give up the powers of magic known to men, we can tap into a more direct natural energy at times, and through these totems, discover the abilities that first tamed the world before wrought civilization sullied it.', 0);
+Through these totems, we channel and focus our energies of the beast. While werewolves give up the powers of magic known to men, we can tap into a more direct natural energy at times, and through these totems, discover the abilities that first tamed the world before wrought civilization sullied it.', 0, '');
 
 -- AR-X-033 — Trials of St. Alessia
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (235, 'AR-X-033', 'Trials of St. Alessia', 'Anonymous', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (268, 'AR-X-033', 'Trials of St. Alessia', 'Anonymous', 'Religion & Prophecy',
    'Akatosh made a covenant with Alessia in those days so long ago. He gathered the tangled skeins of Oblivion, and knit them fast with the bloody sinews of his Heart, and gave them to Alessia, saying, ‘This shall be my token to you, that so long as your blood and oath hold true, yet so shall my blood and oath be true to you. This token shall be the Amulet of Kings, and the Covenant shall be made between us, for I am the King of Spirits, and you are the Queen of Mortals. As you shall stand witness for all Mortal Flesh, so shall I stand witness for all Immortal Spirits.’
 
 And Akatosh drew from his breast a burning handful of his Heart’s blood, and he gave it into Alessia’s hand, saying, ‘This shall also be a token to you of our joined blood and pledged faith. So long as you and your descendants shall wear the Amulet of Kings, then shall this dragonfire burn -- an eternal flame -- as a sign to all men and gods of our faithfulness. So long as the dragonfires shall burn, to you, and to all generations, I swear that my Heart’s blood shall hold fast the Gates of Oblivion.
 
 So long as the Blood of the Dragon runs strong in her rulers, the glory of the Empire shall extend in unbroken years. But should the dragonfires fail, and should no heir of our joined blood wear the Amulet of Kings, then shall the Empire descend into darkness, and the Demon Lords of Misrule shall govern the land.’
 
--- from the liturgy of the Re-Kindling of the Dragonfires', 0);
+-- from the liturgy of the Re-Kindling of the Dragonfires', 0, '');
 
 -- AR-X-034 — The Waters of Oblivion
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (236, 'AR-X-034', 'The Waters of Oblivion', 'Anonymous', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (269, 'AR-X-034', 'The Waters of Oblivion', 'Anonymous', 'Religion & Prophecy',
    'A hundred and twenty numbered ages in the void that fated folk had grown deep-schooled in evil. Then the Bright Gods resolved to punish those faithless spirits, and shatter the unruly caitiffs, those huge, unholy scathers, loathsome to the Light. They repented exceedingly that they had gazed upon Oblivion, and seen there the first of dark kin, and welcomed them as brothers and sisters.
 
 The Principalities of Victory beheld how great was the wickedness of the wayward spirits, and saw that they were bold in sin and full of wiles. They resolved then to chasten the tribes of daedra, and smite darkkind with hammer and hand.
 
-But ever shall Darkness contest the Light, and great were the Powers that breathed the void and laid waste upon one another, and no oath might bind them, so deep were they in envy and perfidy. For once the portals are opened, who shall shut them upon the rising tide?', 0);
+But ever shall Darkness contest the Light, and great were the Powers that breathed the void and laid waste upon one another, and no oath might bind them, so deep were they in envy and perfidy. For once the portals are opened, who shall shut them upon the rising tide?', 0, '');
 
 -- AR-X-035 — Words of Clan Mother Ahnissi to her Favored Daughter
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (237, 'AR-X-035', 'Words of Clan Mother Ahnissi to her Favored Daughter', 'Anonymous', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (270, 'AR-X-035', 'Words of Clan Mother Ahnissi to her Favored Daughter', 'Anonymous', 'Religion & Prophecy',
    'Ahnissi tells you. You are no longer a mewing kitten and you have learned to keep secrets from Ahnissi, and so Ahnissi tells you.
 
 In the beginning there were two littermates, Ahnurr and Fadomai. After many phases, Fadomai said to Ahnurr, “Let us wed and make children to share our happiness.”
@@ -1234,27 +1234,312 @@ And Azurah came to her and said, “Poor Nirni, stop your tears. Azurah makes fo
 
 But Y’ffer heard the First Secret and snuck in behind Azurah. And Y’ffer could not appreciate secrets, and he told Nirni of Azurah’s trick. So Nirni made the deserts hot and the sands biting. And Nirni made the forests wet and filled with poisons. And Nirni thanked Y’ffer and let him change the forest people also. And Y’ffer did not have Azurah’s subtle wisdom, so Y’ffer made the forest people Elves always and never beasts. And Y’ffer named them Bosmer. And from that moment they were no longer in the same litter as the Khajiit.
 
-And because Y’ffer had no appreciation for secrets, he shouted the First Secret across all the heavens with his last breath so that all of Fadomai’s children could cross the Lattice. But Azurah, in her wisdom, closed the ears of angry Ahnurr and noisy Lorkhaj so they alone did not hear the word.', 0);
+And because Y’ffer had no appreciation for secrets, he shouted the First Secret across all the heavens with his last breath so that all of Fadomai’s children could cross the Lattice. But Azurah, in her wisdom, closed the ears of angry Ahnurr and noisy Lorkhaj so they alone did not hear the word.', 0, '');
 
 -- AR-X-036 — Yngol and the Sea-Ghosts
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (238, 'AR-X-036', 'Yngol and the Sea-Ghosts', 'Anonymous', 'Religion & Prophecy',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (271, 'AR-X-036', 'Yngol and the Sea-Ghosts', 'Anonymous', 'Religion & Prophecy',
    'Masser and Secunda passed over Ysgramor’s people as their fellowship landed in long-boats upon the rocky shores of Hsaarik Head on their journey from Atmora to Mereth. Boats littered the coast, but Ysgramor did not count his kin, Yngol’s among them.
 
 Ysgramor commanded the sea-ghosts to surrender his kin, and a great gale darkened the sky. The seas thrashed and churned, and a wrathful storm appeared. Ysgramor took up the oars and rowed into the storm alone.
 
 Upon the Sea, Ysgramor wrestled the sea-ghosts, and the storm carried him along the jagged coast. Two fortnights passed without relief, until finally the storm broke. Come the next dawn, Yngol’s long-boat was found in the icy surf, but the vengeful sea-ghosts had already taken Yngol and his clansmen.
 
-In his terrible grief, Ysgramor slew a dozen dozen beasts and burned them in honor of his fallen kinsman. A barrow-hill was dug in the Atmoran tradition, and Yngol was laid to rest with rites and honors among his clansmen far below the rocky face of Hsaarik Head, the first Children of the Sky to perish in Tamriel.', 0);
+In his terrible grief, Ysgramor slew a dozen dozen beasts and burned them in honor of his fallen kinsman. A barrow-hill was dug in the Atmoran tradition, and Yngol was laid to rest with rites and honors among his clansmen far below the rocky face of Hsaarik Head, the first Children of the Sky to perish in Tamriel.', 0, '');
+
+-- AR-X-037 — Aevar Stone-Singer
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (272, 'AR-X-037', 'Aevar Stone-Singer', 'Anonymous', 'Religion & Prophecy',
+   '"Sit quietly, Child, and listen, for the story I tell you is a story of the ages."
+
+"But what is it, Grandfather? Is it a story of heroes and beasts?"
+
+The Grandfather looked patiently at the Child. He was growing into a fine boy. Soon he would see the value in the stories, the lessons that were taught to each generation.
+"Just listen, Child. Let the story take root in your heart."
+
+--
+
+In a time before now, long before now, when the Skaal were new, there was peace in the Land. The sun was hot and the crops grew long, and the people were happy in the peace that the All-Maker provided. But, the Skaal grew complacent and lazy, and they took for granted the Lands and all the gifts the All-Maker had given them. They forgot, or chose not to remember, that the Adversary is always watching, and that he delights in tormenting the All-Maker and his chosen people. And so it was that the Adversary came to be among the Skaal.
+
+The Adversary has many aspects. He appears in the unholy beasts and the incurable plague. At the End of Seasons, we will know him as Thartaag the World-Devourer. But in these ages he came to be known as the Greedy Man.
+
+The Greedy Man (that is what we call him, for to speak his name would certainly bring ruin on the people) lived among the Skaal for many months. Perhaps he was once just a man, but when the Adversary entered into him, he became the Greedy Man, and that is how he is remembered.
+
+It came to be one day that the powers of the Skaal left them. The strength left the arms of the warriors, and the shaman could no longer summon the beasts to their side. The elders thought that surely the All-Maker was displeased, and some suggested that the All-Maker had left them forever. It was then that the Greedy Man appeared to them and spoke.
+
+"You of the Skaal have grown fat and lazy. I have stolen the gifts of your All-Maker. I have stolen the Oceans, so you will forever know thirst. I have stolen the Lands and the Trees and the Sun, so your crops will wither and die. I have stolen the Beasts, so you will go hungry. And I have stolen the Winds, so you will live without the Spirit of the All-Maker.
+
+"And until one of you can reclaim these gifts, the Skaal will live in misery and despair. For I am the Greedy Man, and that is my nature."
+
+And the Greedy Man disappeared.
+
+The members of the Skaal spoke for many days and nights. They knew that one of them must retrieve the Gifts of the All-Maker, but they could not decide who it should be.
+
+"I cannot go," said the Elder, "for I us must stay to lead the Skaal, and tell our people what is the law."
+
+"I cannot go," said the Warrior, "for I must protect the Skaal. My sword will be needed in case the Greedy Man reappears."
+
+"I cannot go," said the Shaman, "for the people need my wisdom. I must read the portents and offer my knowledge."
+
+It was then that a young man called Aevar lifted his voice. He was strong of arm, and fleet of foot, though he was not yet a warrior of the Skaal.
+
+"I will go," said Aevar, and the Skaal laughed.
+
+"Hear me out," the boy continued. "I am not yet a warrior, so my sword will not be needed. I cannot read the portents, so the people will not seek my counsel. And I am young, and not yet wise in the ways of the law. I will retrieve the Gifts of the All-Maker from the Greedy Man. If I cannot, I will not be missed."
+
+The Skaal thought on this briefly, and decided to let Aevar go. He left the village the next morning to retrieve the Gifts.
+
+Aevar first set out to retrieve the Gift of Water, so he traveled to the Water Stone. It was there the All-Maker first spoke to him.
+
+"Travel west to the sea and follow the Swimmer to the Waters of Life."
+
+So Aevar walked to the edge of the ocean, and there was the Swimmer, a Black Horker, sent from the All-Maker. The Swimmer dove into the waters and swam very far, and far again. Aevar was strong, though, and he swam hard. He followed the Swimmer to a cave, swimming deeper and deeper, his lungs burning and his limbs exhausted. At last, he found a pocket of air, and there, in the dark, he found the Waters of Life. Gathering his strength, he took the Waters and swam back to the shore.
+
+Upon returning to the Water Stone, the All-Maker spoke. "You have returned the Gift of Water to the Skaal. The Oceans again will bear fruit, and their thirst will be quenched."
+
+Aevar then traveled to the Earth Stone, and there the All-Maker spoke to him again.
+
+"Enter the Cave of the Hidden Music, and hear the Song of the Earth."
+
+So Aevar traveled north and east to the Cave of the Hidden Music. He found himself in a large cavern, where the rocks hung from the ceiling and grew from the ground itself. He listened there, and heard the Song of the Earth, but it was faint. Grabbing up his mace, he struck the rocks of the floor in time with the Song, and the Song grew louder, until it filled the cavern and his heart. Then he returned to the Earth Stone.
+
+"The Gift of the Earth is with the Skaal again," said the All-Maker. "The Lands are rich again, and will bear life."
+
+Aevar was tired, as the Sun burned him, the trees offered no shade, and there was no wind to cool him. Still, he traveled on to the Beast Rock, and the All-Maker spoke.
+
+"Find the Good Beast and ease his suffering."
+
+Aevar traveled through the woods of the Isinfier for many hours until he heard the cries of a bear from over a hill. As he crested a hill, he saw the bear, a Falmer''s arrow piercing its neck. He checked the woods for the Falmer (for that is what they were, though some say they are not), and finding none, approached the beast. He spoke soothing words and came upon it slowly, saying, "Good Beast, I mean you no harm. The All-Maker has sent me to ease your suffering."
+
+Hearing these words, the bear ceased his struggles, and laid his head at Aevar''s feet. Aevar grasped the arrow and pulled it from the bear''s neck. Using the little nature magic he knew, Aevar tended the wound, though it took the last bit of his strength. As the bear''s wound closed, Aevar slept.
+
+When he awoke, the bear stood over him, and the remains of a number of the Falmer were strewn about. He knew that the Good Beast had protected him during the night. He traveled back to Beast Rock, the bear by his side, and the All-Maker spoke to him again.
+
+"You have returned the Gift of the Beasts. Once again, the Good Beasts will feed the Skaal when they are hungry, clothe them when they are cold, and protect them in times of need."
+
+Aevar''s strength had returned, so he traveled on to the Tree Stone, though the Good Beast did not follow him. When he arrived, the All-Father spoke to him.
+
+"The First Trees are gone, and must be replanted. Find the seed and plant the First Tree."
+
+Aevar traveled again through the Hirstaang Forest, searching for the seeds of the First Tree, but he could find none. Then he spoke to the Tree Spirits, the living trees. They told him that the seeds had been stolen by one of the Falmer (for they are the servants of the Adversary), and this Falmer was hiding them deep in the forest, so that none would ever find them.
+
+Aevar traveled to the deepest part of the forest, and there he found the evil Falmer, surrounded by the Lesser Tree Spirits. Aevar could see that the Spirits were in his thrall, that he had used the magic of the Seeds and spoken their secret name. Aevar knew he could not stand against such a force, and that he must retrieve the seeds in secret.
+
+Aevar reached into his pouch and drew out his flint. Gathering leaves, he started a small fire outside the clearing where the Falmer and the ensorcelled Spirits milled. All the Skaal know the Spirits'' hatred of fires, for the fires ravage the trees they serve. At once, the Nature of the Spirits took hold, and they rushed to quell the flames. During the commotion, Aevar snuck behind the Falmer and snatched the pouch of Seeds, stealing away before the evil being knew they were gone.
+
+When Aevar returned to the Tree Stone, he planted the tree in the ground, and the All-Maker spoke to him.
+
+"The Gift of Trees is restored. Once again, the Trees and Plants will bloom and grow, and provide nourishment and shade."
+
+Aevar was tired, for the Sun would only burn, and the Winds would not yet cool him, but he rested briefly in the shade of the Trees. His legs were weary and his eyes heavy, but he continued on, traveling to the Sun Stone. Again, the All-Maker spoke.
+
+"The gentle warmth of the Sun is stolen, so now it only burns. Free the Sun from the Halls of Penumbra."
+
+And so Aevar walked west, over the frozen lands until he reached the Halls of Penumbra. The air inside was thick and heavy, and he could see no farther than the end of his arm. Still, he felt his way along the walls, though he heard the shuffling of feet and knew that this place held the Unholy Beasts who would tear his flesh and eat his bones. For hours he crept along, until he saw a faint glow far at the end of the hall.
+
+There, from behind a sheet of perfect ice, came a glow so bright he had to shut his eyes, lest they be forever blinded. He plucked the flaming eye from one of the Unholy Beasts and threw it at the ice with all his might. A small crack appeared in the ice, then grew larger. Slowly, the light crept out between the cracks, widening them, splitting the ice wall into pieces. With a deafening crack, the wall crumbled, and the light rushed over Aevar and through the Halls. He heard the shrieks of the Unholy Beasts as they were blinded and burned. He ran out of the Halls, following the light, and collapsed on the ground outside.
+
+When he was able to rise again, the Sun again warmed him, and he was glad for that. He traveled back to the Sun Stone, where the All-Maker spoke to him.
+
+"The Gift of the Sun is the Skaal''s once again. It will warm them and give them light."
+
+Aevar had one final Gift he had to recover, the Gift of the Winds, so he traveled to the Wind Stone, far on the western coast of the island. When he arrived, the All-Maker spoke to him, giving him his final task.
+
+"Find the Greedy Man and release the Wind from its captivity."
+
+So, Aevar wandered the land in search of the Greedy Man. He looked in the trees, but the Greedy Man did not hide there. Nor did he hide near the oceans, or the deep caves, and the beasts had not seen him in the dark forests. Finally, Aevar came to a crooked house, and he knew that here he would find the Greedy Man.
+
+"Who are you," shouted the Greedy Man, "that you would come to my house?"
+
+"I am Aevar of the Skaal," said Aevar. "I am not warrior, shaman, or elder. If I do not return, I will not be missed. But I have returned the Oceans and the Earth, the Trees, the Beasts, and the Sun, and I will return the Winds to my people, that we may feel the spirit of the All-Maker in our souls again."
+
+And with that, he grabbed up the Greedy Man''s bag and tore it open. The Winds rushed out with gale force, sweeping the Greedy Man up and carrying him off, far from the island. Aevar breathed in the Winds and was glad. He walked back to the Wind Stone, where the All-Maker spoke to him a final time.
+
+"You have done well, Aevar. You, the least of the Skaal, have returned my gifts to them. The Greedy Man is gone for now, and should not trouble your people again in your lifetime. Your All-Maker is pleased. Go now, and live according to your Nature."
+
+And Aevar started back to the Skaal village.
+
+--
+
+"And then what happened, Grandfather?"
+
+"What do you mean, Child? He went home."
+
+"No. When he returned to the village," the Child continued. "Was he made a warrior? Or taught the ways of the shaman? Did he lead the Skaal in battle?"
+
+"I do not know. That is where the story ends," said the Grandfather.
+
+"But that is not an ending! That is not how stories end!"
+
+The old man laughed and got up from his chair.
+
+"Is it not?"', 0, '');
+
+-- AR-X-038 — Azura and the Box
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (273, 'AR-X-038', 'Azura and the Box', 'Anonymous', 'Religion & Prophecy',
+   'Nchylbar had enjoyed an adventurous youth, but had grown to be a very wise, very old Dwemer who spent his life searching for the truth and dispelling superstitions. He invented much and created many theorems and logic structures that bore his name. But much of the world still puzzled him, and nothing was a greater enigma to him than the nature of the Aedra and Daedra. Over the course of his research, he came to the conclusion that many of the Gods were entirely fabricated by man and mer.
+
+Nothing, however, was a greater question to Nchylbar than the limits of divine power. Were the Greater Beings the masters of the entire world, or did the humbler creatures have the strength to forge their own destinies? As Nchylbar found himself nearing the end of his life, he felt he must understand this last basic truth.
+
+Among the sage''s acquaintances was a holy Chimer priest named Athynic. When the priest was visiting Bthalag-Zturamz, Nchylbar told him what he intended to do to find the nature of divine power. Athynic was terrified and pleaded with his friend not to break this great mystery, but Nchylbar was resolute. Finally, the priest agreed to assist out of love for his friend, though he feared the results of this blasphemy.
+
+Athynic summoned Azura. After the usual rituals by which the priest declared his faith in her powers and Azura agreed to do no harm to him, Nchylbar and a dozen of his students entered the summoning chamber, carrying with them a large box.
+
+"As we see you in our land, Azura, you are the Goddess of the Dusk and Dawn and all the mysteries therein," said Nchylbar, trying to appear as kindly and obsequious as he could be. "It is said that your knowledge is absolute."
+
+"So it is," smiled the Daedra.
+
+"You would know, for example, what is in this wooden box," said Nchylbar.
+
+Azura turned to Athynic, her brow furrowed. The priest was quick to explain, "Goddess, this Dwemer is a very wise and respected man. Believe me, please, the intention is not to mock your greatness, but to demonstrate it to this scientist and to the rest of his skeptical race. I have tried to explain your power to him, but his philosophy is such that he must see it demonstrated."
+
+"If I am to demonstrate my might in a way to bring the Dwemer race to understanding, it might have been a more impressive feat you would have me do," growled Azura, and turned to look Nchylbar in the eyes. "There is a red-petalled flower in the box."
+
+Nchylbar did not smile or frown. He simply opened the box and revealed to all that it was empty.
+
+When the students turned to look to Azura, she was gone. Only Athynic had seen the Goddess''s expression before she vanished, and he could not speak, he was trembling so. A curse had fallen, he knew that truly, but even crueler was the knowledge of divine power that had been demonstrated. Nchylbar also looked pale, uncertain on his feet, but his face shone with not fear, but bliss. The smile of a Dwemer finding evidence for a truth only suspected.
+
+Two of his students supported him, and two more supported the priest as they left the chamber.
+
+"I have studied very much over the years, performed countless experiments, taught myself a thousand languages, and yet the skill that has taught me the finally truth is the one that I learned when I was but a poor, young man, trying only to have enough gold to eat," whispered the sage.
+
+As he was escorted up the stairs to his bed, a red flower petal fell from the sleeve of his voluminous robe. Nchylbar died that night, a portrait of peace that comes from contented knowledge.
+
+***Publisher''s Note***
+
+*This is another tale whose origin is unmistakably Dwemer. Again, the words of some Aldmeris translations are quite different, but the essence of the story is the same. The Dunmer have a similar tale about Nchylbar, but in the Dunmer version, Azura recognizes the trick and refuses to answer the question. She slays the Dwemer present for their skepticism and curses the Dunmer for blasphemy.*
+
+*In the Aldmeris versions, Azura is tricked not by an empty box, but by a box containing a sphere which somehow becomes a flat square. Of course the Aldmeris versions, being a few steps closer to the original Dwemer, are much more difficult to understand. Perhaps this "stage magic" explanation was added by Gor Felim because of Felim''s own experience with such tricks in his plays when a mage was not available.*
+
+*"Marobar Sul" left even the character of Nchylbar alone, and he represents many "Dwemer" virtues. His skepticism, while not nearly as absolute as in the Aldmeris version, is celebrated even though it brings a curse upon the Dwemer and the unnamed House of the poor priest.*
+
+*Whatever the true nature of the Gods, and how right or wrong the Dwemer were about them, this tale might explain why the dwarves vanished from the face of Tamriel. Though Nchylbar and his kind may not have intended to mock the Aedra and Daedra, their skepticism certainly offended the Divine Orders.*', 0, '');
+
+-- AR-X-039 — Gods and Worship
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (274, 'AR-X-039', 'Gods and Worship', 'Anonymous', 'Religion & Prophecy',
+   'Editor''s Note:
+Brother Hetchfeld is an Associate Scribe at the Imperial University, Office of Introductory Studies
+
+Gods are commonly judged upon the evidence of their interest in worldly matters. A central belief in the active participation of Deities in mundane matters can be challenged by the reference to apparent apathy and indifference on the part of Gods during times of plague or famine.
+
+From intervention in legendary quests to manifestations in common daily life, no pattern for the Gods of Tamriel activities is readily perceived. The concerns of Gods in many ways may seem unrelated or at best unconcerned with the daily trials of the mortal realm. The exceptions do exist, however.
+
+Many historical records and legends point to the direct intervention of one or more gods at times of great need. Many heroic tales recount blessings of the divinity bestowed upon heroic figures who worked or quested for the good of a Deity or the Deity''s temple. Some of the more powerful artifacts in the known world were originally bestowed upon their owners through such reward. It has also been reported that priests of high ranking in their temples may on occasion call upon their Deity for blessings or help in time of need. The exact nature of such contact and the blessings bestowed is given to much speculation, as the temples hold such associations secret and holy. This direct contact gives weight to the belief that the Gods are aware of the mortal realm. In many circumstances, however, these same Gods will do nothing in the face of suffering and death, seeming to feel no need to interfere. It is thus possible to conclude that we, as mortals, may not be capable of understanding more than a small fraction of the reasoning and logic such beings use.
+
+One defining characteristic of all Gods and Goddesses is their interest in worship and deeds. Deeds in the form of holy quests are just one of the many things that bring the attention of a Deity. Deeds in everyday life, by conforming to the statutes and obligations of individual temples are commonly supposed to please a Deity. Performance of ceremony in a temple may also bring a Deity''s attention. Ceremonies vary according to the individual Deity. The results are not always apparent but sacrifice and offerings are usually required to have any hope of gaining a Deity''s attention.
+
+While direct intervention in daily temple life has been recorded, the exact nature of the presence of a God in daily mundane life is a subject of controversy. A traditional saying of the Wood Elves is that "One man''s miracle is another man''s accident." While some gods are believed to take an active part of daily life, others are well known for their lack of interest in temporal affairs.
+
+It has been theorized that gods do in fact gain strength from such things as worship through praise, sacrifice and deed. It may even be theorized that the number of worshippers a given Deity has may reflect on His overall position among the other Gods. This my own conjecture, garnered from the apparent ability of the larger temples to attain blessings and assistance from their God with greater ease than smaller religious institutions.
+
+There are reports of the existence of spirits in our world that have the same capacity to use the actions and deeds of mortals to strengthen themselves as do the Gods. The understanding of the exact nature of such creatures would allow us to understand with more clarity the connection between a Deity and the Deity''s worshipers.
+
+The implication of the existence of such spirits leads to the speculation that these spirits may even be capable of raising themselves to the level of a God or Goddess. Motusuo of the Imperial Seminary has suggested that these spirits may be the remains of Gods and Goddesses who through time lost all or most of their following, reverting to their earliest most basic form. Practioners *[sic]* of the Old Ways say that there are no Gods, just greater and lesser spirits. Perhaps it is possible for all three theories to be true.', 0, '');
+
+-- AR-X-040 — N'Gasta! Kvata! Kvakis!
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (275, 'AR-X-040', 'N''Gasta! Kvata! Kvakis!', 'Anonymous', 'Religion & Prophecy',
+   '*[an obscure text in the language of the Sload, purportedly written by the Second Era Western necromancer, N''Gasta.]*
+
+N''Gasta! Kvata! Kvakis! ahkstas so novajxletero (oix jhemile) so Ranetauw. Ricevas gxin pagintaj membrauw kaj aliaj individuauw, kiujn iamaniere tusxas so raneta aktivado. En gxi aperas informauw unuavice pri so lokauw so cxiumonataj kunvenauw, sed nature ankoix pri aliaj aktuasoj aktivecauw so societo. Ne malofte enahkstas krome plej diversaspekta materialo eduka oix distra.
+
+So interreta Kvako (retletera kaj verjheauw) ahkstas unufsonke alternativaj kanasouw por distribui so enhavon so papera Kva! Kvak!. Sed alifsonke so enhavauw so diversaj verjheauw antoixvible ne povas kaj ecx ne vus cxiam ahksti centprocente so sama. En malvaste cirkusonta paperfolio ekzemple ebsos publikigi ilustrajxauwn, kiuj pro kopirajtaj kiasouw ne ahkstas uzebsoj en so interreto. Alifsonke so masoltaj kostauw reta distribuo forigas so spacajn limigauwn kaj permahksas pli ampleksan enhavon, por ne paroli pri gxishora aktualeco.
+
+Tiuj cirkonstancauw rahkspeguligxos en so aspekto so Kvakoa, kiu ja cetere servos ankoix kiel gxeneraso retejo so ranetauw.', 0, '');
+
+-- AR-X-041 — Words of Clan Mother Ahnissi
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (276, 'AR-X-041', 'Words of Clan Mother Ahnissi', 'Anonymous', 'Religion & Prophecy',
+   'Ahnissi tells you. You are no longer a mewing kitten and you have learned to keep secrets from Ahnissi, and so Ahnissi tells you.
+
+In the beginning there were two littermates, Ahnurr and Fadomai. After many phases, Fadomai said to Ahnurr, "Let us wed and make children to share our happiness."
+
+And they gave birth to Alkosh, the First Cat. And Ahnurr said, "Alkosh, we give you Time, for what is as fast or as slow as a cat?"
+
+And they gave birth to Khenarthi, the Winds. "Khenarthi, to you we give the sky, for what can fly higher than the wind?"
+
+And they gave birth to Magrus, the Cat''s Eye. "Magrus, to you we give the sun, for what is brighter than the eye of a cat?"
+
+And they gave birth to Mara, the Mother Cat. "Mara, you are love, for what is more loving than a mother?"
+
+And they gave birth to S''rendarr, the Runt. "S''rendarr, we give you mercy, for how does a runt survive, except by mercy?"
+
+And many phases passed and Ahnurr and Fadomai were happy.
+
+And Ahnurr said, "We should have more children to share our happiness." And Fadomai agreed. And she gave birth to Hermorah. And she gave birth to Hircine. And she gave birth to Merrunz and Mafala and Sangiin and Sheggorath and many others.
+
+And Fadomai said:
+
+"Hermorah, you are the Tides, for who can say whether the moons predict the tides or the tides predict the moons?"
+
+"Hircine, you are the Hungry Cat, for what hunts better than a cat with an empty belly?"
+
+"Merrunz, you are the Ja''Khajiit, for what is more destructive than an *[sic]* kitten?"
+
+"Mafala, you are the Clan Mother, for what is more secretive than the ways of the Clan Mothers?"
+
+"Sangiin, you are the Blood Cat, for who can control the urges of blood?"
+
+"Sheggorath, you are the Skooma Cat, for what is crazier than a cat on skooma?"
+
+And Ahnurr said, "Two litters is enough, for too many children will steal our happiness."
+
+But Khenarthi went to Fadomai and said, "Fadomai-mother, Khenarthi grows lonely so high above the world where not even my brother Alkosh can fly." Fadomai took pity on her and tricked Ahnurr to make her pregnant again.
+
+And Fadomai gave birth to the Moons and their Motions. And she gave birth to Nirni, the majestic sands and lush forests. And she gave birth to Azurah, the dusk and the dawn.
+
+And from the beginning, Nirni and Azurah fought for their mother''s favor.
+
+Ahnurr caught Fadomai while she was still birthing, and he was angry. Ahnurr struck Fadomai and she fled to birth the last of her litter far away in the Great Darkness. Fadomai''s children heard what had happened, and they all came to be with her and protect her from Ahnurr''s anger.
+
+And Fadomai gave birth to Lorkhaj, the last of her litter, in the Great Darkness. And the Heart of Lorkhaj was filled with the Great Darkness. And when he was born, the Great Darkness knew its name and it was Namiira.
+
+And Fadomai knew her time was near. Fadomai said:
+
+"Ja-Kha''jay, to you Fadomai gives the Lattice, for what is steadier than the phases of the moons? Your eternal motions will protect us from Ahnurr''s anger." And the moons left to take their place in the heavens. And Ahnurr growled and shook the Great Darkness, but he could not cross the Lattice.
+
+And Fadomai said:
+
+"Nirni, to you Fadomai leaves her greatest gift. You will give birth to many people as Fadomai gave birth today." When Nirni saw that Azurah had nothing, Nirni left smiling.
+
+And all Fadomai''s children left except Azurah. And Fadomai said, "To you, my favored daughter, Fadomai leaves her greatest gift. To you Fadomai leaves her secrets." And Fadomai told her favored daughter three things.
+
+And Fadomai said, "When Nirni is filled with her children, take one of them and change them. Make the fastest, cleverest, most beautiful people, and call them Khajiit."
+
+And Fadomai said, "The Khajiit must be the best climbers, for if Masser and Secunda fail, they must climb Khenarthi''s breath to set the moons back in their courses."
+
+And Fadomai said, "The Khajiit must be the best deceivers, for they must always hide their nature from the children of Ahnurr."
+
+And Fadomai said, "The Khajiit must be the best survivors, for Nirni will be jealous, and she will make the sands harsh and the forests unforgiving, and the Khajiit will always be hungry and at war with Nirni."
+
+And with these words, Fadomai died.
+
+After many phases, Nirni came to Lorkhaj and said, "Lorkhaj, Fadomai told me to give birth to many children, but there is no place for them."
+
+And Lorkhaj said, "Lorkhaj makes a place for children and Lorkhaj puts you there so you can give birth." But the Heart of Lorkhaj was filled with the Great Darkness, and Lorkhaj tricked his siblings so that they were forced into this new place with Nirni. And many of Fadomai''s children escaped and became the stars. And many of Fadomai''s children died to make Nirni''s path stable. And the survivors stayed and punished Lorkhaj.
+
+The children of Fadomai tore out the Heart of Lorkhaj and hid it deep within Nirni. And they said, "We curse you, noisy Lorkhaj, to walk Nirni for many phases."
+
+But Nirni soon forgave Lorkhaj for Nirni could make children. And she filled herself with children, but cried because her favorite children, the forest people, did not know their shape.
+
+And Azurah came to her and said, "Poor Nirni, stop your tears. Azurah makes for you a gift of a new people." Nirni stopped weeping, and Azurah spoke the First Secret to the Moons and they parted and let Azurah pass. And Azurah took some forest people who were torn between man and beast, and she placed them in the best deserts and forests on Nirni. And Azurah in her wisdom made them of many shapes, one for every purpose. And Azurah named them Khajiit and told them her Second Secret and taught them the value of secrets. And Azurah bound the new Khajiit to the Lunar Lattice, as is proper for Nirni''s secret defenders. Then Azurah spoke the Third Secret, and the Moons shone down on the marshes and their light became sugar.
+
+But Y''ffer heard the First Secret and snuck in behind Azurah. And Y''ffer could not appreciate secrets, and he told Nirni of Azurah''s trick. So Nirni made the deserts hot and the sands biting. And Nirni made the forests wet and filled with poisons. And Nirni thanked Y''ffer and let him change the forest people also. And Y''ffer did not have Azurah''s subtle wisdom, so Y''ffer made the forest people Elves always and never beasts. And Y''ffer named them Bosmer. And from that moment they were no longer in the same litter as the Khajiit.
+
+And because Y''ffer had no appreciation for secrets, he shouted the First Secret across all the heavens with his last breath so that all of Fadomai''s children could cross the Lattice. But Azurah, in her wisdom, closed the ears of angry Ahnurr and noisy Lorkhaj so they alone did not hear the word.', 0, '');
 
 -- Cross-references, derived from the titles named in these bodies.
-INSERT INTO citations (from_tome, cites_call_number) VALUES (206, 'AR-IX-004');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (209, 'AR-V-043');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (211, 'AR-IV-004');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (214, 'AR-X-023');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (216, 'AR-X-023');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (224, 'AR-II-005');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (229, 'AR-IV-015');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (231, 'AR-IV-032');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (235, 'AR-IV-004');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (238, 'AR-XI-002');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (239, 'AR-IX-004');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (242, 'AR-V-043');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (244, 'AR-IV-004');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (247, 'AR-X-023');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (249, 'AR-X-023');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (257, 'AR-II-005');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (262, 'AR-IV-015');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (264, 'AR-IV-032');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (268, 'AR-IV-004');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (271, 'AR-XI-002');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (273, 'AR-X-002');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (274, 'AR-X-023');

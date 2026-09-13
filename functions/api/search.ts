@@ -25,8 +25,8 @@ const MAX_LIMIT = 100;
  * control characters that cannot occur in the corpus, and the client splits on
  * them and builds elements. Nothing here ever reaches innerHTML.
  */
-const OPEN = '';
-const CLOSE = '';
+const OPEN = '\u0001';
+const CLOSE = '\u0002';
 
 interface Hit {
   id: number;
@@ -34,6 +34,7 @@ interface Hit {
   title: string;
   author: string;
   school: string;
+  volume?: string | null;
   restricted: number;
   excerpt: string;
   score: number;
@@ -83,6 +84,61 @@ function wordsOf(text: string): string[] {
       .toLowerCase()
       .match(/[\p{L}\p{N}]+/gu) ?? []
   );
+}
+
+const romanMap: Record<string, number> = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 };
+
+function romanValue(token: string): number {
+  let total = 0;
+  for (let i = 0; i < token.length; i++) {
+    const here = romanMap[token[i]] ?? 0;
+    const next = romanMap[token[i + 1]] ?? 0;
+    total += next > here ? -here : here;
+  }
+  return total;
+}
+
+/** Spelled-out numbers the register's own headings use — "Book One" through
+ * "Book Eight" and the odd compound like "Book Twenty-One". */
+const WORD_NUMBERS: Record<string, number> = {
+  one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10,
+  eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16,
+  seventeen: 17, eighteen: 18, nineteen: 19, twenty: 20, thirty: 30, forty: 40, fifty: 50,
+};
+
+function wordToNumber(raw: string): number {
+  const parts = raw.toLowerCase().trim().split(/[\s-]+/);
+  if (parts.length === 1) return WORD_NUMBERS[parts[0]] ?? NaN;
+  if (parts.length === 2) {
+    const tens = WORD_NUMBERS[parts[0]];
+    const ones = WORD_NUMBERS[parts[1]];
+    if (tens >= 20 && tens % 10 === 0 && ones < 10) return tens + ones;
+  }
+  return NaN;
+}
+
+/**
+ * A heading reduced to the one vocabulary the shelf shows.
+ *
+ * "Part 2", "Book One", and "Chapter V" all name the same thing to a reader —
+ * a sequence number within this particular book — and the archive's own
+ * mixed usage of Part/Book/Chapter/Volume is not something a visitor searching
+ * for Kynareth needs to see. Where the heading is not one of these forms
+ * (a named interlude, an epilogue), the original heading is kept rather than
+ * dropped — see the call site.
+ */
+function normalizeHeading(heading: string): string | null {
+  const match = heading.match(
+    /\b(?:volume|vol(?:ume)?\.?|book|chapter|part)\b\s*(?:[.:\-]\s*)?([ivxlcdm]+|\d+|[a-z]+(?:[\s-][a-z]+)?)\b/i,
+  );
+  if (!match) return null;
+
+  const token = match[1].trim();
+  const n = /^[ivxlcdm]+$/i.test(token) ? romanValue(token.toUpperCase())
+    : /^\d+$/.test(token) ? Number(token)
+    : wordToNumber(token);
+
+  return Number.isFinite(n) ? `Volume ${n}` : null;
 }
 
 /**
@@ -144,7 +200,23 @@ function sectionsHit(body: string, excerpt: string, tokens: string[]): string[] 
     }
   }
 
-  return sections.filter((_, i) => hit[i]).map(({ heading }) => heading);
+  // Every heading the register writes — Part, Book, Chapter, Volume, roman or
+  // spelled out — reduces to "Volume N" here. A heading that isn't one of
+  // those forms (a named interlude) is shown as written rather than dropped.
+  return sections
+    .filter((_, i) => hit[i])
+    .map(({ heading }) => normalizeHeading(heading) ?? heading);
+}
+
+function volumeCategoryFromQuery(raw: string): string | null {
+  const match = raw.match(/\b(?:vol(?:ume)?|book|chapter|part)\b\s*(?:[.:\-]\s*)?([ivxlcdm]+|\d+)/i);
+  if (!match) return null;
+
+  const token = match[1].trim();
+  if (/^[ivxlcdm]+$/i.test(token)) return `Volume ${romanValue(token.toUpperCase())}`;
+
+  const numeric = Number(token);
+  return Number.isFinite(numeric) ? `Volume ${numeric}` : null;
 }
 
 /**
@@ -198,47 +270,22 @@ export const onRequest = readOnly(async ({ request, env }: RequestContext) => {
     ? Math.min(Math.max(askedFor, 1), MAX_LIMIT)
     : DEFAULT_LIMIT;
 
-  /*
-   * bm25 weights title and author above body.
-   *
-   * Its score is negative and more negative is better, so ascending order is
-   * best-first. Without the weights a book that says "illusion" once in
-   * passing outranks one called "On the Courtesy of Illusions", because the
-   * short field it appears in is not otherwise privileged.
-   *
-   * The excerpt is taken from the body (column 2). Where the match is only in
-   * the title, there is nothing in the body to quote and SQLite returns the
-   * opening of the book, which is the right thing to show anyway.
-   *
-   * THE EXCERPT IS THE ONE PLACE A BOOK'S TEXT STILL LEAVES THE SERVER, and it
-   * is worth being explicit about that. The reader was removed so that a
-   * librarian cannot sit and read the volumes they are cataloguing; this hands
-   * back about fourteen tokens around a match, which is a card catalogue's
-   * keyword-in-context and not a book — but a patient person with a wordlist
-   * could walk a volume out of it a phrase at a time. It stays because
-   * searching inside the volumes is the feature the archive was asked for and
-   * the excerpt is what makes a hit legible. Dropping `snippet(...)` from this
-   * SELECT and the `excerpt` field from the client's `Hit` is the whole change
-   * if that trade is ever judged the wrong way round.
-   */
+  const requestedVolume = volumeCategoryFromQuery(raw);
+
   const sql =
-    `SELECT t.id, t.call_number, t.title, t.author, t.school, t.restricted,` +
+    `SELECT t.id, t.call_number, t.title, t.author, t.school, t.restricted, t.volume,` +
     ` snippet(tomes_fts, 2, ?, ?, '…', 14) AS excerpt,` +
     ` bm25(tomes_fts, 10.0, 4.0, 1.0) AS score,` +
-    // The body comes back only where it has parts to name, so the forty-odd
-    // bound volumes cost a round trip of their prose and the other two hundred
-    // cost nothing. It never leaves this function.
     ` CASE WHEN instr(t.body, '## ') > 0 THEN t.body END AS body` +
     ` FROM tomes_fts` +
     ` JOIN tomes t ON t.id = tomes_fts.rowid` +
-    // Sealed volumes are searched with the rest of them: they are listed on
-    // the shelf now, and a search that quietly skipped five of the books the
-    // College holds would be a worse tool than one that admits to them.
     ` WHERE tomes_fts MATCH ?` +
+    (requestedVolume === null ? '' : ' AND lower(t.volume) LIKE ?') +
     (shelf === null ? '' : ' AND t.school = ?') +
     ` ORDER BY score LIMIT ?`;
 
   const binds: unknown[] = [OPEN, CLOSE, match];
+  if (requestedVolume !== null) binds.push(`%${requestedVolume}%`);
   if (shelf !== null) binds.push(shelf);
   binds.push(limit);
 
@@ -246,8 +293,6 @@ export const onRequest = readOnly(async ({ request, env }: RequestContext) => {
   try {
     ({ results } = await env.DB.prepare(sql).bind(...binds).all<Hit>());
   } catch {
-    // A MATCH expression FTS5 will not parse is the visitor's typing, not a
-    // fault: answer "nothing found" rather than 500 at somebody mid-word.
     return json({ query: raw, shelf, hits: [], total: 0 }, 200, 'no-store');
   }
 

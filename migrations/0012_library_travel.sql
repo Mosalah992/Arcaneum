@@ -7,8 +7,8 @@
 -- See PROVENANCE.md.
 
 -- AR-XI-001 — Ancestors and the Dunmer
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (239, 'AR-XI-001', 'Ancestors and the Dunmer', 'Anonymous', 'Travel',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (277, 'AR-XI-001', 'Ancestors and the Dunmer', 'Anonymous', 'Travel',
    '## Ghosts Walk Among Them
 
 The departed spirits of the Dunmeri, and perhaps those of all races, persist after death. The knowledge and power of departed ancestors benefits the bloodlines of Dunmeri Houses. The bond between the living family members and immortal ancestors is partly blood, partly ritual, partly volitional. A member brought into the House through marriage binds himself through ritual and oath into the clan, and gains communication and benefits from the clan’s ancestors; however, his access to the ancestors is less than his offspring, and he retains some access to the ancestors of his own bloodline.
@@ -37,22 +37,22 @@ Some spirits are captured and bound to enchanted items by wizards. If the bindin
 
 Some spirits are bound against their wills to protect family shrines. This unpleasant fate is reserved for those who have not served the family faithfully in life. Dutiful and honorable ancestral spirits often aid in the capture and binding of wayward spirits.
 
-These spirits usually go mad, and make terrifying guardians. They are ritually prevented from harming mortals of their clans, but that does not necessary discourage them from mischievous or peevish behavior.', 0);
+These spirits usually go mad, and make terrifying guardians. They are ritually prevented from harming mortals of their clans, but that does not necessary discourage them from mischievous or peevish behavior.', 0, '');
 
 -- AR-XI-002 — Children of the Sky
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (240, 'AR-XI-002', 'Children of the Sky', 'Anonymous', 'Travel',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (278, 'AR-XI-002', 'Children of the Sky', 'Anonymous', 'Travel',
    'Nords consider themselves to be the children of the sky. They call Skyrim the Throat of the World, because it is where the sky exhaled on the land and formed them. They see themselves as eternal outsiders and invaders, and even when they conquer and rule another people; they feel no kinship with them.
 
 The breath and the voice are the vital essence of a Nord. When they defeat great enemies they take their tongues as trophies. These are woven into ropes and can hold speech like an enchantment. The power of a Nord can be articulated into a shout, like the kiai of an Akaviri swordsman. The strongest of their warriors are called “Tongues.” When the Nords attack a city, they take no siege engines or cavalry; the Tongues form in a wedge in front of the gatehouse, and draw in breath. When the leader lets it out in a kiai, the doors are blown in, and the axemen rush into the city. Shouts can be used to sharpen blades or to strike enemies. A common effect is the shout that knocks an enemy back, or the power of command. A strong Nord can instill bravery in men with his battle-cry, or stop a charging warrior with a roar. The greatest of the Nords can call to specific people over hundreds of miles, and can move by casting a shout, appearing where it lands.
 
 The most powerful Nords cannot speak without causing destruction. They must go gagged, and communicate through a sign language and through scribing runes.
 
-The further north you go into Skyrim, the more powerful and elemental the people become, and the less they require dwellings and shelters. Wind is fundamental to Skyrim and the Nords; those that live in the far wastes always carry a wind with them.', 0);
+The further north you go into Skyrim, the more powerful and elemental the people become, and the less they require dwellings and shelters. Wind is fundamental to Skyrim and the Nords; those that live in the far wastes always carry a wind with them.', 0, '');
 
 -- AR-XI-003 — The City of Stone
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (241, 'AR-XI-003', 'The City of Stone', 'Amanda Alleia, Mercenary', 'Travel',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (279, 'AR-XI-003', 'The City of Stone', 'Amanda Alleia, Mercenary', 'Travel',
    'If you’re cutting your coins across Skyrim, you’ll want to point your blade towards Markarth, the capital city of the Reach. There’s no end of trouble in the City of Stone, and that means plenty of ways for you to earn your supper. Your sellsword instincts should point you towards the wealthiest patrons with the fattest purses to work for, but you need to mind yourself during your resting hours.
 
 Markarth isn’t like your Whiterun, where mercenary companies like the Companions make a sellsword an honored professional. No, Markarth has its own rules, rules the natives aren’t going to just tell you. Lucky for you, old Ms. Alleia is here to shine the torchlight over your thick skulls.
@@ -73,11 +73,11 @@ Cidhna Mine is the place where all the silver comes from that I mentioned before
 
 The final place I’ll talk about here is Understone Keep, the home of the Jarl in Markarth. It’s a fancy palace like any other (assuming your palace is built underground), but what you need to know is the city underneath the keep. That’s right, there’s another city below Markarth. One of those old dwarven ruins. They sometimes have expeditions in the ruins that makes for a good job, guarding the scholars and maybe lifting a few stones here and there. If you’re lucky, you might come across one of those old dwarven machines, and you can bring back a souvenir after you’re done breaking it apart.
 
-All right, Ms. Alleia’s hand is getting tired and that means this guide is done. Last piece of advice, don’t cause trouble in Markarth. Don’t start fights. Don’t stop fights. Don’t stick your head anywhere without someone from the city paying you for it, because believe me, no one in Markarth wants you there. Make your gold, drink your mead, see what’s there to see, and move on. Nothing changes in the City of Stone, and that’s just fine.', 0);
+All right, Ms. Alleia’s hand is getting tired and that means this guide is done. Last piece of advice, don’t cause trouble in Markarth. Don’t start fights. Don’t stop fights. Don’t stick your head anywhere without someone from the city paying you for it, because believe me, no one in Markarth wants you there. Make your gold, drink your mead, see what’s there to see, and move on. Nothing changes in the City of Stone, and that’s just fine.', 0, '');
 
 -- AR-XI-004 — An Explorer’s Guide to Skyrim
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (242, 'AR-XI-004', 'An Explorer’s Guide to Skyrim', 'Marcius Carvain, Viscount Bruma', 'Travel',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (280, 'AR-XI-004', 'An Explorer’s Guide to Skyrim', 'Marcius Carvain, Viscount Bruma', 'Travel',
    'Far too often, noble visitors from Cyrodiil see little more of Skyrim than the view from their carriage. To be sure, this coarse, uncivilized province is far from hospitable, but it is also a place of fierce, wild beauty, with grand vistas and inspiring natural wonders awaiting those with the will to seek them out and the refinement to truly appreciate them. If you are of a mind to see Skyrim for yourself, I recommend beginning your adventure as I did, by seeking out Stones of Fate.
 
 No doubt you are taken aback by the name, as I once was. The provincials and village folk have all manner of dark tales about these ancient monuments. Stories of necromantic rituals and fell spirits, of great and terrible powers conferred on any who dare to touch them.
@@ -96,11 +96,11 @@ Whiterun is the heart of Skyrim, its towering palace rivaling even the great cas
 
 More seasoned explorers may wish to visit Markarth, the ancient city of stone far to the west. The recent Forsworn Rebellion has made travel in the Reach perilous, but for those determined to seek adventure no matter the cost, another stone can be found to the east of the city, perched on the mountain above Kolskeggr Mine. Though the climb is difficult, reaching the summit is a milestone any explorer could be proud of.
 
-There are other Stones of Fate to be found in Skyrim - I myself have seen several more, perched on the most remote mountain peaks, or wreathed in fog amid the northern marshes. But the true joy of exploration is in the discovery, and so I leave the rest to you. May the Eight guide your steps.', 0);
+There are other Stones of Fate to be found in Skyrim - I myself have seen several more, perched on the most remote mountain peaks, or wreathed in fog amid the northern marshes. But the true joy of exploration is in the discovery, and so I leave the rest to you. May the Eight guide your steps.', 0, '');
 
 -- AR-XI-005 — A Gentleman's Guide to Whiterun
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (243, 'AR-XI-005', 'A Gentleman''s Guide to Whiterun', 'Mikael the Bard', 'Travel',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (281, 'AR-XI-005', 'A Gentleman''s Guide to Whiterun', 'Mikael the Bard', 'Travel',
    'Welcome, good sir, to this indispensible guide. Within these pages, I, your humble author and guide, will describe to you the great city of Whiterun, the Jewel of the North.
 
 Whiterun offers numerous diversions for the man in search of adventure, fortune and companionship, whether for a night or for a lifetime. The city is graced with not one, but two worthy taverns and there are maids and wenches aplenty.
@@ -139,11 +139,11 @@ As for the Jarl and his court, take pains to avoid them. I find that they lack a
 
 Now I will conclude this work by wishing you great success in your pursuits of women and wine. Spare a moment in your revels to think of me, your humble author, and the risks I have taken to bring you this most thorough report on all thing of interest to the discerning gentleman in the grand city of Whiterun.
 
-Ah, but I will not lie and say that it was all a hardship. After all, who could want to sleep alone in such a cold and hard land as this? Not I!', 0);
+Ah, but I will not lie and say that it was all a hardship. After all, who could want to sleep alone in such a cold and hard land as this? Not I!', 0, '');
 
 -- AR-XI-006 — Glories and Laments
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (244, 'AR-XI-006', 'Glories and Laments', 'Alexandre Hetrard', 'Travel',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (282, 'AR-XI-006', 'Glories and Laments', 'Alexandre Hetrard', 'Travel',
    'Having arrived at Gottlesfont Priory, halfway on the Gold Road between Skingrad and the Imperial City, I resolved to make a side trip to view the magnificent ruins of Ceyatatar, or “Shadow of the Fatherwoods” in the ancient Ayleid tongue. After many hours of difficult travel through tangled hawthorn hells and limberlosts, I was suddenly struck dumb by the aspect of five pure white columns rising from a jade-green mound of vines to perfect V-shaped arches and graceful capitals towering above the verdant forest growth. This spectacle caused me to meditate on the lost glories of the past, and the melancholy fate of high civilizations now poking like splinter shards of bone from the green-grown tumulus of time-swept obscurity.
 
 Within the forest tangle I discovered an entrance leading down into the central dome of a great underground edifice once dedicated to Magnus, the God of Sight, Light, and Insight. Dimly lit by the faded power of its magical pools, the shattered white walls of the enclosure shimmered with a cold blue light.
@@ -154,11 +154,11 @@ The ancient Ayleids recognized not the four elements of modern natural philosoph
 
 It was by these ancient, faded, but still active magics that I knelt and contemplated the departed glories of the long-dead Ayelid architects. Gazing through the glass-smooth reflections of the surrounding pools, I could see, deep below, the slow pulse, the waxing and waning of the Welkynd stones.
 
-The chiefest perils of these ruins to the explorer are the cunning and deadly mechanisms devised by the Ayleids to torment and confound those would invade their underground sanctuaries. What irony that after these many years, these devices should still stand vigilant against those who would admire the works of the Ayleids. For it is clear... these devices were crafted in vain. They did not secure the Ayleids against their true enemies, which were not the slaves who revolted and overthrew their cruel masters, nor the were they the savage beast peoples who learned the crafts of war and magic from their Ayleid masters. No, it was the arrogant pride of their achievements, their smug self-assurance that their empire would last forever, that doomed them to fail and fade into obscurity.', 0);
+The chiefest perils of these ruins to the explorer are the cunning and deadly mechanisms devised by the Ayleids to torment and confound those would invade their underground sanctuaries. What irony that after these many years, these devices should still stand vigilant against those who would admire the works of the Ayleids. For it is clear... these devices were crafted in vain. They did not secure the Ayleids against their true enemies, which were not the slaves who revolted and overthrew their cruel masters, nor the were they the savage beast peoples who learned the crafts of war and magic from their Ayleid masters. No, it was the arrogant pride of their achievements, their smug self-assurance that their empire would last forever, that doomed them to fail and fade into obscurity.', 0, '');
 
 -- AR-XI-007 — Hanging Gardens of Wasten Coridale
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (245, 'AR-XI-007', 'Hanging Gardens of Wasten Coridale', 'Author', 'Travel',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (283, 'AR-XI-007', 'Hanging Gardens of Wasten Coridale', 'Author', 'Travel',
    '...guide Altmer-Estrial led with foot-flames for the town-center where lay dead the quadrangular gardens...
 
 ...asked the foundations and chains and vessels their naming places...
@@ -171,11 +171,11 @@ INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VAL
 
 The translation ends with a comment in Dwemer in a different hand, which you may be translated as follows:
 
-“Put down your ardent cutting-globes, Nbthld. Your Aldmeris has the correct words, but they cannot be properly misinterpreted.”', 0);
+“Put down your ardent cutting-globes, Nbthld. Your Aldmeris has the correct words, but they cannot be properly misinterpreted.”', 0, '');
 
 -- AR-XI-008 — The Holds of Skyrim
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (246, 'AR-XI-008', 'The Holds of Skyrim', 'Anonymous', 'Travel',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (284, 'AR-XI-008', 'The Holds of Skyrim', 'Anonymous', 'Travel',
    'Welcome, loyal officer of the Empire. You have been given this guide to help you, and those men under your command, better understand the geography of Skyrim. Since you will be serving in Skyrim for a lengthy period of time, this information should prove invaluable.
 
 Skyrim is organized into nine holds. A hold is a large area of land roughly equivalent to a county in Cyrodiil. Each hold is governed by a Jarl who maintains his court in the hold’s capital city.
@@ -228,11 +228,11 @@ WINTERHOLD
 
 As with Whiterun, the name Winterhold describes both the hold and its capital city, though the word “city” hardly applies. The hold capital is a meager village built near the mages’ college.
 
-Few other noteworthy settlements exist in this frozen waste, and it is unlikely to play any significant part in the war.', 0);
+Few other noteworthy settlements exist in this frozen waste, and it is unlikely to play any significant part in the war.', 0, 'Volume 1');
 
 -- AR-XI-009 — Mysterious Akavir
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (247, 'AR-XI-009', 'Mysterious Akavir', 'Anonymous', 'Travel',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (285, 'AR-XI-009', 'Mysterious Akavir', 'Anonymous', 'Travel',
    'Akavir means “Dragon Land”. Tamriel means “Dawn’s Beauty.” Atmora means “Elder Wood”. Only the Redguards know what Yokuda ever meant.
 
 Akavir is the kingdom of the beasts. No Men or Mer live in Akavir, though Men once did. These Men, however, were eaten long ago by the vampiric Serpent Folk of Tsaesci. Had they not been eaten, these Men would have eventually migrated to Tamriel. The Nords left Atmora for Tamriel. Before them, the Elves had abandoned Aldmeris for Tamriel. The Redguards destroyed Yokuda so they could make their journey. All Men and Mer know Tamriel is the nexus of creation, where the Last War will happen, where the Gods unmade Lorkhan and left their Adamantine Tower of secrets. Who knows what the Akaviri think of Tamriel, but ask yourself: why have they tried to invade it three times or more?
@@ -247,11 +247,11 @@ Tang Mo is the “Thousand Monkey Isles”. There are many breeds of monkey-folk
 
 Ka Po’ Tun is the “Tiger-Dragon’s Empire”. The cat-folk here are ruled by the divine Tosh Raka, the Tiger-Dragon. They are now a very great empire, stronger than Tsaesci (though not at sea). After the Serpent-Folk ate all the Men, they tried to eat all the Dragons. They managed to enslave the Red Dragons, but the black ones had fled to (then) Po Tun. A great war was raged, which left both the cats and the snakes weak, and the Dragons all dead. Since that time the cat-folk have tried to become the Dragons. Tosh Raka is the first to succeed. He is the largest Dragon in the world, orange and black, and he has very many new ideas.
 
-“First,” Tosh Raka says, “is that we kill all the vampire snakes.” Then the Tiger-Dragon Emperor wants to invade Tamriel.', 0);
+“First,” Tosh Raka says, “is that we kill all the vampire snakes.” Then the Tiger-Dragon Emperor wants to invade Tamriel.', 0, '');
 
 -- AR-XI-010 — On Stepping Lightly
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (248, 'AR-XI-010', 'On Stepping Lightly', 'Sigilis Justus', 'Travel',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (286, 'AR-XI-010', 'On Stepping Lightly', 'Sigilis Justus', 'Travel',
    'Dotting the landscape of Skyrim, the ancient Nordic Ruins are a testament to the ingenuity of the Nordic people of the past. When constructing the final resting places of their noble class, these supposedly "barbaric" people proved quite the opposite; developing some of the most sophisticated and clever defenses ever encountered. Coupled with the presence of the fearsome draugr, these tombs have become quite a challenge for the would-be treasure hunter.
 
 The most often-overlooked obstacles are the abundance of traps spread throughout the tombs. Ranging from simple tripwire-activated rock falls to complex pressure plate-triggered dart traps, the Nords utilize these devices abundantly. Most of the traps can be avoided by simply looking for the trigger mechanism and avoiding them. Since they are most often placed in areas where distractions abound, remember to keep your eyes to the floor.
@@ -264,11 +264,11 @@ Although Nordic Ruins are commonly infested with vermin such as skeever and spid
 
 The perils of the Nordic Ruin are not without reward. The burial chambers in some of the larger complexes have been known to contain all manners of riches, from gold coins to even the occasional enchanted weapon or armor. Never dismiss the small ceremonial urns that dot the ruins, they are commonly filled with ancient offerings of great value. There are rumors that most, if not all of these ruins contain large walls with magical inscriptions upon them, but these have yet to be confirmed.
 
-While this might seem like comprehensive guide to the ruins, there are certain to be dangers lurking within that remain undiscovered. Just be sure to always enter these tombs with plenty of equipment and a good, solid weapon by your side. With a bit of patience, a keen eye and a light step, the Nordic Ruin can bring you great wealth - do without these simple safety measures and you risk becoming a permanent resident like many before you.', 0);
+While this might seem like comprehensive guide to the ruins, there are certain to be dangers lurking within that remain undiscovered. Just be sure to always enter these tombs with plenty of equipment and a good, solid weapon by your side. With a bit of patience, a keen eye and a light step, the Nordic Ruin can bring you great wealth - do without these simple safety measures and you risk becoming a permanent resident like many before you.', 0, '');
 
 -- AR-XI-011 — Walking the World, vol. XI
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (249, 'AR-XI-011', 'Walking the World, vol. XI', 'Spatior Munius', 'Travel',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (287, 'AR-XI-011', 'Walking the World, vol. XI', 'Spatior Munius', 'Travel',
    'Welcome, friend. In our latest volume, we cover Solitude. Spatior could not be more pleased to be at the very seat of Imperial power in Skyrim. In the course of our tour, you’ll see that Solitude’s riches extend from her people to the history and architecture that make up the city itself.
 
 As ever, we begin our journey outside the city walls, this time at the bottom of the hill that ascends all the way to Solitude’s massive gates.
@@ -341,4 +341,4 @@ Spatior has shown you Solitude in all its grandeur, but there are a few places m
 
 That’s all for Walking the World Volume XI. Spatior does not know his next destination yet, but you can be sure that where he does go he will leave you a record of the best things to see.
 
-Spatior Munius, World Traveler', 0);
+Spatior Munius, World Traveler', 0, 'Volume 11');

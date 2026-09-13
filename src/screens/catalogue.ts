@@ -390,7 +390,7 @@ export function catalogueScreen(): Screen {
 
   function matches(row: Row, needle: string): boolean {
     if (needle === '') return true;
-    return `${row.call_number} ${row.title} ${row.author} ${row.school}`
+    return `${row.call_number} ${row.title} ${row.author} ${row.school} ${row.volume ?? ''}`
       .toLowerCase()
       .includes(needle);
   }
@@ -467,6 +467,7 @@ export function catalogueScreen(): Screen {
         'span',
         { class: 'ttl' },
         row.title,
+        row.volume && !row.sections?.length ? el('span', { class: 'volume' }, ` — ${row.volume}`) : null,
         row.restricted ? el('span', { class: 'seal' }, 'SEALED') : null,
         row.sections?.length ? sectionChips(row.sections) : null,
         row.excerpt ? excerptOf(row.excerpt) : null,

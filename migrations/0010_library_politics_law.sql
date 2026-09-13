@@ -7,19 +7,19 @@
 -- See PROVENANCE.md.
 
 -- AR-IX-001 — Antecedants of Dwemer Law
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (196, 'AR-IX-001', 'Antecedants of Dwemer Law', 'Anonymous', 'Politics & Law',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (229, 'AR-IX-001', 'Antecedants of Dwemer Law', 'Anonymous', 'Politics & Law',
    'In short, so far as I am able to trace the order of development in the customs of the Bosmeri tribes, I believe it to have been in all ways comparable to the growth of Altmeri law. The earlier liability for slaves and animals was mainly confined to surrender, which, as in Sumerset Isles, later became compensation.
 
 And what does this matter for a study of our laws today? So far as concerns the influence of the Altmeri law upon our own, especially the Altmeri law of master and servant, the evidence of it is to be found in every judgment which has been recorded for the last five hundred years. It has been stated already that we still repeat the reasoning of the Altmeri magistrates, empty as it is, to the present day. And I will quickly show how Altmeri custom can be followed into the courts of the Dwemer.
 
 In the laws of Karndar Watch (P.D. 1180) it is said, “If one who is owned by another slays one who owns himself, the owner must pay the associates three fine instruments and the body of the one who his owned.” There are many other similar citations. And the same principle is extended even to the case of a centurion by which a man is killed. “If, at the common workbench, one is slain by an Animunculi, the associates of the slain may disassemble the Animunculi and take its parts within thirty days.”
 
-It is instructive to compare what Dhark has mentioned concerning the rude beasts of the Tenmar forests. “If a marsh cat was killed by an Argonian, his family were in disgrace till they retaliated by killing the Argonian, or another like it; but further, if a marsh cat was killed by a fall from a tree, his relatives would take their revenge by toppling the tree, and shattering its branches, and casting them to every part of the forest.”', 0);
+It is instructive to compare what Dhark has mentioned concerning the rude beasts of the Tenmar forests. “If a marsh cat was killed by an Argonian, his family were in disgrace till they retaliated by killing the Argonian, or another like it; but further, if a marsh cat was killed by a fall from a tree, his relatives would take their revenge by toppling the tree, and shattering its branches, and casting them to every part of the forest.”', 0, '');
 
 -- AR-IX-002 — The Code of Malacath
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (197, 'AR-IX-002', 'The Code of Malacath', 'Amanda Alleia', 'Politics & Law',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (230, 'AR-IX-002', 'The Code of Malacath', 'Amanda Alleia', 'Politics & Law',
    'The Code of Malacath:
  
  A Sellsword’s Guide to the Orc Strongholds
@@ -40,11 +40,11 @@ The Code also sets up who runs the stronghold. The toughest male is usually the 
 
 Orc Strongholds don’t like strangers, used to living on their own like they do. Ms. Alleia knows what she does because so many Orcs leave the strongholds to become sellswords or soldiers, and a few pints of mead gets them talking about home. I hear that sometimes an Orc will make a non-Orc a “Blood-Kin” and that person is then allowed to live in the stronghold as one of the clan, but I’ve never heard of that actually happening.
 
-For all their strange rules and traditions, the Code of Malacath does breed a culture of determined warriors. They’re focused in ways that the average sellsword isn’t. They don’t hesitate to draw weapons and settle matters openly, and I think that’s the real difference between the stronghold Orcs and the city Orcs. Imperial Law allows you to settle fights through the Emperor’s men, but the Code of Malacath demands you settle your problems yourself, a fine way of thinking if you’re leading the mercenary’s life.', 0);
+For all their strange rules and traditions, the Code of Malacath does breed a culture of determined warriors. They’re focused in ways that the average sellsword isn’t. They don’t hesitate to draw weapons and settle matters openly, and I think that’s the real difference between the stronghold Orcs and the city Orcs. Imperial Law allows you to settle fights through the Emperor’s men, but the Code of Malacath demands you settle your problems yourself, a fine way of thinking if you’re leading the mercenary’s life.', 0, '');
 
 -- AR-IX-003 — The Dunmer of Skyrim
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (198, 'AR-IX-003', 'The Dunmer of Skyrim', 'Athal Sarys', 'Politics & Law',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (231, 'AR-IX-003', 'The Dunmer of Skyrim', 'Athal Sarys', 'Politics & Law',
    'That is our name. Yet you deny us even this courtesy. You, the white-skinned, jaundice-haired apes of this godsforsaken frozen wilderness. To you Nords, we are the gray ones, the ashen-skinned, the “dark elves” of Morrowind who have as much place in your land as an infection in an open wound.
 
 Oh yes, we have read your great cultural work, “Nords of Skyrim,” in which you extol the many virtues of your people and province, and invite any visitors to come experience your homeland for themselves. Well come we did, Nords, and the reception was less than was promised - but exactly what we expected.
@@ -57,11 +57,11 @@ Indeed, one might be surprised as to just how well we’ve settled into Windhelm
 
 Oh, but the peaceful occupation goes even further. Thirsty? You’ll find no Nord mead hall in the Gray Quarter. But the spirits flow well enough in the New Gnisis Cornerclub. Seeking a respected family? You’ll find no Gray-Manes within these walls. But perhaps you’d like to pay a visit to the home of Belyn Hlaalu, descendant of one of the most noble houses in all of Morrowind. Ah, but no. You Nords don’t come to the Gray Quarter, do you? You fear our streets as you fear our skin.
 
-So now, “children of Skyrim,” you have the truth of it. You may call this province home, but you can no sooner claim to own it than a cow can claim to own its master’s field. You are just another breed of domestic animal, grazing stupidly while higher beings plot your slaughter.', 0);
+So now, “children of Skyrim,” you have the truth of it. You may call this province home, but you can no sooner claim to own it than a cow can claim to own its master’s field. You are just another breed of domestic animal, grazing stupidly while higher beings plot your slaughter.', 0, '');
 
 -- AR-IX-004 — Nords of Skyrim
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (199, 'AR-IX-004', 'Nords of Skyrim', 'Hrothmund Wolf-Heart', 'Politics & Law',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (232, 'AR-IX-004', 'Nords of Skyrim', 'Hrothmund Wolf-Heart', 'Politics & Law',
    'Respected reader. My name is Hrothmund Wolf-Heart, and I am a Nord. But, more importantly, I am a Nord born and raised in the land of Skyrim.
 
 I write this volume in the desperate hope that the rest of Tamriel can come to know my people as they deserve to be known, and understand this province for what it truly is - a place of uncontested beauty and culture.
@@ -80,11 +80,11 @@ The cities of Skyrim are a testament to Nord ingenuity and craftsmanship. Chief 
 
 And now, respected reader, you have the full measure of it. We Nords are everything you imagined - and so much more.
 
-But let not this work be your only gateway to the truth. Book passage on carriage or vessel, and make the journey north. See Skyrim with thine own eyes. See Skyrim as have the Nords, since the gods first shaped the world.', 0);
+But let not this work be your only gateway to the truth. Book passage on carriage or vessel, and make the journey north. See Skyrim with thine own eyes. See Skyrim as have the Nords, since the gods first shaped the world.', 0, 'Volume 1');
 
 -- AR-IX-005 — Scourge of the Gray Quarter
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (200, 'AR-IX-005', 'Scourge of the Gray Quarter', 'Frilgeth Horse-Breaker', 'Politics & Law',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (233, 'AR-IX-005', 'Scourge of the Gray Quarter', 'Frilgeth Horse-Breaker', 'Politics & Law',
    'The tragedies befalling Morrowind do bring forth pity from even the stoutest Nordic heart. The dark elves deserve our condolences, but thus far they do not show themselves deserving of the simplest acts of charity. There are very different approaches to how to deal with the imminent problem of Morrowind, and I offer two options as seen in practice in Skyrim. One should serve as an exemplar, the other a cautionary tale.
 
 Consider Riften, which shares a border with the ruined province. A number of the dark elves have made their homes there, but they are expected to earn their livelihoods as is any other citizen of the great city. They ply trades as merchants, work in the temple, and serve in the keep. Honest labor, to be admired from a race that was so recently in such dire straits as to even warrant this discussion. Today the city still has its share of problems, but they are not traceable to any influx of outsiders in their presence. In short, the dark elves have properly assimilated themselves into the Skyrim way of life, to be expected from any newcomer to these lands.
@@ -95,11 +95,11 @@ And what has become of this? Predictably, the lazy, discontented rabble has desc
 
 The Nords I talk to in the city speak of constant strife and crime coming from the Gray Quarter, with no respite in sight. The city guard barely patrol there, leaving the dark elves to mete out whatever passes for justice in their native customs. The respectable families of the city, the Cruel-Seas and Shatter-Shields, speak with an almost parental affection of the Argonians in their employ, but the dark elves have made no effort to ingratiate or assimilate themselves to the proper city-dwellers.
 
-There is cause for optimism, though, as Jarl Ulfric is not nearly so tolerant of these substandard beings as his fathers were. Indeed, the soft hand of Hoag can be seen in the cities Argonian population as well; the fish-men, at least, have learned how to best contribute to their new home. They have proven themselves as models, toiling at the docks with utmost efficiency and bright smiles. It would do the dark elves well to pay heed to their scaly cousins. I would expect in due course that they will find themselves either contributing more directly or once again wandering the land in search of roof and warmth.', 0);
+There is cause for optimism, though, as Jarl Ulfric is not nearly so tolerant of these substandard beings as his fathers were. Indeed, the soft hand of Hoag can be seen in the cities Argonian population as well; the fish-men, at least, have learned how to best contribute to their new home. They have proven themselves as models, toiling at the docks with utmost efficiency and bright smiles. It would do the dark elves well to pay heed to their scaly cousins. I would expect in due course that they will find themselves either contributing more directly or once again wandering the land in search of roof and warmth.', 0, '');
 
 -- AR-IX-006 — Skyrim’s Rule
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (201, 'AR-IX-006', 'Skyrim’s Rule', 'Abdul-Mujib Ababneh', 'Politics & Law',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (234, 'AR-IX-006', 'Skyrim’s Rule', 'Abdul-Mujib Ababneh', 'Politics & Law',
    'Skyrim’s Rule: 
  
  An Outsider’s View
@@ -129,11 +129,11 @@ But as I prepared to leave Skyrim, I could feel a change in the air, sense the t
 
 So while the Jarls of Skyrim still control their holds, and those Jarls are ruled over by their Imperial-sanctioned High King, will there come a day when the Moot convenes to select a new High King - one that is not, as many would say, the Emperor’s “Solitude puppet”?
 
-If that day comes, I will be thankful to be far away from Skyrim, in my own home of Hammerfell. For such a decision could well mean civil war, and I fear that such a conflict would tear the fierce and beautiful Nord people asunder.', 0);
+If that day comes, I will be thankful to be far away from Skyrim, in my own home of Hammerfell. For such a decision could well mean civil war, and I fear that such a conflict would tear the fierce and beautiful Nord people asunder.', 0, '');
 
 -- AR-IX-007 — The Talos Mistake
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (202, 'AR-IX-007', 'The Talos Mistake', 'Leonora Venatus', 'Politics & Law',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (235, 'AR-IX-007', 'The Talos Mistake', 'Leonora Venatus', 'Politics & Law',
    'The Talos Mistake
  
  
@@ -160,8 +160,8 @@ The Emperor agreed to the outlaw of the worship of Talos because it was the righ
 
 Today, the Emperor, and indeed the Empire itself, recognizes that allowing the worship of Talos was a mistake. For by doing so, by allowing the worship of Talos as a Divine, the Empire actually did its people a great disservice: for this only succeeded in weakening the memory of the man Tiber Septim and his many extraordinary (though mortal) deeds; and pushing people away from the Eight Divines, the true gods, who do deserve our love and reverence.
 
-And so, the Empire admits it was wrong. The Talos Mistake will not be repeated. May we find centuries of peace and prosperity with our new Thalmor friends, and continue to share a spirituality that binds together all the cultures and races of Tamriel.', 0);
+And so, the Empire admits it was wrong. The Talos Mistake will not be repeated. May we find centuries of peace and prosperity with our new Thalmor friends, and continue to share a spirituality that binds together all the cultures and races of Tamriel.', 0, '');
 
 -- Cross-references, derived from the titles named in these bodies.
-INSERT INTO citations (from_tome, cites_call_number) VALUES (198, 'AR-IX-004');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (202, 'AR-IV-023');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (231, 'AR-IX-004');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (235, 'AR-IV-023');

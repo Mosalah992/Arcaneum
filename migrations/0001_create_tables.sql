@@ -10,6 +10,7 @@ CREATE TABLE tomes (
                                        -- Illusion, Alteration, Alchemy, History, Daedra
   body         TEXT NOT NULL,          -- markdown
   restricted   INTEGER NOT NULL DEFAULT 0,
+  volume       TEXT NOT NULL DEFAULT '',
   created_at   TEXT NOT NULL DEFAULT (datetime('now'))
 );
 

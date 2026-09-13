@@ -7,8 +7,8 @@
 -- See PROVENANCE.md.
 
 -- AR-VI-001 — Cicero’s Journal
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (154, 'AR-VI-001', 'Cicero’s Journal', 'Anonymous', 'Journals & Logs',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (184, 'AR-VI-001', 'Cicero’s Journal', 'Anonymous', 'Journals & Logs',
    '## Cicero’s Journal: Volume 1
 
 ## 18th of Evening Star, 4E 186
@@ -196,11 +196,11 @@ Sanctuary from all.
 
 I have sent the letter to Astrid. We leave soon. But Cicero will keep this Sanctuary as his Sanctuary!
 
-A place to rest and ply my trade, for I once more take up the blade, and send some lucky souls to Him, when laughter strikes, as fits my whim!', 0);
+A place to rest and ply my trade, for I once more take up the blade, and send some lucky souls to Him, when laughter strikes, as fits my whim!', 0, 'Volume 1');
 
 -- AR-VI-002 — Confessions of a Khajiit Fur Trader
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (155, 'AR-VI-002', 'Confessions of a Khajiit Fur Trader', 'The Fur Trader', 'Journals & Logs',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (185, 'AR-VI-002', 'Confessions of a Khajiit Fur Trader', 'The Fur Trader', 'Journals & Logs',
    'My execution is tomorrow. The turnkey asks what I’d like for my last meal.
 
 Bring me paper, I say. A quill and a candle.
@@ -235,11 +235,11 @@ I have one lockpick. And the northern wall of my cell is weak from disrepair. My
 
 I am not finished with the trade. There will always be buyers. Someday, I will sell my own skin for a king’s ransom, as my name is legend. And yours shall rot in the gutters with your bones.
 
--The Fur Trader', 0);
+-The Fur Trader', 0, '');
 
 -- AR-VI-003 — Diary of Faire Agarwen
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (156, 'AR-VI-003', 'Diary of Faire Agarwen', 'Faire Agarwen; Calcelmo of Markarth, trans.', 'Journals & Logs',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (186, 'AR-VI-003', 'Diary of Faire Agarwen', 'Faire Agarwen; Calcelmo of Markarth, trans.', 'Journals & Logs',
    '## Forward
 
 The dates noted in this diary are translated literally. This verbiage matches no known modern measure of time, and is assumed to be a custom form of counting the days and months. Excavations of ancient Falmer slave quarters have turned up brass vessels, very similar to a deep bowl, with twenty markings crudely etched onto the inside. Falmer scholars theorize that this bowl would be placed under a drip of water coming from an overhanging rock and as the bowl filled, the water’s level would reach these markings, thus indicating a crude passage of time. Because of this diary, the vessel has been called a “kulniir,” a primitive Falmer timekeeping device.
@@ -254,11 +254,11 @@ Tenth Marking, Tenth Kulniir
  I tire of the tears of women and children. My own have run dry. The men have begun to look upon us as if we are all weak yet we have survived the same trials as they. I cannot bring myself to think on the numbers we lost in battle. Yet I cannot force the images of my own losses from my mind. And now in a time when our people should be banding together it feels we are drifting apart. The Nords have truly won. Our once great pride and unity are shattered. If we lose hope now we will never survive. Today many, myself included, have tried to speak out in voices of reason. There can be no hope without talk of our future. We can make no difference if our spirits remain broken.
 
 Eighteenth Marking, Tenth Kulniir
- We know that we can never again be the Snow Elves and live freely in this world. We will forever be in hiding in one form or another. But there is no reason we cannot live life with the sun and the wind against our skin. There are those here who are friends to us and plan to help us once the threat has ended. We know now to survive we must be born anew. Outside, we will appear as though we belong here. Inside, we will carry our truth and our scars.', 0);
+ We know that we can never again be the Snow Elves and live freely in this world. We will forever be in hiding in one form or another. But there is no reason we cannot live life with the sun and the wind against our skin. There are those here who are friends to us and plan to help us once the threat has ended. We know now to survive we must be born anew. Outside, we will appear as though we belong here. Inside, we will carry our truth and our scars.', 0, '');
 
 -- AR-VI-004 — A Dream of Sovngarde
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (157, 'AR-VI-004', 'A Dream of Sovngarde', 'Skardan Free-Winter', 'Journals & Logs',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (187, 'AR-VI-004', 'A Dream of Sovngarde', 'Skardan Free-Winter', 'Journals & Logs',
    'In a few hours, I will likely be dead.
 
 My men and I, Nords of Skyrim all, will soon join with the Emperor’s legions to attack the Imperial City. The Aldmeri are entrenched within and our losses will be severe. It is a desperate gambit, for if we do not reclaim the city, we will lose the war.
@@ -295,11 +295,11 @@ The sound still rang in my ears when I awoke. I gathered my men and told them of
 
 The horns are blowing, and the banners are raised. The time has come to muster. May Talos grant us victory this day, and if I am found worthy, may I once again look upon that great feast hall.
 
-- Skardan Free-Winter', 0);
+- Skardan Free-Winter', 0, '');
 
 -- AR-VI-005 — Flight from the Thalmor
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (158, 'AR-VI-005', 'Flight from the Thalmor', 'Hadrik Oaken-Heart; Ashad Ibn Khaled, ed.', 'Journals & Logs',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (188, 'AR-VI-005', 'Flight from the Thalmor', 'Hadrik Oaken-Heart; Ashad Ibn Khaled, ed.', 'Journals & Logs',
    'It''s been nine days. Nine days since I slipped my bonds. Nine days since I strangled my captor with my own chains. And nine days since I rushed headlong into the night, always listening, but never looking back.
 
 But in order to understand my current predicament, one must first understand where I came from, and just where this story began.
@@ -330,11 +330,11 @@ It is now nine days later, and in that time, I have realized the true extent of 
 
 No. I could not. So now I run. Like a hare from the hound, I run. Always moving, rarely resting, never sleeping. But the Thalmor dog my every move. Where will I go? How will I escape their grasp? I honestly don''t know. The only thing I now understand for certain is this: if the agents of the Aldmeri Dominion cannot have your soul, then they will take your very life.
 
-My name is Hadrik Oaken-Heart, and I am a proud Nord of Skyrim. Remember me. For soon I will be dead.', 0);
+My name is Hadrik Oaken-Heart, and I am a proud Nord of Skyrim. Remember me. For soon I will be dead.', 0, '');
 
 -- AR-VI-006 — Gallus’s Encoded Journal
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (159, 'AR-VI-006', 'Gallus’s Encoded Journal', 'Gallus Desidenius', 'Journals & Logs',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (189, 'AR-VI-006', 'Gallus’s Encoded Journal', 'Gallus Desidenius', 'Journals & Logs',
    '[Literal Translation: MERCER FREY CONTINUES TO ELUDE MY EVERY STEP I THINK HES AWARE IM FOLLOWING HIM AND APPEARS TO BE TAKING NO UNNECESSARY CHANCES IM BRINGING ALL OF MY SKILLS TO THE FOREFRONT IN ORDER TO DECEIVE HIM IT STILL PAINS ME THAT THE DECEPTION IS NECESSARY WHEN I BECAME A NIGHTINGALE USING MY NEWFOUND TALENTS AGAINST MY OWN WAS THE FURTHEST THOUGHT FROM MY MIND
 
 THERE WAS A CLOSE CALL TODAY I WAS SETTLING DOWN FOR A NIGHTS REST IN THE CISTERN WHEN MERCER FREY ENTERED UNEXPECTEDLY HE WAS CREEPING ALONG THE WALL BUT I SPOTTED HIM IMMEDIATELY HE EDGED CLOSER TO THE VAULT DOOR MAKING HIS WAY CAREFULLY AROUND THE PERIMETER OF THE ROOM BUT SUDDENLY STOPPED AND TURNED TOWARDS MY HIDING PLACE I FROZE INSTANTLY EVEN HOLDING MY BREATH FOR A MOMENT BUT MY POSITION WAS ALREADY COMPROMISED HE ABRUPTLY TURNED AND WALKED BACK TOWARDS THE FLAGON WHAT WAS HE DOING
@@ -345,11 +345,11 @@ ITS BEEN CONFIRMED BY MY SOURCES MERCERS BEEN LIVING AN UNDULY LAVISH LIFESTYLE 
 
 IVE BEEN GIVING IT SOME SERIOUS THOUGHT THERES ONLY A SINGLE WAY THAT MERCER COULD HAVE ACCESS TO VAST AMOUNTS OF COIN I HESITATE TO EVEN BELIEVE ITS POSSIBLE HOW COULD HE POSSIBLY DESECRATE THE TWILIGHT SEPULCHER THIS GOES FAR BEYOND MERE GREED AND TRANSCENDS COMMON THEFT HIS ACTIONS COULD REPRESENT THE FAILURE OF THE NIGHTINGALES SOMETHING THAT HASNT OCCURRED IN HUNDREDS OF YEARS WHY WHY WOULD HE READILY THROW AWAY EVERYTHING HE BELIEVES IN ALL I NEED IS PROOF
 
-MERCER FREY HAS REQUESTED I MEET HIM AT SNOW VEIL SANCTUM TODAY HE SENT A NOTE BY COURIER SO I CAN ONLY ASSUME HES ALREADY THERE ALL MY SENSES TELL ME ITS A TRAP BUT I HAVE NO CHOICE HIS MESSAGE INDICATED THE MEETING WAS OF THE UTMOST URGENCY AND INVOLVED GUILD BUSINESS SO IM OBLIGATED TO GO I CANT RISK BRINGING ANYONE ELSE WITH ME BUT IM ALMOST CERTAIN KARLIAH WILL DISOBEY AND FOLLOW]', 0);
+MERCER FREY HAS REQUESTED I MEET HIM AT SNOW VEIL SANCTUM TODAY HE SENT A NOTE BY COURIER SO I CAN ONLY ASSUME HES ALREADY THERE ALL MY SENSES TELL ME ITS A TRAP BUT I HAVE NO CHOICE HIS MESSAGE INDICATED THE MEETING WAS OF THE UTMOST URGENCY AND INVOLVED GUILD BUSINESS SO IM OBLIGATED TO GO I CANT RISK BRINGING ANYONE ELSE WITH ME BUT IM ALMOST CERTAIN KARLIAH WILL DISOBEY AND FOLLOW]', 0, '');
 
 -- AR-VI-007 — Journal of Mirtil Angoth
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (160, 'AR-VI-007', 'Journal of Mirtil Angoth', 'Mirtil Angoth; Calcelmo of Markarth, trans.', 'Journals & Logs',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (190, 'AR-VI-007', 'Journal of Mirtil Angoth', 'Mirtil Angoth; Calcelmo of Markarth, trans.', 'Journals & Logs',
    '## 4th of Evening Star
 
 I used to dream of fighting in battles like my Father. He had begun teaching me to fight the moment I was able to pick up a blade. Mother had argued that I was too young, but he paid her no mind. I can still remember the elation I felt the first time I bested Father in a match and the look of pride on his face. If it were up to him I know he would have allowed me to join him in battle. With me at his side he may have fared better. Now with Father and so many others slain, the Old Ones claim we are left with too few warriors to continue the fight. I was not the only Young One to speak out in protest, but our small voices went unheard. It has been decided that we must flee to seek help and protection.
@@ -360,11 +360,11 @@ News has reached us that the great Snow Prince has fallen in battle. The urgency
 
 13th of Evening Star
 
-In the night I overheard the Old Ones whispering secrets of the underground and the Dwemer who dwell there. I thought back on stories Father once told me of these dwarves, heroic tales of honor and glory. The Old Ones must know of these stories for it has been decided that we will change course upon first light. I feel hopeful that the Dwemer will help us to avenge our fallen and reclaim our land.', 0);
+In the night I overheard the Old Ones whispering secrets of the underground and the Dwemer who dwell there. I thought back on stories Father once told me of these dwarves, heroic tales of honor and glory. The Old Ones must know of these stories for it has been decided that we will change course upon first light. I feel hopeful that the Dwemer will help us to avenge our fallen and reclaim our land.', 0, '');
 
 -- AR-VI-008 — Rising Threat
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (161, 'AR-VI-008', 'Rising Threat', 'Lathenil of Sunhold; Praxis Erratuim, ed.', 'Journals & Logs',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (191, 'AR-VI-008', 'Rising Threat', 'Lathenil of Sunhold; Praxis Erratuim, ed.', 'Journals & Logs',
    '## Rising Threat, Vol. I
 
 I was barely more than a child when the Great Anguish fell upon us. The very air was torn asunder, leaving gaping, infected wounds that spewed daedra from the bowels of Oblivion. Many flocked to the shores, seeking escape from Dagon’s murderous host - but the seas betrayed our people, raising up to smash our ships and our ports, leaving us to fates so vile and wicked that death would seem a mercy.
@@ -452,11 +452,11 @@ While the Empire is content to secure inconsequential corners of its vast holdin
 
 Soon after Lathenil of Sunhold commissioned to have these volumes printed and distributed far and wide in the Empire with his own coin, he himself met a violent end. In light of the events that followed his death, we must consider that he may very well have been murdered by Thalmor assassins.
 
--- Praxis Erratuim, Imperial Historian', 0);
+-- Praxis Erratuim, Imperial Historian', 0, 'Volume 1');
 
 -- AR-VI-009 — Ruins of Kemel-Ze
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (162, 'AR-VI-009', 'Ruins of Kemel-Ze', 'Rolard Nordssen', 'Journals & Logs',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (192, 'AR-VI-009', 'Ruins of Kemel-Ze', 'Rolard Nordssen', 'Journals & Logs',
    'With the acclamations of the Fellows of the Imperial Society still ringing in my ears, I decided to return to Morrowind immediately. It was not without some regret that I bade farewell to the fleshpots of the Imperial City, but I knew that the wonders I had brought back from Raled-Makai had only scratched the surface of the Dwemer ruins in Morrowind. Even more spectacular treasures were out there, I felt, just waiting to be found, and I was eager to be off. I also had before me the salutary example of poor Bannerman, who was still dining out on his single expedition to Black Marsh twenty years ago. That would never be me, I vowed.
 
 With my letter from the Empress in hand, this time I would have the full cooperation of the Imperial authorities. No more need to worry about attacks from superstitious locals. But where should I look next? The ruins at Kemel-Ze were the obvious choice. Unlike Raled-Makai, getting to the ruins would not be a problem. Also known as the “Cliff City”, Kemel-Ze lies on the mainland side of the Vvardenfel Rift, sprawling down the sheer coastal cliff. Travelers from the east coast of Vvardenfel often visit the site by boat, and it can also be reached overland from the nearby villages without undue hardship.
@@ -495,11 +495,11 @@ The room blazed with sudden light. Bolts of purple energy crackled across the me
 
 The ice cracked above me. The giant golden king stood before me, the shell of ice falling away, his head swiveling towards me in triumph. Was there no stopping this Dwarven monstrosity?! But then the light faded from his eyes, and his arms dropped to his sides. The magical frost had worked, cooling its steam-driven energy.
 
-As Master Arum and the diggers crowded around me, congratulating me on my narrow escape, my thoughts drifted. I imagined my return to the Imperial City, and I knew that this would be my greatest triumph yet. How could I possibly top this find? Perhaps it was time to move on. Recovering the fabled Eye of Argonia... now that would be a coup! I smiled to myself, reveling in the glory of the moment but already planning my next adventure.', 0);
+As Master Arum and the diggers crowded around me, congratulating me on my narrow escape, my thoughts drifted. I imagined my return to the Imperial City, and I knew that this would be my greatest triumph yet. How could I possibly top this find? Perhaps it was time to move on. Recovering the fabled Eye of Argonia... now that would be a coup! I smiled to myself, reveling in the glory of the moment but already planning my next adventure.', 0, '');
 
 -- AR-VI-010 — Skorm Snow-Strider’s Journal
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (163, 'AR-VI-010', 'Skorm Snow-Strider’s Journal', 'Skorm Snow-Strider', 'Journals & Logs',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (193, 'AR-VI-010', 'Skorm Snow-Strider’s Journal', 'Skorm Snow-Strider', 'Journals & Logs',
    '13th of Sun’s Dusk 1E139
 
 At the command of Lord Harald we have swept our company to the south edge of our territories in an attempt to drive the Snow Elves up north to the main host of his forces. The first few days met with heavy resistance, but as we approached the eastern edge of Lake Honnith we have seen little and less of them.
@@ -530,11 +530,11 @@ May the Eight protect us from Dragons and madmen. We lost half our remaining men
 
 The well was locked from this side, and the key must be somewhere in the catacombs, but with the ghosts of these dead cultists and the men demoralized, it just isn’t worth the search. Let those gods-forsaken cultists drink their way to Oblivion and be done with it. The upper door in the courtyard has some sort of barrier over it and our mages believe that the sacrifice made here will sustain it for decades at the least.
 
-We leave this accursed place tomorrow to regroup and push up north, but I will leave this journal, so that in an age or so when the poison has faded, someone may find a way in to be sure the cultists met their due fate.', 0);
+We leave this accursed place tomorrow to regroup and push up north, but I will leave this journal, so that in an age or so when the poison has faded, someone may find a way in to be sure the cultists met their due fate.', 0, '');
 
 -- AR-VI-011 — Twin Secrets
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (164, 'AR-VI-011', 'Twin Secrets', 'Brarilu Theran', 'Journals & Logs',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (194, 'AR-VI-011', 'Twin Secrets', 'Brarilu Theran', 'Journals & Logs',
    'These secrets I lay down, knowing full well that none may ever take advantage of them. I am upon my death bed, and am loathe to see knowledge of any sort lost to the mists of time. Take these as the foolish reminiscences of an old man, or the insights of a master enchanter. I care not which.
 
 It is well known that enchanting is limited where it once was not. The best enchanters of this age can imbue almost any spells into the metal and leather of armor and weapons. However, once enchanted, such an item will not enchant again. It is called the Law of Firsts. The first enchantment is the only one that takes.
@@ -549,11 +549,11 @@ The law itself is inviolate. However, the skillful enchanter can weave two encha
 
 The enchanter must weave one enchantment with the left hand while weaving the other with the right. The eyes must focus on one and only one enchantment, while the ears only pay attention to the other. When I asked about my legs, the beast laughed again.
 
-I spent two years mastering the technique. Just last month I made a sword with both fire and fear enchantments. Now I am too weak to make another. I go to my death victorious, for I have done what no other enchanter in modern times has done.', 0);
+I spent two years mastering the technique. Just last month I made a sword with both fire and fear enchantments. Now I am too weak to make another. I go to my death victorious, for I have done what no other enchanter in modern times has done.', 0, '');
 
 -- AR-VI-012 — Venarus Vulpin’s Journal
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (165, 'AR-VI-012', 'Venarus Vulpin’s Journal', 'Venarus Vulpin', 'Journals & Logs',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (195, 'AR-VI-012', 'Venarus Vulpin’s Journal', 'Venarus Vulpin', 'Journals & Logs',
    '~ 28th of Sun’s Dusk, 4E 200
 
 I’ve found an interesting book of short stories on the pawnshop’s shelves today. I don’t think the owner will mind if I take it. I really should spend more time around the docks, these Altmer are too thin blooded for my taste.
@@ -588,11 +588,11 @@ The Bloodspring is not everything that I’d hoped it would be. Though it is blo
 
 Addiction.
 
-I may have just found a solution for our food problem.', 0);
+I may have just found a solution for our food problem.', 0, 'Volume 1');
 
 -- AR-VI-013 — Venarus Vulpin’s Research
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (166, 'AR-VI-013', 'Venarus Vulpin’s Research', 'Venarus Vulpin', 'Journals & Logs',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (196, 'AR-VI-013', 'Venarus Vulpin’s Research', 'Venarus Vulpin', 'Journals & Logs',
    '~ 19th of Second Seed, 4E 201
 
 Thanks to the more sordid past of some of my underlings, we found a way to add the waters of the Bloodspring into the process for turning moonsugar to skooma. It is far more potent and highly addictive. We’ve turned the basement into a Den and sent out some of the locals with “samples” to lure people back, turning the disappointment of the spring into a ready supply of blood.
@@ -615,11 +615,11 @@ Perhaps this “Bloodstone Chalice” is the answer.
 
 Weeks of research and still nothing to show for it. It would seem that the Bloodstone Chalice is most likely the key to harnessing the power of the Spring, but it is also clear that at some point it was removed from the ruins.
 
-I’ve found an illustration of it which I have endeavored to sketch here, but nothing else regarding where it may have ended up.', 0);
+I’ve found an illustration of it which I have endeavored to sketch here, but nothing else regarding where it may have ended up.', 0, '');
 
 -- AR-VI-014 — Wabbajack
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (167, 'AR-VI-014', 'Wabbajack', 'Anonymous', 'Journals & Logs',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (197, 'AR-VI-014', 'Wabbajack', 'Anonymous', 'Journals & Logs',
    'Little boys shouldn’t summon up the forces of eternal darkness unless they have an adult supervising, I know, I know. But on that sunny night on the 5th of First Seed, I didn’t want an adult. I wanted Hermaeus Mora, the daedra of knowledge, learning, gums, and varnishes. You see, I was told by a beautiful, large breasted man who lived under the library in my home town that the 5th of First Seed was Hermaeus Mora’s night. And if I wanted the Oghma Infinium, the book of knowledge, I had to summon him. When you’re the new king of Solitude, every bit of knowledge helps.
 
 Normally, you need a witches coven, or a mages guild, or at least matching pillow case and sheets to invoke a prince of Oblivion. The Man Under the Library showed me how to do it myself. He told me to wait until the storm was at its height before shaving the cat. I’ve forgotten the rest of the ceremony. It doesn’t matter.
@@ -632,11 +632,11 @@ Wabbajack. Wabbajack. Wabbajack. Wabbajack. Wabbajack. Wabbajack.
 
 Maybe the Wabbajack is the Book of Knowledge. Maybe I’m smarter because I know cats can be bats can be rats can be hats can be gnats can be thats can be thises. And that doors can be boars can be snores can be floors can be roars can be spores can be yours can be mine. I must be smart, for the interconnective system is very clear to me. Then why, or wherefore do people keep calling me mad?
 
-Wabbajack. Wabbajack. Wabbajack.', 0);
+Wabbajack. Wabbajack. Wabbajack.', 0, '');
 
 -- AR-VI-015 — Watcher of Stones
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (168, 'AR-VI-015', 'Watcher of Stones', 'Gelyph Sig Thane of Bjorin', 'Journals & Logs',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (198, 'AR-VI-015', 'Watcher of Stones', 'Gelyph Sig Thane of Bjorin', 'Journals & Logs',
    'Long have I waited at the Guardians. I must know: are the stories true? Surely you’ve heard them. Tales of the stones granting powers to Heroes of old, those special few being able to choose any stone to rewrite his fate. Of course you’ve heard them, that’s why you touch the stones as you pass by. You’ve heard they bring luck, or a sign from the gods. But you think little of the action. It has no true meaning for you. I see it in your eyes as you pass. You do not believe. But I have always believed. Always felt that I was one of the few whose fate was not sealed at birth by the stars overhead. One of the few who could use these stones, draw on the power of the gods to change my life, change my future. I have always felt it.
 
 I have done much in my years. Fought battles, defended villages, quested and adventured throughout Skyrim. I have bested the Companions of Whiterun in combat, and performed deeds worthy of everlasting praise in song from the Bards College. No task was too small or great if it could bring me honor, glory, proof that I was worthy of the stones’ power.
@@ -645,12 +645,12 @@ And yet, nothing.
 
 I have found many of these accursed stones in my travels, and none have responded to my touch. With each new feat I would return to the Guardians, wondering if the gods finally deemed me worthy. But now those days are gone. I am an old man, with no fight left in me. And so here I sit, watching the faces of those who pass by on their daily errands, their mundane travels from one city or town to another. Most of you do not even give the stones a passing glance. You have never heard their call, you will never feel drawn to them. Some days, I envy you that.
 
-Long will I wait at the Guardians, for I must know. Are the stories true?', 0);
+Long will I wait at the Guardians, for I must know. Are the stories true?', 0, '');
 
 -- Cross-references, derived from the titles named in these bodies.
-INSERT INTO citations (from_tome, cites_call_number) VALUES (154, 'AR-X-023');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (157, 'AR-IX-004');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (158, 'AR-IV-023');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (159, 'AR-II-005');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (161, 'AR-IV-033');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (163, 'AR-X-011');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (184, 'AR-X-023');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (187, 'AR-IX-004');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (188, 'AR-IV-023');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (189, 'AR-II-005');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (191, 'AR-IV-033');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (193, 'AR-X-011');

@@ -24,6 +24,7 @@
 
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, rmSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { normalizeVolumeLabel } from './volume-normalize.mjs';
 
 const CONTENT_DIR = join('content', 'library');
 const MIGRATIONS = 'migrations';
@@ -62,6 +63,11 @@ function romanValue(s) {
 function callNumberOrder(cn) {
   const [, tier, acc] = cn.match(/^AR-([IVXLCDM]+)-(\d+)$/);
   return romanValue(tier) * 100000 + Number(acc);
+}
+
+function inferVolumeFromBody(body) {
+  const normalized = normalizeVolumeLabel(body);
+  return normalized;
 }
 
 function parse(file) {
@@ -105,12 +111,15 @@ function parse(file) {
   }
   if (body.length === 0) throw new Error(`${file}: empty body`);
 
+  const volume = normalizeVolumeLabel(String(meta.volume ?? inferVolumeFromBody(body)));
+
   return {
     call_number: meta.call_number,
     title: meta.title,
     author: meta.author,
     school: meta.school,
     restricted: meta.restricted === 'true' ? 1 : 0,
+    volume,
     body,
   };
 }
@@ -281,9 +290,9 @@ SHELVES.forEach((shelf, shelfIndex) => {
     const id = byCallNumber.get(book.call_number);
     const parts = chunks(book.body);
     out.push(`-- ${book.call_number} — ${book.title}${book.restricted ? '  [SEALED]' : ''}`);
-    out.push('INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES');
+    out.push('INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES');
     out.push(`  (${id}, ${q(book.call_number)}, ${q(book.title)}, ${q(book.author)}, ${q(book.school)},`);
-    out.push(`   ${q(parts[0])}, ${book.restricted});`);
+    out.push(`   ${q(parts[0])}, ${book.restricted}, ${q(book.volume)});`);
     for (const part of parts.slice(1)) {
       out.push(`UPDATE tomes SET body = body || ${q(part)} WHERE id = ${id};`);
     }

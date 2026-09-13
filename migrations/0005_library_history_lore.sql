@@ -7,8 +7,8 @@
 -- See PROVENANCE.md.
 
 -- AR-IV-001 — 2920, Last Year of the First Era
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (57, 'AR-IV-001', '2920, Last Year of the First Era', 'Carlovac Townway', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (73, 'AR-IV-001', '2920, Last Year of the First Era', 'Carlovac Townway', 'History & Lore',
    '## 2920, Morning Star, Book 1
 
 1 Morning Star, 2920
@@ -377,7 +377,7 @@ A storm billeted the windows of the Prince’s bedchamber, bringing a smell of m
 
 The Isle of Artaeum, Summurset
 
-The initiates stood quietly in', 0);
+The initiates stood quietly in', 0, 'Volume 1');
 UPDATE tomes SET body = body || ' a row along the arbor loggia, watching the long, deep, marble-lined trench ahead of them flash with fire. The air above it vibrated with the waves of heat. Though each student kept his or her face sturdy and emotionless, as a true Psijic should, their terror was nearly as palpable as the heat. Sotha Sil closed his eyes and uttered the charm of fire resistance. Slowly, he walked across the basin of leaping flames, climbing to the other side, unscathed. Not even his white robe had been burned.
 
 “The charm is intensified by the energy you bring to it, by your own skills, just as all spells are,” he said. “Your imagination and your willpower are the keys. There is no need for a spell to give you a resistance to air, or a resistance to flowers, and after you cast the charm, you must forget there is even a need for a spell to give you resistance to fire. Do not confuse what I am saying: resistance is not about ignoring the fire’s reality. You will feel the substance of flame, the texture of it, its hunger, and even the heat of it, but you will know that it will not hurt or injure you.”
@@ -730,7 +730,7 @@ The Night Mother met Sotha Sil in her salon, lit only by the moon. She was cruel
 
 “What if I were to offer you an equal amount of gold for you not to assassinate the Emperor?”
 
-“The Morag Tong murders for the glory of Mephala and for profit,” she said, speaking into her glass of wine. “We do not merely kill. That would be sacrilege. Once the Duke’s gold has arrived in three days time, we will do our end of the business. And I’m afraid we would not dr' WHERE id = 57;
+“The Morag Tong murders for the glory of Mephala and for profit,” she said, speaking into her glass of wine. “We do not merely kill. That would be sacrilege. Once the Duke’s gold has arrived in three days time, we will do our end of the business. And I’m afraid we would not dr' WHERE id = 73;
 UPDATE tomes SET body = body || 'eam of entertaining a counter offer. Though we are a business as well as a religious order, we do not bow to supply and demand, Sotha Sil.”
 
 27 Sun’s Height, 2920
@@ -1047,7 +1047,7 @@ With that, Palyth gripped his cousin’s arm and pulled him to the other side of
 
 Cassyr smiled and listened as the lout told the story of his failure with bountiful exaggerations which caused the table to roar with laughter. Several eyes looked his way, but none of the locals sought to explain that the fool of the tale was standing at attention. The eyes that stung the most were his cousin’s, the young man who had believed that he had returned to Dwynnen a great hero. At some point, certainly, the Baron would hear about it, his idiocy increasing manifold with each retelling.
 
-With every' WHERE id = 57;
+With every' WHERE id = 73;
 UPDATE tomes SET body = body || ' fiber in his soul, Cassyr cursed the living god Vivec.
 
 21 Frostfall, 2920
@@ -1378,11 +1378,11 @@ In the smoky catacombs beneath the city where Sotha Sil forged the future with h
 
 “It cannot be fixed now,” said the sorcerer quietly.
 
-He looked up through a crick in the ceiling into the night sky. It was midnight. The second era, the age of chaos, had begun.' WHERE id = 57;
+He looked up through a crick in the ceiling into the night sky. It was midnight. The second era, the age of chaos, had begun.' WHERE id = 73;
 
 -- AR-IV-002 — The Adabal-a
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (58, 'AR-IV-002', 'The Adabal-a', 'Anonymous', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (74, 'AR-IV-002', 'The Adabal-a', 'Anonymous', 'History & Lore',
    '## Pelinal’s Death
 
 And in the blood-floored throne room of White-Gold, the severed head of Pelinal spoke to the winged-bull, Morihaus, demigod lover of Al-Esh, saying, “Our enemies have undone me, and spread my body into hiding. In mockery of divine purpose, the Ayleids cut me into eighths, for they are obsessed with this number.”
@@ -1403,11 +1403,11 @@ Then Morihaus said to them: “In your tales you have many names for her: Al-Esh
 
 “Though she is gone to me, she remains bathed in stars, first Empress, Lady of Heaven, Queen-ut-Cyrod.”
 
-And they considered themselves full-answered, and departed.', 0);
+And they considered themselves full-answered, and departed.', 0, '');
 
 -- AR-IV-003 — The Aetherium Wars
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (59, 'AR-IV-003', 'The Aetherium Wars', 'Taron Dreth', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (75, 'AR-IV-003', 'The Aetherium Wars', 'Taron Dreth', 'History & Lore',
    'The end, when it came, was swift. In the span of three short years, the great dwarven cities of Skyrim, from Markarth to the Velothi Mountains, fell before the armies of the High King. Cities that had held fast against the Nords for over a hundred years crumbled abruptly and without warning.
 
 For centuries, scholars have marveled at the sudden collapse of the Dwemer city-states. Even the Nords seem to have been taken by surprise, though their chroniclers were quick to ascribe their success to King Gellir’s inspired tactics and the blessings of Shor.
@@ -1422,11 +1422,11 @@ If the inscriptions I discovered are to be believed, the results were nothing sh
 
 We can only speculate that none were successful. Decades of conflict merely weakened them all, allowing for King Gellir’s subsequent conquests. And though the Dwemer reclaimed most of their lands a century later, there is no evidence that they ever resumed their research on Aetherium. Perhaps the costs had just been too great.
 
-But nothing like the Aetherium Forge described in the inscriptions has ever been found within the borders of Skyrim. It may have been destroyed long ago, by the Nord invaders or the Dwemer themselves. Or perhaps it, like the secrets of Aetherium itself, still remains to be discovered.', 0);
+But nothing like the Aetherium Forge described in the inscriptions has ever been found within the borders of Skyrim. It may have been destroyed long ago, by the Nord invaders or the Dwemer themselves. Or perhaps it, like the secrets of Aetherium itself, still remains to be discovered.', 0, '');
 
 -- AR-IV-004 — The Amulet of Kings
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (60, 'AR-IV-004', 'The Amulet of Kings', 'Wenengrus Monhona', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (76, 'AR-IV-004', 'The Amulet of Kings', 'Wenengrus Monhona', 'History & Lore',
    'In the first years of the First Era, a powerful race of Elves called the Ayleids, or the Heartland High Elves, ruled central Tamriel with an iron hand. The high and haughty Ayleids relied on their patrons, the treacherous Daedra Lords, to provide armies of daedra and dead spirits; with these fearless magical armies, the Ayleids preyed without mercy upon the young races of men, slaughtering or enslaving them at their whim.
 
 On behalf of the suffering human races, St. Alessia, the first in the line of Cyrodiils, sought the aid of Akatosh, the Dragon God of Time, and ruler of the noble Aedra. Akatosh, looking with pity upon the plight of men, drew precious blood from his own heart, and blessed St. Alessia with this blood of Dragons, and made a Covenant that so long as Alessia’s generations were true to the dragon blood, Akatosh would endeavor to seal tight the Gates of Oblivion, and to deny the armies of daedra and undead to their enemies, the Daedra-loving Ayleids.
@@ -1435,11 +1435,11 @@ In token of this Covenant, Akatosh gave to Alessia and her descendants the Amule
 
 So long as the Empire shall maintain its worship of Akatosh and his kin, and so long as Alessia’s heirs shall bear the Amulet of Kings, Akatosh and his divine kin maintain a strong barrier between Tamriel and Oblivion, so that mortal man need never again fear the devastating summoned hosts of the Daedra Lords.
 
-But if the Empire should slacken in its dedication to the Nine Divines, or if the blood of Alessia’s heirs should fail, then shall the barriers between Tamriel and the Daedric realms fall, and Daedra-worshippers might summon lesser Daedra and undead spirits to trouble the races of men.', 0);
+But if the Empire should slacken in its dedication to the Nine Divines, or if the blood of Alessia’s heirs should fail, then shall the barriers between Tamriel and the Daedric realms fall, and Daedra-worshippers might summon lesser Daedra and undead spirits to trouble the races of men.', 0, '');
 
 -- AR-IV-005 — Annals of the Dragonguard
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (61, 'AR-IV-005', 'Annals of the Dragonguard', 'Brother Annulus, ed.', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (77, 'AR-IV-005', 'Annals of the Dragonguard', 'Brother Annulus, ed.', 'History & Lore',
    'Scribe’s Note: I have faithfully copied the following from the Annals of the Dragonguard of Sky Haven Temple for the years 2800-2819 (4329-4338 in the Old Calendar), Brother Annulus, 2E 568.
 
 2801: Emperor Kastav again ordered the Dragonguard to sieze hostages from Markarth and Hroldan to ensure that the jarls meet their conscription quotas. Our Master’s official protest was denied, as usual. This will make relations with the local populace more difficult, although the “hostages” are in fact housed and trained with the other acolytes.
@@ -1460,11 +1460,11 @@ INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VAL
 
 Further reports of dragons in the east which could not be verified.
 
-2818: An auspicious year. Alduin’s Wall was finished, a dragon was located and slain, and Emperor Reman II visited to officially dedicate the Wall. The Blood Seal was consecrated in the presence of all the Dragonguard of Skyrim, a great honor of which few Temples can boast.', 0);
+2818: An auspicious year. Alduin’s Wall was finished, a dragon was located and slain, and Emperor Reman II visited to officially dedicate the Wall. The Blood Seal was consecrated in the presence of all the Dragonguard of Skyrim, a great honor of which few Temples can boast.', 0, '');
 
 -- AR-IV-006 — The Arcturian Heresy
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (62, 'AR-IV-006', 'The Arcturian Heresy', 'Ysmir', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (78, 'AR-IV-006', 'The Arcturian Heresy', 'Ysmir', 'History & Lore',
    'With his god destroyed, Wulfharth finds it hard to keep his form. He staggers out of Red Mountain to the battlefield beyond. The world has shaken and all of Morrowind is made of fire. A strong gale picks up, and blows his ashes back to Skyrim.
 
 Wulfharth adopts and is adopted by the Nords then. Ysmir the Grey Wind, the Storm of Kyne. But through Lorkhan he lost his national identity. All he wants the Nords for is to kill the Tribunal. He raises a storm, sends in his people, and is driven back by Tribunal forces. The Dunmer are too strong now. Wulfharth goes underground to wait and strengthen and reform his body anew. Oddly enough, it is Almalexia who disturbs his rest, summoning the Underking to fight alongside the Tribunal against Ada’Soom Dir-Kamal, the Akaviri demon. Wulfharth disappears after Ada’Soom is defeated, and does not return for three hundred years.
@@ -1495,11 +1495,11 @@ Meanwhile, Tiber Septim crowns himself the First Emperor of Tamriel. He lives un
 
 Tiber Septim is succeeded by his grandson, Pelagius I. Pelagius is just not of the same caliber. In truth, he’s a little nervous with all these provinces. Then an advisor shows up.
 
-“I was friends with your grandfather,” the Underking says, “He sent me to help you run the Empire.”', 0);
+“I was friends with your grandfather,” the Underking says, “He sent me to help you run the Empire.”', 0, '');
 
 -- AR-IV-007 — The Battle of Red Mountain
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (63, 'AR-IV-007', 'The Battle of Red Mountain', 'Vivec; Manur Omayn, ed.', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (79, 'AR-IV-007', 'The Battle of Red Mountain', 'Vivec; Manur Omayn, ed.', 'History & Lore',
    '[The following is a transcript of the words of Lord Vivec, addressed to a Dissident Priest, Malur Omayn, who confronted Vivec with the Ashlander traditions surrounding the Battle of Red Mountain and with prophecies of the Nerevarine, and to unnamed magistrates of the Inquisition who joined Vivec in interrogating the Dissident Priest.]
 
 Who can clearly recall the events of the distant past. But you have asked me to tell you, in my own words, the events surrounding the Battle of Red Mountain, the birth of the Tribunal, and the prophecies of a Nerevar reborn. Here is what I can tell you.
@@ -1538,11 +1538,11 @@ But beneath Red Mountain, Dagoth Ur had survived. And even as the light of our b
 
 And in these latter days of Morrowind, reduced to a subjugated province of the Western Empire, as the glory of the Temple fades, and the dark tide rises from Red Mountain, we are reminded of Azura and her promised champion’s return. We have waited, blind, and in darkness, mere shadows, drained of our ardent vision, in shame of our folly, in fear of our judgement, and in hope of our deliverance. We do not know if the outlander claiming to fulfill the prophecies of the Nerevarine is our old companion Nerevar reborn, or a pawn of the Emperor, or a catspaw of Azura, or some simple twist of fate. But we insist you adhere to Temple doctrine, and conform to the strictures dividing the Hierographa from the Apographa, and that you not speak that which must not be spoken openly. Act as a dutiful priest should, in accordance with your vows of obedience to the canons and archcanons, and all will be forgiven. Defy me, and you will know what it is to stand against a god.
 
-– Vivec', 0);
+– Vivec', 0, '');
 
 -- AR-IV-008 — The Battle of Sancre Tor
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (64, 'AR-IV-008', 'The Battle of Sancre Tor', 'Anonymous', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (80, 'AR-IV-008', 'The Battle of Sancre Tor', 'Anonymous', 'History & Lore',
    'In 2E852, allied Nord and Breton forces crossed the borders into Cyrodiil and occupied the major passes and settlements in the Jerall Mountains. Making their headquarters for the winter at Sancre Tor, the Nord-Breton allies dared King Cuhlecain’s new general, Talos, to assault them in their mountain fastnesses.
 
 When they learned that General Talos had mustered an army in the dead of winter and was marching to assault Sancre Tor, they were elated. Sancre Tor was impregnable, its citadel on high cliffs overlooking the lower city, nestled in a high mountain basin with steep, unscalable cliffs in their rear.
@@ -1561,11 +1561,11 @@ Thus was the concerted allied invasion of Cyrodiil foiled, and General Talos’ 
 
 Historians marvel at Tiber Septim’s tactical daring in assaulting a fortified mountain citadel in the dead of winter against vastly superior numbers. Later Tiber Septim attributed his unwavering resolve against overwhelming obstacles to have been inspired by his divine vision of the Amulet of Kings in the Tomb of Reman III.
 
-The young Talos may indeed have been inspired by his belief that he was fated to recover this ancient sacred symbol of the Covenant and to lead Tamriel to the high civilization of the Third Empire. Nonetheless, this should in no way reduce our admiration for the dash and genius of this defining military triumph against impossible odds.', 0);
+The young Talos may indeed have been inspired by his belief that he was fated to recover this ancient sacred symbol of the Covenant and to lead Tamriel to the high civilization of the Third Empire. Nonetheless, this should in no way reduce our admiration for the dash and genius of this defining military triumph against impossible odds.', 0, '');
 
 -- AR-IV-009 — The Bear of Markarth
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (65, 'AR-IV-009', 'The Bear of Markarth', 'Arrianus Arius', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (81, 'AR-IV-009', 'The Bear of Markarth', 'Arrianus Arius', 'History & Lore',
    'Ulfric Stormcloak is considered a hero by many for his part in quelling the Forsworn Uprising. It is said that when the Empire abandoned Skyrim, and the natives of the Reach rebelled (undoubtedly due to the Nords poor treatment of them), Ulfric Stormcloak and his militia was there to retake “their” land from the Forsworn. In all the bravado and epic yarns the skalds compose of his exploits, you would think Ulfric to be a giant of a man, equal to that of Tiber Septim in his cunning, leadership, and decisive actions.
 
 But the truth is far more revealing. Yes, from 4E 174-176, the Forsworn did in fact rule over the Reach as an independent kingdom from Skyrim. Yes, this was accomplished while the Empire was beset by Aldmeri Dominion forces and could not send the Legion to re-establish order. And yes, Ulfric Stormcloak did quell the rebellion without Imperial assistance. That much is true, but what the bards often fail to tell in their stories is that the Forsworn Kingdom was quite peaceful for those 2 years they were in power.
@@ -1578,11 +1578,11 @@ Every official who worked for the Forsworn was put to the sword, even after they
 
 So when a “grateful” Empire accepted Ulfric’s victory and sent soldiers to re-establish the rule of law in the Reach, it was no surprise that he would demand to be allowed to worship Talos freely before the Legion could enter. With chaos running through the streets of Markarth and the reports of deaths rising every day, the Empire had no choice but to grant Ulfric and his men their worship.
 
-We allowed them to worship Talos, in full violation of the White-Gold Concordat with the Aldmeri Dominion (which recognizes the elven belief that Talos, as a human, cannot be one of the Divines). In jeopardizing the treaty that so many sacrificed for during the Great War, the Empire was wrong. But what choice did they have, I ask you? Against the Bear of Markarth, Ulfric Stormcloak, “no” is not an answer.', 0);
+We allowed them to worship Talos, in full violation of the White-Gold Concordat with the Aldmeri Dominion (which recognizes the elven belief that Talos, as a human, cannot be one of the Divines). In jeopardizing the treaty that so many sacrificed for during the Great War, the Empire was wrong. But what choice did they have, I ask you? Against the Bear of Markarth, Ulfric Stormcloak, “no” is not an answer.', 0, 'Volume 1');
 
 -- AR-IV-010 — Before the Ages of Man
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (66, 'AR-IV-010', 'Before the Ages of Man', 'Aicantar of Shimerene', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (82, 'AR-IV-010', 'Before the Ages of Man', 'Aicantar of Shimerene', 'History & Lore',
    'Before man came to rule Tamriel, and before the chronicles of the historians recorded the affairs of the rulers of Tamriel, the events of our world are known only through myths and legends, and through the divinely inspired teachings of the Nine Divines.
 
 For convenience, historians divide the distant ages of prehistory into two broad periods of time – the Dawn Era, and the Merethic Era.
@@ -1617,11 +1617,11 @@ The Late Merethic Era marks the precipitous decline of Velothi culture. Some Vel
 
 It was in the Late Merethic Era that the pre-literate humans, the so-called “Nedic Peoples”, from the continent of Atmora (also ‘Altmora’ or ‘the Elder Wood’ in Aldmeris) migrated and settleed in northern Tamriel. The Nord culture hero Ysgramor, leader of a great colonizing fleet to Tamriel, is credited with developing a runic transcription of Nord speech based on Elvish principles, and so Ysgramor is considered the first human historian. Ysgramor’s fleet landed at Hsaarik Head at the extreme northern tip of Skyrim’s Broken Cape. The Nords built there the legendary city of Saarthal. The Elves drove the Men away during the Night of Tears, but Ysgramor soon returned with his Five Hundred Companions.
 
-Also during the Late Merethic Era the legendary immortal hero, warrior, sorceror, and king variously known as Pelinal Whitestrake, Harrald Hairy Breeks, Ysmir, Hans the Fox, etc., wandered Tamriel, gathering armies, conquering lands, ruling, then abandoning his kingdoms to wander again.', 0);
+Also during the Late Merethic Era the legendary immortal hero, warrior, sorceror, and king variously known as Pelinal Whitestrake, Harrald Hairy Breeks, Ysmir, Hans the Fox, etc., wandered Tamriel, gathering armies, conquering lands, ruling, then abandoning his kingdoms to wander again.', 0, '');
 
 -- AR-IV-011 — Brief History of the Empire
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (67, 'AR-IV-011', 'Brief History of the Empire', 'Stronach k’Thojj III', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (83, 'AR-IV-011', 'Brief History of the Empire', 'Stronach k’Thojj III', 'History & Lore',
    '## Part One
 
 Before the rule of Tiber Septim, all Tamriel was in chaos. The poet Tracizis called that period of continuous unrest “days and nights of blood and venom.” The kings were a petty lot of grasping tyrants, who fought Tiber’s attempts to bring order to the land. But they were as disorganized as they were dissolute, and the strong hand of Septim brought peace forcibly to Tamriel. The year was 2E 896. The following year, the Emperor declared the beginning of a new Era-thus began the Third Era, Year Aught.
@@ -1706,11 +1706,11 @@ Our current Emperor, His Awesome and Terrible Majesty, Uriel Septim VII, son of 
 
 Uriel VII was imprisoned in a dimension of Tharn’s creation, and Tharn used his sorcery of illusion to assume the Emperor’s aspect. For the next ten years, Tharn abused imperial privilege but did not continue Uriel VII’s schedule of reconquest. It is not yet entirely known what Tharn’s goals and personal accomplishments were during the ten years he masqueraded as his liege lord. In 3E399, an enigmatic Champion defeated the Battlemage in the dungeons of the Imperial Palace and freed Uriel VII from his other-dimensional jail.
 
-Since his emancipation, Uriel Septim VII has worked diligently to renew the battles that would reunite Tamriel. Tharn’s interference broke the momentum, it is true – but the years since then have proven that there is hope of the Golden Age of Tiber Septim’s rule glorifying Tamriel once again.', 0);
+Since his emancipation, Uriel Septim VII has worked diligently to renew the battles that would reunite Tamriel. Tharn’s interference broke the momentum, it is true – but the years since then have proven that there is hope of the Golden Age of Tiber Septim’s rule glorifying Tamriel once again.', 0, 'Volume 2');
 
 -- AR-IV-012 — Chronicles of Nchuleft
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (68, 'AR-IV-012', 'Chronicles of Nchuleft', 'Anonymous', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (84, 'AR-IV-012', 'Chronicles of Nchuleft', 'Anonymous', 'History & Lore',
    '23. The Death of Lord Ihlendam
 
 It happened in Second Planting (P.D. 1220) that Lord Ihlendam, on a journey in the Western Uplands, came to Nchuleft; and Protector Anchard and General Rkungthunch met him there, and Dalen-Zanchu also came to the meeting. They talked together long by themselves; but this only was known of their business, that they were to be friends of each other. They parted, and each went home to his own colony.
@@ -1719,22 +1719,22 @@ Bluthanch and her sons came to hear of this meeting, and saw in this secret meet
 
 One said that Lord Ihlendam excelled his fellow Councilors by far, and in every way. At this Councilor Bluthanch was very angry, and said that she was in no way less than Lord Ihlendam, and that she was eager to prove it. Instantly both parties were so inflamed that they challenged each other to battle, and ran to their arms. But some citizens who were less drunk, and more understanding, came between them, and quieted them; and each went back to his colony, but nobody expected that they would ever meet in peace again together.
 
-But then, in the fall, Lord Ihlendam received a message from Councilor Bluthanch, inviting him to a parlay at Hendor-Stardumz. And all Ihlendam’s kin and citizens strongly urged him not to come, fearing treachery, but Lord Ihlendam would not listen to counsel, not even to carrying with him his honor guard. And sadly, it came to pass that, while traveling to Hendor-Stardumz, in Chinzinch Pass, a host of foul creatures set upon Lord Ihlendam and killed him, and all of his party. And many citizens said thereafter that Bluthanch and her sons had conjured these beasts and set them upon Lord Ihlendam, but nothing was proven. Lord Ihlendam lies buried at a place called Leftunch.', 0);
+But then, in the fall, Lord Ihlendam received a message from Councilor Bluthanch, inviting him to a parlay at Hendor-Stardumz. And all Ihlendam’s kin and citizens strongly urged him not to come, fearing treachery, but Lord Ihlendam would not listen to counsel, not even to carrying with him his honor guard. And sadly, it came to pass that, while traveling to Hendor-Stardumz, in Chinzinch Pass, a host of foul creatures set upon Lord Ihlendam and killed him, and all of his party. And many citizens said thereafter that Bluthanch and her sons had conjured these beasts and set them upon Lord Ihlendam, but nothing was proven. Lord Ihlendam lies buried at a place called Leftunch.', 0, '');
 
 -- AR-IV-013 — Cleansing of the Fane
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (69, 'AR-IV-013', 'Cleansing of the Fane', 'Anonymous', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (85, 'AR-IV-013', 'Cleansing of the Fane', 'Anonymous', 'History & Lore',
    'Editor’s Note: This is the only surviving fragment of the chronicle of this First Era sect of the Alessian Order. It seems to have been kept at their great monastic complex at Lake Canulus, which was razed during the War of Righteousness (1E 2321) and its archives destroyed or dispersed.
 
 Note also that Alessian scribes of this time customarily dated events from the Apotheosis of Alessia (1E 266).
 
 Here is recorded the events of the Year 127 of the Blessed Alessia.
 
-In this year was the day darkened over all lands, and the sun was all as it were Masser but three days old, and the stars about him at midday. This was on the fifth of First Seed. All who saw it were dismayed, and said that a great event should come hereafter. So it did, for that same year issued forth a great concourse of devils from the ancient Elvish temple Malada, such had not been seen since the days of King Belharza. These devils greatly afflicted the land such that no man could plow, or reap, or seed, and the people appealed to the brothers of Marukh for succour. And then Abbot Cosmas gathered all the brothers and led them to Malada, also known as the High Fane in the Elvish tongue, and came against it with holy fire, and the foul demons were destroyed, and many devilish relics and books found therein were burned. And the land had peace for many years.', 0);
+In this year was the day darkened over all lands, and the sun was all as it were Masser but three days old, and the stars about him at midday. This was on the fifth of First Seed. All who saw it were dismayed, and said that a great event should come hereafter. So it did, for that same year issued forth a great concourse of devils from the ancient Elvish temple Malada, such had not been seen since the days of King Belharza. These devils greatly afflicted the land such that no man could plow, or reap, or seed, and the people appealed to the brothers of Marukh for succour. And then Abbot Cosmas gathered all the brothers and led them to Malada, also known as the High Fane in the Elvish tongue, and came against it with holy fire, and the foul demons were destroyed, and many devilish relics and books found therein were burned. And the land had peace for many years.', 0, '');
 
 -- AR-IV-014 — Daughter of the Niben
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (70, 'AR-IV-014', 'Daughter of the Niben', 'Sathyr Longleat', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (86, 'AR-IV-014', 'Daughter of the Niben', 'Sathyr Longleat', 'History & Lore',
    'Bravil is one of the most charming towns in Cyrodiil, sparkling in her simple beauty, illustrious by her past. No visit to the southern part of the Imperial Province is complete without a walk along Bravil’s exciting river port, a talk with her friendly native children, and, of course, in the tradition of the village, a whispered word to the famous statue of the Lucky Old Lady.
 
 Many thousands of years before the arrival of the Atmorans, the native Ayleid people had long lived in the vicinity of modern day Bravil. The Niben then, as now, provided food and transportation, and the village was even more populous than it is today. We are not certain what they called their region: as insular as they were, the word they used would be translated to simply mean “home.” These savage Ayleids were so firmly entrenched that the Bravil region was one of the very last areas to be liberated by the Alessian army in the second century of the 1st era. Though little remains of that era culturally or archeologically, thank Mara, the tales of debauchery and depravity have entered into the realm of legends.
@@ -1767,33 +1767,33 @@ A week later, a royal carriage arrived in Bravil, with an Imperial prince within
 
 No one knows when the statue to her was erected in the town square, or who the artist was, but it has stood there for thousands of years, since the first era. To this day, visitors and Bravillians alike go to the Lucky Old Lady to ask for her to bless them with luck in their travails.
 
-Just one more charming aspect of the charming, and very lucky village of Bravil.', 0);
+Just one more charming aspect of the charming, and very lucky village of Bravil.', 0, '');
 
 -- AR-IV-015 — The Dragon Break
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (71, 'AR-IV-015', 'The Dragon Break', 'Fal Droon', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (87, 'AR-IV-015', 'The Dragon Break', 'Fal Droon', 'History & Lore',
    'The late 3rd era was a period of remarkable religious ferment and creativity. The upheavals of the reign of Uriel VII were only the outward signs of the historical forces that would eventually lead to the fall of the Septim Dynasty. The so called “Dragon Break” was first proposed at this time, by a wide variety of cults and fringe sects across the Empire, connected only by a common obsession with the events surrounding Tiber Septim’s rise to power ⁠–⁠ the “founding myth,” if you will, of the Septim Dynasty.
 
 The basis of the Dragon Break doctrine is now known to be a rather prosaic error in the timeline printed in the otherwise authoritative “Encyclopedia Tamrielica,” first published in 3E 12, during the early years of Tiber Septim’s reign. At that time, the archives of Alinor were still inaccessible to human scholars, and the extant records from the Alessian period were extremely fragmentary. The Alessians had systematically burned all the libraries they could find, and their own records were largely destroyed during the War of Righteousness.
 
 The author of the Encyclopedia Tamrielica was apparently unfamiliar with the Alessian “year,” which their priesthood used to record all dates. We now know this refers to the length of the long vision-trances undertaken by the High Priestess, which might last anywhere from a few weeks to several months. Based on analysis of the surviving trance scrolls, as well as murals and friezes from Alessian temples, I estimate that the Alessian Order actually lasted only about 150 years, rather than the famous “one thousand and eight years” given by the Encyclopedia Tamrielica. The “mystery” of the millennial-plus rule of the Alessians was accepted but unexplained until the spread of the Lorkhan cults in the late 3rd era, when the doctrine of the Dragon Break took hold. Because this dating (and explanation) was so widely held at the time, and then repeated by historians down through today, it has come to have the force of tradition. Recall, however, that the 3rd era historians were already separated from the Alessians by a gulf of more than 2,000 years. And history was still in its infancy, relying on the few archives from those early days.
 
-Today, modern archaeology and paleonumerology have confirmed what my own research in Alessian dating first suggested: that the Dragon Break was invented in the late 3rd era, based on a scholarly error, fueled by obsession with eschatology and Numidiumism, and perpetuated by scholarly inertia.', 0);
+Today, modern archaeology and paleonumerology have confirmed what my own research in Alessian dating first suggested: that the Dragon Break was invented in the late 3rd era, based on a scholarly error, fueled by obsession with eschatology and Numidiumism, and perpetuated by scholarly inertia.', 0, '');
 
 -- AR-IV-016 — Dwemer History and Culture
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (72, 'AR-IV-016', 'Dwemer History and Culture', 'Hasphat Antabolis', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (88, 'AR-IV-016', 'Dwemer History and Culture', 'Hasphat Antabolis', 'History & Lore',
    'While Marobar Sul’s Ancient Tales of the Dwemer was definitively debunked in scholarly circles as early as the reign of Katariah I, it remains one of the staples of the literate middle-classes of the Empire, and has served to set the image of the Dwemer in the popular imagination for generations of schoolchildren. What about this lengthy (but curiously insubstantial) tome has proved so captivating to the public that it has been able to see off both the scorn of the literati and the scathing critiques of the scholars?
 
 Before examing this question, a brief summary of the provenance and subsequent career of Ancient Tales would be appropriate. First published around 2E670, in the Interregnum between the fall of the First Cyrodilic Empire and the rise of Tiber Septim, it was originally presented as a serious, scholarly work based on research in the archives of the University of Gwylim, and in the chaos of that era was taken at face value (a sign of the sad state of Dwemer scholarship in those years). Little is known of the author, but Marobar Sul was most likely a pseudonym of Gor Felim, a prolific writer of “penny dreadful romances” of that era, who is known to have used many other pseudonyms. While most of Felim’s other work has, thankfully, been lost to history, what little survives matches Ancient Tales in both language and tone (see Lomis, “Textual Comparison of Gor Felim’s A Hypothetical Treachery with Marobar Sul’s Ancient Tales of the Dwemer”). Felim lived in Cyrodiil his whole life, writing light entertainments for the elite of the old Imperial capital. Why he decided to turn his hand to the Dwemer is unknown, but it is clear that his “research” consisted of nothing more than collecting the peasants’ tales of the Nibenay Valley and recasting them in Dwemer guise.
 
 The book proved popular in Cyrodiil, and Felim continued to churn out more volumes until the series numbered seven in all. Ancient Tales of the Dwemer was thus firmly established as a local favorite in Cyrodiil (already in its 17th printing) when the historical forces that propelled Tiber Septim to prominence also began to spread the literature of the “heartland” across the continent. Marobar Sul’s version of the Dwemer was seized upon in a surge of human racial nationalism that has not yet subsided.
 
-The Dwemer appear in these tales as creatures of fable and light fantasy, but in general they are “just like us”. They come across as a bit eccentric, perhaps, but certainly there is nothing fearsome or dangerous about them. Compare these to the Dwemer of early Redguard legend: a mysterious, powerful race, capable of bending the very laws of nature to their will; vanished but perhaps not gone. Or the Dwemer portrayed in the most ancient Nord sagas: fearsome warriors, tainted by blasphemous religious practices, who used their profane mechanisms to drive the Nords from Morrowind. Marobar Sul’s Dwemer were much more amenable to the spirit of the time, which saw humans as the pinnacle of creation and the other races as unenlightened barbarians or imperfect, lesser versions of humans eager for tutelage. Ancient Tales falls firmly in the latter camp, which does much to explain its enduring hold on the popular imagination. Marobar Sul’s Dwemer are so much more comfortable, so much friendlier, so much more familiar, than the real Dwemer, whose truly mysterious nature we are only beginning to understand. The public prefers the light, trivial version of this vanished race. And from what I have learned in my years of studying the Dwemer, I have some sympathy for that preference. As the following essays will show, the Dwemer were, to our modern eyes, a remarkably unlikeable people in many ways.', 0);
+The Dwemer appear in these tales as creatures of fable and light fantasy, but in general they are “just like us”. They come across as a bit eccentric, perhaps, but certainly there is nothing fearsome or dangerous about them. Compare these to the Dwemer of early Redguard legend: a mysterious, powerful race, capable of bending the very laws of nature to their will; vanished but perhaps not gone. Or the Dwemer portrayed in the most ancient Nord sagas: fearsome warriors, tainted by blasphemous religious practices, who used their profane mechanisms to drive the Nords from Morrowind. Marobar Sul’s Dwemer were much more amenable to the spirit of the time, which saw humans as the pinnacle of creation and the other races as unenlightened barbarians or imperfect, lesser versions of humans eager for tutelage. Ancient Tales falls firmly in the latter camp, which does much to explain its enduring hold on the popular imagination. Marobar Sul’s Dwemer are so much more comfortable, so much friendlier, so much more familiar, than the real Dwemer, whose truly mysterious nature we are only beginning to understand. The public prefers the light, trivial version of this vanished race. And from what I have learned in my years of studying the Dwemer, I have some sympathy for that preference. As the following essays will show, the Dwemer were, to our modern eyes, a remarkably unlikeable people in many ways.', 0, '');
 
 -- AR-IV-017 — Fall of the Snow Prince
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (73, 'AR-IV-017', 'Fall of the Snow Prince', 'Lokheim', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (89, 'AR-IV-017', 'Fall of the Snow Prince', 'Lokheim', 'History & Lore',
    'From whence he came we did not know, but into the battle he rode, on a brilliant steed of pallid white. Elf we called him, for Elf he was, yet unlike any other of his kind we had ever seen before that day. His spear and armor bore the radiant and terrible glow of unknown magicka, and so adorned this unknown rider seemed more wight than warrior.
 
 What troubled, nay, frightened us most at that moment was the call that rose from the Elven ranks. It was not fear, not wonder, but an unabashed and unbridled joy, the kind of felicity felt by a damned man who has been granted a second chance at life. For at that time the Elves were as damned and near death as ever they had been during the great skirmishes of Solstheim. The Battle of the Moesring was to be the final stand between Nord and Elf on our fair island. Led by Ysgramor, we had driven the Elven scourge from Skyrim, and were intent on cleansing Solstheim of their kind as well. Our warriors, armed with the finest axes and swords Nord craftsmen could forge, cut great swaths through the enemy ranks. The slopes of the Moesring ran red with Elf blood. Why, then, would our foe rejoice? Could one rider bring such hope to an army so hopeless?
@@ -1818,11 +1818,11 @@ It is common practice to burn the corpses of our fallen foes. This is as much a 
 
 And so we brought the body of the Snow Prince, wrapped in fine silks, to a freshly dug barrow. The gleaming armor and spear were presented on a pedestal of honor, and the tomb was arrayed with treasures worthy of royalty. All of the mighty chieftains agreed with this course, that the Elf should be so honored. His body would be preserved in the barrow for as long as the earth chose, but would not be offered the protection of our Stalhrim, which was reserved for Nord dead alone.
 
-So ends this account of the Battle of the Moesring, and the fall of the magnificent Elven Snow Prince. May our gods honor him in death, and may we never meet his kind again in life.', 0);
+So ends this account of the Battle of the Moesring, and the fall of the magnificent Elven Snow Prince. May our gods honor him in death, and may we never meet his kind again in life.', 0, '');
 
 -- AR-IV-018 — Father of the Niben
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (74, 'AR-IV-018', 'Father of the Niben', 'Florin Jaliil, trans.', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (90, 'AR-IV-018', 'Father of the Niben', 'Florin Jaliil, trans.', 'History & Lore',
    'Introduction:
 
 Writing the biography of anyone is a challenge. Usually the problem lies in assessing one’s sources, comparing the prejudices of one chronicle versus another versus another. Waughin Jarth, I have been told, in writing his well-regarded series on the Wolf Queen of Solitude used over a hundred contemporary narratives. I cannot complain about my task having a similar issue.
@@ -2039,11 +2039,11 @@ We see his hand as he traces his route up the Niben to Lake Rumare; and, after a
 
 There, they evidently discovered their earlier mistake, for we see that they pass the peninsula of Elsweyr. Eventually they traveled along its coastline, past the shores of Valenwood, and eventually home. Usually epic tales end with a happy ending, but this one begins with one, and the means to which it was accomplished is lost.
 
-Besides the extraordinary bird creatures of present day Cyrodiil, we have caught glimpses of ancient orcs (perhaps), ancient cliff-racers, ancient Argonians, and in this fragment, ancient Khajiit. Quite a history in a few lines of simple verse, all because a man failed to find his home, and took all the wrong turns to retrace his steps back.', 0);
+Besides the extraordinary bird creatures of present day Cyrodiil, we have caught glimpses of ancient orcs (perhaps), ancient cliff-racers, ancient Argonians, and in this fragment, ancient Khajiit. Quite a history in a few lines of simple verse, all because a man failed to find his home, and took all the wrong turns to retrace his steps back.', 0, 'Volume 1');
 
 -- AR-IV-019 — The Firsthold Revolt
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (75, 'AR-IV-019', 'The Firsthold Revolt', 'Maveus Cie', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (91, 'AR-IV-019', 'The Firsthold Revolt', 'Maveus Cie', 'History & Lore',
    'You told me that if her brother won, she would be sister to the King of Wayrest, and Reman would want to keep her for the alliance. But her brother Helseth lost and has fled with his mother back to Morrowind, and still Reman has not left her to marry me.” Lady Gialene took a long, slow drag of the hookah and blew out dragon’s breath, so the scent of blossoms perfumed her gilded chamber. “You make a very poor advisor, Kael. I might have spent my time romancing the king of Cloudrest or Alinor instead of the wretched royal husband of Queen Morgiah.”
 
 Kael knew better than to hurt his lady’s vanity by the mere suggestion that the King of Firsthold might have come to love his Dunmer Queen. Instead he gave her a few minutes to pause and look from her balcony out over the high cliff palaces of the ancient capitol. The moons shone like crystal on the deep sapphire waters of the Abecean Sea. It was ever springtide here, and he could well understand why she would prefer a throne in this land than in Cloudrest or Alinor.
@@ -2122,11 +2122,11 @@ They were met at the battlements not by mages but by common archers of the palac
 
 Later, he would send furious notes to Lady Gialene and Kael, but they were returned. Even his best secret agents within the palace were unable to find their whereabouts.
 
-Neither had, as it turns out, much previous experience with torture, and they soon confessed their treachery to the King’s satisfaction. Kael was executed, and Gialene was sent back with escort to her father’s court of Skywatch. He has still to find a husband for her. Reman, by contrast, has elected not to take a new royal concubine. The common folk of Firsthold consider this break in palace protocol to be more of the sinister alien influence of the Black Queen, and grumble to all who will listen.', 0);
+Neither had, as it turns out, much previous experience with torture, and they soon confessed their treachery to the King’s satisfaction. Kael was executed, and Gialene was sent back with escort to her father’s court of Skywatch. He has still to find a husband for her. Reman, by contrast, has elected not to take a new royal concubine. The common folk of Firsthold consider this break in palace protocol to be more of the sinister alien influence of the Black Queen, and grumble to all who will listen.', 0, '');
 
 -- AR-IV-020 — Fragment: On Artaeum
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (76, 'AR-IV-020', 'Fragment: On Artaeum', 'Taurce il-Anselma', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (92, 'AR-IV-020', 'Fragment: On Artaeum', 'Taurce il-Anselma', 'History & Lore',
    'The Isle of Artaeum (ar-TAY-um) is the third largest island in the Summurset archipelago, located south of the Moridunon village of Potansa and west of the mainland village of Runcibae. It is best known for being home to the Psijic Order, perhaps the oldest monastic group in Tamriel.
 
 The earliest written record of Psijics is from the 20th year of the First Era and tells the tale of the renowned Breton sage and author Voernet, traveling to the Isle of Artaeum to meet with Iachesis, the Ritemaster of the Psijics.
@@ -2143,22 +2143,22 @@ The Isle of Artaeum is difficult to chart geographically. It is said that it shi
 
 Were it more accessible, Artaeum would be a favored destination for travelers. I have been to the Isle once and still dream of its idyllic orchards and clear pastures, its still and silent lagoons, its misty woodlands, and the unique Psijic architecture that seems to be as natural as its surroundings as well as wondrous in its own right. The Ceporah Tower in particular I would study, for it is a relic from a civilization that predates the High Elves by several hundred years and is still used in certain rites by the Psijics. Perhaps one day I might return.
 
-[Note: The author is currently on the Isle of Artaeum by gracious consent of Master Sargenius of the Council of Artaeum.]', 0);
+[Note: The author is currently on the Isle of Artaeum by gracious consent of Master Sargenius of the Council of Artaeum.]', 0, '');
 
 -- AR-IV-021 — Frontier, Conquest, and Accommodation
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (77, 'AR-IV-021', 'Frontier, Conquest, and Accommodation', 'University of Gwylim Press', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (93, 'AR-IV-021', 'Frontier, Conquest, and Accommodation', 'University of Gwylim Press', 'History & Lore',
    'Historians often portray the human settlement of Tamriel as a straightforward process of military expansion of the Nords of Skyrim. In fact, human settlers occupied nearly every corner of Tamriel before Skyrim was even founded. These so-called “Nedic peoples” include the proto-Cyrodilians, the ancestors of the Bretons, the aboriginals of Hammerfell, and perhaps a now-vanished Human population of Morrowind. Strictly speaking, the Nords are simply another of these Nedic peoples, the only one that failed to find a method of peaceful accommodation with the Elves who already occupied Tamriel.
 
 Ysgramor was certainly not the first human settler in Tamriel. In fact, in “fleeing civil war in Atmora,” as the Song of Return states, Ysgramor was following a long tradition of migration from Atmora; Tamriel had served as a “safety valve” for Atmora for centuries before Ysgramor’s arrival. Malcontents, dissidents, rebels, landless younger sons, all made the difficult crossing from Atmora to the “New World” of Tamriel. New archeological excavations date the earliest human settlements in Hammerfell, High Rock, and Cyrodiil at ME800-1000, centuries earlier than Ysgramor, even assuming that the twelve Nord “kings” prior to Harald were actual historical figures.
 
 The Nedic peoples were a minority in a land of Elves, and had no choice but to live peacefully with the Elder Race. In High Rock, Hammerfell, Cyrodiil, and possibly Morrowind, they did just that, and the Nedic peoples flourished and expanded over the last centuries of the Merethic Era. Only in Skyrim did this accommodation break down, an event recorded in the Song of Return. Perhaps, being close to reinforcements from Atmora, the proto-Nords did not feel it necessary to submit to the authority of the Skyrim Elves. Indeed, the early Nord chronicles note that under King Harald, the first historical Nord ruler (1E 113-221), “the Atmoran mercenaries returned to their homeland” following the consolidation of Skyrim as a centralized kingdom. Whatever the case, the pattern was set – in Skyrim, expansion would proceed militarily, with human settlement following the frontier of conquest, and the line between Human territory and Elven territory was relatively clear.
 
-But beyond this “zone of conflict,” the other Nedic peoples continued to merge with their Elven neighbors. When the Nord armies of the First Empire finally entered High Rock and Cyrodiil, they found Bretons and proto-Cyrodiils already living there among the Elves. Indeed, the Nords found it difficult to distinguish between Elf and Breton, the two races had already intermingled to such a degree. The arrival of the Nord armies upset the balance of power between the Nedic peoples and the Elves. Although the Nords’ expansion into High Rock and Cyrodiil was relatively brief (less than two centuries), the result was decisive; from then on, power in those regions shifted from the Elves to the Humans.', 0);
+But beyond this “zone of conflict,” the other Nedic peoples continued to merge with their Elven neighbors. When the Nord armies of the First Empire finally entered High Rock and Cyrodiil, they found Bretons and proto-Cyrodiils already living there among the Elves. Indeed, the Nords found it difficult to distinguish between Elf and Breton, the two races had already intermingled to such a degree. The arrival of the Nord armies upset the balance of power between the Nedic peoples and the Elves. Although the Nords’ expansion into High Rock and Cyrodiil was relatively brief (less than two centuries), the result was decisive; from then on, power in those regions shifted from the Elves to the Humans.', 0, '');
 
 -- AR-IV-022 — Great Harbingers of the Companions
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (78, 'AR-IV-022', 'Great Harbingers of the Companions', 'Swyk the Long-Sighted', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (94, 'AR-IV-022', 'Great Harbingers of the Companions', 'Swyk the Long-Sighted', 'History & Lore',
    'This history is recorded by Swyk the Long-Sighted, of the Circle of Jorrvaskr in the 3rd era. While I am not gifted with a sharp gift of words, I have learned the stories of the Companions before me, and set to record them that they might not be lost when I am. Hereafter is the list of notable Harbingers of the Companions, those who lead us through the darkness to glories in Sovngarde.
 
 Notes on the Harbinger: the Companions have never had a true leader since Ysgramor – none have been mighty enough to corral the great hearts that beat within Jorrvaskr. While others like mages and thieves need the blessings of their hierarchy to know how to dress, we Companions are capable of leading our own destinies to glory. The Harbinger advises, resolves disputes, and helps to clarify when questions arise of the nature of honor. In the thousands of years the Companions have held at Jorrvaskr, there have been Harbingers both terrible and brilliant, those known for their arm, those for their hearts, and those for their minds. Here are listed some of the most gloried Harbingers, who inspire song and deed.
@@ -2179,11 +2179,11 @@ Macke of the Piercing Eyes: A Harbinger known for her great beauty, but any who 
 
 Kyrnil Long-Nose: After the dark periods in the late second era, when a string of false and dishonorable Harbingers laid claim to Jorrvaskr, it was Kyrnil Long-Nose who gathered the true hearts of the Companions in the wilds and stormed Jorrvaskr itself, killing the usurpers and returning honor through blood, in the old ways. He began the tradition of trusted advisors called the Circle (after our great lord Ysgramor’s council of captains) who would serve as examples to the younger, newer Companions.
 
-By ensuring that the notions of honor can have an unbroken string of tradition, he steadied the course of the Companions and restored our destinies to that of Ysgramor’s, pressing ever onwards to Sovngarde.', 0);
+By ensuring that the notions of honor can have an unbroken string of tradition, he steadied the course of the Companions and restored our destinies to that of Ysgramor’s, pressing ever onwards to Sovngarde.', 0, '');
 
 -- AR-IV-023 — The Great War
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (79, 'AR-IV-023', 'The Great War', 'Justianus Quintius, Legate', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (95, 'AR-IV-023', 'The Great War', 'Justianus Quintius, Legate', 'History & Lore',
    '*Author’s Note: Much of what is written in this book is pieced together from documents captured from the enemy during the war, interrogation of prisoners, and eyewitness accounts from surviving soldiers and Imperial officers. I myself commanded the Tenth Legion in Hammerfell and Cyrodiil until I was wounded in 175 during the assault on the Imperial City. That said, the full truth of some events may never be known. I have done my best to fill in the gaps with educated conjectures based on my experience as well as my hard-earned knowledge of the enemy.*
 
 The Rise of the Thalmor
@@ -2258,11 +2258,11 @@ Hammerfell, however, refused to accept the White-Gold Concordat, being unwilling
 
 In the end, the heroic Redguards fought the Aldmeri Dominion to a standstill, although the war lasted for five more years and left southern Hammerfell devastated. The Redguards say that this proves that the White-Gold Concordat was unnecessary, and that if Titus II had kept his nerve, the Aldmeri could have been truly defeated by the combined forces of Hammerfell and the rest of the Empire. The truth of that assertion can, of course, never be known. But the Redguards should not forget the great sacrifice of Imperial blood - Breton, Nord, and Cyrodilic - at the Battle of the Red Ring that weakened the Dominion enough to allow the eventual Second Treaty of Stros M’kai in 4E 180 and the withdrawal of Aldmeri forces from Hammerfell.
 
-There can be no doubt that the current peace cannot last forever. The Thalmor take the long view, as is proved by the sequence of events leading up to the Great War. All those who value freedom over tyranny can only hope that before it is too late, Hammerfell and the Empire will be reconciled and stand united against the Thalmor threat. Otherwise, any hope to stem the tide of Thalmor rule over all of Tamriel is dimmed.', 0);
+There can be no doubt that the current peace cannot last forever. The Thalmor take the long view, as is proved by the sequence of events leading up to the Great War. All those who value freedom over tyranny can only hope that before it is too late, Hammerfell and the Empire will be reconciled and stand united against the Thalmor threat. Otherwise, any hope to stem the tide of Thalmor rule over all of Tamriel is dimmed.', 0, 'Volume 1');
 
 -- AR-IV-024 — The Keepers of the Razor
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (80, 'AR-IV-024', 'The Keepers of the Razor', 'Anonymous', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (96, 'AR-IV-024', 'The Keepers of the Razor', 'Anonymous', 'History & Lore',
    '## KEEPERS OF THE RAZOR
 
 Current Descendants of the Inner Circle
@@ -2279,11 +2279,11 @@ Of all the groups that pledged to eradicate the Mythic Dawn from Tamriel, none w
 
 The Razor was divided among the three highest ranking members of the order’s inner circle, to be passed down from oldest child to oldest child “until the twin moons themselves disappeared from the skies.” Although this pledge seems to have been loosely interpreted, as the moons did vanish from the heavens during The Void Nights of 4E98-4E100, yet the Razor’s pieces were still being bequeathed through the generations during and after this time.
 
-Tracing the lineages of the inner circle proved especially difficult thanks to the group’s unusual membership. While the leader of the Keepers of the Razor was a Nord and thankfully was easily researched through the clan’s family histories, the other two members were an Orc and a native daughter of the Reach, whose culture’s paucity of respect for literacy made tracking them down less straightforward. Fortunately, Othmash gro-Gularz and his sons are well-recorded for their service in the Imperial Legion. Yet the daughters of Sorcha proved nearly impossible to find until I uncovered Markarth’s meticulously thorough tax records, which recorded each birth of Sorcha’s kin in order to administer certain petty fees. Sorscha’s current descendent, Drascua, fled to Dead Crone Rock after the Markarth Incident, and is considered by the Jarl to be a major threat to the safety of the hold.', 0);
+Tracing the lineages of the inner circle proved especially difficult thanks to the group’s unusual membership. While the leader of the Keepers of the Razor was a Nord and thankfully was easily researched through the clan’s family histories, the other two members were an Orc and a native daughter of the Reach, whose culture’s paucity of respect for literacy made tracking them down less straightforward. Fortunately, Othmash gro-Gularz and his sons are well-recorded for their service in the Imperial Legion. Yet the daughters of Sorcha proved nearly impossible to find until I uncovered Markarth’s meticulously thorough tax records, which recorded each birth of Sorcha’s kin in order to administer certain petty fees. Sorscha’s current descendent, Drascua, fled to Dead Crone Rock after the Markarth Incident, and is considered by the Jarl to be a major threat to the safety of the hold.', 0, '');
 
 -- AR-IV-025 — The Last King of the Ayleids
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (81, 'AR-IV-025', 'The Last King of the Ayleids', 'Herminia Cinna', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (97, 'AR-IV-025', 'The Last King of the Ayleids', 'Herminia Cinna', 'History & Lore',
    'The Ayleids, or Heartland High Elves, ruled Cyrodiil in the long ages of Myth before the beginning of recorded history. One of the earliest recorded dates, in fact, is the Fall of White Gold Tower in 1E 243, which is commonly assumed to mark the end of the Ayleids.
 
 Although Ayleid rule over all of Cyrodiil was indeed broken in 1E 243, this was only one of the most obvious stages near the end of a long decline. The first two centuries of the First Era saw increasing strife between the great Ayleid lords of Cyrodiil. Alessia appears to have taken advantage of a period of civil war to launch her uprising. Imperial historians have traditionally attributed her victory to intervention from Skyrim, but it appears that she had at least as much help from rebel Ayleid lords during the siege of White Gold Tower.
@@ -2296,11 +2296,11 @@ This was an uneasy relationship from the beginning, and was not destined to last
 
 Then in 361, the Alessians gained control of the Empire and enforced the Alessian Doctrines throughout its domain. The Ayleid lordships were abolished. Enforcement of this decree does not appear to have required much direct violence – it seems that by this point the balance of power was so overwhelmingly against them, and their fate so long foreshadowed, that most of the remaining Ayleids simply left Cyrodiil, eventually being absorbed into the Elven populations of Valenwood and High Rock. Indeed, the rise of the Direnni Hegemony may be linked to this exodus of Ayleids from Cyrodiil (a connection so far little studied by historians).
 
-Still, a remnant Ayleid population seems to have survived the rule of the Alessians, because we hear of “the last king of the Ayleids” joining the battle of Glenumbria Moors where the Dirennis decisively defeated the Alessians in 482. How this king’s people survived the preceding century is unknown. We do not even know who they were, although recent research points to Nenalata as the possible resting place of this “last king.” Unfortunately, in the current state of the Empire, funds are no longer available for proper scientific investigation of such extensive ruins, so the answer to these questions will have to be left to future generations.', 0);
+Still, a remnant Ayleid population seems to have survived the rule of the Alessians, because we hear of “the last king of the Ayleids” joining the battle of Glenumbria Moors where the Dirennis decisively defeated the Alessians in 482. How this king’s people survived the preceding century is unknown. We do not even know who they were, although recent research points to Nenalata as the possible resting place of this “last king.” Unfortunately, in the current state of the Empire, funds are no longer available for proper scientific investigation of such extensive ruins, so the answer to these questions will have to be left to future generations.', 0, '');
 
 -- AR-IV-026 — The Knights of the Nine
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (82, 'AR-IV-026', 'The Knights of the Nine', 'Karoline of Solitude', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (98, 'AR-IV-026', 'The Knights of the Nine', 'Karoline of Solitude', 'History & Lore',
    'Few people now remember the Knights of the Nine, but in their time, they were famous throughout Cyrodiil ⁠–⁠ indeed, throughout the Empire. For a brief period in the early days of the Septim Empire, their adventures were the talk of the land. But their renown, as with so much else, was swallowed up by the War of the Red Diamond, and today even the location of their priory house has been lost to history.
 
 The Knights were founded by Sir Amiel Lannus in 3E 111, following his heroic turn in the War of the Isle, with the high purpose of recovering the legendary Crusader’s Relics, the weapons and armor of Pelinal Whitestrake which have been lost for thousands of years. They were born out of the sense of optimism and ambition that characterised the first century of the Third Era. Tamriel was united and at peace for the first time in many centuries. Nothing was impossible.
@@ -2311,11 +2311,11 @@ Sadly, this early promise of the Knights did not survive the ravages of the War 
 
 The end of the order was as ignomonious as its beginning was glorious. Following the victory of Cephorus in 3E 127, Berich Vlindrel became an important figure on the winning side. It seems likely that he was behind the Imperial decree which officially dissolved the Knights of the Nine in 3E 131, although in truth this was little more than a formality ⁠–⁠ despite Sir Amiel’s best efforts, the order had never recovered from the bitterness of the civil war.
 
-What happened to the various Relics originally recovered by the Knights of the Nine? The Sword and the Greaves went with Sir Berich, but where he bestowed them is unknown. The Gauntlets famously lie immovable on the floor of the Chapel of Stendarr in Chorrol, where Sir Casimir left them after his disgraceful murder of a beggar in 3E 139. The location of the Cuirass is a mystery, lost to history along with the eventual fate of Sir Amiel, who was last reported still living alone in the empty Priory of the Nine by a passing traveller in 3E 150. And so the Knights of the Nine faded away into history.', 0);
+What happened to the various Relics originally recovered by the Knights of the Nine? The Sword and the Greaves went with Sir Berich, but where he bestowed them is unknown. The Gauntlets famously lie immovable on the floor of the Chapel of Stendarr in Chorrol, where Sir Casimir left them after his disgraceful murder of a beggar in 3E 139. The location of the Cuirass is a mystery, lost to history along with the eventual fate of Sir Amiel, who was last reported still living alone in the empty Priory of the Nine by a passing traveller in 3E 150. And so the Knights of the Nine faded away into history.', 0, '');
 
 -- AR-IV-027 — The Last King of the Ayleids
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (83, 'AR-IV-027', 'The Last King of the Ayleids', 'Herminia Cinna', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (99, 'AR-IV-027', 'The Last King of the Ayleids', 'Herminia Cinna', 'History & Lore',
    'The Ayleids, or Heartland High Elves, ruled Cyrodiil in the long ages of Myth before the beginning of recorded history. One of the earliest recorded dates, in fact, is the Fall of White Gold Tower in 1E 243, which is commonly assumed to mark the end of the Ayleids.
 
 Although Ayleid rule over all of Cyrodiil was indeed broken in 1E 243, this was only one of the most obvious stages near the end of a long decline. The first two centuries of the First Era saw increasing strife between the great Ayleid lords of Cyrodiil. Alessia appears to have taken advantage of a period of civil war to launch her uprising. Imperial historians have traditionally attributed her victory to intervention from Skyrim, but it appears that she had at least as much help from rebel Ayleid lords during the siege of White Gold Tower.
@@ -2328,11 +2328,11 @@ This was an uneasy relationship from the beginning, and was not destined to last
 
 Then in 361, the Alessians gained control of the Empire and enforced the Alessian Doctrines throughout its domain. The Ayleid lordships were abolished. Enforcement of this decree does not appear to have required much direct violence ⁠–⁠ it seems that by this point the balance of power was so overwhelmingly against them, and their fate so long foreshadowed, that most of the remaining Ayleids simply left Cyrodiil, eventually being absorbed into the Elven populations of Valenwood and High Rock. Indeed, the rise of the Direnni Hegemony may be linked to this exodus of Ayleids from Cyrodiil (a connection so far little studied by historians).
 
-Still, a remnant Ayleid population seems to have survived the rule of the Alessians, because we hear of “the last king of the Ayleids” joining the battle of Glenumbria Moors where the Dirennis decisively defeated the Alessians in 482. How this king’s people survived the preceding century is unknown. We do not even know who they were, although recent research points to Nenalata as the possible resting place of this “last king.” Unfortunately, in the current state of the Empire, funds are no longer available for proper scientific investigation of such extensive ruins, so the answer to these questions will have to be left to future generations.', 0);
+Still, a remnant Ayleid population seems to have survived the rule of the Alessians, because we hear of “the last king of the Ayleids” joining the battle of Glenumbria Moors where the Dirennis decisively defeated the Alessians in 482. How this king’s people survived the preceding century is unknown. We do not even know who they were, although recent research points to Nenalata as the possible resting place of this “last king.” Unfortunately, in the current state of the Empire, funds are no longer available for proper scientific investigation of such extensive ruins, so the answer to these questions will have to be left to future generations.', 0, '');
 
 -- AR-IV-028 — The Legendary Sancre Tor
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (84, 'AR-IV-028', 'The Legendary Sancre Tor', 'Matera Chapel', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (100, 'AR-IV-028', 'The Legendary Sancre Tor', 'Matera Chapel', 'History & Lore',
    'During the Skyrim Conquests [1E 240 - 415], ambitious Highland earls, envious of the conquests and wealth of their northern cousins in High Rock and Morrowind, looked south over the ramparts of the Jerall Mountains for their opportunities. The Jerall Mountains proved to be too great a barrier, and northern Cyrodiil too poor a prize, to reward full scale Nord invasions. However, Alessia hired many ambitious Nord and Breton warbands as mercenaries with the promises of rich lands and trade concessions. Once settled among the victorious Alessian Cyrodiils, the Nord and Breton warriors and battlemages were quickly assimilated into the comfortable and prosperous Nibenean culture.
 
 Alessia received the divine inspiration for her Slave Rebellion at Sancre Tor, and here she founded her holy city. Sancre Tor’s mines provided some wealth, but the poor soils and harsh climate of the remote mountain site meant it must be supplied with food and goods from the Heartlands. Further, located on one of the few passes through the Jeralls, its fortunes were subject to the instability of relations with Skyrim. When relations were good with Skyrim, it prospered through trade and alliance. When relations were bad with Skyrim, it was vulnerable to siege and occupation by the Nords.
@@ -2347,11 +2347,11 @@ During the Sack of Sancre Tor, General Talos is said to have recovered the Amule
 
 Sancre Tor has lain in ruins since the beginning of the Third Age, and the surrounding region is virtually uninhabited. Now all communications with the north are through the passes at Chorrol and Bruma, and Sancre Tor’s citadel and underpassages have become the refuge of various savage goblin tribes.
 
-[1] The is a competing tradition that St. Alessia is buried on the site of the Temple of the One in the Imperial City. The actual resting place of St. Alessia is unknown.', 0);
+[1] The is a competing tradition that St. Alessia is buried on the site of the Temple of the One in the Imperial City. The actual resting place of St. Alessia is unknown.', 0, '');
 
 -- AR-IV-029 — The Legendary Scourge
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (85, 'AR-IV-029', 'The Legendary Scourge', 'Anonymous', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (101, 'AR-IV-029', 'The Legendary Scourge', 'Anonymous', 'History & Lore',
    '“Not till the very evening they came,” answered he, and then told of his dealings with Mehrunes Dagon’s thralls, saying that Mackkan would find it easier to whistle on the wind’s tracks and go on a fool’s errand than to fight his toads. Then said Mackkan:
 
 “Now see to thy safety henceforward,
@@ -2370,11 +2370,11 @@ Such bumps thou shalt comb on thy brainpan,
 
 Thou that breakest the howes of the dead.
 
-EXPLICATION: The mace Scourge, Blessed of Malacath, Mackkan’s legendary weapon, forged from sacred ebony in the Fountains of Fickledire, has ever been the bane of the Dark Kin, and many a black spirit has been hurled back into Oblivion with a single blow of this bold defender of the friendless. Scourge now hangs within the armory of Battlespire, ready to take up in the name of the Emperor against the Daedric Lords.', 0);
+EXPLICATION: The mace Scourge, Blessed of Malacath, Mackkan’s legendary weapon, forged from sacred ebony in the Fountains of Fickledire, has ever been the bane of the Dark Kin, and many a black spirit has been hurled back into Oblivion with a single blow of this bold defender of the friendless. Scourge now hangs within the armory of Battlespire, ready to take up in the name of the Emperor against the Daedric Lords.', 0, '');
 
 -- AR-IV-030 — The “Madmen” of the Reach
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (86, 'AR-IV-030', 'The “Madmen” of the Reach', 'Arrianus Arius', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (102, 'AR-IV-030', 'The “Madmen” of the Reach', 'Arrianus Arius', 'History & Lore',
    'Since the legendary victory of Tiber Septim over the “barbarian natives” in the Battle of Old Hroldan, Imperial and Nord scholarship has cast the people of the Reach as little more than savages, prone to irrational fits of violence, worshipping old, heretical gods, and fetishizing beasts and nature spirits that any civilized person would best well avoid. In truth, these accounts are little more than “victor’s essays,” a perspective narrowed by the Empire’s constant strife with the ancient, proud people that lived in this land far before Tiber Septim walked the soil of Tamriel. In light of this, I hope to create a more complete, accurate, and fair assessment of a group that has long suffered under the role of “enemy,” “troublemakers,” and “them.”
 
 Let us begin with the Forsworn, the so-called “madmen” of the Reach. The Imperial Legion classifies them as little more than brigands, noting their constant raids and ambushes within the Hold. But none of their military reports asks the question of “why?” If they were merely a group of bandits, surely they would be focused on acquiring gold and minimizing deaths among their own. But the opposite is true in Forsworn attacks. Large sums of coin are often left behind, and their fighters easily throw away their lives rather than risk capture by Imperial soldiers.
@@ -2383,11 +2383,11 @@ It is this incongruity that led me to Markarth, the capital city of the Reach, i
 
 In time, I was able to create trust with many more natives in my search that corroborated the old woman’s story. By chance, one of them arranged a meeting between myself and what I thought was an elder member of his village. I was shocked to find that I was led to a camp, filled with the animal skulls, severed heads, and still beating hearts that I had read about from the military reports back in the Imperial City. There, I met Cortoran, a Forsworn, who seemed amused at the prospect of me writing down his story. Which I quote in full below:
 
-“You want to know who the Forsworn are? We are the people who must pillage our own land. Burn our own ground. We are the scourge of the Nords. The axe that falls in the dark. The scream before the gods claim your soul. We are the true sons and daughters of the Reach. The spirits and hags have lived here from the beginning, and they are on our side. Go back. Go back and tell your Empire that we will have our own kingdom again. And on that day, we will be the ones burying your dead in a land that is no longer yours.”', 0);
+“You want to know who the Forsworn are? We are the people who must pillage our own land. Burn our own ground. We are the scourge of the Nords. The axe that falls in the dark. The scream before the gods claim your soul. We are the true sons and daughters of the Reach. The spirits and hags have lived here from the beginning, and they are on our side. Go back. Go back and tell your Empire that we will have our own kingdom again. And on that day, we will be the ones burying your dead in a land that is no longer yours.”', 0, '');
 
 -- AR-IV-031 — A Minor Maze
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (87, 'AR-IV-031', 'A Minor Maze', 'Anonymous', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (103, 'AR-IV-031', 'A Minor Maze', 'Anonymous', 'History & Lore',
    'Labyrinthian’s modern notoriety was gained in the early part of the Third Era. Part of the Staff of Chaos was recovered from the Labyrinthian, which became instrumental in the overthrow of Jagar Tharn, ending the Imperial Simulacrum. The site has since become embedded in the minds of all subjects of the Empire, and the ruins are occasionally visited by Loyalist pilgrims, re-tracing the steps of the Eternal Champion.
 
 The namesake of Labyrinthian is somewhat less commonly known, however.
@@ -2422,11 +2422,11 @@ be conjured instead
 
 We can only guess at what the solution to the test may have been, as Labyrinthian became notorious not only for the number of potential archmages who died there, but for the intense secrecy of those who succeeded.
 
-Labyrinthian eventually ceased to be used, and is regarded as a symbol of a more brutal age by modern institutions for magical studies. The ruins lay empty again, overrun with wild animals and avoided by travelers. The long history and legacy of this place, however, seems as likely to be erased from our minds as the ruins themselves are likely to sink into the sea.', 0);
+Labyrinthian eventually ceased to be used, and is regarded as a symbol of a more brutal age by modern institutions for magical studies. The ruins lay empty again, overrun with wild animals and avoided by travelers. The long history and legacy of this place, however, seems as likely to be erased from our minds as the ruins themselves are likely to sink into the sea.', 0, '');
 
 -- AR-IV-032 — Night of Tears
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (88, 'AR-IV-032', 'Night of Tears', 'Dranor Seleth', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (104, 'AR-IV-032', 'Night of Tears', 'Dranor Seleth', 'History & Lore',
    'Saarthal holds a prominent place in Skyrim history, even if most do not remember it by name. It is of course the site of one of the first major Nord settlements, one of the first cities of men in Skyrim, and the earliest known capital of their civilization. It was also the site of terrible bloodshed, when the elves attempted to drive the Nords out of Skyrim, to succeed only in incurring their wrath in the form of Ysgramor and his fabled Five Hundred Companions, who swept the elves from Skyrim and firmly established it as the home of the Nords.
 
 All this is known, but little else. What happened on that Night of Tears, when Saarthal was razed to the ground? What provoked the elves to such a deliberate, vicious attack, and what prompted such a severe response from the Nords?
@@ -2437,11 +2437,11 @@ The true motives behind the Night of Tears have been obscured to us by the passa
 
 The Nords found something when they built their city, buried deep in the ground. They attempted to keep it buried, but the elves learned of it and coveted it for themselves. Thus they assaulted Saarthal, their goal not to drive the Nords out but to secure this power for themselves. I believe Ysgramor knew something of what the elves would find under Saarthal, and rallied together his people to keep the elves from gaining it. When Nords once again controlled Skyrim, this power was buried deep below the earth and sealed away.
 
-Time has kept this knowledge from us, but it is my hope that Time will also reveal the truth of these words. Every effort will be made to relocate Saarthal, and find that which has been lost to us.', 0);
+Time has kept this knowledge from us, but it is my hope that Time will also reveal the truth of these words. Every effort will be made to relocate Saarthal, and find that which has been lost to us.', 0, '');
 
 -- AR-IV-033 — The Oblivion Crisis
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (89, 'AR-IV-033', 'The Oblivion Crisis', 'Praxis Sarcorum', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (105, 'AR-IV-033', 'The Oblivion Crisis', 'Praxis Sarcorum', 'History & Lore',
    'At the turning of the Fourth Age, in the year 3E 433, the Emperor Uriel Septim VII was assassinated and the Amulet of Kings was destroyed. This set in motion a chain of events that would bring down an empire and change forever the relationship between man and the gods.
 
 The assassins first attacked the Emperor in the White Gold Tower. While the Blades held them back, the Emperor made his way down to the dungeons, to a secret escape route built into one of the prison cells. For reasons known only to himself, the Emperor pardoned the fortunate prisoner in that cell. Some say the prisoner reminded him of a childhood friend. Others say it was a moment of prophecy. Whatever the case, the prisoner came to play a fateful role in the history of the Empire and Tamriel - surely a sign that the gods themselves were at work.
@@ -2470,11 +2470,11 @@ With the Amulet in hand, Martin Septim presented himself to the Elder Council to
 
 Mehrunes Dagon himself left Oblivion and entered Tamriel, breaking the covenant. Only the unlit Dragonfires allowed this to be possible. Now that the barrier was ripped asunder, it was too late to relighting the Fires. Martin Septim chose to make the ultimate sacrifice - he shattered the Amulet of Kings to become the avatar of the god Akatosh and do battle with Mehrunes Dagon.
 
-Records of this battle vary wildly. What we do know is that Mehrunes Dagon was defeated and sent back to Oblivion. The avatar of Akatosh was turned to stone and can be seen to this day in the Temple of the One in the Imperial City. With the Amulet gone, the Dragonfires quenched, and the last Dragonblood Emperor dead, the barrier to Oblivion is sealed forever.', 0);
+Records of this battle vary wildly. What we do know is that Mehrunes Dagon was defeated and sent back to Oblivion. The avatar of Akatosh was turned to stone and can be seen to this day in the Temple of the One in the Imperial City. With the Amulet gone, the Dragonfires quenched, and the last Dragonblood Emperor dead, the barrier to Oblivion is sealed forever.', 0, '');
 
 -- AR-IV-034 — Of Crossed Daggers
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (90, 'AR-IV-034', 'Of Crossed Daggers', 'Dwennon Wyndell', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (106, 'AR-IV-034', 'Of Crossed Daggers', 'Dwennon Wyndell', 'History & Lore',
    'Situated on the eastern banks of Lake Honrich, the city of Riften serves as a reminder of a bygone era. The once-proud streets and buildings have vanished and been replaced with a collection of wooden structures and rough stonework shrouded in a permanent fog-like mist. In order to understand how such a large city became nothing more than a glorified fortress, one need only look to the history books for answers.
 
 Riften was a major hub of activity for trade caravans and travellers to and from Morrowind. Fishing skiffs could be seen dotting the lake at all hours of the day and the bustling city was alive with activity at night. The city guard was formiddable and maintained a tight grasp on its populace, keeping them safe from harm. The marketplace in Riften was also quite a draw, containing numerous stands offering wares from across Tamriel.
@@ -2485,11 +2485,11 @@ For over 40 years, Hosgunn ruled Riften with a black heart and an iron fist. He 
 
 Then, in 4E 129, the people had finally had enough. With their numbers, they were able to temporarily overhwhelm the city guard long enough to set Hosgunn’s Folly on fire with the greedy Jarl still within. As the fighting recommensed, the fire spread through the city unchecked. By the morning, the people had emerged victorious, but not without great cost. Most of the city was now in ruins and many had died.
 
-It took five years to rebuild Riften into the smaller city that it is today. And even though over fifty years had passed since then, it still has yet to fully recover. Some believe it will never achieve the level of affluence it saw at the beginning of the Fourth Era, but there are a few who still hold on to the hope that Riften can return from the ashes and become a center of commerce once again.', 0);
+It took five years to rebuild Riften into the smaller city that it is today. And even though over fifty years had passed since then, it still has yet to fully recover. Some believe it will never achieve the level of affluence it saw at the beginning of the Fourth Era, but there are a few who still hold on to the hope that Riften can return from the ashes and become a center of commerce once again.', 0, '');
 
 -- AR-IV-035 — Olaf and the Dragon
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (91, 'AR-IV-035', 'Olaf and the Dragon', 'Adonato Leonetti', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (107, 'AR-IV-035', 'Olaf and the Dragon', 'Adonato Leonetti', 'History & Lore',
    'One of the more colorful legends in Nord folklore is the tale of Olaf One-Eye and Numinex.
 
 Long ago in the First Age, a fearsome dragon named Numinex ravaged the whole of Skyrim. The dreadful drake wiped out entire villages, burned cities and killed countless Nords. It seemed that no power in Tamriel could stop the monster.
@@ -2528,11 +2528,11 @@ When Olaf finds Numinex, the dragon is too weak to defend himself. Olaf and his 
 
 However, it is equally likely that Svaknir had some grudge against Olaf, and his scandalous verse was an attempt to damage the High King’s reputation. Alas, we will never know.
 
-I leave you now, good reader, with this gentle reminder: A good historian must remain impartial, and consider all points of view. Time has a way of distorting our record of events, so the closer you can get to the original sources, the better!', 0);
+I leave you now, good reader, with this gentle reminder: A good historian must remain impartial, and consider all points of view. Time has a way of distorting our record of events, so the closer you can get to the original sources, the better!', 0, '');
 
 -- AR-IV-036 — Orsinium and the Orcs
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (92, 'AR-IV-036', 'Orsinium and the Orcs', 'Menyna Gsost', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (108, 'AR-IV-036', 'Orsinium and the Orcs', 'Menyna Gsost', 'History & Lore',
    'The year was 3E 399 and standing on a mountainside overlooking a vast tract of land between the lands of Menevia and Wayrest was a great and learned judge, an arbitrator and magistrate, impartial in his submission to the law.
 
 “You have a very strong claim to the land, my lad,” said the judge. “I won’t lie to you about that. But your competition has an equal claim. This is what makes my particular profession difficult at times.”
@@ -2593,11 +2593,11 @@ Bowyn’s first thought was that if he must lose to an Orc, it was best that the
 
 “Tunner,” he said kindly. “Speak frankly to me. You wanted Lord Gortwog to win.”
 
-“That is true,” said Tunner. “But I did not fail you. You fought better than you would have fought two days hence, sir. I did not want Orsinium to be won by its king without a fight.”', 0);
+“That is true,” said Tunner. “But I did not fail you. You fought better than you would have fought two days hence, sir. I did not want Orsinium to be won by its king without a fight.”', 0, '');
 
 -- AR-IV-037 — The Pig Children
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (93, 'AR-IV-037', 'The Pig Children', 'Tyston Bane', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (109, 'AR-IV-037', 'The Pig Children', 'Tyston Bane', 'History & Lore',
    'No one ⁠–⁠ not the oldest Dark Elf of Mount Dagoth-Ur or the Ancient Sage of Solitude himself ⁠–⁠ can recall a time when the Orc did not ravage our fair Tamriel. Whatever foul and pestilent Daedra of Oblivion conjured them up could scarcely have created a more constant threat to the well-being of the civilized races of Tamriel than the obnoxious Orc.
 
 Orcs are thankfully easy to recognize from other humanoids by their size ⁠–⁠ commonly forty pertans in height and fifteen thousand angaids in weight ⁠–⁠ their brutal pig-like features, and their stench. They are consistently belligerent, morally grotesque, intellectually moronic, and unclean. By all rights, the civilized races of Tamriel should have been able to purge the land of their blight eras ago, but their ferocity, animal cunning, and curious tribal loyalty have made them inevitable as leeches in a stagnant pool.
@@ -2608,11 +2608,11 @@ No one ⁠–⁠ not the oldest Dark Elf of Mount Dagoth-Ur or the Ancient Sage 
 
 Orcs are thankfully easy to recognize from other humanoids by their size ⁠–⁠ commonly forty pertans in height and fifteen thousand angaids in weight ⁠–⁠ their brutal pig-like features, and their stench. They are consistently belligerent, morally grotesque, intellectually moronic, and unclean. By all rights, the civilized races of Tamriel should have been able to purge the land of their blight eras ago, but their ferocity, animal cunning, and curious tribal loyalty have made them inevitable as leeches in a stagnant pool.
 
-Tales of Orcish barbarity precede written record. When Jastyaga wrote of the Order of Diagna’s joining the armies of Daggerfall and Sentinel “to hold at bay the wicked Orcs in their foul Orsinium fastness... and burn aught in cleansing flame” in 1E950, she assumed that any reader would be aware of the savagery of the Orcs. When the siege was completed thirty years later, after the death of many heroes including Gaiden Shinji, and the destruction of Orsinium scattered the Orcish survivors throughout the Wrothgarian Mountains, she further wrote, “The free peoples rejoiced for that their ancient fell enemy was dispersed into diverse parts.” Obviously, the Orcs had been terrorizing the region of the Iliac Bay at least since the early years of the First Era.', 0);
+Tales of Orcish barbarity precede written record. When Jastyaga wrote of the Order of Diagna’s joining the armies of Daggerfall and Sentinel “to hold at bay the wicked Orcs in their foul Orsinium fastness... and burn aught in cleansing flame” in 1E950, she assumed that any reader would be aware of the savagery of the Orcs. When the siege was completed thirty years later, after the death of many heroes including Gaiden Shinji, and the destruction of Orsinium scattered the Orcish survivors throughout the Wrothgarian Mountains, she further wrote, “The free peoples rejoiced for that their ancient fell enemy was dispersed into diverse parts.” Obviously, the Orcs had been terrorizing the region of the Iliac Bay at least since the early years of the First Era.', 0, '');
 
 -- AR-IV-038 — The Refugees
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (94, 'AR-IV-038', 'The Refugees', 'Geros Albreigh', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (110, 'AR-IV-038', 'The Refugees', 'Geros Albreigh', 'History & Lore',
    'The smell of the bay oozed through the stones of the cellar, salt and brined decay. The cellar itself had its own scents of old wine turned to vinegar, mildew, and the more exotic spices of herbs the healers had brought with them to tend to the wounded. There were more than fifty people squeezed into the big earthen room which had once been forgotten storage for the brothel above. The groaning and whimpering had ceased for now, and all was still, as if the hospital had turned into a mass grave.
 
 “Mother,” a Redguard boy whispered. “What was that?”
@@ -2741,11 +2741,11 @@ Lukar remembered her eyes. She was sick, but not afraid. Who was this “He” w
 
 “Did she say nothing else?” asked Orben.
 
-“She told me the baby’s name,” Rosayna replied. “Mankar.”', 0);
+“She told me the baby’s name,” Rosayna replied. “Mankar.”', 0, '');
 
 -- AR-IV-039 — Remanada
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (95, 'AR-IV-039', 'Remanada', 'Anonymous', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (111, 'AR-IV-039', 'Remanada', 'Anonymous', 'History & Lore',
    '## Chapter 1: Sancre Tor and the Birth of Reman
 
 And in those days the empire of the Cyrodiils was dead, save in memory only, for through war and slug famine and iniquitous rulers, the west split from the east and Colovia’s estrangment lasted some four hundreds of years. And the earth was sick with this sundering. Once-worthy western kings, of Anvil and Sarchal, of Falkreath and Delodiil, became through pride and habit as like thief-barons and forgot covenant. In the heartland things were no better, as arcanists and false moth-princes lay in drugged stupor or the studies of vileness and no one sat on the Throne in dusted generations. Snakes and the warnings of snakes went unheeded and the land bled with ghosts and deepset holes unto cold harbors. It is said that even the Chim-el Adabal, the amulet of the kings of glory, had been lost and its people saw no reason to find it.
@@ -2768,11 +2768,11 @@ These loyal knights did go by no name then, but were known by their eastern swor
 
 Long glory was wife to the all the knights of the dragon-banner, who knew no other and were brothers before beyond many seas and now were brothers under the law named the blade-surrender of Pale Pass. And having vampire blood these brother-knights lived for ages through and past Reman and then kept guard over his ward, the coiled king, Versidue-Shaie. The snake-captain Vershu became Renald became the protector of the northern west when the black dart was hooked into Savirien-Chorak.
 
-*[Here torn pages indicate that the rest of this ancient book has been lost.]*', 0);
+*[Here torn pages indicate that the rest of this ancient book has been lost.]*', 0, 'Volume 1');
 
 -- AR-IV-040 — The Rise and Fall of the Blades
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (96, 'AR-IV-040', 'The Rise and Fall of the Blades', 'Anonymous', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (112, 'AR-IV-040', 'The Rise and Fall of the Blades', 'Anonymous', 'History & Lore',
    'There are many that still remember the Blades. There are fewer that can pass down their stories, their origins and their downfall. My father could. In his proudest moments he said to me, “You keep secrets like the Blades.”
 
 The Blades were good at keeping secrets. They didn’t write down much. They passed information carefully between their spies in every province, to their elite members that protected the Emperors. Even amongst their members, they kept much secret.
@@ -2799,11 +2799,11 @@ The warnings of the Blades were proved right, as is well known to all. The Great
 
 The reach and destructive nature of the Thalmor is known to many (author’s note - in my family firsthand). They are not fools. They knew early on that the Blades were an enemy. So they hunted them throughout the Great War. Some were killed defending their Temples, others as they slept in their hideaways, alone. Some fought, some ran, some hid. But the Thalmor found them all.
 
-There are those that say the Blades still exist around us, in hiding from the Thalmor. Waiting as they have done time and time again, for a Dragonborn to return. For one to protect, for one to guide them.', 0);
+There are those that say the Blades still exist around us, in hiding from the Thalmor. Waiting as they have done time and time again, for a Dragonborn to return. For one to protect, for one to guide them.', 0, '');
 
 -- AR-IV-041 — A Short History of Morrowind
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (97, 'AR-IV-041', 'A Short History of Morrowind', 'Jeanette Sitte', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (113, 'AR-IV-041', 'A Short History of Morrowind', 'Jeanette Sitte', 'History & Lore',
    'From the Introduction
 
 Led by the legendary prophet Veloth, the ancestors of the Dunmer, exiles from Altmer cultures in present-day Summerset Isle, came to the region of Morrowind. In earliest times the Dunmer were harassed or dominated by Nord sea raiders. When the scattered Dunmer tribes consolidated into the predecessors of the modern Great House clans, they threw out the Nord oppressors and successfully resisted further incursions.
@@ -2828,11 +2828,11 @@ Under pressure from the Temple, conservative House Redoran has steadfastly resis
 
 The Imperial administration faces many challenges in the Vvardenfell district, but the most serious are the Great House rivalries, animosity from the Ashlander nomads, internal conflicts within the Temple itself, and the Red Mountain blight. Struggles between Great House, Temple, and Imperial interests to control Vvardenfell’s resource could at any time erupt into full-scale war. Ashlanders raid settlements, plunder caravans, and kill foreigners on their wild lands. The Temple has unsuccessfully attempted to silence criticism and calls for reform within its ranks.
 
-But most serious are the plagues and diseased hosts produced by the blight storms sweeping out from Red Mountain. Vvardenfell and all Morrowind have long been menaced by the legendary evils of Dagoth Ur and his ash vampire kin dwelling beneath Red Mountain. For centuries the Temple has contained this threat within the Ghostfence. But recently the Temple’s resources and will have faltered, and the threat from Red Mountain has grown in scale and intensity. If the Ghostfence should fail, and hosts of blighted monsters were to spill out across Vvardenfell’s towns and villages, the Empire might have no choice but to evacuate Vvardenfell district and abandon it to disease and corruption.', 0);
+But most serious are the plagues and diseased hosts produced by the blight storms sweeping out from Red Mountain. Vvardenfell and all Morrowind have long been menaced by the legendary evils of Dagoth Ur and his ash vampire kin dwelling beneath Red Mountain. For centuries the Temple has contained this threat within the Ghostfence. But recently the Temple’s resources and will have faltered, and the threat from Red Mountain has grown in scale and intensity. If the Ghostfence should fail, and hosts of blighted monsters were to spill out across Vvardenfell’s towns and villages, the Empire might have no choice but to evacuate Vvardenfell district and abandon it to disease and corruption.', 0, '');
 
 -- AR-IV-042 — The Song of Pelinal
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (98, 'AR-IV-042', 'The Song of Pelinal', 'Anonymous', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (114, 'AR-IV-042', 'The Song of Pelinal', 'Anonymous', 'History & Lore',
    '## Volume 1: On His Name
 
 [Editor’s Note: Volumes 1-6 are taken from the so-called Reman Manuscript located in the Imperial Library. It is a transcription of older fragments collected by an unknown scholar of the early Second Era. Beyond this, little is known of the original sources of these fragments, some of which appear to be from the same period (perhaps even from the same manuscript). But, as no scholarly consensus yet exists on dating these six fragments, no opinions will be offered here.]
@@ -2865,11 +2865,11 @@ And it is said that he emerged into the world like a Padomaic, that is, borne by
 
 ## Volume 8: On His Revalation at the Death of the Al-Esh
 
-And left you to gather sinew with my other half, who will bring light thereby to that mortal idea that brings [the Gods] great joy, that is, freedom, which even the Heavens do not truly know, [which is] why our Father, the... [Text lost]... in those first [days/spirits/swirls] before Convention... that which we echoed in our earthly madness. [Let us] now take you Up. We will [show] our true faces... [which eat] one another in amnesia each Age.”', 0);
+And left you to gather sinew with my other half, who will bring light thereby to that mortal idea that brings [the Gods] great joy, that is, freedom, which even the Heavens do not truly know, [which is] why our Father, the... [Text lost]... in those first [days/spirits/swirls] before Convention... that which we echoed in our earthly madness. [Let us] now take you Up. We will [show] our true faces... [which eat] one another in amnesia each Age.”', 0, 'Volume 1');
 
 -- AR-IV-043 — War of the First Council
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (99, 'AR-IV-043', 'War of the First Council', 'Agrippa Fundilius', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (115, 'AR-IV-043', 'War of the First Council', 'Agrippa Fundilius', 'History & Lore',
    'This account by the Imperial scholar Agrippa Fundilius is based on various Imperial and Dunmer sources, and written for Western readers.
 
 The War of the First Council was a First Age religious conflict between the secular Dunmer Houses Dwemer and Dagoth and the orthodox Dunmer Houses Indoril, Redoran, Dres, Hlaalu, and Telvanni. The First Council was the first pan-Dunmer governing body, which collapsed over disputes about sorceries and enchantments practiced by the Dwemer and declared profane by the other Houses.
@@ -2880,11 +2880,11 @@ Nerevar secured the aid of nomad barbarian tribesmen, and contrived to force a m
 
 After a brief siege, treason permitted Nerevar and his troops to enter the stronghold, where the Secular leaders were slain, and Nerevar mortally wounded. General slaughter followed, and Houses Dwemer and Dagoth were exterminated. Nerevar died shortly thereafter of his wounds.
 
-Three of Nerevar’s associates among the Orthodox Houses, Vivec, Almalexia, and Sotha Sil, succeeded to control of the re-created First Council, re-named the Grand Council of Morrowind, and went on to be come the god-kings and immortal rulers of Morrowind known as the Tribunal, or Almsivi.', 0);
+Three of Nerevar’s associates among the Orthodox Houses, Vivec, Almalexia, and Sotha Sil, succeeded to control of the re-created First Council, re-named the Grand Council of Morrowind, and went on to be come the god-kings and immortal rulers of Morrowind known as the Tribunal, or Almsivi.', 0, '');
 
 -- AR-IV-044 — The Third Era Timeline
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (100, 'AR-IV-044', 'The Third Era Timeline', 'Jaspus Ignateous', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (116, 'AR-IV-044', 'The Third Era Timeline', 'Jaspus Ignateous', 'History & Lore',
    'It has been said that “citizens of the Empire who make the same mistakes as their forebears deserve to suffer the same fate.” And while this may be true, it’s hard to deny that the Empire’s history is so long, and our forebears have made so many mistakes, it’s sometimes hard to keep track.
 
 This work is meant to serve as a concise compilation of the Empire’s most recent events, in this, our current age - what we refer to as the Third Era. It is a period of time that has as yet comprised less than five hundred years. But it should at least serve as a starting point for those who wish to study our Empire’s vast and varied history. And maybe, just maybe, prevent the repeat of a previous disaster.
@@ -2997,20 +2997,20 @@ Fifth Century
 
 - 3E 433 - The “Oblivion Crisis”
 
-- 3E 433 - The Knights of the Nine are reformed', 0);
+- 3E 433 - The Knights of the Nine are reformed', 0, '');
 
 -- AR-IV-045 — Touching the Sky
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (101, 'AR-IV-045', 'Touching the Sky', 'Parmion Saldor', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (117, 'AR-IV-045', 'Touching the Sky', 'Parmion Saldor', 'History & Lore',
    'Many of the most dedicated snow elves once committed themselves to a tireless journey through the Chantry to the Inner Sanctum. They carried with them the paramount desire to become one with their god, Auri-El. Though all set out with the determination to prove their worth, few were prepared for the trials that lay ahead. For the path to Auri-El was not without its tribulations. The pilgrims struggled not only against the natural elements of the treacherous vale, but with a myriad of tests upon their faith and loyalty.
 
 It is told that many simply could not continue on the path for long before turning back. Some argue that the rebuke they endured upon their return was crueler than any punishment that may have lay ahead of them along the path. In their failed attempt, they were forced to live in the shadow of those who did continue on to achieve the great glory and honor of ascension into the light. Forever after, their faith and loyalty in Auri-El would be scrutinized and their remaining days filled with shame and regret.
 
-Tales of those who reached the Inner Sanctum are not without their share of woes. It is said upon their arrival that many were mere shells of the person they had once been. Some were quite mad from sleeplessness and starved to the point of frailty. By the end of their journey, the marvel that they had strength yet to carry their vessel and ascend the stairs of the temple was the last true testament of their loyalty. Regardless of each individual’s tale, the final words remain eerily similar. It is said that every pilgrim ascended, bathed in light, a look of relief and contentment on their face.', 0);
+Tales of those who reached the Inner Sanctum are not without their share of woes. It is said upon their arrival that many were mere shells of the person they had once been. Some were quite mad from sleeplessness and starved to the point of frailty. By the end of their journey, the marvel that they had strength yet to carry their vessel and ascend the stairs of the temple was the last true testament of their loyalty. Regardless of each individual’s tale, the final words remain eerily similar. It is said that every pilgrim ascended, bathed in light, a look of relief and contentment on their face.', 0, '');
 
 -- AR-IV-046 — Treatise on Ayleidic Cities
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (102, 'AR-IV-046', 'Treatise on Ayleidic Cities', 'Anonymous', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (118, 'AR-IV-046', 'Treatise on Ayleidic Cities', 'Anonymous', 'History & Lore',
    'I will not be the first scholar to point to a combination of benign intent and arrogance on behalf of the Ayleids as the source of many ruinous affairs for the old heartland elves.
 
 The Nefarivigum, a foul construct of Mehrunes Dagon, was erected to be ever watchful for the pilgrim who would approach it and best an unknown trial of worth. It is said that such a pilgrim would be rewarded with the blessing of Mehrunes Razor, a vicious blade through which Dagon himself can claim the very souls of those it strikes.
@@ -3021,37 +3021,158 @@ Sure as death, pilgrims came to Varsa Baalim, and for years the Elves drove back
 
 Then, suddenly, Varsa Baalim was gone. Historic accounts dispute whether it happened through some final safety, a natural cataclysm, or by the touch of the Divines themselves. Whatever the cause, history agrees on the result: the mountains of the Eastern Niben swallowed Varsa Baalim, and the Nefarivigum with it, where has remained hidden since the early days of the First Era.
 
-If the tale is true, then somewhere on the eastern fringes of the Niben Valley, where man’s rule has scarcely reached through the years, the Nefarivigum still lies in wait, among a city of unliving abominations entombed within the cold bowels of the mountain.', 0);
+If the tale is true, then somewhere on the eastern fringes of the Niben Valley, where man’s rule has scarcely reached through the years, the Nefarivigum still lies in wait, among a city of unliving abominations entombed within the cold bowels of the mountain.', 0, '');
 
 -- AR-IV-047 — The Wild Elves
-INSERT INTO tomes (id, call_number, title, author, school, body, restricted) VALUES
-  (103, 'AR-IV-047', 'The Wild Elves', 'Kier-Jo Chorvak', 'History & Lore',
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (119, 'AR-IV-047', 'The Wild Elves', 'Kier-Jo Chorvak', 'History & Lore',
    'In the wilds of most every province of Tamriel, descended philosophically if not directly from the original inhabitants of the land, are the Ayleids, commonly called the Wild Elves. While three races of Elven stock ⁠–⁠ the Altmer (or High Elves), the Bosmer (or Wood Elves), and the Dunmer (or Dark Elves) ⁠–⁠ have assimilated well into the new cultures of Tamriel, the Ayleids and their brethren have remained aloof toward our civilization, preferring to practice the old ways far from the eyes of the world.
 
 The Wild Elves speak a variation of Old Cyrodilic, opting to shun Tamrielic and separating themselves from the mainstream of Tamriel even further than the least urbanized of their Elven cousins. In temperament they are dark-spirited and taciturn ⁠–⁠ though this is from the point of view of outsiders (or “Pellani” in their tongue), and doubtless they act differently within their own tribes.
 
 Indeed, one of the finest sages of the University of Gwilym was a civilized Ayleid Elf, Tjurhane Fyrre (1E2790-2E227), whose published work on Wild Elves suggests a lively, vibrant culture. Fyrre is one of the very few Ayleids to speak freely on his people and religion, and he himself said “the nature of the Ayleid tribes is multihued, their personalities often wildly different from their neighbor[ing] tribes” (Fyrre, T., Nature of Ayleidic Poesy, p. 8, University of Gwilym Press, 2E12).
 
-Like any alien culture, Wild Elves are often feared by the simple people of Tamriel. The Ayleids continue to be one of the greatest enigmas of the continent of Tamriel. They seldom appear in the pages of written history in any role, and then only as a strange sight a chronicler stumbles upon before they vanish into the wood. When probable fiction is filtered from common legend, we are left with almost nothing. The mysterious ways of the Ayleids have remained shrouded since before the First Era, and may well remain so for thousands of years to come.', 0);
+Like any alien culture, Wild Elves are often feared by the simple people of Tamriel. The Ayleids continue to be one of the greatest enigmas of the continent of Tamriel. They seldom appear in the pages of written history in any role, and then only as a strange sight a chronicler stumbles upon before they vanish into the wood. When probable fiction is filtered from common legend, we are left with almost nothing. The mysterious ways of the Ayleids have remained shrouded since before the First Era, and may well remain so for thousands of years to come.', 0, '');
+
+-- AR-IV-048 — Cherim's Heart
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (120, 'AR-IV-048', 'Cherim''s Heart', 'Anonymous', 'History & Lore',
+   'Contemporary with Maqamat Lusign (interviewed in volume seventeen of this series) is the Khajiti Cherim, whose tapestries have been hailed as masterpieces all over the Empire for nigh on thirty years now. His four factories located throughout Elsweyr make reproductions of his work, but his original tapestries command stellar prices. The Emperor himself owns ten Cherim tapestries, and his representatives are currently negotiating the sale of five more.
+
+The muted use of color contrasted with the luminous skin tones of Cherim''s subjects is a marked contrast with the old style of tapestry. The subjects of his work in recent years have been fabulous tales of the ancient past: the Gods meeting to discuss the formation of the world; the Chimer following the Prophet Veloth into Morrowind; the Wild Elves battling Morihaus and his legions at the White Gold Tower. His earliest designs dealt with more contemporary subjects. I had the opportunity to discuss with him one of his first masterpieces, The Heart of Anequina, at his villa in Orcrest.
+
+The Heart of Anequina presents an *[sic]* historic battle of the Five Year War between Elsweyr and Valenwood which raged from 3E 394 (or 3E 395, depending on what one considers to be the beginning of the war) until 3E 399. In most fair accounts, the war lasted 4 years and 9 months, but artistic license from the great epic poets added an additional three months to the ordeal.
+
+The actual details of the battle itself, as interpreted by Cherim, are explicit. The faces of a hundred and twenty Wood Elf archers can be differentiated one from the other, each registering fear at the approach of the Khajiti *[sic]* army. Their hauberks catch the dim light of the sun. The menacing shadows of the Elsweyr battlecats loom on the hills, every muscle strained, ready to pounce in command. It is not surprising that he got all the details right, because Cherim was in the midst of it, as a Khajiti *[sic]* foot soldier.
+
+Every minute part of the Khajiti *[sic]* traditional armor can be seen in the soldiers in the foreground. The embroidered edging and striped patterns on the tunics. Each lacquered plate on loose-fitting leather in the Elsweyr style. The helmets of cloth and fluted silver.
+
+"Cherim does not understand the point of plate mail," said Cherim. "It is hot, for one, like being both burned and buried alive. Cherim wore it at the insistence of our Nord advisors during the Battle of Zelinin, and Cherim couldn''t even turn to see what my fellow Khajiit were doing. Cherim did some sketches for a tapestry of the Battle of Zelinin, but Cherim finds that to make it realistic, the figures came out very mechanical, like iron golems or dwemer centurions. Knowing our Khajiti *[sic]* commanders, Cherim would not be surprised if giving up the heavy plate was more aesthetic than practical."
+
+"Elsweyr lost the Battle of Zelinin, didn''t she?"
+
+"Yes, but Elsweyr won the war, starting at the next battle, the Heart of Anequina," said Cherim with a smile. "The tide turned as soon as we Khajiit sent our Nordic advisors back to Solitude. We had to get rid of all the heavy armor they brought to us and find enough traditional armor our troops felt comfortable wearing. Obviously, the principle advantage of the traditional armor was that we could move easily in it, as you can see from the natural stances of the soldiers in the tapestry.
+
+"Now if you look at this poor perforated Cathay-raht who just keeps battling on in the bottom background, you see the other advantage. It seems strange to say, but one of the best features of traditional armor is that an arrow will either deflect completely or pass all the way through. An arrow head is like a hook, made to stick where it strikes if it doesn''t pass through. A soldier in traditional armor will find himself with a hole in his body and the bolt on the other side. Our healers can fix such a wound easily if it isn''t fatal, but if the arrow still remains in the armor, as it does with heavier armor, the wound will be reopened every time the fellow moves. Unless the Khajiit strips off the armor and pulls out the arrow, which is what we had to do at the Battle of Zelinin. A difficult and time-consuming process in the heat of battle, to say the least."
+
+I asked him next, "Is there a self portrait in the battle?"
+
+"Yes," Cherim said with another grin. "You see the small figure of the Khajiit stealing the rings off the dead Wood Elf? His back is facing you, but he has a brown and orange striped tail like Cherim''s. Cherim does not say that all stereotypes about the Khajiit are fair, but Cherim must sometimes acknowledge them."
+
+A self-deprecating style in self-portraiture is also evident in the tapestries of Ranulf Hook, the next artist interviewed in volume nineteen of this series.', 0, '');
+
+-- AR-IV-049 — Chimarvamidium
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (121, 'AR-IV-049', 'Chimarvamidium', 'Anonymous', 'History & Lore',
+   'After many battles, it was clear who would win the War. The Chimer had great skills in magick and bladery, but against the armored battalions of the Dwemer, clad in the finest shielding wrought by Jnaggo, there was little hope of their ever winning. In the interests of keeping some measure of peace in the Land, Sthovin the Warlord agreed to a truce with Karenithil Barif the Beast. In exchange for the Disputed Lands, Sthovin gave Barif a mighty golem, which would protect the Chimer''s territory from the excursions of the Northern Barbarians.
+
+Barif was delighted with his gift and brought it back to his camp, where all his warriors gaped in awe at it. Sparkling gold in hue, it resembled a Dwemer cavalier with a proud aspect. To test its strength, they placed the golem in the center of an arena and flung magickal bolts of lightning at it. Its agility was such that few of the bolts struck it. It had the wherewithal to pivot on its hips to avoid the brunt of the attacks without losing its balance, feet firmly planted on the ground. A vault of fireballs followed, which the golem ably dodged, bending its knees and its legs to spin around the blasts. The few times it was struck, it made certain to be hit in the chest and waist, the strongest parts of its body.
+
+The troops cheered at the sight of such an agile and powerful creation. With it leading the defense, the Barbarians of Skyrim would never again successfully raid their villages. They named it Chimarvamidium, the Hope of the Chimer.
+
+Barif has the golem brought to his chambers with all his housethanes. There they tested Chimarvamidium further, its strength, its speed, its resiliency. They could find no flaw with its design.
+
+"Imagine when the naked barbarians first meet this on one of their raids," laughed one of the housethanes.
+
+"It is only unfortunate that it resembles a Dwemer instead of one of our own," mused Karenithil Barif. "It is revolting to think that they will have a greater respect for our other enemies than us."
+
+"I think we should never accepted *[sic]* the peace terms that we did," said another, one of the most aggressive of the housethanes. "Is it too late to surprise the warlord Sthovin with an attack?"
+
+"It is never too late to attack," said Barif. "But what of his great armored warriors?"
+
+"I understand," said Barif''s spymaster. "That his soldiers always wake at dawn. If we strike an hour before, we can catch them defenseless, before they''ve had a chance to bathe, let alone don their armor."
+
+"If we capture their armorer Jnaggo, then we too would know the secrets of blacksmithery," said Barif. "Let it be done. We attack tomorrow, an hour before dawn."
+
+So it was settled. The Chimer army marched at night, and swarmed into the Dwemer camp. They were relying on Chimarvamidium to lead the first wave, but it malfunctioned and began attacking the Chimer''s own troops. Added to that, the Dwemer were fully armored, well-rested, and eager for battle. The surprise was turned, and most of the high-ranking Chimer, including Karenithil Barif the Beast, were captured.
+
+Though they were too proud to ask, Sthovin explained to them that he had been warned of their attack by a Calling by one of his men.
+
+"What man of yours is in our camp?" sneered Barif.
+
+Chimarvamidium, standing erect by the side of the captured, removed its head. Within its metal body was Jnaggo, the armorer.
+
+"A Dwemer child of eight can create a golem," he explained. "But only a truly great warrior and armorer can pretend to be one."
+
+***Publisher''s Note***
+
+*This is one of the few tales in this collection, which can actually be traced to the Dwemer. The wording of the story is quite different from older versions in Aldmeris, but the essence is the same. "Chimarvamidium" may be the Dwemer "Nchmarthurnidamz." This word occurs several times in plans of Dwemer armor and Animunculi, but it''s *[sic]* meaning is not known. It is almost certainly not "Hope of the Chimer," however.*
+
+*The Dwemer were probably the first to use heavy armors. It is important to note how a man dressed in armor could fool many of the Chimer in this story. Also note how the Chimer warriors react. When this story was first told, armor that covered the whole body must have still been uncommon and new, whereas even then, Dwemer creations like golems and centurions were well known.*
+
+*In a rare scholarly moment, Marobar Sul leaves a few pieces of the original story intact, such as parts of the original line in Aldmeris, "A Dwemer of eight can create a golem, but an eight of Dwemer can become one."*
+
+*Another aspect of this legend that scholars like myself find interesting is the mention of "the Calling." In this legend and in others, there is a suggestion that the Dwemer race as a whole had some sort of silent and magickal communication. There are records of the Psijic Order which suggest they, too, share this secret. Whatever the case, there are no documented spells of "calling." The Cyrodiil historian Borgusilus Malier first proposed this as a solution to the disappearance of the Dwemer. He theorized that in 1E 668, the Dwemer enclaves were called together by one of their powerful philosopher-sorcerers ("Kagrnak" in some documents) to embark on a great journey, one of such sublime profundity that they abandoned all their cities and lands to join the quest to foreign climes as an entire culture.*', 0, '');
+
+-- AR-IV-050 — Frontier, Conquest
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (122, 'AR-IV-050', 'Frontier, Conquest', 'Anonymous', 'History & Lore',
+   'Historians often portray the human settlement of Tamriel as a straightforward process of military expansion of the Nords of Skyrim. In fact, human settlers occupied nearly every corner of Tamriel before Skyrim was even founded. These so-called "Nedic peoples" include the proto-Cyrodilians, the ancestors of the Bretons, the aboriginals of Hammerfell, and perhaps a now-vanished Human population of Morrowind. Strictly speaking, the Nords are simply another of these Nedic peoples, the only one that failed to find a method of peaceful accommodation with the Elves who already occupied Tamriel.
+
+Ysgramor was certainly not the first human settler in Tamriel. In fact, in "fleeing civil war in Atmora", as the Song of Return states, Ysgramor was following a long tradition of migration from Atmora; Tamriel had served as a "safety valve" for Atmora for centuries before Ysgramor''s arrival. Malcontents, dissidents, rebels, landless younger sons, all made the difficult crossing from Atmora to the "New World" of Tamriel. New archeological excavations date the earliest human settlements in Hammerfell, High Rock, and Cyrodiil at ME800-1000, centuries earlier than Ysgramor, even assuming that the twelve Nord "kings" prior to Harald were actual historical figures.
+
+The Nedic peoples were a minority in a land of Elves, and had no choice but to live peacefully with the Elder Race. In High Rock, Hammerfell, Cyrodiil, and possibly Morrowind, they did just that, and the Nedic peoples flourished and expanded over the last centuries of the Merethic Era. Only in Skyrim did this accommodation break down, an event recorded in the Song of Return. Perhaps, being close to reinforcements from Atmora, the proto-Nords did not feel it necessary to submit to the authority of the Skyrim Elves. Indeed, the early Nord chronicles note that under King Harald, the first historical Nord ruler (1E 113-221), "the Atmoran mercenaries returned to their homeland" following the consolidation of Skyrim as a centralized kingdom. Whatever the case, the pattern was set -- in Skyrim, expansion would proceed militarily, with human settlement following the frontier of conquest, and the line between Human territory and Elven territory was relatively clear.
+
+But beyond this "zone of conflict", the other Nedic peoples continued to merge with their Elven neighbors. When the Nord armies of the First Empire finally entered High Rock and Cyrodiil, they found Bretons and proto-Cyrodiils already living there among the Elves. Indeed, the Nords found it difficult to distinguish between Elf and Breton, the two races had already intermingled to such a degree. The arrival of the Nord armies upset the balance of power between the Nedic peoples and the Elves. Although the Nords'' expansion into High Rock and Cyrodiil was relatively brief (less than two centuries), the result was decisive; from then on, power in those regions shifted from the Elves to the Humans.', 0, '');
+
+-- AR-IV-051 — Hanging Gardens
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (123, 'AR-IV-051', 'Hanging Gardens', 'Anonymous', 'History & Lore',
+   '*This book was apparently written in Dwemer and translated to Aldmeris. Only fragments of the Aldmeris is readable, but it may be enough for a scholar of Aldmeris to translate fragments of other Dwemer books.*
+
+...guide Altmer-Estrial led with foot-flames for the town-center where lay dead the quadrangular gardens...
+
+...asked the foundations and chains and vessels their naming places...
+
+...why they did not use solid sound to teach escape from the Earth Bones nor nourished them with frozen flames...
+
+....the word I shall have once written of, this "art" our lesser cousins speak of when their admirable ignorance...
+
+...but neither words nor experience cleanses the essence of the strange and terrible ways of defying our ancestors'' transient rules.
+
+*The translation ends with a comment in Dwemer in a different hand, which you may be translated as follows:*
+
+"Put down your ardent cutting-globes, Nbthld. Your Aldmeris has the correct words, but they cannot be properly misinterpreted."', 0, '');
+
+-- AR-IV-052 — Lost Legends
+INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
+  (124, 'AR-IV-052', 'Lost Legends', 'Anonymous', 'History & Lore',
+   'The history of Skyrim is vast, predating even the most ancient records of man and mer. Much has been lost, fallen to the ravages of war or the turning of the ages. But nothing is ever truly forgotten. Where no records exist, legends and folk tales offer us a key to the past, a way to piece together truths half-remembered in the minds of men.
+
+For generations, the people of Morthal have told whispered tales of the Pale Lady, a ghostly woman who wanders the northern marshes, forever seeking her lost daughter. Some say she steals children who wander astray, others that her sobbing wail strikes dead all those who hear it. But behind these tales may lie a kernel of truth, for ancient records speak of ''Aumriel'', a mysterious figure Ysgramor''s heirs battled for decades, and finally sealed away.
+
+Reachmen tell the story of Faolan ''Red-Eagle'', an ancient king who rallied his people and drove back the armies of Cyrodiil with a flaming sword. Though accounts vary, they too seem to be based on an underlying truth: the imperial chronicles of Empress Hestra mention a rebel leader of that era who was eventually cornered and slain in battle, at the cost of a full legion of men.
+
+But some tales prove far harder to analyze. Among scholars, perhaps the best known is the ''Forbidden Legend'' of the Archmage Gauldur.
+
+In the dawning days of the First Era, the story goes, there lived a powerful wizard by the name of Gauldur. Wise and just, he was well-known in the courts of King Harald and the jarls of Skyrim, and his aid and counsel were sought by man and mer alike.
+
+And then he was murdered. Some say one of his sons killed him, others that King Harald, jealous of his power, gave the order. But Gauldur''s three sons fled into the night, pursued by a company of Harald''s best warriors and the Lord Geirmund, the king''s personal battlemage.
+
+A great chase ensued, from the wilds of the Reach to the glacial north. One brother is said to have perished in the ruins of Folgunthur, at the foot of Solitude. The others were run to ground soon thereafter. And once it was done, King Harald ordered every record of their murders destroyed, and Gauldur''s name and deeds were struck from the rolls of history.
+
+Even today, few sources remain, and no bard will tell the tale. But perhaps the truth yet remains in some ancient ruin, waiting to be unearthed. For nothing is ever truly forgotten.', 0, '');
 
 -- Cross-references, derived from the titles named in these bodies.
-INSERT INTO citations (from_tome, cites_call_number) VALUES (57, 'AR-X-023');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (64, 'AR-IV-004');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (65, 'AR-IV-023');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (66, 'AR-IV-032');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (72, 'AR-III-002');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (72, 'AR-VIII-006');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (74, 'AR-I-010');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (77, 'AR-IX-004');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (78, 'AR-X-023');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (79, 'AR-IV-033');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (81, 'AR-IV-027');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (81, 'AR-IV-038');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (83, 'AR-IV-025');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (83, 'AR-IV-038');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (84, 'AR-IV-004');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (89, 'AR-IV-004');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (89, 'AR-V-034');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (96, 'AR-IV-023');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (100, 'AR-IV-026');
-INSERT INTO citations (from_tome, cites_call_number) VALUES (103, 'AR-X-023');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (73, 'AR-X-023');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (80, 'AR-IV-004');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (81, 'AR-IV-023');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (82, 'AR-IV-032');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (88, 'AR-III-002');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (88, 'AR-VIII-006');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (90, 'AR-I-010');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (93, 'AR-IX-004');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (94, 'AR-X-023');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (95, 'AR-IV-033');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (97, 'AR-IV-027');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (97, 'AR-IV-038');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (99, 'AR-IV-025');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (99, 'AR-IV-038');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (100, 'AR-IV-004');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (105, 'AR-IV-004');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (105, 'AR-V-034');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (112, 'AR-IV-023');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (116, 'AR-IV-026');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (119, 'AR-X-023');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (120, 'AR-IV-047');
+INSERT INTO citations (from_tome, cites_call_number) VALUES (122, 'AR-IX-004');
