@@ -202,7 +202,7 @@ Thulidden dir’Tharkun: By ‘tactics’, Master Arctus includes all the common
 
 10. If you plan your dispositions well, your victories will seem easy and you will win no acclaim. If you plan your dispositions poorly, your victories will seem difficult, and your fame will be widespread.
 
-Marandro Sul: Those commonly believed to be the greatest practitioners of war magic are almost always those with the least skill. The true masters are not known to the multitude.', 0, '');
+Marandro Sul: Those commonly believed to be the greatest practitioners of war magic are almost always those with the least skill. The true masters are not known to the multitude.', 0, 'Volume 3');
 
 -- AR-V-007 — Atlas of Dragons
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
@@ -1125,7 +1125,7 @@ Lockpicking is an art form that takes years to master. The important thing to re
 
 By using my techniques, I’m not merely suggesting you’ll be a successful thief, I’m giving you a solid guarantee. All it takes is a little bit of patience and a great deal of practice then maybe, just maybe, you’ll become as successful as Wulfmare.
 
-*In my next volume, we’ll move onto another important tool in your arsenal - sneaking. I’ll prove to you that the shadows can be just as potent of a weapon as your blade if you know how to bend it to your will.*', 0, '');
+*In my next volume, we’ll move onto another important tool in your arsenal - sneaking. I’ll prove to you that the shadows can be just as potent of a weapon as your blade if you know how to bend it to your will.*', 0, 'Volume 1001');
 
 -- AR-V-025 — Harvesting Frostbite Spider Venom
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
@@ -1818,7 +1818,7 @@ If you can find it, be sure to check the troll’s den as well. Perhaps you’ll
 
 No doubt you can put his coin to wiser use.
 
-Now you know everything that you need to make a living as a wealthy and reputable troll hunter. Go on, then! Get out there and find yourself some trolls!', 0, '');
+Now you know everything that you need to make a living as a wealthy and reputable troll hunter. Go on, then! Get out there and find yourself some trolls!', 0, 'Volume 1');
 
 -- AR-V-047 — The True Nature of Orcs
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES

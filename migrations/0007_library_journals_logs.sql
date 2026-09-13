@@ -588,7 +588,7 @@ The Bloodspring is not everything that I’d hoped it would be. Though it is blo
 
 Addiction.
 
-I may have just found a solution for our food problem.', 0, '');
+I may have just found a solution for our food problem.', 0, 'Volume 1');
 
 -- AR-VI-013 — Venarus Vulpin’s Research
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES

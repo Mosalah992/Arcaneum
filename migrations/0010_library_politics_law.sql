@@ -80,7 +80,7 @@ The cities of Skyrim are a testament to Nord ingenuity and craftsmanship. Chief 
 
 And now, respected reader, you have the full measure of it. We Nords are everything you imagined - and so much more.
 
-But let not this work be your only gateway to the truth. Book passage on carriage or vessel, and make the journey north. See Skyrim with thine own eyes. See Skyrim as have the Nords, since the gods first shaped the world.', 0, '');
+But let not this work be your only gateway to the truth. Book passage on carriage or vessel, and make the journey north. See Skyrim with thine own eyes. See Skyrim as have the Nords, since the gods first shaped the world.', 0, 'Volume 1');
 
 -- AR-IX-005 — Scourge of the Gray Quarter
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES

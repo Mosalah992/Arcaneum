@@ -48,6 +48,20 @@ export function normalizeVolumeLabel(value = '') {
 
   if (/^Volume\s+\d+$/i.test(text)) return text.replace(/^volume\s+/i, 'Volume ');
 
+  const lines = text.split(/\r?\n/).map((line) => line.trim());
+  const headings = lines.filter((line) => /^##\s+/.test(line));
+  const numbers = headings.flatMap((heading) => {
+    const direct = normalizeVolumeFromHeading(heading);
+    const n = direct.match(/\d+/)?.[0];
+    return n ? [Number(n)] : [];
+  });
+
+  if (numbers.length >= 2) {
+    const min = Math.min(...numbers);
+    const max = Math.max(...numbers);
+    return min === max ? `Volume ${min}` : `Volume ${min}-${max}`;
+  }
+
   const direct = normalizeVolumeFromHeading(text);
   if (direct) return direct;
 

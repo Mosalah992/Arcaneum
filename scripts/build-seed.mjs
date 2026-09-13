@@ -66,16 +66,8 @@ function callNumberOrder(cn) {
 }
 
 function inferVolumeFromBody(body) {
-  const lines = body.split('\n');
-  for (const line of lines) {
-    const trimmed = line.trim();
-    const match = trimmed.match(/^##\s+(.+?)\s*$/);
-    if (!match) continue;
-    const heading = match[1];
-    const normalized = normalizeVolumeLabel(heading);
-    if (normalized) return normalized;
-  }
-  return '';
+  const normalized = normalizeVolumeLabel(body);
+  return normalized;
 }
 
 function parse(file) {

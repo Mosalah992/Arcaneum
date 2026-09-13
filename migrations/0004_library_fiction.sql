@@ -221,7 +221,7 @@ The new Ynohp called in his favor with Laicifitra, using her army to restore pea
 
 Eslaf used part of the gold to buy the vineyards of The Aalto, after hearing great things of it from Ynohp.
 
-And so it was that Erolgard was returned to its previous prosperity by the fifth born child of King Ytluaf - Eslaf Erol, beggar, thief, warrior (of sorts), and king.', 0, '');
+And so it was that Erolgard was returned to its previous prosperity by the fifth born child of King Ytluaf - Eslaf Erol, beggar, thief, warrior (of sorts), and king.', 0, 'Volume 1');
 
 -- AR-III-002 — Ancient Tales of the Dwemer
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
@@ -3226,7 +3226,7 @@ Jurrifax returned to his commander and was well paid for his part in the day’s
 
 “But there is one,” said Jurrifax, looking to the stars. “My master, before he set me free, said that my mother had twin sons when I was born. She could only afford to raise but one child, but somewhere out there, there is a man just like me. My brother. I hope to meet him.”
 
-The witch saw the spirits before her and knew the truth that the twins had met already. She remained silent and stared into the fire, banishing the thoughts from her head, too wise to tell all.', 0, '');
+The witch saw the spirits before her and knew the truth that the twins had met already. She remained silent and stared into the fire, banishing the thoughts from her head, too wise to tell all.', 0, 'Volume 1');
 
 -- AR-III-025 — Mystery of Talara
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
@@ -4330,7 +4330,7 @@ Octoplasm took the zoetrope and the book from Zaki’s hands. Nothing seemed to 
 
 At the counter, when Zaki pulled out his sachel of gold pieces, Octoplasm merely shook his head: “Are treatment radical such of effects term long the what sure be can’t we, naturally. Charge no.”
 
-Feeling the first real relief he had felt in days, Zaki walked backwards out of the shop and down the road to his shop.', 0, '');
+Feeling the first real relief he had felt in days, Zaki walked backwards out of the shop and down the road to his shop.', 0, 'Volume 1');
 
 -- AR-III-036 — The Woodcutter’s Wife
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
@@ -4981,7 +4981,7 @@ After gorging myself and having my culinary epiphany, I was conflicted on what t
 
 Time and again, I''ve tried to return to that strange, wonderful place, but Cheydinhal has changed over time. Old houses have been reclaimed, and new houses abandoned. I know what to look for on the inside of the house - the well, the beautiful etching of a woman preparing to carve out a roast for her children, the red kitchen itself - but I have never been able to find the house again. After a while, as I grew older, I stopped trying. It is better as it remains in my memory, the most perfect meal I ever ate.
 
-The inspiration for my life that followed all was cooked up, together with that fabulous meat, right there in the Red Kitchen.', 0, '');
+The inspiration for my life that followed all was cooked up, together with that fabulous meat, right there in the Red Kitchen.', 0, 'Volume 1');
 
 -- AR-III-046 — The Seed
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
@@ -5142,7 +5142,7 @@ Eslaf was about to leap when the occupant of the room woke up with a start, yell
 
 Eslaf and *[sic]* stared at him for a second, wide-eyed. They looked alike. Not surprising, since they were brothers.
 
-Eslaf Erol''s story is continued in the book *Warrior*.', 0, '');
+Eslaf Erol''s story is continued in the book *Warrior*.', 0, 'Volume 1');
 
 -- AR-III-049 — Warrior
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
@@ -5185,7 +5185,7 @@ They fell on the shield, having considerable *[sic]* more expertise with their 
 
 As he ran heavily through the streets of Jallenheim, making jingling noises from the gold coins in his pockets, and feeling the huge gem chafe where he had hidden it, Eslaf did not know where he should go next. He knew only that he could never go back to that town, and he must avoid this warrior named Laicifitra who had claims on the jewel.
 
-Eslaf Erol''s story is continued in the book *King*.', 0, '');
+Eslaf Erol''s story is continued in the book *King*.', 0, 'Volume 1');
 
 -- AR-III-050 — Jornibret's Last Dance
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES

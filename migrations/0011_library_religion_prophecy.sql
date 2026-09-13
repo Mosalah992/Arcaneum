@@ -159,7 +159,7 @@ Akatosh is some kind of spirit dragon I think, wen he bothers to be a dragon at 
 
 So I got to ask - does that sound like Akatosh to you? No, frend. No it do not.
 
-And so I, Thromgar Iron-Head do firmly say, with the utmost connvicshun, that Alduin is real, and he ent Akatosh!', 0, '');
+And so I, Thromgar Iron-Head do firmly say, with the utmost connvicshun, that Alduin is real, and he ent Akatosh!', 0, 'Volume 1');
 
 -- AR-X-004 — The Alduin/Akatosh Dichotomy
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
@@ -379,7 +379,7 @@ When the Dragonborn Ruler loses his throne, and the White Tower falls
 
 When the Snow Tower lies sundered, kingless, bleeding
 
-The World-Eater wakes, and the Wheel turns upon the Last Dragonborn.', 0, '');
+The World-Eater wakes, and the Wheel turns upon the Last Dragonborn.', 0, 'Volume 1');
 
 -- AR-X-010 — A Children’s Anuad
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
@@ -634,7 +634,7 @@ Altmeri “The Heart of the World”
 
 “Auriel could not save Altmora, the Elder Wood, and it was lost to Men. They were chased south and east to Old Ehlnofey, and Lorkhan was close behind. He shattered that land into many. Finally Trinimac, Auriel’s greatest knight, knocked Lorkhan down in front of his army and reached in with more than hands to take his Heart. He was undone. The Men dragged Lorkhan’s body away and swore blood vengeance on the heirs of Auriel for all time.
 
-“But when Trinimac and Auriel tried to destroy the Heart of Lorkhan it laughed at them. It said, “This Heart is the heart of the world, for one was made to satisfy the other.” So Auriel fastened the thing to an arrow and let it fly long into the sea, where no aspect of the new world may ever find it.”', 0, '');
+“But when Trinimac and Auriel tried to destroy the Heart of Lorkhan it laughed at them. It said, “This Heart is the heart of the world, for one was made to satisfy the other.” So Auriel fastened the thing to an arrow and let it fly long into the sea, where no aspect of the new world may ever find it.”', 0, 'Volume 1');
 
 -- AR-X-019 — Mythic Dawn Commentaries
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES

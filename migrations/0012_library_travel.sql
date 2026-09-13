@@ -228,7 +228,7 @@ WINTERHOLD
 
 As with Whiterun, the name Winterhold describes both the hold and its capital city, though the word “city” hardly applies. The hold capital is a meager village built near the mages’ college.
 
-Few other noteworthy settlements exist in this frozen waste, and it is unlikely to play any significant part in the war.', 0, '');
+Few other noteworthy settlements exist in this frozen waste, and it is unlikely to play any significant part in the war.', 0, 'Volume 1');
 
 -- AR-XI-009 — Mysterious Akavir
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
@@ -341,4 +341,4 @@ Spatior has shown you Solitude in all its grandeur, but there are a few places m
 
 That’s all for Walking the World Volume XI. Spatior does not know his next destination yet, but you can be sure that where he does go he will leave you a record of the best things to see.
 
-Spatior Munius, World Traveler', 0, '');
+Spatior Munius, World Traveler', 0, 'Volume 11');

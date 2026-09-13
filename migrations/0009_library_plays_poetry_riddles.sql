@@ -551,7 +551,7 @@ ANANA/IACHILLA: Fascinating.
 
 There are several more flashes of lightning as the curtain closes.
 
-THE END', 0, '');
+THE END', 0, 'Volume 500');
 
 -- AR-VIII-006 — A Hypothetical Treachery
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES

@@ -1578,7 +1578,7 @@ Every official who worked for the Forsworn was put to the sword, even after they
 
 So when a “grateful” Empire accepted Ulfric’s victory and sent soldiers to re-establish the rule of law in the Reach, it was no surprise that he would demand to be allowed to worship Talos freely before the Legion could enter. With chaos running through the streets of Markarth and the reports of deaths rising every day, the Empire had no choice but to grant Ulfric and his men their worship.
 
-We allowed them to worship Talos, in full violation of the White-Gold Concordat with the Aldmeri Dominion (which recognizes the elven belief that Talos, as a human, cannot be one of the Divines). In jeopardizing the treaty that so many sacrificed for during the Great War, the Empire was wrong. But what choice did they have, I ask you? Against the Bear of Markarth, Ulfric Stormcloak, “no” is not an answer.', 0, '');
+We allowed them to worship Talos, in full violation of the White-Gold Concordat with the Aldmeri Dominion (which recognizes the elven belief that Talos, as a human, cannot be one of the Divines). In jeopardizing the treaty that so many sacrificed for during the Great War, the Empire was wrong. But what choice did they have, I ask you? Against the Bear of Markarth, Ulfric Stormcloak, “no” is not an answer.', 0, 'Volume 1');
 
 -- AR-IV-010 — Before the Ages of Man
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
@@ -1706,7 +1706,7 @@ Our current Emperor, His Awesome and Terrible Majesty, Uriel Septim VII, son of 
 
 Uriel VII was imprisoned in a dimension of Tharn’s creation, and Tharn used his sorcery of illusion to assume the Emperor’s aspect. For the next ten years, Tharn abused imperial privilege but did not continue Uriel VII’s schedule of reconquest. It is not yet entirely known what Tharn’s goals and personal accomplishments were during the ten years he masqueraded as his liege lord. In 3E399, an enigmatic Champion defeated the Battlemage in the dungeons of the Imperial Palace and freed Uriel VII from his other-dimensional jail.
 
-Since his emancipation, Uriel Septim VII has worked diligently to renew the battles that would reunite Tamriel. Tharn’s interference broke the momentum, it is true – but the years since then have proven that there is hope of the Golden Age of Tiber Septim’s rule glorifying Tamriel once again.', 0, '');
+Since his emancipation, Uriel Septim VII has worked diligently to renew the battles that would reunite Tamriel. Tharn’s interference broke the momentum, it is true – but the years since then have proven that there is hope of the Golden Age of Tiber Septim’s rule glorifying Tamriel once again.', 0, 'Volume 2');
 
 -- AR-IV-012 — Chronicles of Nchuleft
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
@@ -2039,7 +2039,7 @@ We see his hand as he traces his route up the Niben to Lake Rumare; and, after a
 
 There, they evidently discovered their earlier mistake, for we see that they pass the peninsula of Elsweyr. Eventually they traveled along its coastline, past the shores of Valenwood, and eventually home. Usually epic tales end with a happy ending, but this one begins with one, and the means to which it was accomplished is lost.
 
-Besides the extraordinary bird creatures of present day Cyrodiil, we have caught glimpses of ancient orcs (perhaps), ancient cliff-racers, ancient Argonians, and in this fragment, ancient Khajiit. Quite a history in a few lines of simple verse, all because a man failed to find his home, and took all the wrong turns to retrace his steps back.', 0, '');
+Besides the extraordinary bird creatures of present day Cyrodiil, we have caught glimpses of ancient orcs (perhaps), ancient cliff-racers, ancient Argonians, and in this fragment, ancient Khajiit. Quite a history in a few lines of simple verse, all because a man failed to find his home, and took all the wrong turns to retrace his steps back.', 0, 'Volume 1');
 
 -- AR-IV-019 — The Firsthold Revolt
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
@@ -2258,7 +2258,7 @@ Hammerfell, however, refused to accept the White-Gold Concordat, being unwilling
 
 In the end, the heroic Redguards fought the Aldmeri Dominion to a standstill, although the war lasted for five more years and left southern Hammerfell devastated. The Redguards say that this proves that the White-Gold Concordat was unnecessary, and that if Titus II had kept his nerve, the Aldmeri could have been truly defeated by the combined forces of Hammerfell and the rest of the Empire. The truth of that assertion can, of course, never be known. But the Redguards should not forget the great sacrifice of Imperial blood - Breton, Nord, and Cyrodilic - at the Battle of the Red Ring that weakened the Dominion enough to allow the eventual Second Treaty of Stros M’kai in 4E 180 and the withdrawal of Aldmeri forces from Hammerfell.
 
-There can be no doubt that the current peace cannot last forever. The Thalmor take the long view, as is proved by the sequence of events leading up to the Great War. All those who value freedom over tyranny can only hope that before it is too late, Hammerfell and the Empire will be reconciled and stand united against the Thalmor threat. Otherwise, any hope to stem the tide of Thalmor rule over all of Tamriel is dimmed.', 0, '');
+There can be no doubt that the current peace cannot last forever. The Thalmor take the long view, as is proved by the sequence of events leading up to the Great War. All those who value freedom over tyranny can only hope that before it is too late, Hammerfell and the Empire will be reconciled and stand united against the Thalmor threat. Otherwise, any hope to stem the tide of Thalmor rule over all of Tamriel is dimmed.', 0, 'Volume 1');
 
 -- AR-IV-024 — The Keepers of the Razor
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
