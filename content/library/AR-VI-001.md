@@ -27,8 +27,7 @@ As I begin this new phase of my life, I have decided to finally keep a journal. 
 27th of Rain’s Hand, 4E 187
  Completed the Arena contract. I ultimately decided to pose as a starstruck fan, and immediately got into the Grand Champion’s good graces. While escorting the arrogant fool through the Great Forest, I slashed his throat and left the corpse for the bears.
 
-Cicero’s Journal: Volume 2
-
+## Cicero’s Journal: Volume 2
 7th of Sun’s Height, 4E 188
  Wayrest is lost. The city fell to corsairs, and it’s just a matter of time before the Sanctuary is breached. May the Night Mother watch over her children in their hour of need.
 
@@ -57,8 +56,7 @@ The story Garnag told could curl the blood of even the most hardened of Sithis�
 
 Garnag, though gravely injured (he will most certainly lose his right eye), managed to fend off the attackers, and transport the Night Mother’s coffin safely out of the city. He has been on the road, making his way back here, since that tragic night.
 
-Cicero’s Journal: Volume 3
-
+## Cicero’s Journal: Volume 3
 23rd of Sun’s Dusk, 4E 188
  Now that things have settled down, the reality of our situation has finally come to bear - we are a Dark Brotherhood without a Listener. With no Listener, the Black Sacrament will go unheard. Surely the Night Mother will speak to someone soon, thus choosing a new Listener to take Alisanne Dupre’s place. Until that happens, though, we must take to the streets. We must hear the pleas of the desperate and vengeful. The people of Tamriel must not know, must never know, that their prayers to the Night Mother are going unheeded.
 
@@ -89,8 +87,7 @@ And so, I wash the corpse weekly with the requisite oils, recite the ancient inc
 
 I think back fondly on my hours with the jester. His laughter, his screams, his pitiful cries. And then, as the end drew near, his laughter once more. Merry in death as well as life. I was honored to know him.
 
-Cicero’s Journal: Volume 4
-
+## Cicero’s Journal: Volume 4
 1st of Hearthfire, 4E 189
  Cheydinhal has erupted into violence and chaos, like so many other cities before it. The Sanctuary has remained unbreached, but for how long?
 
@@ -154,7 +151,7 @@ We must leave here. Before the Sanctuary falls. Before the Night Mother burns. B
 29th of Sun’s Dusk, 4E 200
  I took a stroll, and spied a maid, but Matron’s duty stayed my blade. So busy now, I miss the thrill, if only I had time to kill.
 
-Cicero’s Journal, The Final Volume
+## Cicero’s Journal, The Final Volume
  30th of Sun’s Dusk, 4E 200
  I have written the letters. So polite. So official! To Astrid, in Skyrim. Her Sanctuary still stands. Still operates. But how? No Listener means no Black Sacrament, no Black Sacrament means no contracts. Her family can abandon the Old Ways, and still survive, still kill, but is that family still Brotherhood? Or something else? Something new. Something different. Something wrong?
 

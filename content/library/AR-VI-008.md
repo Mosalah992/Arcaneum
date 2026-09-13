@@ -34,8 +34,7 @@ Sobs racked my chest, and weeping filled the air around me as the spell loosened
 
 I mustered what will I could and bellowed all the fear and hatred and agony at what had just happened, turning the word into a mindless shriek: “GO!” I ran then, feeling more than seeing that the others had followed.
 
-Rising Threat, Vol. II
-
+## Rising Threat, Vol. II
 What happened after the tower of Crystal-like-law fell was a daze. It was as if my mind simply... stopped. Instinct took over, as my every thought sank into a black abyss of despair. Time lost all meaning, and to this day I know not how long I was in this state. Eventually a conscious thought managed to break my fugue: the daedric horde had vanished! Gone as suddenly as they had come.
 
 Before my numbed mind could comprehend the tumult that consumed my beloved Summerset Isle, before I could formulate the question “how?” they were there, dripping honeyed poison in our ears: the Thalmor. They were the ones that saved us, they claimed, working deep and subtle magicks. It was their efforts, their sacrifices that delivered the Altmer from extinction.
@@ -46,8 +45,7 @@ It was months before I began to suspect the error we had made. Small twinges of 
 
 The Thalmor besmirched his name when he had the audacity to publicly doubt and question their role in ending the Oblivion Crisis on Summerset Isle. Rynandor made the mistake of ignoring the consensus gentium, trusting instead to logic and facts. The shrewdness of the Thalmor, however, was not such to allow something as trivial as the truth stand in their way. As soon as they shifted the collective opinion ever so slightly against Rynandor, they had him sequestered and intensified their efforts to tarnish his reputation. Unable to mount any sort of defense to the Thalmor’s attacks, Rynandor was quickly denounced and exiled.
 
-Rising Threat, Vol. III
-
+## Rising Threat, Vol. III
 Ever so cautiously, I formed a cabal made up of others who distrusted the motives and methods of the Thalmor. Over several months, I liquidated my ancestral holdings and took whatever inheritance I could without raising any suspicions. I would follow after Rynandor and help him restore his reputation and status. We would then return to best the Thalmor at their own game and win back the mores and morals of the Altmer! The rest of my cabal would stay on Summerset Isle and win the trust of the Thalmor on whatever level best suited each of them, sending clandestine missives to me when possible.
 
 After weeks of painstaking investigations and exorbitant bribes, I was able to learn that Rynandor was placed on a ship to Anvil. I booked my own passage to Anvil. My search almost ended there, for Rynandor had never arrived in Anvil Harbor. My instinct that Rynandor met a duplicitous end was confirmed when I sought out several of the deckhands who were reported to be aboard Rynandor’s vessel. All died under mysterious and violent circumstances.
@@ -62,7 +60,7 @@ Potentate Ocato made admirable efforts to rein in the bedlam that threatened to 
 
 None were prepared for what happened next.
 
-Rising Threat, Vol. IV
+## Rising Threat, Vol. IV
  While Morrowind and the Imperial forces in Black Marsh were still reeling from the consecutive catastrophes of the Oblivion Crisis and the destruction of Vvardenfell, the Thalmor incited the Argonians to mount a massive uprising. Black Marsh and southern Morrowind were completely lost to the Argonians, but luckily the Thalmor too lost what influence they had over the reptilians.
 
 All the while, the Thalmor consolidated their hold over my beloved homeland.
