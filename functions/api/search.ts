@@ -40,6 +40,26 @@ interface Hit {
   score: number;
 }
 
+function volumeCategoryFromQuery(raw: string): string | null {
+  const match = raw.match(/\b(?:vol(?:ume)?|book|chapter|part)\b\s*(?:[.:\-]\s*)?([ivxlcdm]+|\d+)/i);
+  if (!match) return null;
+
+  const token = match[1].trim();
+  if (/^[ivxlcdm]+$/i.test(token)) {
+    const roman = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 };
+    let total = 0;
+    for (let i = 0; i < token.length; i++) {
+      const here = roman[token[i].toUpperCase()] ?? 0;
+      const next = roman[token[i + 1]?.toUpperCase()] ?? 0;
+      total += next > here ? -here : here;
+    }
+    return `Volume ${total}`;
+  }
+
+  const numeric = Number(token);
+  return Number.isFinite(numeric) ? `Volume ${numeric}` : null;
+}
+
 /**
  * A typed phrase into an FTS5 MATCH expression.
  *
@@ -91,6 +111,8 @@ export const onRequest = readOnly(async ({ request, env }: RequestContext) => {
     ? Math.min(Math.max(askedFor, 1), MAX_LIMIT)
     : DEFAULT_LIMIT;
 
+  const requestedVolume = volumeCategoryFromQuery(raw);
+
   /*
    * bm25 weights title and author above body.
    *
@@ -124,10 +146,12 @@ export const onRequest = readOnly(async ({ request, env }: RequestContext) => {
     // the shelf now, and a search that quietly skipped five of the books the
     // College holds would be a worse tool than one that admits to them.
     ` WHERE tomes_fts MATCH ?` +
+    (requestedVolume === null ? '' : ' AND lower(t.volume) LIKE ?') +
     (shelf === null ? '' : ' AND t.school = ?') +
     ` ORDER BY score LIMIT ?`;
 
   const binds: unknown[] = [OPEN, CLOSE, match];
+  if (requestedVolume !== null) binds.push(`%${requestedVolume}%`);
   if (shelf !== null) binds.push(shelf);
   binds.push(limit);
 

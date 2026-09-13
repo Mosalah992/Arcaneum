@@ -372,7 +372,7 @@ export function catalogueScreen(): Screen {
 
   function matches(row: Row, needle: string): boolean {
     if (needle === '') return true;
-    return `${row.call_number} ${row.title} ${row.author} ${row.school}`
+    return `${row.call_number} ${row.title} ${row.author} ${row.school} ${row.volume ?? ''}`
       .toLowerCase()
       .includes(needle);
   }
