@@ -551,7 +551,7 @@ ANANA/IACHILLA: Fascinating.
 
 There are several more flashes of lightning as the curtain closes.
 
-THE END', 0, 'Volume 500');
+THE END', 0, '');
 
 -- AR-VIII-006 — A Hypothetical Treachery
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
@@ -1161,7 +1161,7 @@ INSERT INTO tomes (id, call_number, title, author, school, body, restricted, vol
 
 By:
  Crassius Curio
-
+...
 Act IV, Scene III, continued
 
 Lifts-Her-Tail
@@ -1210,7 +1210,7 @@ Volume 2
 
 By:
  Crassius Curio
-
+...
 ACT VII, SCENE II, CONTINUED
 
 Lifts-Her-Tail

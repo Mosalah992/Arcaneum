@@ -634,7 +634,7 @@ Altmeri “The Heart of the World”
 
 “Auriel could not save Altmora, the Elder Wood, and it was lost to Men. They were chased south and east to Old Ehlnofey, and Lorkhan was close behind. He shattered that land into many. Finally Trinimac, Auriel’s greatest knight, knocked Lorkhan down in front of his army and reached in with more than hands to take his Heart. He was undone. The Men dragged Lorkhan’s body away and swore blood vengeance on the heirs of Auriel for all time.
 
-“But when Trinimac and Auriel tried to destroy the Heart of Lorkhan it laughed at them. It said, “This Heart is the heart of the world, for one was made to satisfy the other.” So Auriel fastened the thing to an arrow and let it fly long into the sea, where no aspect of the new world may ever find it.”', 0, 'Volume 1');
+“But when Trinimac and Auriel tried to destroy the Heart of Lorkhan it laughed at them. It said, “This Heart is the heart of the world, for one was made to satisfy the other.” So Auriel fastened the thing to an arrow and let it fly long into the sea, where no aspect of the new world may ever find it.”', 0, '');
 
 -- AR-X-019 — Mythic Dawn Commentaries
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
@@ -949,8 +949,9 @@ But Kyne’s ministrations are not to be taken lightly, and though her blessings
 
 When the skies cleared, and Ylgar glimpsed again, with new eyes, the land of his past and future home, he knew his brothers vessel was not within his horizon. The Darumzu, arriving late, drew forth onto the sands and Ylgar rushed to his father to seek word of his brother. The Grear Ysgramor, harbinger of us all, wept for his lost son, and sought comfort in the arms of his only remaining joy. The crew of the Harakk became the first deaths among the Five Hundred, and Ylfar was so enraged with love for his brother that his crew would soon be counted as the first among the many noble and honored names in the Companions.
 
-Songs of the Return, Volume 5
- It came to pass that our great lord Ysgramor, the Harbinger of us all, sat before an encampment fire. The crews of the Jorrvaskr, the Fallowfire, and the Kaal Kaaz bade him eat, and boast, and drink. For the boon members of the Five Hundred Companions were abroad in the land. Stories were told, hearts won and lost, and always the smell of roasting meat hung in the air. The greatest of us all beckoned every warrior to his side, and spoke the tale of Wuuthrad’s forging.
+## Songs of the Return, Volume 5
+
+It came to pass that our great lord Ysgramor, the Harbinger of us all, sat before an encampment fire. The crews of the Jorrvaskr, the Fallowfire, and the Kaal Kaaz bade him eat, and boast, and drink. For the boon members of the Five Hundred Companions were abroad in the land. Stories were told, hearts won and lost, and always the smell of roasting meat hung in the air. The greatest of us all beckoned every warrior to his side, and spoke the tale of Wuuthrad’s forging.
 
 Every Mer the Harbinger slew died at Wuuthrad’s bite. All through the long campaign, the only weapon that would fit in the Harbinger’s hand was the mighty Wuuthrad. As he told it, the most legendary of axes was forged in the darkest of nights.
 
@@ -964,8 +965,9 @@ When Ysgramor awoke the next morning, Yngol presented him with a mighty axe, hew
 
 It was then, in telling the tale, that Ysgramor paused. The Harbinger of us all called out to lost Yngol, who had been with the crew of the Harakk in the Storm of Seperation. For his son, his eldest and greatest joy, was with him always. He who had bound the storm’s tears, he said, rode with him always in the days of the noble and honored Five Hundred.
 
-Songs of the Return, Volume 7, The Tale of the Jorrvaskr
- When at last the rightful claim of Saarthal had been retaken, driving the murderous elves back to their lofty cities, did great Ysgramor turn and let loose the fearsome war cry that echoed across all the oceans. The Five Hundred who yet stood joined in the ovation for the victory and the lament for their fallen peers. It was said to be heard on the distant and chilling green shores of Atmora, and the ancestors knew their time had come to cross the seas.
+## Songs of the Return, Volume 7, The Tale of the Jorrvaskr
+
+When at last the rightful claim of Saarthal had been retaken, driving the murderous elves back to their lofty cities, did great Ysgramor turn and let loose the fearsome war cry that echoed across all the oceans. The Five Hundred who yet stood joined in the ovation for the victory and the lament for their fallen peers. It was said to be heard on the distant and chilling green shores of Atmora, and the ancestors knew their time had come to cross the seas.
 
 As the reverberations echoed out and drowned to silence, all looked to Ysgramor, who bore the blessed Wuuthrad, for his next commandment. With his lungs that bellowed forth the fury of humanity, he bade them to continue their march, that the devious Mer might know the terror they had brought on themselves with their trickery.
 
@@ -987,8 +989,9 @@ This first of many, this crew of the Jorrvaskr, heathens and ancestors to us all
 
 Thus began the building of the Great City, circled by the running of the White River, as brought forth by these beloved of Ysgramor, yet but twenty-two of the glorious Five Hundred Companions.
 
-Songs of the Return, Volume 19, The Second Tale of the Ylgermet
- When that final battle at the barren pass was completed, and the melting snow carried elf-blood back to the sea, the crew of the Kaal Kaaz, the Sadon Reyth, and the most exalted crew of our lord’s ship, the Ylgermet, at last parted ways, never to join shields again. They drew apart in that form which is not a loss, but a gain knowing one’s heart can be carried in the chests of others. So great was the love that those first of the Five Hundred had for each other, and most especially for the great Ysgramor, harbinger of us all.
+## Songs of the Return, Volume 19, The Second Tale of the Ylgermet
+
+When that final battle at the barren pass was completed, and the melting snow carried elf-blood back to the sea, the crew of the Kaal Kaaz, the Sadon Reyth, and the most exalted crew of our lord’s ship, the Ylgermet, at last parted ways, never to join shields again. They drew apart in that form which is not a loss, but a gain knowing one’s heart can be carried in the chests of others. So great was the love that those first of the Five Hundred had for each other, and most especially for the great Ysgramor, harbinger of us all.
 
 They pressed eastwards, seeking the sea, when they came upon the barrow of Yngol, the mighty of Ysgramor’s son who had fallen to the whims of Kyne rather than the treachery of the elves.
 
@@ -1004,8 +1007,9 @@ In the deep hollows beneath the city, a great tomb was prepared for the day when
 
 Thus was founding of Windhelm, the city of Kings, though her history is long and her glories did not end with her founder.
 
-Songs of the Return, Volume 24, The First Tale of the Krilot Lok
- [When the time came for] breaking of camp, not all crews took southwards across the rolling lands. Some turned with quick eyes back to their ships, for their hearts were bounded to the waves as sure as they were bounded to each other [as allied Companions].
+## Songs of the Return, Volume 24, The First Tale of the Krilot Lok
+
+[When the time came for] breaking of camp, not all crews took southwards across the rolling lands. Some turned with quick eyes back to their ships, for their hearts were bounded to the waves as sure as they were bounded to each other [as allied Companions].
 
 One such crew was that of the Krilot Lok, sinewy long folk from the [eastern] edge of Atmora. Their ruddy skin matched the dawn and it was often said that morning herself learned [her glorious colors from] the first faces to meet her at the break of day. The great Kyne lifted their souls and their winds, propelling them westwards with the new lands of Tamriel ever beckoning to the south.
 
@@ -1015,8 +1019,9 @@ Among the brave crew of the Krilot Lok were of Roeth and Breff the Elder, the gr
 
 Onward they flew, ravaging the swamplands, beating a trail between themselves and their ship such that they would never lose sight of the shore. In the far-off day when at last Roeth would fall, when Britte screamed her famed war-cry so that all the marshes were emptied, this trail would fill once more with the treacherous snake men. So began the [burning?] march of these great captains of us all.
 
-Songs of the Return, Volume 27
- At last Sinmur was brought to bay. Ysgramor, Harbinger of us all, boldly led the remaining Companions into the final battle. Many a brave Companion had already fallen to the giants. Stalwart Valdur and Sly Hakra, long may their spirits be honored, fell assaulting the wily half-giant. Many others now trod the blessed pathways to Sovngarde. With all his kin slain, only Sinmur still defied the greatest among us.
+## Songs of the Return, Volume 27
+
+At last Sinmur was brought to bay. Ysgramor, Harbinger of us all, boldly led the remaining Companions into the final battle. Many a brave Companion had already fallen to the giants. Stalwart Valdur and Sly Hakra, long may their spirits be honored, fell assaulting the wily half-giant. Many others now trod the blessed pathways to Sovngarde. With all his kin slain, only Sinmur still defied the greatest among us.
 
 The axe Wuuthrad, dripping with the gore of a hundred dead giants, gleamed in the darkness of Sinmur’s barrow. Ysgramor strode forward, halting his followers with a gesture. With another he dared Sinmur to face him in mortal combat. The giant-kin proved willing, roaring his defiance and leaping to battle. His massive, iron-bound club swung forward to crush. Our Lord Ysgramor stepped aside and the club shattered the stone a pace from his side. Wuuthrad sang a blood song as it chopped into the club, breaking it asunder as if made from straw.
 
@@ -1024,8 +1029,9 @@ Sinmur howled his rage and hurled the stub of his once-fearsome weapon at Our Lo
 
 A song of death and delight keened from Wuuthrad as Ysgramor buried it deep in the giant-kin’s skull. A splatter of gore and a death rattle came from Sinmur as Ysgramor gave a victory yell. The Companions cheered mightily as Wuuthrad waved overhead. The depredations of the giant and his vile kin were at last ended. And the legend of Ysgramor, Harbinger of us all, grew mightily that day.
 
-Songs of the Return, Volume 49
- With the Circle of Captains’ decree that each ship’s crew should go forth of its own accord, making its own legend, the crew of the Fallowfire rejoiced. They yearned to bring the fear of Men to new lands of the Mer that had not yet been put to the sword. They took to heart their Lord Ysgramor’s words to “Give no quarter. Show no kindness.”
+## Songs of the Return, Volume 49
+
+With the Circle of Captains’ decree that each ship’s crew should go forth of its own accord, making its own legend, the crew of the Fallowfire rejoiced. They yearned to bring the fear of Men to new lands of the Mer that had not yet been put to the sword. They took to heart their Lord Ysgramor’s words to “Give no quarter. Show no kindness.”
 
 A pyre upon the shore was raised for the Fallowfire. The ashes of their beloved vessel fell upon the waters and drifted toward Atmora, cutting all ties with their homeland. Led by Captain Gurilda Sharktooth, the crew of the Fallowfire turned their backs to the sea and strode inland.
 
@@ -1039,8 +1045,9 @@ That day, the dominion of Elves over the Rift was ended. The Companions claimed 
 
 Vikord One-Ear, long Gurilda’s first mate but now captain, gazed long upon the hills rising about them and the valleys at their feet. This was a land he could love, where his people could prosper and grow. He decreed the crew’s wandering at an end and caused a great hall to be built on the battle site. Thus was Fallowstone Hall created, in homage to the ship that carried them to these shores. From this time, the days of the Companions of the Rift are counted. Never may their glory fade!
 
-Songs of the Return, Volume 56, The Final Tale of the Chrion
- These Songs of the Return are eternal and numerous, for these first Five Hundred, those Companions of Ysgramor who cleared the way for mankind’s rightful habitation, burned with a fire not seen since those days long passed. Each ship carried a crew that performed legendary feats that could feed the pride of any nation for a thousand years. And during this time of the broadening, scores of Companions wandered the land, bringing the light of the proper god to the heather land of elves and beasts.
+## Songs of the Return, Volume 56, The Final Tale of the Chrion
+
+These Songs of the Return are eternal and numerous, for these first Five Hundred, those Companions of Ysgramor who cleared the way for mankind’s rightful habitation, burned with a fire not seen since those days long passed. Each ship carried a crew that performed legendary feats that could feed the pride of any nation for a thousand years. And during this time of the broadening, scores of Companions wandered the land, bringing the light of the proper god to the heather land of elves and beasts.
 
 They were but mortal, though, and in time, all would taste the glories of Sovngarde. It was in one of the uncounted years after the retaking of Saarthal that the crew of the Chrion was declaring their fortunes in the eastern lands near the Red Mountain. They were encamped, surrounded by bodies of murderous elves who had attempted to make them believe they held peace in their hearts. The shrewd Rhorlak was the Chrion’s captain, though, and would show no quarter to the liars of the southlands, as had been commanded by his lord Ysgramor, harbinger of us all.
 

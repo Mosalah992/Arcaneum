@@ -64,7 +64,7 @@ As all now know, the courageous, indefatigable, and forever nameless Champion wa
 
 Barenziah and good King Eadwyre had come to care deeply for one another during their trials and adventures, and were married in the same year shortly after their flight from the Imperial City. Her two children from her previous marriage with Symmachus remained with her, and a regent was appointed to rule Mournhold in her absence.
 
-Up to the present time, Queen Barenziah has been in Wayrest with Prince Helseth and Princess Morgiah. She plans to return to Mournhold after Eadwyre’s death. Since he was already elderly when they wed, she knows that that event, alas, could not be far off as the Elves reckon time. Until then, she shares in the government of the kingdom of Wayrest with her husband, and seems glad and content with her finally quiet, and happily unremarkable, life.', 0, '');
+Up to the present time, Queen Barenziah has been in Wayrest with Prince Helseth and Princess Morgiah. She plans to return to Mournhold after Eadwyre’s death. Since he was already elderly when they wed, she knows that that event, alas, could not be far off as the Elves reckon time. Until then, she shares in the government of the kingdom of Wayrest with her husband, and seems glad and content with her finally quiet, and happily unremarkable, life.', 0, 'Volume 1');
 
 -- AR-I-002 — Biography of the Wolf Queen
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
@@ -1679,7 +1679,7 @@ Potema handed her brother the letter and left the room. For a few moments, out i
 
 Ten years after being crowned Emperor of Tamriel, Antiochus Septim had impressed his subjects with little but the enormity of his lust for carnal pleasures. By his second wife, Gysilla, he had a daughter in the year 104, who he named Kintyra, after his great-great-great grandaunt, the Empress. Enormously fat and marked by every venereal disease known to the Healers, Antiochus spent little time on politics. His siblings, by marked contrast, excelled in this field. Magnus had married Hellena, the Cyrodiil Queen of Lilmoth – the Argonian priest-king having been executed – and was representing the Imperial interests in Black Marsh admirably. Cephorus and his wife Bianki were ruling the Hammerfell kingdom of Gilane with a healthy brood of children. But no one was more politically active than Potema, the Wolf-Queen of the Skyrim kingdom of Solitude.
 
-Nine years after the death of her husband, King Mantiarco, Potema still ruled as regent for her young son, Uriel. Their court had become very fashionable, particularly for rulers who had a grudge to bear against the Emperor. All the kings of Skyrim ', 0, '');
+Nine years after the death of her husband, King Mantiarco, Potema still ruled as regent for her young son, Uriel. Their court had become very fashionable, particularly for rulers who had a grudge to bear against the Emperor. All the kings of Skyrim ', 0, 'Volume 1');
 UPDATE tomes SET body = body || 'visited Castle Solitude regularly, and over the years, emissaries from the lands of Morrowind and High Rock did as well. Some guests came from even farther away.
 
 3E 110:

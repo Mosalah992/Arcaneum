@@ -228,7 +228,7 @@ WINTERHOLD
 
 As with Whiterun, the name Winterhold describes both the hold and its capital city, though the word “city” hardly applies. The hold capital is a meager village built near the mages’ college.
 
-Few other noteworthy settlements exist in this frozen waste, and it is unlikely to play any significant part in the war.', 0, 'Volume 1');
+Few other noteworthy settlements exist in this frozen waste, and it is unlikely to play any significant part in the war.', 0, '');
 
 -- AR-XI-009 — Mysterious Akavir
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES

@@ -1125,7 +1125,7 @@ Lockpicking is an art form that takes years to master. The important thing to re
 
 By using my techniques, I’m not merely suggesting you’ll be a successful thief, I’m giving you a solid guarantee. All it takes is a little bit of patience and a great deal of practice then maybe, just maybe, you’ll become as successful as Wulfmare.
 
-*In my next volume, we’ll move onto another important tool in your arsenal - sneaking. I’ll prove to you that the shadows can be just as potent of a weapon as your blade if you know how to bend it to your will.*', 0, 'Volume 1001');
+*In my next volume, we’ll move onto another important tool in your arsenal - sneaking. I’ll prove to you that the shadows can be just as potent of a weapon as your blade if you know how to bend it to your will.*', 0, '');
 
 -- AR-V-025 — Harvesting Frostbite Spider Venom
 INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES
