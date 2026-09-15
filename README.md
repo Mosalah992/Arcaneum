@@ -4,8 +4,11 @@ A 90s-CD-ROM-styled web archive of the College of Winterhold library: the 249
 in-game books of Skyrim, shelved, searchable to the word, with a live view of
 which of them are actually on the shelf in game.
 
-The text is Bethesda's, ported from the Library of Skyrim. **Read
-[PROVENANCE.md](PROVENANCE.md) before publishing this anywhere.**
+The text is Bethesda's, ported from the Library of Skyrim. 
+
+this project is a non profit and uses public information for ease of access for RP communities . 
+
+all credits for lore / books go to bethesda . 
 
 **Live: <https://arcanaeum.pages.dev>**
 
