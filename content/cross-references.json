@@ -58,6 +58,21 @@
       "from": "The Book of Daedra",
       "cites": "Souls, Black and White",
       "note": "The black gem and what is done to fill it."
+    },
+    {
+      "from": "The Black Arts on Trial",
+      "cites": "Mannimarco, King of Worms",
+      "note": "The Worm King named in the trial, sealed as verse."
+    },
+    {
+      "from": "Galerion the Mystic",
+      "cites": "Mannimarco, King of Worms",
+      "note": "Galerion’s rival, told in the sealed lay."
+    },
+    {
+      "from": "On Oblivion",
+      "cites": "The Doors of Oblivion",
+      "note": "Travellers’ accounts of walking those doors, held sealed."
     }
   ]
 }

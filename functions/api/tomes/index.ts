@@ -28,6 +28,8 @@ interface TomeSummary {
   school: string;
   volume?: string | null;
   restricted: number;
+  /** May be read via an approved external source / RP; not physical holdings. */
+  readable_online: number;
 }
 
 /*
@@ -44,7 +46,8 @@ interface TomeSummary {
  * A new volume is a new row with the next free id, wherever its call number
  * puts it on the shelf. Sorting 250 rows in the Worker costs nothing.
  */
-const BASE = 'SELECT id, call_number, title, author, school, restricted, volume FROM tomes';
+const BASE =
+  'SELECT id, call_number, title, author, school, restricted, volume, readable_online FROM tomes';
 
 const ACCESSION = /-(\d+)$/;
 
@@ -78,6 +81,10 @@ export const onRequest = readOnly(async ({ request, env }: RequestContext) => {
   const { results } = await stmt.all<TomeSummary>();
   const tomes = results
     .sort((a, b) => shelfOrder(a) - shelfOrder(b))
-    .map((t) => ({ ...t, restricted: t.restricted === 1 }));
+    .map((t) => ({
+      ...t,
+      restricted: t.restricted === 1,
+      readable_online: t.readable_online === 1,
+    }));
   return json({ tomes }, 200, 'public, max-age=60');
 });

@@ -324,6 +324,20 @@
   box-shadow: var(--bevel-out);
 }
 
+/*
+ * Colour is never the only channel: ELSEWHERE says in words what the blue bar
+ * says in colour. Independent of SEALED and of the register columns.
+ */
+.result .elsewhere {
+  margin-left: 6px;
+  padding: 0 4px;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  color: var(--obsidian);
+  background: var(--elsewhere);
+  box-shadow: var(--bevel-out);
+}
+
 /* -- sortable headings --------------------------------------------------- */
 
 /*
@@ -411,7 +425,7 @@
 }
 
 /* Every copy is in. */
-.result .held--in { color: #6fd08c; }
+.result .held--in { color: var(--collection); }
 
 /* Some are out, some are not. */
 .result .held--some { color: #e0b552; }
@@ -441,22 +455,84 @@
  * answer — see `renderFound()` in src/screens/catalogue.ts.
  */
 .result--held {
-  box-shadow: inset 3px 0 0 #4fae6c;
+  box-shadow: inset 3px 0 0 var(--collection-dim);
   background: linear-gradient(90deg, rgba(79, 174, 108, 0.11), rgba(79, 174, 108, 0) 42%);
 }
 
 .result--held:hover,
 .result--held[aria-selected='true'] {
-  box-shadow: inset 3px 0 0 #6fd08c;
+  box-shadow: inset 3px 0 0 var(--collection);
   background: linear-gradient(90deg, rgba(79, 174, 108, 0.2), rgba(79, 174, 108, 0.04) 60%);
 }
 
+/*
+ * A hit that may be read elsewhere (external source / RP), whether or not the
+ * College holds a copy. Blue bar on the RIGHT so it never fights the green left
+ * bar — a book can be both held and readable, and both must show.
+ */
+.result--readable {
+  box-shadow: inset -3px 0 0 var(--elsewhere-dim);
+  background: linear-gradient(270deg, var(--elsewhere-wash), rgba(61, 111, 160, 0) 42%);
+}
+
+.result--readable:hover,
+.result--readable[aria-selected='true'] {
+  box-shadow: inset -3px 0 0 var(--elsewhere);
+  background: linear-gradient(270deg, rgba(61, 111, 160, 0.22), rgba(61, 111, 160, 0.04) 60%);
+}
+
+/* Both channels at once: green left ownership, blue right readability. */
+.result--held.result--readable {
+  box-shadow: inset 3px 0 0 var(--collection-dim), inset -3px 0 0 var(--elsewhere-dim);
+  background:
+    linear-gradient(90deg, rgba(79, 174, 108, 0.11), rgba(79, 174, 108, 0) 36%),
+    linear-gradient(270deg, var(--elsewhere-wash), rgba(61, 111, 160, 0) 36%);
+}
+
+.result--held.result--readable:hover,
+.result--held.result--readable[aria-selected='true'] {
+  box-shadow: inset 3px 0 0 var(--collection), inset -3px 0 0 var(--elsewhere);
+  background:
+    linear-gradient(90deg, rgba(79, 174, 108, 0.2), rgba(79, 174, 108, 0.04) 50%),
+    linear-gradient(270deg, rgba(61, 111, 160, 0.22), rgba(61, 111, 160, 0.04) 50%);
+}
+
 /* The group heading above them, in the same green. */
-.results-group--held .results-group__name { color: #6fd08c; }
+.results-group--held .results-group__name { color: var(--collection); }
 .results-group--held .results-group__count {
   color: var(--obsidian);
-  background: #4fae6c;
+  background: var(--collection-dim);
 }
+
+/*
+ * Colour key under the column headings. Quiet, monochrome-legible (the words
+ * carry the meaning; the swatch is a second reading), and hidden on the narrow
+ * layout where the headings themselves go away.
+ */
+.results-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 4px 14px 6px;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  color: var(--parchment-dim);
+  background: var(--stone-900);
+  border-bottom: 1px solid var(--obsidian);
+}
+
+.results-key__item::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 6px;
+  vertical-align: 0;
+  box-shadow: var(--bevel-out);
+}
+
+.results-key__item--held::before { background: var(--collection-dim); }
+.results-key__item--readable::before { background: var(--elsewhere-dim); }
 
 /* A shelf heading inside the results. Not a `.result`, so it is skipped by the
    keyboard model, which walks `.result` alone. */
@@ -572,6 +648,7 @@
   .tablet { width: auto; margin: 0; font-size: 17px; padding: 4px 8px 6px; }
 
   .results-head { display: none; }
+  .results-key { display: none; }
 
   .result {
     /* The copy count goes; how many are on the shelf stays. On a phone at the

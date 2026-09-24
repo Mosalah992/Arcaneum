@@ -36,6 +36,7 @@ interface Hit {
   school: string;
   volume?: string | null;
   restricted: number;
+  readable_online: number;
   excerpt: string;
   score: number;
   /** The prose, selected only for books that have `## ` headings in it. */
@@ -273,7 +274,7 @@ export const onRequest = readOnly(async ({ request, env }: RequestContext) => {
   const requestedVolume = volumeCategoryFromQuery(raw);
 
   const sql =
-    `SELECT t.id, t.call_number, t.title, t.author, t.school, t.restricted, t.volume,` +
+    `SELECT t.id, t.call_number, t.title, t.author, t.school, t.restricted, t.volume, t.readable_online,` +
     ` snippet(tomes_fts, 2, ?, ?, '…', 14) AS excerpt,` +
     ` bm25(tomes_fts, 10.0, 4.0, 1.0) AS score,` +
     ` CASE WHEN instr(t.body, '## ') > 0 THEN t.body END AS body` +
@@ -306,6 +307,7 @@ export const onRequest = readOnly(async ({ request, env }: RequestContext) => {
       hits: results.map(({ body, ...h }) => ({
         ...h,
         restricted: h.restricted === 1,
+        readable_online: h.readable_online === 1,
         sections: body === null ? [] : sectionsHit(body, h.excerpt, tokens),
       })),
     },

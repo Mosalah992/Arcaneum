@@ -10,6 +10,11 @@ export interface TomeSummary {
   volume?: string | null;
   /** On the College's restricted register, and shelved at L1. */
   restricted: boolean;
+  /**
+   * May be read via an approved external source with RP.
+   * Independent of whether the College holds a physical copy.
+   */
+  readable_online: boolean;
 }
 
 /** One entry in a volume's colophon: another volume this one points at. */

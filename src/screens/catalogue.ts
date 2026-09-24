@@ -196,6 +196,19 @@ export function catalogueScreen(): Screen {
     heading('school', 'SCHOOL'),
   );
 
+  /*
+   * A quiet key for the two tint colours. Words first, colour second — the same
+   * rule as the holdings cells. Lives under the column headings so it is there
+   * when a librarian is reading a search answer, and stays out of the way of
+   * the shelf list itself.
+   */
+  const resultsKey = el(
+    'div',
+    { class: 'results-key', 'aria-label': 'Catalogue colour key' },
+    el('span', { class: 'results-key__item results-key__item--held' }, 'GREEN  IN THE COLLECTION'),
+    el('span', { class: 'results-key__item results-key__item--readable' }, 'BLUE  READABLE ELSEWHERE'),
+  );
+
   /**
    * Click a heading to sort by it; click the same one again to reverse it; a
    * third click puts the archive's own shelf order back.
@@ -247,6 +260,7 @@ export function catalogueScreen(): Screen {
         hint,
       ),
       resultsHead,
+      resultsKey,
       status,
       list,
     ),
@@ -449,13 +463,18 @@ export function catalogueScreen(): Screen {
     // entirely lent out is still at the top of the answer, but it is not green:
     // green is "you can hand this over", not "we own one".
     const held = shelved.state === 'in' || shelved.state === 'some';
+    // Blue is catalogue metadata (`readable_online`), not the register. A book
+    // can be green and blue at once when the College holds it and it is also
+    // marked readable elsewhere.
+    const readable = row.readable_online === true;
     return el(
       'button',
       {
         class:
           `result${row.restricted ? ' result--sealed' : ''}` +
           `${row.excerpt ? ' result--found' : ''}` +
-          `${row.excerpt && held ? ' result--held' : ''}`,
+          `${row.excerpt && held ? ' result--held' : ''}` +
+          `${row.excerpt && readable ? ' result--readable' : ''}`,
         type: 'button',
         role: 'option',
         'aria-selected': String(index === selected),
@@ -469,6 +488,7 @@ export function catalogueScreen(): Screen {
         row.title,
         row.volume && !row.sections?.length ? el('span', { class: 'volume' }, ` — ${row.volume}`) : null,
         row.restricted ? el('span', { class: 'seal' }, 'SEALED') : null,
+        readable ? el('span', { class: 'elsewhere' }, 'ELSEWHERE') : null,
         row.sections?.length ? sectionChips(row.sections) : null,
         row.excerpt ? excerptOf(row.excerpt) : null,
       ),

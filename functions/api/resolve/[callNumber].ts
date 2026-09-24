@@ -2,9 +2,9 @@
 //
 // THIS IS NOT ACCESS CONTROL. It is a lore device.
 //
-// Restricted tomes are hidden from the catalogue listing so that finding one
-// feels like finding something. That is the whole of it. This endpoint is
-// public, unauthenticated and unthrottled; anyone may enumerate call numbers
+// Restricted tomes are listed in the catalogue marked SEALED (they used to be
+// filtered out so that finding one felt like finding something). This endpoint
+// is public, unauthenticated and unthrottled; anyone may enumerate call numbers
 // and read every restricted body, and nothing here is meant to stop them.
 // Nothing may be seeded into a restricted tome that would matter if it were
 // read by a stranger, because it will be.
@@ -23,6 +23,7 @@ interface Resolved {
   school: string;
   volume?: string | null;
   restricted: number;
+  readable_online: number;
 }
 
 export const onRequest = readOnly(async (ctx: RequestContext) => {
@@ -33,7 +34,7 @@ export const onRequest = readOnly(async (ctx: RequestContext) => {
   }
 
   const tome = await ctx.env.DB.prepare(
-    'SELECT id, call_number, title, author, school, restricted, volume FROM tomes WHERE call_number = ?',
+    'SELECT id, call_number, title, author, school, restricted, volume, readable_online FROM tomes WHERE call_number = ?',
   )
     .bind(raw)
     .first<Resolved>();
@@ -43,7 +44,11 @@ export const onRequest = readOnly(async (ctx: RequestContext) => {
   }
 
   return json(
-    { ...tome, restricted: tome.restricted === 1 },
+    {
+      ...tome,
+      restricted: tome.restricted === 1,
+      readable_online: tome.readable_online === 1,
+    },
     200,
     'public, max-age=300',
   );

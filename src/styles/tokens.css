@@ -25,6 +25,15 @@
   --magicka-lit:   #a8f2ff;
   --magicka-dim:   #1b5f6b;
 
+  /* Physical holdings on the College register — "you can hand this over". */
+  --collection:     #6fd08c;
+  --collection-dim: #4fae6c;
+
+  /* Externally readable elsewhere — not ownership, just that RP reading is fine. */
+  --elsewhere:      #6a9fd8;
+  --elsewhere-dim:  #3d6fa0;
+  --elsewhere-wash: rgba(61, 111, 160, 0.14);
+
   --font-ui: 'VT323', 'Courier New', monospace;
   --font-body: 'EB Garamond', Georgia, 'Times New Roman', serif;
 

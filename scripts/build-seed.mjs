@@ -109,6 +109,20 @@ function parse(file) {
   if (meta.restricted !== 'true' && meta.restricted !== 'false') {
     throw new Error(`${file}: restricted must be exactly true or false, not "${meta.restricted}"`);
   }
+  /*
+   * Optional, default false. Absent means "not marked readable elsewhere", so
+   * the 249 existing frontmatters do not all need a new line. When present it
+   * must be the literal, for the same reason as `restricted`.
+   */
+  if (
+    meta.readable_online !== undefined &&
+    meta.readable_online !== 'true' &&
+    meta.readable_online !== 'false'
+  ) {
+    throw new Error(
+      `${file}: readable_online must be exactly true or false, not "${meta.readable_online}"`,
+    );
+  }
   if (body.length === 0) throw new Error(`${file}: empty body`);
 
   const volume = normalizeVolumeLabel(String(meta.volume ?? inferVolumeFromBody(body)));
@@ -119,6 +133,7 @@ function parse(file) {
     author: meta.author,
     school: meta.school,
     restricted: meta.restricted === 'true' ? 1 : 0,
+    readable_online: meta.readable_online === 'true' ? 1 : 0,
     volume,
     body,
   };
@@ -158,6 +173,28 @@ const books = readdirSync(CONTENT_DIR)
   .sort((a, b) => callNumberOrder(a.call_number) - callNumberOrder(b.call_number));
 
 if (books.length === 0) throw new Error(`${CONTENT_DIR} holds no books`);
+
+/*
+ * Titles marked readable elsewhere in content/readable-online.json.
+ *
+ * Same shape of idea as content/restricted.json: a hand-maintained list the
+ * seed applies, so the ~49 externally readable volumes can be named in one
+ * place without a frontend hard-code. Frontmatter `readable_online: true` also
+ * sets the flag; either source is enough.
+ */
+const readableOnlineFile = JSON.parse(
+  readFileSync(join('content', 'readable-online.json'), 'utf8'),
+);
+const readableOnlineTitles = new Set(
+  Array.isArray(readableOnlineFile.titles) ? readableOnlineFile.titles : [],
+);
+const byTitleForReadable = new Map(books.map((b) => [b.title, b]));
+const readableUnmatched = [];
+for (const title of readableOnlineTitles) {
+  const book = byTitleForReadable.get(title);
+  if (book === undefined) readableUnmatched.push(title);
+  else book.readable_online = 1;
+}
 
 const byCallNumber = new Map(books.map((b, i) => [b.call_number, i + 1]));
 
@@ -239,6 +276,7 @@ for (const [index, book] of books.entries()) {
 // build: nobody can fail to find a book that is on the shelf list.
 
 const sealed = books.filter((b) => b.restricted === 1);
+const readableOnline = books.filter((b) => b.readable_online === 1);
 const orphans = [];
 for (const book of sealed) {
   const from = citations
@@ -289,10 +327,16 @@ SHELVES.forEach((shelf, shelfIndex) => {
   for (const book of mine) {
     const id = byCallNumber.get(book.call_number);
     const parts = chunks(book.body);
-    out.push(`-- ${book.call_number} — ${book.title}${book.restricted ? '  [SEALED]' : ''}`);
-    out.push('INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume) VALUES');
+    const sealedMark = book.restricted ? '  [SEALED]' : '';
+    const readableMark = book.readable_online ? '  [READABLE ELSEWHERE]' : '';
+    out.push(`-- ${book.call_number} — ${book.title}${sealedMark}${readableMark}`);
+    out.push(
+      'INSERT INTO tomes (id, call_number, title, author, school, body, restricted, volume, readable_online) VALUES',
+    );
     out.push(`  (${id}, ${q(book.call_number)}, ${q(book.title)}, ${q(book.author)}, ${q(book.school)},`);
-    out.push(`   ${q(parts[0])}, ${book.restricted}, ${q(book.volume)});`);
+    out.push(
+      `   ${q(parts[0])}, ${book.restricted}, ${q(book.volume)}, ${book.readable_online});`,
+    );
     for (const part of parts.slice(1)) {
       out.push(`UPDATE tomes SET body = body || ${q(part)} WHERE id = ${id};`);
     }
@@ -321,6 +365,16 @@ console.log(
     `(${curated.length} of them the archive's own)`,
 );
 console.log(`  ${sealed.length} sealed: ${sealed.map((b) => b.call_number).join(', ')}`);
+console.log(
+  `  ${readableOnline.length} readable elsewhere` +
+    (readableOnline.length > 0
+      ? `: ${readableOnline.map((b) => b.call_number).join(', ')}`
+      : ''),
+);
+if (readableUnmatched.length > 0) {
+  console.log(`  ${readableUnmatched.length} readable-online title(s) not in the corpus:`);
+  for (const title of readableUnmatched) console.log(`    — ${title}`);
+}
 
 for (const book of sealed) {
   const from = citations
