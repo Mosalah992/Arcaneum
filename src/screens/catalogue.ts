@@ -44,8 +44,8 @@ const SEARCH_DEBOUNCE = 180;
 const SEARCH_MIN = 2;
 
 /** The control characters /api/search brackets a matched run with. */
-const MARK_OPEN = '';
-const MARK_CLOSE = '';
+const MARK_OPEN = '';
+const MARK_CLOSE = '';
 
 export function catalogueScreen(): Screen {
   let school: string | null = null;
@@ -463,9 +463,7 @@ export function catalogueScreen(): Screen {
     // entirely lent out is still at the top of the answer, but it is not green:
     // green is "you can hand this over", not "we own one".
     const held = shelved.state === 'in' || shelved.state === 'some';
-    // Blue is catalogue metadata (`readable_online`), not the register. A book
-    // can be green and blue at once when the College holds it and it is also
-    // marked readable elsewhere.
+    // Blue is catalogue metadata (`readable_online`), not the register.
     const readable = row.readable_online === true;
     return el(
       'button',
@@ -473,8 +471,9 @@ export function catalogueScreen(): Screen {
         class:
           `result${row.restricted ? ' result--sealed' : ''}` +
           `${row.excerpt ? ' result--found' : ''}` +
-          `${row.excerpt && held ? ' result--held' : ''}` +
-          `${row.excerpt && readable ? ' result--readable' : ''}`,
+          // Blue beats green: a title lying in the Arcanaeum is read by emote via
+          // an external source, so that signal wins over the "hand this over" tint.
+          `${row.excerpt && readable ? ' result--readable' : row.excerpt && held ? ' result--held' : ''}`,
         type: 'button',
         role: 'option',
         'aria-selected': String(index === selected),
@@ -679,7 +678,7 @@ export function catalogueScreen(): Screen {
     selected = 0;
     syncCursor();
     // The local filter redraws on this keystroke; the archive answers a beat
-    // later. Typing never waits for the network.
+    // later. Typing never waits on the network.
     render();
     search();
   });
