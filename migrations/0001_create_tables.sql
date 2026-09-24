@@ -11,9 +11,6 @@ CREATE TABLE tomes (
   body         TEXT NOT NULL,          -- markdown
   restricted   INTEGER NOT NULL DEFAULT 0,
   volume       TEXT NOT NULL DEFAULT '',
-  -- Catalogue classification: may be read via an approved external source / RP.
-  -- Independent of the College register (physical holdings).
-  readable_online INTEGER NOT NULL DEFAULT 0,
   created_at   TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
