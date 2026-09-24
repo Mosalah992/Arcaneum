@@ -466,9 +466,9 @@
 }
 
 /*
- * A hit that may be read elsewhere (external source / RP), whether or not the
- * College holds a copy. Blue bar on the RIGHT so it never fights the green left
- * bar — a book can be both held and readable, and both must show.
+ * A title marked readable_online is part of the Arcanaeum's extended catalogue.
+ * Blue is the catalogue signal for that state, whether the row came from the
+ * full shelf or from a search result.
  */
 .result--readable {
   box-shadow: inset -3px 0 0 var(--elsewhere-dim);

@@ -5,7 +5,6 @@
  * synthesised in Web Audio rather than loaded. They are a few oscillators and
  * a noise buffer, which is what an 8-bit cue is anyway; it costs no bytes, no
  * request can fail, and there is no placeholder art to swap out later. The
- * files that could replace them are listed in ASSETS.md all the same, and
  * `play()` is the only thing that would need to change.
  *
  * NOTHING PLAYS UNTIL A GESTURE. The AudioContext is not even constructed
@@ -17,7 +16,7 @@
  * degraded archive, not a broken one.
  */
 
-import { muted, music } from './store';
+import { muted } from './store';
 
 /**
  * What plays where. The archive has one voice and the volumes have another —
@@ -166,99 +165,6 @@ export function play(cue: Cue): void {
   } catch {
     /* a cue that will not sound is not worth an error */
   }
-}
-
-/* -- the theme ------------------------------------------------------------ */
-
-function themeElement(track: Track): HTMLAudioElement | null {
-  const existing = themes.get(track);
-  if (existing !== undefined) return existing;
-  try {
-    const element = new Audio(TRACKS[track]);
-    element.loop = true;
-    element.volume = THEME_VOLUME;
-    element.preload = 'none';
-
-    /*
-     * A track that will not load falls back to the archive's.
-     *
-     * Pages serves its SPA fallback for an unknown path, so a missing mp3
-     * arrives as a 200 of HTML rather than a 404 — the element fails, and
-     * without this the volumes would simply be silent with nothing to say why.
-     */
-    element.addEventListener('error', () => {
-      if (track === 'archive' || current !== track) return;
-      current = 'archive';
-      if (wanted()) startCurrent();
-    });
-
-    themes.set(track, element);
-    return element;
-  } catch {
-    return null;
-  }
-}
-
-/** Whether the current track should be sounding at all. */
-const wanted = (): boolean => music.get() && gestured && !muted.get();
-
-function startCurrent(): void {
-  const element = themeElement(current);
-  if (element === null) return;
-  try {
-    element.preload = 'auto';
-    void element.play().catch(() => {
-      /* refused, or the file is not there; the archive reads the same */
-    });
-  } catch {
-    /* as above */
-  }
-}
-
-function stopAll(): void {
-  for (const element of themes.values()) {
-    try {
-      element.pause();
-    } catch {
-      /* nothing to do */
-    }
-  }
-}
-
-/**
- * Move to another track.
- *
- * Called by the screens rather than by the toggle: opening a volume asks for
- * the reading track and closing it asks for the archive's. If the music is off
- * this only records where we are, so that turning it on later starts the right
- * one rather than whatever was playing last.
- */
-export function setMusicTrack(track: Track): void {
-  if (track === current) return;
-  current = track;
-  stopAll();
-  if (wanted()) startCurrent();
-}
-
-/**
- * Start or stop the music.
- *
- * Only ever called from the header toggle, which is off by default and stays
- * off until someone asks for it. The brief rules out an ambient track that
- * starts on its own, and this does not: the preference is remembered, so a
- * visitor who turned it on last time gets it back on their next gesture, and a
- * visitor who never asks never hears it.
- */
-export function setMusic(on: boolean): void {
-  music.set(on);
-  if (on && gestured && !muted.get()) startCurrent();
-  else stopAll();
-}
-
-export function setMuted(on: boolean): void {
-  muted.set(on);
-  if (on) stopAll();
-  else if (music.get()) startCurrent();
 }
 
 /* -- the gesture ---------------------------------------------------------- */

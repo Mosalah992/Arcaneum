@@ -2,19 +2,16 @@
  * Everything the archive remembers about a visitor lives here, and all of it
  * lives in localStorage on their own machine. Nothing is sent anywhere.
  *
- * Four preferences and nothing else. There used to be a `discoveries` list of
- * resolved call numbers, kept so the shelf could show a visitor the sealed
- * volumes they had found; every volume is listed now, so it is gone along with
- * the footer button that cleared it.
+ * Two preferences and nothing else. There used to be a `discoveries` list of
+ * resolved call numbers, plus optional CRT scanlines and ambient music. The
+ * catalogue no longer carries those heavier presentation features.
  *
  * Private-mode browsers and blocked site data throw on access rather than
  * returning null, so every read and write is wrapped. A visitor with storage
  * disabled simply rediscovers the archive each time, which is not a failure.
  */
 
-const SCANLINES = 'arcanaeum.scanlines';
 const MUTED = 'arcanaeum.muted';
-const MUSIC = 'arcanaeum.music';
 const READING_AID = 'arcanaeum.reading-aid';
 
 function read(key: string): string | null {
@@ -33,10 +30,7 @@ function write(key: string, value: string): void {
   }
 }
 
-export const scanlines = flag(SCANLINES, false);
 export const muted = flag(MUTED, false);
-/* Off by default: the brief rules out an ambient track that starts on its own. */
-export const music = flag(MUSIC, false);
 /* The reader's plain face and open spacing. See src/screens/reader.ts. */
 export const readingAid = flag(READING_AID, false);
 

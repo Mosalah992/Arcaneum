@@ -206,7 +206,7 @@ export function catalogueScreen(): Screen {
     'div',
     { class: 'results-key', 'aria-label': 'Catalogue colour key' },
     el('span', { class: 'results-key__item results-key__item--held' }, 'GREEN  IN THE COLLECTION'),
-    el('span', { class: 'results-key__item results-key__item--readable' }, 'BLUE  READABLE ELSEWHERE'),
+    el('span', { class: 'results-key__item results-key__item--readable' }, 'BLUE  ARCANAEUM'),
   );
 
   /**
@@ -473,7 +473,7 @@ export function catalogueScreen(): Screen {
           `${row.excerpt ? ' result--found' : ''}` +
           // Blue beats green: a title lying in the Arcanaeum is read by emote via
           // an external source, so that signal wins over the "hand this over" tint.
-          `${row.excerpt && readable ? ' result--readable' : row.excerpt && held ? ' result--held' : ''}`,
+          `${readable ? ' result--readable' : row.excerpt && held ? ' result--held' : ''}`,
         type: 'button',
         role: 'option',
         'aria-selected': String(index === selected),
@@ -487,7 +487,7 @@ export function catalogueScreen(): Screen {
         row.title,
         row.volume && !row.sections?.length ? el('span', { class: 'volume' }, ` — ${row.volume}`) : null,
         row.restricted ? el('span', { class: 'seal' }, 'SEALED') : null,
-        readable ? el('span', { class: 'elsewhere' }, 'ELSEWHERE') : null,
+        readable ? el('span', { class: 'elsewhere' }, 'ARCANAEUM') : null,
         row.sections?.length ? sectionChips(row.sections) : null,
         row.excerpt ? excerptOf(row.excerpt) : null,
       ),

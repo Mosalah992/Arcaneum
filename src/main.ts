@@ -22,8 +22,8 @@ import { el } from './lib/dom';
 import { createRouter, currentPath, navigate, type Screen } from './lib/router';
 import { enterRegister, fetchRegister } from './lib/api';
 import { formatDate, formatHour, machineTime, reckon } from '../shared/reckoning';
-import { scanlines, muted, music } from './lib/store';
-import { armOnFirstGesture, setMusic, setMuted } from './lib/sound';
+import { muted } from './lib/store';
+import { armOnFirstGesture, setMuted } from './lib/sound';
 import { insertScreen } from './screens/insert';
 import { catalogueScreen } from './screens/catalogue';
 
@@ -51,12 +51,6 @@ function toggleButton(
   return button;
 }
 
-function applyScanlines(on: boolean): void {
-  document.documentElement.dataset.scanlines = on ? 'on' : 'off';
-}
-
-applyScanlines(scanlines.get());
-
 const header = el(
   'header',
   { class: 'chrome-bar chrome-bar--header' },
@@ -71,15 +65,8 @@ const header = el(
   ),
   crumb,
   el('span', { class: 'chrome-spacer' }),
-  toggleButton('SCANLINES', scanlines.get(), (on) => {
-    scanlines.set(on);
-    applyScanlines(on);
-  }),
   // The four cues. Pressed means audible.
   toggleButton('SOUND', !muted.get(), (on) => setMuted(!on)),
-  // The library theme, separately. Off until it is asked for: an ambient track
-  // that starts on its own is exactly what the brief rules out.
-  toggleButton('MUSIC', music.get(), (on) => setMusic(on)),
 );
 
 /* -- footer ------------------------------------------------------------- */
@@ -192,8 +179,6 @@ window.setInterval(tick, 1000);
 const stage = el('main', { class: 'screen', id: 'stage' });
 
 root.append(header, stage, footer);
-document.body.append(el('div', { id: 'scanlines', 'aria-hidden': 'true' }));
-
 armOnFirstGesture();
 
 /*
