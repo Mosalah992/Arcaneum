@@ -2,6 +2,14 @@
 
 Record durable changes here in reverse chronological order. Each entry should include the date, decision or finding, reason, and source links. Do not record secrets or temporary chat state.
 
+## 2026-09-28 — Herbane's Bestiary is three books
+
+- Client correction: split the combined source into Automatons (`AR-V-028`), Hagravens (`AR-V-060`), and Ice Wraiths (`AR-V-061`). Preserve the old entry's ID/call number for Automatons and append two accessions; preserve each source section verbatim.
+- The ARCANAEUM label comes from `readable_online`: true for Automatons and Hagravens, false for Ice Wraiths. Physical holdings remain independently sourced from Sheets.
+- Apply [migration 0023](../migrations/0023_split_herbanes_bestiary.sql) by call number, because production IDs differ from the seed. Rebuild FTS5, which has no automatic update triggers. The importer also splits this combined source page to preserve the correction during future imports.
+- Applied 0023 to production and verified three FTS results with flags `1, 1, 0` and exact source bodies. The unrelated 0022 migration was already pending; it remains pending. To apply only 0023, an ignored temporary Wrangler config used the production binding and a migrations directory containing only that file, allowing Wrangler to record it in `d1_migrations` normally.
+- Source: client feedback, [import correction](../scripts/split-herbane.mjs), [readable metadata](../content/readable-online.json).
+
 ## 2026-09-28 — Deployment account and local Wrangler dependencies
 
 - If Wrangler cannot find `@cloudflare/workerd-windows-64`, restore the lockfile's platform dependencies with `npm ci --include=optional`, then rerun tests and the build.

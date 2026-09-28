@@ -23,6 +23,7 @@
 
 import { mkdirSync, readFileSync, writeFileSync, existsSync, rmSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { splitHerbane } from './split-herbane.mjs';
 
 const ORIGIN = 'https://skyrimbooksproj.web.app';
 const OUT_DIR = join('content', 'library');
@@ -73,9 +74,9 @@ const ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 
  *
  * The source's own catalogue is wrong here, not ours: it lists "Herbane's
  * Bestiary" and "Automatons, Hagravens, Ice Wraiths" as two entries when they
- * are one book, and its own link for the first of them 404s exactly as ours
- * did. The second entry is the real page and its <h1> carries the whole title,
- * so nothing is lost by dropping the fragment.
+ * share one source page, and its link for the first entry 404s. The second
+ * entry contains all three books. Drop the broken index fragment, then split
+ * that combined page into separate books with splitHerbane().
  *
  * Named individually and on purpose. Skipping 404s as a class would let a
  * genuine breakage — the site moving a directory, say — pass as normal.
@@ -302,7 +303,7 @@ async function main() {
       if (mine >= queue.length) return;
       const { book, position } = queue[mine];
       try {
-        done.push(await readBook(book, position));
+        done.push(...splitHerbane(await readBook(book, position)));
       } catch (err) {
         failed.push(`${book.shelf.name} / ${book.title}: ${err.message}`);
       }
@@ -330,6 +331,7 @@ async function main() {
       `author: ${book.author}`,
       `school: ${book.shelf}`,
       `restricted: ${book.restricted ? 'true' : 'false'}`,
+      ...(book.readable_online === undefined ? [] : [`readable_online: ${book.readable_online}`]),
       `source: ${book.source}`,
       '---',
     ].join('\n');
