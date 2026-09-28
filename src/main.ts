@@ -11,9 +11,11 @@ import '@fontsource/vt323/latin-400.css';
 import '@fontsource/eb-garamond/latin-400.css';
 import '@fontsource/eb-garamond/latin-400-italic.css';
 import '@fontsource/eb-garamond/latin-600.css';
+import '@fontsource/noto-sans-runic/runic-400.css';
 
 import './styles/tokens.css';
 import './styles/base.css';
+import './styles/runes.css';
 import './styles/chrome.css';
 import './styles/insert.css';
 import './styles/catalogue.css';

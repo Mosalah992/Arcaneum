@@ -177,12 +177,25 @@ export function insertScreen(): Screen {
 
   const rig = el('div', { class: 'rig' }, crt, slot, led, lamp, track);
 
+  // The threshold. Four strips of Elder Futhark framing the whole viewport —
+  // the room the machine stands in has a carved edge, the same idea as the
+  // brass-and-stone chrome bars everywhere else, just cut into stone instead
+  // of running under the header. Decoration only, so all four are inert.
+  const runeTop = el('div', { class: 'rune-trim rune-trim--edge rune-trim--top', 'aria-hidden': 'true' });
+  const runeBottom = el('div', { class: 'rune-trim rune-trim--edge rune-trim--bottom', 'aria-hidden': 'true' });
+  const runeLeft = el('div', { class: 'rune-trim rune-trim--edge rune-trim--left', 'aria-hidden': 'true' });
+  const runeRight = el('div', { class: 'rune-trim rune-trim--edge rune-trim--right', 'aria-hidden': 'true' });
+
   const element = el(
     'div',
     { class: 'screen insert' },
     // Painted before the machine, so the machine's shadow lands on it.
     el('div', { class: 'desk', 'aria-hidden': 'true' }),
     rig,
+    runeTop,
+    runeBottom,
+    runeLeft,
+    runeRight,
   );
 
   const timers: number[] = [];

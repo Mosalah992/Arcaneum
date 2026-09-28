@@ -12,28 +12,11 @@
  * behind their back and no browser has anything to complain about.
  *
  * EVERY PATH IS OPTIONAL. Web Audio missing, the context refusing to start,
- * the theme failing to download — each is caught and dropped. Silence is a
+ * a cue failing to play — each is caught and dropped. Silence is a
  * degraded archive, not a broken one.
  */
 
 import { muted } from './store';
-
-/**
- * What plays where. The archive has one voice and the volumes have another —
- * reading a tome puts you somewhere quieter and stranger than the catalogue.
- *
- * NOTHING ASKS FOR `reading` ANY MORE. The reader screen it belonged to is
- * gone; the track is kept because it is a supplied asset and `setMusicTrack`
- * still takes it, so restoring the screen restores the sound with it.
- */
-const TRACKS = {
-  archive: '/audio/librarytheme.mp3',
-  reading: '/audio/darkwave.mp3',
-} as const;
-
-export type Track = keyof typeof TRACKS;
-
-const THEME_VOLUME = 0.3;
 
 export type Cue = 'tick' | 'page' | 'grind' | 'unlock';
 
@@ -42,8 +25,10 @@ let master: GainNode | null = null;
 let noise: AudioBuffer | null = null;
 let gestured = false;
 
-const themes = new Map<Track, HTMLAudioElement>();
-let current: Track = 'archive';
+/** Persist the preference used by every cue and the header SOUND toggle. */
+export function setMuted(on: boolean): void {
+  muted.set(on);
+}
 
 /** White noise, made once, reused by the paper and stone cues. */
 function noiseBuffer(context: AudioContext): AudioBuffer {
@@ -183,9 +168,6 @@ export function armOnFirstGesture(): void {
     gestured = true;
     window.removeEventListener('pointerdown', arm, true);
     window.removeEventListener('keydown', arm, true);
-    // A visitor who left the music on last time gets it back now that they
-    // have given the page the gesture a browser requires.
-    if (wanted()) startCurrent();
   };
   // CAPTURE PHASE, and it matters. The gesture that arms the sound layer is
   // usually the same gesture that asks for the first cue — clicking the gate

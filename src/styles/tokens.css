@@ -36,9 +36,12 @@
 
   --font-ui: 'VT323', 'Courier New', monospace;
   --font-body: 'EB Garamond', Georgia, 'Times New Roman', serif;
+  /* Elder Futhark, self-hosted like everything else here — see runes.css. */
+  --font-runic: 'Noto Sans Runic', serif;
 
   --header-h: 34px;
   --footer-h: 30px;
+  --rune-trim-h: 8px;
 
   /* Motion is deliberately spare: the archive should feel mechanical, not
      floaty. These are shared so its different rooms keep the same tempo. */

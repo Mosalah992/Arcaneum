@@ -1,0 +1,82 @@
+/*
+ * The rune trim.
+ *
+ * A carved strip of Elder Futhark, in the same register as everything else in
+ * this project: text, not artwork. Noto Sans Runic is self-hosted through
+ * @fontsource exactly like VT323 and EB Garamond — nothing is fetched from a
+ * font CDN, and the glyphs are real Unicode runes rather than a drawn font.
+ *
+ * ONE REPEATING STRING, not a loop. The strip only ever needs to be wider
+ * than the widest screen it sits on, and six passes of the row is plenty —
+ * wrapping is switched off, so anything past the element's edge is simply
+ * clipped rather than overflowing onto the next line.
+ */
+:root {
+  --rune-row: 'ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ ';
+}
+
+.rune-trim {
+  position: absolute;
+  overflow: hidden;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  font-family: var(--font-runic);
+  color: var(--magicka-dim);
+  text-shadow: 0 0 4px rgba(79, 210, 230, 0.4);
+  background: linear-gradient(180deg, var(--stone-800), var(--obsidian));
+}
+
+.rune-trim::before {
+  content: var(--rune-row) var(--rune-row) var(--rune-row) var(--rune-row)
+    var(--rune-row) var(--rune-row);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* -- the insert screen's threshold: four strips framing the whole viewport */
+
+.rune-trim--edge {
+  z-index: 5;
+  letter-spacing: 0.5em;
+  font-size: 13px;
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.6),
+    0 0 10px rgba(79, 210, 230, 0.12);
+}
+
+.rune-trim--top,
+.rune-trim--bottom {
+  left: 0;
+  right: 0;
+  height: 22px;
+}
+
+.rune-trim--top { top: 0; }
+.rune-trim--bottom { bottom: 0; }
+
+.rune-trim--left,
+.rune-trim--right {
+  top: 0;
+  bottom: 0;
+  width: 22px;
+}
+
+.rune-trim--left { left: 0; }
+.rune-trim--right { right: 0; }
+
+.rune-trim--left::before,
+.rune-trim--right::before {
+  writing-mode: vertical-rl;
+  justify-content: center;
+}
+
+@media (max-width: 700px) {
+  .rune-trim--top,
+  .rune-trim--bottom { height: 14px; }
+  .rune-trim--left,
+  .rune-trim--right { width: 14px; }
+  .rune-trim--edge { font-size: 9px; letter-spacing: 0.3em; }
+}

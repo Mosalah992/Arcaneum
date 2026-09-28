@@ -18,15 +18,49 @@ html[data-chrome='off'] .chrome-bar {
 
 .chrome-bar--header {
   height: var(--header-h);
-  border-bottom: 1px solid var(--obsidian);
+  position: relative;
+  padding-bottom: var(--rune-trim-h);
+  border-bottom: none;
 }
 
 .chrome-bar--footer {
   height: var(--footer-h);
+  position: relative;
+  padding-top: var(--rune-trim-h);
   font-size: 16px;
   color: var(--parchment-dim);
-  border-top: 1px solid var(--stone-lit);
+  border-top: none;
 }
+
+/*
+ * A rune-carved hairline where the plain 1px border used to sit. Lives in the
+ * bar's own padding, so the title/crumb/toggle row keeps its exact center and
+ * neither bar grows past --header-h / --footer-h plus the trim.
+ */
+.chrome-bar--header::after,
+.chrome-bar--footer::before {
+  content: var(--rune-row) var(--rune-row) var(--rune-row) var(--rune-row)
+    var(--rune-row) var(--rune-row);
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--rune-trim-h);
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-runic);
+  font-size: 8px;
+  letter-spacing: 0.25em;
+  color: var(--magicka-dim);
+  text-shadow: 0 0 3px rgba(79, 210, 230, 0.4);
+  background: var(--obsidian);
+  pointer-events: none;
+  user-select: none;
+}
+
+.chrome-bar--header::after { bottom: 0; }
+.chrome-bar--footer::before { top: 0; }
 
 .chrome-title {
   white-space: nowrap;
@@ -184,7 +218,11 @@ html[data-chrome='off'] .chrome-bar {
   /* The hour survives; the date is the part a phone can spare. */
   .clock__date { display: none; }
 
-  .chrome-bar { gap: 7px; padding: 0 7px; }
+  /* Left/right only — the shorthand would also zero out the header's
+     padding-bottom / footer's padding-top that the rune trim lives in. */
+  .chrome-bar { gap: 7px; padding-left: 7px; padding-right: 7px; }
+  .chrome-bar--header::after,
+  .chrome-bar--footer::before { font-size: 6px; letter-spacing: 0.15em; }
   .chrome-title { font-size: 18px; letter-spacing: 0.08em; }
   .chrome-title .sigil { display: none; }
   .toggle { font-size: 14px; padding: 0 6px 2px; height: 20px; }
