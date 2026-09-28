@@ -2,6 +2,12 @@
 
 Record durable changes here in reverse chronological order. Each entry should include the date, decision or finding, reason, and source links. Do not record secrets or temporary chat state.
 
+## 2026-09-28 — Catalogue runes belong inside the chrome spacers
+
+- Place decorative rune bands inside the header and footer `.chrome-spacer` elements, with readable 16px glyphs (14px on narrow screens), bright magicka colour, and `aria-hidden`. The former 8px border strips were too small to see.
+- Preserve the insert screen's separate four-sided rune border. Catalogue chrome styles must not change `.rune-trim--edge` or the insert layout.
+- Source: [chrome styles](../src/styles/chrome.css), [chrome elements](../src/main.ts).
+
 ## 2026-09-28 — Herbane's Bestiary is three books
 
 - Client correction: split the combined source into Automatons (`AR-V-028`), Hagravens (`AR-V-060`), and Ice Wraiths (`AR-V-061`). Preserve the old entry's ID/call number for Automatons and append two accessions; preserve each source section verbatim.

@@ -66,7 +66,7 @@ const header = el(
     ' THE ARCANAEUM',
   ),
   crumb,
-  el('span', { class: 'chrome-spacer' }),
+  el('span', { class: 'chrome-spacer', 'aria-hidden': 'true' }),
   // The four cues. Pressed means audible.
   toggleButton('SOUND', !muted.get(), (on) => setMuted(!on)),
 );
@@ -137,7 +137,7 @@ const footer = el(
   { class: 'chrome-bar chrome-bar--footer' },
   el('span', { class: 'footer-note' }, 'VISITORS '),
   hitCounter,
-  el('span', { class: 'chrome-spacer' }),
+  el('span', { class: 'chrome-spacer', 'aria-hidden': 'true' }),
   el('span', { class: 'footer-note footer-note--wide' }, 'COLLEGE OF WINTERHOLD · '),
   // Bethesda's text. The Library of Skyrim's transcription is credited in
   // PROVENANCE.md and in every book's `source:` frontmatter; it used to be
