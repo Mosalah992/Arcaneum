@@ -2,14 +2,10 @@
  * The sound layer.
  *
  * The four cues — hover tick, page turn, stone grind, gate unlock — are
- * synthesised in Web Audio rather than loaded. They are a few oscillators and
- * a noise buffer, which is what an 8-bit cue is anyway; it costs no bytes, no
- * request can fail, and there is no placeholder art to swap out later. The
- * `play()` is the only thing that would need to change.
+ * synthesised in Web Audio rather than loaded.
  *
- * NOTHING PLAYS UNTIL A GESTURE. The AudioContext is not even constructed
- * until the visitor has touched the page, so nothing is suspended-and-resumed
- * behind their back and no browser has anything to complain about.
+ * NOTHING PLAYS UNTIL A GESTURE. The AudioContext is not constructed until
+ * the visitor has interacted with the page.
  *
  * EVERY PATH IS OPTIONAL. Web Audio missing, the context refusing to start,
  * a cue failing to play — each is caught and dropped. Silence is a
@@ -30,13 +26,18 @@ export function setMuted(on: boolean): void {
   muted.set(on);
 }
 
-/** White noise, made once, reused by the paper and stone cues. */
+/** White noise, made once and reused by the paper and stone cues. */
 function noiseBuffer(context: AudioContext): AudioBuffer {
   if (noise !== null) return noise;
+
   const length = Math.floor(context.sampleRate * 1.2);
   const buffer = context.createBuffer(1, length, context.sampleRate);
   const data = buffer.getChannelData(0);
-  for (let i = 0; i < length; i++) data[i] = Math.random() * 2 - 1;
+
+  for (let i = 0; i < length; i++) {
+    data[i] = Math.random() * 2 - 1;
+  }
+
   noise = buffer;
   return buffer;
 }
@@ -44,11 +45,16 @@ function noiseBuffer(context: AudioContext): AudioBuffer {
 function audio(): AudioContext | null {
   if (!gestured) return null;
   if (ctx !== null) return ctx;
+
   try {
-    const Ctor = window.AudioContext ?? (window as unknown as {
-      webkitAudioContext?: typeof AudioContext;
-    }).webkitAudioContext;
+    const Ctor =
+      window.AudioContext ??
+      (window as unknown as {
+        webkitAudioContext?: typeof AudioContext;
+      }).webkitAudioContext;
+
     if (Ctor === undefined) return null;
+
     ctx = new Ctor();
     master = ctx.createGain();
     master.gain.value = 0.5;
@@ -56,6 +62,7 @@ function audio(): AudioContext | null {
   } catch {
     ctx = null;
   }
+
   return ctx;
 }
 
@@ -73,15 +80,21 @@ function blip(
 ): void {
   const osc = context.createOscillator();
   const gain = context.createGain();
+
   osc.type = type;
   osc.frequency.setValueAtTime(from, at);
-  if (to !== from) osc.frequency.exponentialRampToValueAtTime(to, at + length);
-  // A hard attack and a short decay: this is a chip, not an instrument.
+
+  if (to !== from) {
+    osc.frequency.exponentialRampToValueAtTime(to, at + length);
+  }
+
   gain.gain.setValueAtTime(0, at);
   gain.gain.linearRampToValueAtTime(level, at + 0.006);
   gain.gain.exponentialRampToValueAtTime(0.0001, at + length);
+
   osc.connect(gain);
   gain.connect(out);
+
   osc.start(at);
   osc.stop(at + length + 0.02);
 }
@@ -98,49 +111,52 @@ function rush(
 ): void {
   const source = context.createBufferSource();
   source.buffer = noiseBuffer(context);
+
   const filter = context.createBiquadFilter();
   filter.type = filterType;
   filter.frequency.setValueAtTime(from, at);
   filter.frequency.exponentialRampToValueAtTime(to, at + length);
   filter.Q.value = 1.1;
+
   const gain = context.createGain();
   gain.gain.setValueAtTime(0, at);
   gain.gain.linearRampToValueAtTime(level, at + length * 0.18);
   gain.gain.exponentialRampToValueAtTime(0.0001, at + length);
+
   source.connect(filter);
   filter.connect(gain);
   gain.connect(out);
+
   source.start(at);
   source.stop(at + length + 0.02);
 }
 
 export function play(cue: Cue): void {
   if (muted.get()) return;
+
   const context = audio();
+
   if (context === null || master === null) return;
 
   try {
     const at = context.currentTime;
+
     switch (cue) {
       case 'tick':
-        // A cursor passing over something that answers.
         blip(context, master, 'square', 1750, 1750, at, 0.028, 0.055);
         break;
 
       case 'page':
-        // Paper, which is noise and nothing else.
         rush(context, master, at, 0.24, 0.12, 'bandpass', 2600, 700);
         break;
 
       case 'grind':
-        // Stone on stone: low noise under a detuned pair.
         rush(context, master, at, 0.85, 0.19, 'lowpass', 900, 160);
         blip(context, master, 'sawtooth', 74, 52, at, 0.8, 0.1);
         blip(context, master, 'sawtooth', 71, 49, at + 0.02, 0.78, 0.08);
         break;
 
       case 'unlock':
-        // The wards answering, four steps up.
         blip(context, master, 'square', 392, 392, at, 0.1, 0.09);
         blip(context, master, 'square', 523, 523, at + 0.09, 0.1, 0.09);
         blip(context, master, 'square', 659, 659, at + 0.18, 0.12, 0.09);
@@ -148,7 +164,7 @@ export function play(cue: Cue): void {
         break;
     }
   } catch {
-    /* a cue that will not sound is not worth an error */
+    /* A cue that will not sound is not worth an error. */
   }
 }
 
@@ -157,23 +173,25 @@ export function play(cue: Cue): void {
 /**
  * Arm the sound layer on the visitor's first interaction.
  *
- * Registered once, from main. Until this fires, `audio()` returns null and
- * every cue is a no-op, so there is no path by which the archive makes a sound
- * at someone who has not touched it.
+ * Registered once from main. Until this fires, audio() returns null and
+ * every cue is a no-op.
  */
 export function armOnFirstGesture(): void {
   if (gestured) return;
+
   const arm = (): void => {
     if (gestured) return;
+
     gestured = true;
+
     window.removeEventListener('pointerdown', arm, true);
     window.removeEventListener('keydown', arm, true);
   };
-  // CAPTURE PHASE, and it matters. The gesture that arms the sound layer is
-  // usually the same gesture that asks for the first cue — clicking the gate
-  // both permits audio and wants the unlock to sound. On the bubble phase this
-  // listener runs after the gate's own handler, `gestured` is still false when
-  // play() is reached, and the first sound the archive ever makes is silence.
-  window.addEventListener('pointerdown', arm, { passive: true, capture: true });
+
+  window.addEventListener('pointerdown', arm, {
+    passive: true,
+    capture: true,
+  });
+
   window.addEventListener('keydown', arm, true);
 }

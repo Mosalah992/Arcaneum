@@ -4,11 +4,13 @@
   flex: 1 1 auto;
   min-height: 0;
   display: flex;
+
   /* .screen sets column; the catalogue is the one screen that runs across. */
   flex-direction: row;
 }
 
 /* Carved tablets down the left edge. */
+
 .tablets {
   flex: 0 0 200px;
   min-width: 0;
@@ -44,8 +46,12 @@
     linear-gradient(180deg, var(--stone-600), var(--stone-800));
   border: 0;
   box-shadow: var(--bevel-out);
+
   /* Engraved, not printed: light from below, shadow from above. */
-  text-shadow: 0 -1px 0 var(--obsidian), 0 1px 0 var(--stone-lit);
+  text-shadow:
+    0 -1px 0 var(--obsidian),
+    0 1px 0 var(--stone-lit);
+
   transition:
     color var(--motion-fast) linear,
     background var(--motion-fast) linear,
@@ -54,32 +60,34 @@
 
 .tablet:hover {
   color: var(--parchment-lit);
-  background: linear-gradient(180deg, var(--stone-500), var(--stone-700));
+  background: linear-gradient(
+    180deg,
+    var(--stone-500),
+    var(--stone-700)
+  );
 }
 
-.tablet:hover:not([aria-pressed='true']) { transform: translateX(2px); }
+.tablet:hover:not([aria-pressed='true']) {
+  transform: translateX(2px);
+}
 
 .tablet[aria-pressed='true'] {
   color: var(--parchment-lit);
-  background: linear-gradient(180deg, var(--burgundy-deep), var(--burgundy));
+  background: linear-gradient(
+    180deg,
+    var(--burgundy-deep),
+    var(--burgundy)
+  );
   box-shadow: var(--bevel-in);
-  text-shadow: 0 -1px 0 #000, 0 1px 0 var(--burgundy-lit);
+  text-shadow:
+    0 -1px 0 #000,
+    0 1px 0 var(--burgundy-lit);
 }
 
 /* Right-hand stacks: search over results. */
+
 .stacks {
   flex: 1 1 auto;
-  /*
-   * BOTH axes, and the height is the one that matters.
-   *
-   * A flex item's default `min-height: auto` refuses to shrink below its
-   * content, and this one's content is 249 rows. Beside the shelf column it
-   * never showed: the row stretches its items to the container's height, so
-   * `.results` was bounded and scrolled. Stacked above it on a narrow screen it
-   * became a 17,800px column inside a 748px box, and `body { overflow: hidden }`
-   * simply clipped it — the catalogue ended at whatever row reached the bottom
-   * of the phone and there was no way to reach the rest of the library.
-   */
   min-width: 0;
   min-height: 0;
   display: flex;
@@ -92,7 +100,11 @@
   align-items: center;
   gap: 8px;
   padding: 10px 14px;
-  background: linear-gradient(180deg, var(--stone-800), var(--stone-900));
+  background: linear-gradient(
+    180deg,
+    var(--stone-800),
+    var(--stone-900)
+  );
   border-bottom: 1px solid var(--obsidian);
 }
 
@@ -141,13 +153,19 @@
   color: #3c4a4e;
 }
 
-/* The drawn cursor sits at column zero, which would land on top of the
-   placeholder's first letter. */
+/*
+ * The drawn cursor sits at column zero, which would land on top of the
+ * placeholder's first letter.
+ */
+
 .search-input:focus::placeholder {
   color: transparent;
 }
 
-/* Mirrors the typed text invisibly so the block cursor can sit after it. */
+/*
+ * Mirrors the typed text invisibly so the block cursor can sit after it.
+ */
+
 .search-mirror {
   pointer-events: none;
   color: transparent;
@@ -169,12 +187,21 @@
 }
 
 @keyframes blink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .block-cursor { animation: none; }
+  .block-cursor {
+    animation: none;
+  }
 }
 
 .search-hint {
@@ -187,16 +214,12 @@
 /*
  * The two register columns' headings are set tighter than the rest, and the
  * pair is fenced off by a rule.
- *
- * At the head row's 0.14em letter-spacing, `AVAILABLE` is nine characters wide
- * in a nine-character column and ran straight into `AUTHOR` — the heading read
- * as one word, `COPIESAVAILABLEAUTHOR`. The spacing is dropped here, the
- * column is two characters wider, and a hairline before and after says where
- * the register's two columns start and stop, since they are the only ones on
- * the row that come from somewhere other than the archive.
  */
+
 .results-head .col-copies,
-.results-head .col-held { letter-spacing: 0.04em; }
+.results-head .col-held {
+  letter-spacing: 0.04em;
+}
 
 .results-head .col-copies,
 .result .copies {
@@ -211,26 +234,27 @@
 }
 
 /* Results. */
+
 .results-head,
 .result {
   display: grid;
+
   /*
    * NO. · CALL · TITLE · COPIES · AVAILABLE · AUTHOR · SCHOOL
    *
-   * IN `rem`, NOT `ch`, AND THAT IS THE WHOLE POINT. `ch` is the width of a
-   * zero in the element's OWN font, and these two rows are deliberately set at
-   * different sizes — the heading at 15px, a result at 19px. The same `12ch`
-   * was therefore 72px on the heading and 91px on the row, `minmax(0, 1fr)`
-   * swallowed the difference in the title column, and every column to the
-   * right of it landed about twenty pixels adrift of its own heading. It never
-   * showed while the right-hand columns were left-aligned prose; the moment
-   * two of them became right-aligned numbers, `22` was sitting to the left of
-   * `COPIES` and `19 IN` underneath it.
-   *
-   * `rem` is the root's font size, which is one number for both rows and still
-   * follows a reader who has set a larger default.
+   * rem is used rather than ch so the heading and result rows share the same
+   * physical column widths despite having different font sizes.
    */
-  grid-template-columns: 1.7rem 5.7rem minmax(0, 1fr) 3.9rem 5.9rem 9rem 6.2rem;
+
+  grid-template-columns:
+    1.7rem
+    5.7rem
+    minmax(0, 1fr)
+    3.9rem
+    5.9rem
+    9rem
+    6.2rem;
+
   gap: 10px;
   align-items: baseline;
   padding: 3px 14px;
@@ -245,9 +269,12 @@
   border-bottom: 1px solid var(--stone-700);
   padding-top: 5px;
   padding-bottom: 5px;
-  /* The list's scrollbar, measured and handed over by syncGutter() in
-     src/screens/catalogue.ts. Without it the heading is a scrollbar wider than
-     the rows it labels and every column right of the title is out of line. */
+
+  /*
+   * The list's scrollbar is measured and handed over by syncGutter() in
+   * src/screens/catalogue.ts.
+   */
+
   padding-right: calc(14px + var(--gutter, 0px));
 }
 
@@ -255,10 +282,10 @@
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
-  /* Reserved whether or not the list overflows, so the heading's correction is
-     one constant rather than something that changes when a search narrows the
-     list to three rows. */
+
+  /* Keep the scrollbar width stable while filtering/searching. */
   scrollbar-gutter: stable;
+
   margin: 0;
   padding: 4px 0 12px;
   list-style: none;
@@ -271,6 +298,7 @@
   text-align: left;
   font-size: 19px;
   color: var(--parchment);
+
   transition:
     background var(--motion-fast) linear,
     color var(--motion-fast) linear,
@@ -282,21 +310,39 @@
 }
 
 .result[aria-selected='true'] {
-  background: linear-gradient(90deg, var(--burgundy-deep), transparent 92%);
+  background: linear-gradient(
+    90deg,
+    var(--burgundy-deep),
+    transparent 92%
+  );
   box-shadow: inset 2px 0 0 var(--burgundy-lit);
   color: var(--parchment-lit);
 }
 
-.result:focus-visible { position: relative; z-index: 1; }
+.result:focus-visible {
+  position: relative;
+  z-index: 1;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .tablet,
-  .result { transition: none; }
-  .tablet:hover:not([aria-pressed='true']) { transform: none; }
+  .result {
+    transition: none;
+  }
+
+  .tablet:hover:not([aria-pressed='true']) {
+    transform: none;
+  }
 }
 
-.result .idx { color: var(--parchment-dim); }
-.result .call { color: var(--magicka); }
+.result .idx {
+  color: var(--parchment-dim);
+}
+
+.result .call {
+  color: var(--magicka);
+}
+
 .result .author,
 .result .school {
   color: var(--parchment-dim);
@@ -312,7 +358,9 @@
   white-space: nowrap;
 }
 
-.result--sealed .call { color: var(--burgundy-lit); }
+.result--sealed .call {
+  color: var(--burgundy-lit);
+}
 
 .result .seal {
   margin-left: 6px;
@@ -328,6 +376,7 @@
  * Colour is never the only channel: ELSEWHERE says in words what the blue bar
  * says in colour. Independent of SEALED and of the register columns.
  */
+
 .result .elsewhere {
   margin-left: 6px;
   padding: 0 4px;
@@ -340,14 +389,6 @@
 
 /* -- sortable headings --------------------------------------------------- */
 
-/*
- * Every heading but NO. is a button, and has to read as one without turning the
- * head row into a strip of chrome. A bare <button> arrives with the user
- * agent's own grey fill and 2px outset border, which is what showed up the
- * first time: six pills across the top of the catalogue. `appearance: none` is
- * the part that actually removes it — resetting `background` and `border`
- * alone leaves the native rendering in place.
- */
 .col-sort {
   appearance: none;
   -webkit-appearance: none;
@@ -366,7 +407,9 @@
   text-align: inherit;
 }
 
-.col-sort:hover { color: var(--parchment); }
+.col-sort:hover {
+  color: var(--parchment);
+}
 
 .col-sort:focus-visible {
   outline: 1px solid var(--magicka);
@@ -374,19 +417,23 @@
   color: var(--parchment);
 }
 
-/* The active column, said twice: lit type and a caret. Never colour alone. */
-.col-sort--on { color: var(--magicka); }
+.col-sort--on {
+  color: var(--magicka);
+}
 
 .col-sort__mark {
   font-size: 9px;
   line-height: 1;
-  /* Reserved whether or not a caret is in it, so a heading does not shift
-     sideways the moment it becomes the sorted one. */
+
+  /* Reserve the caret space so the heading does not shift. */
   min-width: 8px;
 }
 
-/* The two quantity columns are right-aligned, so their heading puts the caret
-   on the left of the label to stay flush with the numbers beneath it. */
+/*
+ * The two quantity columns are right-aligned, so their heading puts the caret
+ * on the left of the label to stay flush with the numbers beneath it.
+ */
+
 .results-head .col-copies,
 .results-head .col-held {
   flex-direction: row-reverse;
@@ -397,12 +444,9 @@
 
 /*
  * Two columns off the register: how many the College owns, and how many are on
- * the shelf now. Right-aligned, because they are quantities and a librarian
- * reads a column of them down the units.
- *
- * The state is carried by the WORDS first — `22 IN`, `ALL OUT`, `—` — and the
- * colour second. Nothing here is legible only in colour.
+ * the shelf now.
  */
+
 .col-copies,
 .col-held,
 .result .copies,
@@ -425,90 +469,134 @@
 }
 
 /* Every copy is in. */
-.result .held--in { color: var(--collection); }
+
+.result .held--in {
+  color: var(--collection);
+}
 
 /* Some are out, some are not. */
-.result .held--some { color: #e0b552; }
 
-/* None on the shelf — the one state that changes the answer to a reader. */
+.result .held--some {
+  color: #e0b552;
+}
+
+/* None on the shelf. */
+
 .result .held--out {
   color: #ff7a6a;
   font-weight: 600;
 }
 
-.result[aria-selected='true'] .copies { color: var(--parchment); }
+.result[aria-selected='true'] .copies {
+  color: var(--parchment);
+}
 
 /* -- what the archive found ---------------------------------------------- */
 
 /*
  * A hit the College actually holds.
  *
- * Green, and ALREADY AT THE TOP — the group it sits in is the first thing under
+ * Green, and already at the top. The group it sits in is the first thing under
  * the search line, so the colour is the second channel and not the only one.
- * A left bar rather than a wash across the row: the row is a grid of five
- * columns of type and a green field behind them fights every one of them,
- * while a bar in the gutter reads at a glance down a list and leaves the words
- * alone.
- *
- * Only on a body search. The full 249-row listing is in call-number order and
- * lighting up 48 of them there would be a stripe pattern rather than an
- * answer — see `renderFound()` in src/screens/catalogue.ts.
  */
+
 .result--held {
   box-shadow: inset 3px 0 0 var(--collection-dim);
-  background: linear-gradient(90deg, rgba(79, 174, 108, 0.11), rgba(79, 174, 108, 0) 42%);
+  background: linear-gradient(
+    90deg,
+    rgba(79, 174, 108, 0.11),
+    rgba(79, 174, 108, 0) 42%
+  );
 }
 
 .result--held:hover,
 .result--held[aria-selected='true'] {
   box-shadow: inset 3px 0 0 var(--collection);
-  background: linear-gradient(90deg, rgba(79, 174, 108, 0.2), rgba(79, 174, 108, 0.04) 60%);
+  background: linear-gradient(
+    90deg,
+    rgba(79, 174, 108, 0.2),
+    rgba(79, 174, 108, 0.04) 60%
+  );
 }
 
 /*
  * A title marked readable_online is part of the Arcanaeum's extended catalogue.
- * Blue is the catalogue signal for that state, whether the row came from the
- * full shelf or from a search result.
+ * Blue is the catalogue signal for that state.
  */
+
 .result--readable {
   box-shadow: inset -3px 0 0 var(--elsewhere-dim);
-  background: linear-gradient(270deg, var(--elsewhere-wash), rgba(61, 111, 160, 0) 42%);
+  background: linear-gradient(
+    270deg,
+    var(--elsewhere-wash),
+    rgba(61, 111, 160, 0) 42%
+  );
 }
 
 .result--readable:hover,
 .result--readable[aria-selected='true'] {
   box-shadow: inset -3px 0 0 var(--elsewhere);
-  background: linear-gradient(270deg, rgba(61, 111, 160, 0.22), rgba(61, 111, 160, 0.04) 60%);
+  background: linear-gradient(
+    270deg,
+    rgba(61, 111, 160, 0.22),
+    rgba(61, 111, 160, 0.04) 60%
+  );
 }
 
 /* Both channels at once: green left ownership, blue right readability. */
+
 .result--held.result--readable {
-  box-shadow: inset 3px 0 0 var(--collection-dim), inset -3px 0 0 var(--elsewhere-dim);
+  box-shadow:
+    inset 3px 0 0 var(--collection-dim),
+    inset -3px 0 0 var(--elsewhere-dim);
+
   background:
-    linear-gradient(90deg, rgba(79, 174, 108, 0.11), rgba(79, 174, 108, 0) 36%),
-    linear-gradient(270deg, var(--elsewhere-wash), rgba(61, 111, 160, 0) 36%);
+    linear-gradient(
+      90deg,
+      rgba(79, 174, 108, 0.11),
+      rgba(79, 174, 108, 0) 36%
+    ),
+    linear-gradient(
+      270deg,
+      var(--elsewhere-wash),
+      rgba(61, 111, 160, 0) 36%
+    );
 }
 
 .result--held.result--readable:hover,
 .result--held.result--readable[aria-selected='true'] {
-  box-shadow: inset 3px 0 0 var(--collection), inset -3px 0 0 var(--elsewhere);
+  box-shadow:
+    inset 3px 0 0 var(--collection),
+    inset -3px 0 0 var(--elsewhere);
+
   background:
-    linear-gradient(90deg, rgba(79, 174, 108, 0.2), rgba(79, 174, 108, 0.04) 50%),
-    linear-gradient(270deg, rgba(61, 111, 160, 0.22), rgba(61, 111, 160, 0.04) 50%);
+    linear-gradient(
+      90deg,
+      rgba(79, 174, 108, 0.2),
+      rgba(79, 174, 108, 0.04) 50%
+    ),
+    linear-gradient(
+      270deg,
+      rgba(61, 111, 160, 0.22),
+      rgba(61, 111, 160, 0.04) 50%
+    );
 }
 
 /* The group heading above them, in the same green. */
-.results-group--held .results-group__name { color: var(--collection); }
+
+.results-group--held .results-group__name {
+  color: var(--collection);
+}
+
 .results-group--held .results-group__count {
   color: var(--obsidian);
   background: var(--collection-dim);
 }
 
 /*
- * Colour key under the column headings. Quiet, monochrome-legible (the words
- * carry the meaning; the swatch is a second reading), and hidden on the narrow
- * layout where the headings themselves go away.
+ * Colour key under the column headings.
  */
+
 .results-key {
   display: flex;
   flex-wrap: wrap;
@@ -531,18 +619,30 @@
   box-shadow: var(--bevel-out);
 }
 
-.results-key__item--held::before { background: var(--collection-dim); }
-.results-key__item--readable::before { background: var(--elsewhere-dim); }
+.results-key__item--held::before {
+  background: var(--collection-dim);
+}
 
-/* A shelf heading inside the results. Not a `.result`, so it is skipped by the
-   keyboard model, which walks `.result` alone. */
+.results-key__item--readable::before {
+  background: var(--elsewhere-dim);
+}
+
+/*
+ * A shelf heading inside the results. Not a .result, so it is skipped by the
+ * keyboard model, which walks .result alone.
+ */
+
 .results-group {
   display: flex;
   align-items: baseline;
   gap: 10px;
   margin: 10px 0 2px;
   padding: 3px 14px 4px;
-  background: linear-gradient(90deg, var(--stone-800), transparent 88%);
+  background: linear-gradient(
+    90deg,
+    var(--stone-800),
+    transparent 88%
+  );
   border-top: 1px solid var(--stone-700);
 }
 
@@ -559,7 +659,10 @@
   background: var(--parchment-dim);
 }
 
-/* A found row is taller than a shelf row: it carries the quotation. */
+/*
+ * A found row is taller than a shelf row: it carries the quotation.
+ */
+
 .result--found {
   align-items: start;
   padding-top: 5px;
@@ -567,31 +670,23 @@
 }
 
 .excerpt {
-  display: block;
+  display: -webkit-box;
   margin-top: 2px;
   font-family: var(--font-body);
   font-size: 15px;
   line-height: 1.4;
   color: var(--parchment-dim);
+  background: transparent;
   white-space: normal;
-  /* Two lines of quotation; the book itself is one keystroke away. */
   overflow: hidden;
-  display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
 
 /*
- * Which part of a bound volume the word is in. One chip per part, in the
- * cyan of the marked run so the eye pairs them: the chip says where, the mark
- * says what.
- *
- * A LINE OF THEIR OWN, under the title and above the quotation. The title
- * line is `nowrap` and ellipsised, and chips set inline after "2920, Last
- * Year of the First Era" were the part of that line that fell off the end —
- * the books with the most parts to name were exactly the ones that lost the
- * naming. They wrap, so a twelve-part chronicle says all it has to.
+ * Which part of a bound volume the word is in.
  */
+
 .sections {
   display: flex;
   flex-wrap: wrap;
@@ -609,14 +704,38 @@
   border: 1px solid var(--magicka-dim);
 }
 
-.excerpt-hit {
-  padding: 0 2px;
+/*
+ * SEARCH MATCH
+ *
+ * Matches in titles, authors, and excerpts share one inline treatment.
+ */
+
+.search-hit {
+  display: inline;
+  padding: 0 1px;
+  font: inherit;
+  line-height: inherit;
+  letter-spacing: 0;
   color: var(--obsidian);
-  background: var(--magicka);
-  border-radius: 0;
+  background: var(--magicka-lit);
+  border-radius: 1px;
+  font-weight: 600;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
-.result[aria-selected='true'] .excerpt { color: var(--parchment); }
+/*
+ * Keep the highlight visible when the result itself is selected.
+ */
+
+.result[aria-selected='true'] .excerpt {
+  color: var(--parchment);
+}
+
+.result[aria-selected='true'] .search-hit {
+  color: var(--obsidian);
+  background: var(--magicka-lit);
+}
 
 .results-status {
   padding: 18px 16px;
@@ -624,15 +743,21 @@
   color: var(--parchment-dim);
 }
 
-.results-status--error { color: var(--burgundy-lit); }
+.results-status--error {
+  color: var(--burgundy-lit);
+}
 
 .results-status--found {
   color: var(--magicka-lit);
   text-shadow: 0 0 7px var(--magicka-dim);
 }
 
+/* -- narrow catalogue ---------------------------------------------------- */
+
 @media (max-width: 900px) {
-  .catalogue { flex-direction: column; }
+  .catalogue {
+    flex-direction: column;
+  }
 
   .tablets {
     flex: 0 0 auto;
@@ -644,32 +769,78 @@
     border-bottom: 1px solid var(--obsidian);
   }
 
-  .tablets-legend { display: none; }
-  .tablet { width: auto; margin: 0; font-size: 17px; padding: 4px 8px 6px; }
+  .tablets-legend {
+    display: none;
+  }
 
-  .results-head { display: none; }
-  .results-key { display: none; }
+  .tablet {
+    width: auto;
+    margin: 0;
+    font-size: 17px;
+    padding: 4px 8px 6px;
+  }
+
+  .results-head {
+    display: none;
+  }
+
+  .results-key {
+    display: none;
+  }
 
   .result {
-    /* The copy count goes; how many are on the shelf stays. On a phone at the
-       shelves that is the whole question. */
-    /* `rem` here too, for the same reason — see the desktop template. */
-    grid-template-columns: 1.7rem 5.7rem minmax(0, 1fr) 4.8rem;
-    grid-template-areas: 'idx call ttl held' '. call author held';
+    /*
+     * The copy count goes; how many are on the shelf stays.
+     */
+
+    grid-template-columns:
+      1.7rem
+      5.7rem
+      minmax(0, 1fr)
+      4.8rem;
+
+    grid-template-areas:
+      'idx call ttl held'
+      '. call author held';
+
     row-gap: 0;
     padding-top: 6px;
     padding-bottom: 6px;
   }
 
-  .result .idx { grid-area: idx; }
-  .result .call { grid-area: call; }
-  .result .ttl { grid-area: ttl; white-space: normal; }
-  .results-group { padding-left: 8px; padding-right: 8px; }
-  .result .author { grid-area: author; }
-  .result .held { grid-area: held; align-self: center; }
+  .result .idx {
+    grid-area: idx;
+  }
+
+  .result .call {
+    grid-area: call;
+  }
+
+  .result .ttl {
+    grid-area: ttl;
+    white-space: normal;
+  }
+
+  .results-group {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .result .author {
+    grid-area: author;
+  }
+
+  .result .held {
+    grid-area: held;
+    align-self: center;
+  }
+
   .result .copies,
-  .result .school { display: none; }
+  .result .school {
+    display: none;
+  }
 
-
-  .search-hint { display: none; }
+  .search-hint {
+    display: none;
+  }
 }

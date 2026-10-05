@@ -85,7 +85,7 @@ export function fetchTome(id: number): Promise<Tome> {
 }
 
 export interface Hit extends TomeSummary {
-  /** A window of the body around the match, with the run marked. */
+  /** A plain-text window of the body around the match. */
   excerpt: string;
   /**
    * For a book bound from several parts — "Volume Two", "Book IV", "Part
@@ -101,8 +101,6 @@ export interface SearchResult {
   shelf: string | null;
   total: number;
   truncated: boolean;
-  /** The control characters bracketing the matched run inside `excerpt`. */
-  markers: { open: string; close: string };
   hits: Hit[];
 }
 

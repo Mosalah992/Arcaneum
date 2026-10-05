@@ -143,6 +143,19 @@ const footer = el(
   // PROVENANCE.md and in every book's `source:` frontmatter; it used to be
   // named here too and the client asked for the line back.
   el('span', { class: 'footer-note footer-note--wide' }, 'TEXT © BETHESDA · '),
+  el(
+    'a',
+    {
+      class: 'footer-kofi',
+      href: 'https://ko-fi.com/N1B0279SRR',
+      target: '_blank',
+      rel: 'noopener noreferrer',
+      title: 'Support the Arcanaeum on Ko-fi',
+      'aria-label': 'Support the Arcanaeum on Ko-fi',
+    },
+    'SUPPORT THE ARCHIVE',
+  ),
+  el('span', { class: 'footer-separator' }, ' · '),
   clock,
   // `forget my discoveries` stood here. It cleared a list of call numbers a
   // visitor had resolved, which the catalogue used to fold sealed volumes into

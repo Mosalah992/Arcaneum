@@ -17,7 +17,10 @@
  */
 
 import { SHELVES, CALL_NUMBER_RE } from '../../shared/shelves';
+
 import { clear, el } from '../lib/dom';
+import { highlightedText } from '../lib/highlight';
+
 import {
   fetchAvailability,
   listTomes,
@@ -27,6 +30,7 @@ import {
   type Availability,
   type TomeSummary,
 } from '../lib/api';
+
 import { heldCells, lookUp } from '../lib/holdings';
 import { type Screen } from '../lib/router';
 import { play } from '../lib/sound';
@@ -34,18 +38,16 @@ import { play } from '../lib/sound';
 interface Row extends TomeSummary {
   /** Present only on rows that came back from a body search. */
   excerpt?: string;
+
   /** With `excerpt`: which parts of a bound volume the match is in. */
   sections?: string[];
 }
 
 /** How long to wait after the last keystroke before asking the archive. */
 const SEARCH_DEBOUNCE = 180;
+
 /** Shorter than this is not a search worth a round trip. */
 const SEARCH_MIN = 2;
-
-/** The control characters /api/search brackets a matched run with. */
-const MARK_OPEN = '';
-const MARK_CLOSE = '';
 
 export function catalogueScreen(): Screen {
   let school: string | null = null;
@@ -54,7 +56,7 @@ export function catalogueScreen(): Screen {
   let rows: Row[] = [];
   let selected = 0;
 
-  /*
+  /**
    * Two kinds of result share one list.
    *
    * `found` null means the visitor is filtering the shelf they already have —
@@ -63,7 +65,8 @@ export function catalogueScreen(): Screen {
    * same order as the buttons, so the keyboard model does not have to know
    * which one it is looking at.
    */
-  /*
+
+  /**
    * The College's register, or null until it answers — and null for good if it
    * cannot. Fetched once when the screen opens: it is one request for the whole
    * catalogue, cached for a minute by the browser, and every row reads its two
@@ -72,7 +75,7 @@ export function catalogueScreen(): Screen {
    */
   let register: Availability | null = null;
 
-  /*
+  /**
    * How the list is ordered.
    *
    * `null` is the archive's own order — shelf, then accession — which is what
@@ -80,7 +83,14 @@ export function catalogueScreen(): Screen {
    * Anything else is a question being asked of the list, and the two worth
    * asking are "how many do we own" and "what can I hand over right now".
    */
-  type SortKey = 'call' | 'title' | 'author' | 'school' | 'copies' | 'available';
+  type SortKey =
+    | 'call'
+    | 'title'
+    | 'author'
+    | 'school'
+    | 'copies'
+    | 'available';
+
   let sortKey: SortKey | null = null;
   let sortDesc = false;
 
@@ -102,9 +112,11 @@ export function catalogueScreen(): Screen {
 
   const input = el('input', {
     class: 'search-input',
-    // `id` and `name` even though `autocomplete` is off: a field with neither
-    // is one Chrome reports as an accessibility and autofill problem, and the
-    // id is what lets anything else on the page point a `for` at it.
+    /**
+     * `id` and `name` even though `autocomplete` is off: a field with neither
+     * is one Chrome reports as an accessibility and autofill problem, and the
+     * id is what lets anything else on the page point a `for` at it.
+     */
     id: 'catalogue-search',
     name: 'q',
     type: 'text',
@@ -117,6 +129,7 @@ export function catalogueScreen(): Screen {
 
   const mirrorText = el('span');
   const cursor = el('span', { class: 'block-cursor' });
+
   const mirror = el(
     'span',
     { class: 'search-mirror', 'aria-hidden': 'true' },
@@ -124,8 +137,18 @@ export function catalogueScreen(): Screen {
     cursor,
   );
 
-  const hint = el('span', { class: 'search-hint' }, 'UP/DOWN SELECT   ENTER CALLS A NUMBER');
-  const status = el('div', { class: 'results-status' }, 'CONSULTING THE ROLL...');
+  const hint = el(
+    'span',
+    { class: 'search-hint' },
+    'UP/DOWN SELECT   ENTER CALLS A NUMBER',
+  );
+
+  const status = el(
+    'div',
+    { class: 'results-status' },
+    'CONSULTING THE ROLL...',
+  );
+
   const list = el('ol', {
     class: 'results',
     role: 'listbox',
@@ -138,7 +161,10 @@ export function catalogueScreen(): Screen {
     el('p', { class: 'tablets-legend' }, 'SHELVES'),
   );
 
-  const tabletButtons = new Map<string | null, HTMLButtonElement>();
+  const tabletButtons = new Map<
+    string | null,
+    HTMLButtonElement
+  >();
 
   for (const name of [null, ...SHELVES]) {
     const button = el(
@@ -151,11 +177,12 @@ export function catalogueScreen(): Screen {
       },
       name === null ? 'ALL SHELVES' : name.toUpperCase(),
     );
+
     tabletButtons.set(name, button);
     tablets.append(button);
   }
 
-  /*
+  /**
    * The column headings, and they are NOT inside the scrolling list.
    *
    * That is the reason for `syncGutter()` below: the list reserves a scrollbar
@@ -163,7 +190,8 @@ export function catalogueScreen(): Screen {
    * every column drifts by that much. The heading is kept outside so it does
    * not scroll away with the rows.
    */
-  /*
+
+  /**
    * One column heading, and every heading but NO. is a button.
    *
    * NO. is the row's position in whatever order is showing, so it renumbers as
@@ -172,15 +200,30 @@ export function catalogueScreen(): Screen {
    */
   const sortButtons = new Map<SortKey, HTMLButtonElement>();
 
-  function heading(key: SortKey, label: string, extra = ''): HTMLElement {
+  function heading(
+    key: SortKey,
+    label: string,
+    extra = '',
+  ): HTMLElement {
     const button = el('button', {
       class: `col-sort${extra === '' ? '' : ` ${extra}`}`,
       type: 'button',
       onclick: () => sortBy(key),
     });
-    button.append(el('span', { class: 'col-sort__label' }, label));
-    button.append(el('span', { class: 'col-sort__mark', 'aria-hidden': 'true' }));
+
+    button.append(
+      el('span', { class: 'col-sort__label' }, label),
+    );
+
+    button.append(
+      el('span', {
+        class: 'col-sort__mark',
+        'aria-hidden': 'true',
+      }),
+    );
+
     sortButtons.set(key, button);
+
     return button;
   }
 
@@ -196,7 +239,7 @@ export function catalogueScreen(): Screen {
     heading('school', 'SCHOOL'),
   );
 
-  /*
+  /**
    * A quiet key for the two tint colours. Words first, colour second — the same
    * rule as the holdings cells. Lives under the column headings so it is there
    * when a librarian is reading a search answer, and stays out of the way of
@@ -204,9 +247,26 @@ export function catalogueScreen(): Screen {
    */
   const resultsKey = el(
     'div',
-    { class: 'results-key', 'aria-label': 'Catalogue colour key' },
-    el('span', { class: 'results-key__item results-key__item--held' }, 'GREEN  IN THE COLLECTION'),
-    el('span', { class: 'results-key__item results-key__item--readable' }, 'BLUE  ARCANAEUM'),
+    {
+      class: 'results-key',
+      'aria-label': 'Catalogue colour key',
+    },
+    el(
+      'span',
+      {
+        class:
+          'results-key__item results-key__item--held',
+      },
+      'GREEN  IN THE COLLECTION',
+    ),
+    el(
+      'span',
+      {
+        class:
+          'results-key__item results-key__item--readable',
+      },
+      'BLUE  ARCANAEUM',
+    ),
   );
 
   /**
@@ -227,6 +287,7 @@ export function catalogueScreen(): Screen {
       sortKey = null;
       sortDesc = false;
     }
+
     selected = 0;
     markSort();
     render();
@@ -236,12 +297,36 @@ export function catalogueScreen(): Screen {
   function markSort(): void {
     for (const [key, button] of sortButtons) {
       const active = key === sortKey;
-      button.classList.toggle('col-sort--on', active);
-      button.setAttribute('aria-sort', active ? (sortDesc ? 'descending' : 'ascending') : 'none');
-      const mark = button.querySelector('.col-sort__mark');
-      // A shape, not a colour, and not only a background: this has to be legible
-      // in a screenshot and to somebody who cannot separate the two greens.
-      if (mark !== null) mark.textContent = active ? (sortDesc ? '▼' : '▲') : '';
+
+      button.classList.toggle(
+        'col-sort--on',
+        active,
+      );
+
+      button.setAttribute(
+        'aria-sort',
+        active
+          ? sortDesc
+            ? 'descending'
+            : 'ascending'
+          : 'none',
+      );
+
+      const mark = button.querySelector(
+        '.col-sort__mark',
+      );
+
+      /**
+       * A shape, not a colour, and not only a background: this has to be legible
+       * in a screenshot and to somebody who cannot separate the two greens.
+       */
+      if (mark !== null) {
+        mark.textContent = active
+          ? sortDesc
+            ? '▼'
+            : '▲'
+          : '';
+      }
     }
   }
 
@@ -256,7 +341,12 @@ export function catalogueScreen(): Screen {
         'div',
         { class: 'search' },
         el('span', { class: 'search-prompt' }, '>'),
-        el('div', { class: 'search-field' }, mirror, input),
+        el(
+          'div',
+          { class: 'search-field' },
+          mirror,
+          input,
+        ),
         hint,
       ),
       resultsHead,
@@ -266,40 +356,43 @@ export function catalogueScreen(): Screen {
     ),
   );
 
-  /**
-   * Hand the heading the width of the list's scrollbar.
-   *
-   * The rows live inside a scrolling box and the heading sits above it, so the
-   * rows' content box is a scrollbar narrower than the heading's. Both use the
-   * same grid template, so that difference lands entirely in `minmax(0, 1fr)`
-   * and shoves every column right of the title out of line with its own
-   * heading — fifteen pixels on Windows, which is exactly enough to put `22`
-   * to the left of `COPIES` and `19 IN` underneath it.
-   *
-   * `scrollbar-gutter: stable` on the list makes the number constant whether
-   * or not it overflows, so a filtered search of three rows does not shift the
-   * heading back again. It is zero on overlay-scrollbar systems, where there
-   * was never anything to correct.
-   */
+  /** Hand the heading the width of the list's scrollbar. */
   function syncGutter(): void {
-    const gutter = list.offsetWidth - list.clientWidth;
-    resultsHead.style.setProperty('--gutter', `${gutter}px`);
+    const gutter =
+      list.offsetWidth - list.clientWidth;
+
+    resultsHead.style.setProperty(
+      '--gutter',
+      `${gutter}px`,
+    );
   }
 
   /** The block cursor is drawn, not native, so it has to be told where to sit. */
   function syncCursor(): void {
-    const at = input.selectionStart ?? input.value.length;
-    mirrorText.textContent = input.value.slice(0, at);
+    const at =
+      input.selectionStart ?? input.value.length;
+
+    mirrorText.textContent =
+      input.value.slice(0, at);
   }
 
   function selectShelf(name: string | null): void {
     if (school === name) return;
+
     school = name;
+
     for (const [key, button] of tabletButtons) {
-      button.setAttribute('aria-pressed', String(key === name));
+      button.setAttribute(
+        'aria-pressed',
+        String(key === name),
+      );
     }
+
     void load();
-    if (found !== null) search();
+
+    if (found !== null) {
+      search();
+    }
   }
 
   /**
@@ -309,18 +402,26 @@ export function catalogueScreen(): Screen {
    */
   async function load(): Promise<void> {
     status.className = 'results-status';
-    status.textContent = 'CONSULTING THE ROLL...';
+    status.textContent =
+      'CONSULTING THE ROLL...';
+
     clear(list);
 
     let open: TomeSummary[];
+
     try {
-      open = await listTomes(school ?? undefined);
+      open = await listTomes(
+        school ?? undefined,
+      );
     } catch (err) {
-      status.className = 'results-status results-status--error';
+      status.className =
+        'results-status results-status--error';
+
       status.textContent =
         err instanceof ArchiveError
           ? err.message.toUpperCase()
           : 'THE ARCHIVE DID NOT ANSWER.';
+
       return;
     }
 
@@ -337,52 +438,71 @@ export function catalogueScreen(): Screen {
    */
   function search(): void {
     window.clearTimeout(debounce);
+
     const typed = query.trim();
 
-    if (typed.length < SEARCH_MIN || CALL_NUMBER_RE.test(typed.toUpperCase())) {
+    if (
+      typed.length < SEARCH_MIN ||
+      CALL_NUMBER_RE.test(
+        typed.toUpperCase(),
+      )
+    ) {
       inFlight?.abort();
       inFlight = null;
       found = null;
+
       render();
       return;
     }
 
     debounce = window.setTimeout(() => {
       inFlight?.abort();
+
       const mine = new AbortController();
       inFlight = mine;
 
-      void searchTomes(typed, school, mine.signal)
+      void searchTomes(
+        typed,
+        school,
+        mine.signal,
+      )
         .then((result) => {
           if (mine.signal.aborted) return;
+
           found = result.hits;
           foundTotal = result.total;
           truncated = result.truncated;
           selected = 0;
+
           render();
         })
         .catch((err) => {
-          if (err instanceof ArchiveError && err.code === 'aborted') return;
-          // A failed search falls back to the local filter rather than
-          // emptying the screen: the shelf is still there to look at.
+          if (
+            err instanceof ArchiveError &&
+            err.code === 'aborted'
+          ) {
+            return;
+          }
+
+          /**
+           * A failed search falls back to the local filter rather than
+           * emptying the screen: the shelf is still there to look at.
+           */
           found = null;
+
           render();
         });
     }, SEARCH_DEBOUNCE);
   }
 
-  /** The matched run, marked as elements. Never as markup. */
+  /** Highlight matches as DOM nodes. The excerpt remains plain text. */
   function excerptOf(text: string): HTMLElement {
-    const line = el('span', { class: 'excerpt' });
-    for (const [i, part] of text.split(MARK_OPEN).entries()) {
-      if (i === 0) {
-        line.append(part);
-        continue;
-      }
-      const [hit, ...rest] = part.split(MARK_CLOSE);
-      line.append(el('mark', { class: 'excerpt-hit' }, hit ?? ''));
-      line.append(rest.join(MARK_CLOSE));
-    }
+    const line = el('span', {
+      class: 'excerpt',
+    });
+
+    line.append(highlightedText(text, query));
+
     return line;
   }
 
@@ -394,17 +514,31 @@ export function catalogueScreen(): Screen {
    * to leaf through. Sits with the title, because it is part of the answer to
    * "which book?", not part of the quotation.
    */
-  function sectionChips(names: string[]): HTMLElement {
+  function sectionChips(
+    names: string[],
+  ): HTMLElement {
     return el(
       'span',
       { class: 'sections' },
-      ...names.map((name) => el('span', { class: 'section' }, name)),
+      ...names.map((name) =>
+        el(
+          'span',
+          { class: 'section' },
+          name,
+        ),
+      ),
     );
   }
 
-  function matches(row: Row, needle: string): boolean {
+  function matches(
+    row: Row,
+    needle: string,
+  ): boolean {
     if (needle === '') return true;
-    return `${row.call_number} ${row.title} ${row.author} ${row.school} ${row.volume ?? ''}`
+
+    return `${row.call_number} ${row.title} ${row.author} ${row.school} ${
+      row.volume ?? ''
+    }`
       .toLowerCase()
       .includes(needle);
   }
@@ -421,113 +555,316 @@ export function catalogueScreen(): Screen {
    * The tie-break is always the call number, so equal counts come out in shelf
    * order rather than in whatever order the rows happened to arrive.
    */
-  function sorted(list: Row[]): Row[] {
+  function sorted(
+    list: Row[],
+  ): Row[] {
     if (sortKey === null) return list;
+
     const key = sortKey;
+    const quantity =
+      key === 'copies' ||
+      key === 'available';
 
-    const quantity = key === 'copies' || key === 'available';
-    const numberOf = (row: Row): number | null => {
-      const holding = lookUp(row.title, register).holding;
-      if (holding === null) return null;
-      return key === 'copies' ? holding.copies : holding.available;
-    };
+    const numberOf = (
+      row: Row,
+    ): number | null => {
+      const holding =
+        lookUp(
+          row.title,
+          register,
+        ).holding;
 
-    return [...list].sort((a, b) => {
-      let order: number;
-
-      if (quantity) {
-        const x = numberOf(a);
-        const y = numberOf(b);
-        if (x === null && y === null) order = 0;
-        else if (x === null) return 1; // unlisted sinks, whichever way we sort
-        else if (y === null) return -1;
-        else order = x - y;
-      } else {
-        const pick = (row: Row): string =>
-          key === 'call' ? row.call_number
-          : key === 'title' ? row.title
-          : key === 'author' ? row.author
-          : row.school;
-        order = pick(a).localeCompare(pick(b), 'en', { sensitivity: 'base' });
+      if (holding === null) {
+        return null;
       }
 
-      if (order !== 0) return sortDesc ? -order : order;
-      return a.call_number.localeCompare(b.call_number, 'en');
-    });
+      return key === 'copies'
+        ? holding.copies
+        : holding.available;
+    };
+
+    return [...list].sort(
+      (a, b) => {
+        let order: number;
+
+        if (quantity) {
+          const x = numberOf(a);
+          const y = numberOf(b);
+
+          if (
+            x === null &&
+            y === null
+          ) {
+            order = 0;
+          } else if (x === null) {
+            return 1;
+          } else if (y === null) {
+            return -1;
+          } else {
+            order = x - y;
+          }
+        } else {
+          const pick = (
+            row: Row,
+          ): string =>
+            key === 'call'
+              ? row.call_number
+              : key === 'title'
+                ? row.title
+                : key === 'author'
+                  ? row.author
+                  : row.school;
+
+          order = pick(a).localeCompare(
+            pick(b),
+            'en',
+            {
+              sensitivity: 'base',
+            },
+          );
+        }
+
+        if (order !== 0) {
+          return sortDesc
+            ? -order
+            : order;
+        }
+
+        return a.call_number.localeCompare(
+          b.call_number,
+          'en',
+        );
+      },
+    );
   }
 
-  /** One result row. `rows` is kept in the same order as these buttons. */
-  function resultButton(row: Row, index: number): HTMLElement {
-    const shelved = lookUp(row.title, register);
-    // Tinted only when a copy is actually in. A title the College owns and has
-    // entirely lent out is still at the top of the answer, but it is not green:
-    // green is "you can hand this over", not "we own one".
-    const held = shelved.state === 'in' || shelved.state === 'some';
-    // Blue is catalogue metadata (`readable_online`), not the register.
-    const readable = row.readable_online === true;
+  /**
+   * One result row. `rows` is kept in the same order as these buttons.
+   */
+  function resultButton(
+    row: Row,
+    index: number,
+  ): HTMLElement {
+    const isSearchHit =
+      row.excerpt !== undefined;
+
+    const shelved =
+      lookUp(
+        row.title,
+        register,
+      );
+
+    /**
+     * Tinted only when a copy is actually in. A title the College owns and has
+     * entirely lent out is still at the top of the answer, but it is not green:
+     * green is "you can hand this over", not "we own one".
+     */
+    const held =
+      shelved.state === 'in' ||
+      shelved.state === 'some';
+
+    /**
+     * Blue is catalogue metadata (`readable_online`), not the register.
+     */
+    const readable =
+      row.readable_online === true;
+
     return el(
       'button',
       {
         class:
           `result${row.restricted ? ' result--sealed' : ''}` +
-          `${row.excerpt ? ' result--found' : ''}` +
-          // Blue beats green: a title lying in the Arcanaeum is read by emote via
-          // an external source, so that signal wins over the "hand this over" tint.
-          `${readable ? ' result--readable' : row.excerpt && held ? ' result--held' : ''}`,
+          `${isSearchHit ? ' result--found' : ''}` +
+          `${
+            readable
+              ? ' result--readable'
+              : isSearchHit && held
+                ? ' result--held'
+                : ''
+          }`,
         type: 'button',
         role: 'option',
-        'aria-selected': String(index === selected),
-        onmouseenter: () => select(index, false),
+        'aria-selected': String(
+          index === selected,
+        ),
+        onmouseenter: () =>
+          select(
+            index,
+            false,
+          ),
       },
-      el('span', { class: 'idx' }, String(index + 1).padStart(2, '0')),
-      el('span', { class: 'call' }, row.call_number),
+
+      el(
+        'span',
+        { class: 'idx' },
+        String(index + 1).padStart(
+          2,
+          '0',
+        ),
+      ),
+
+      el(
+        'span',
+        { class: 'call' },
+        row.call_number,
+      ),
+
       el(
         'span',
         { class: 'ttl' },
-        row.title,
-        row.volume && !row.sections?.length ? el('span', { class: 'volume' }, ` — ${row.volume}`) : null,
-        row.restricted ? el('span', { class: 'seal' }, 'SEALED') : null,
-        readable ? el('span', { class: 'elsewhere' }, 'ARCANAEUM') : null,
-        row.sections?.length ? sectionChips(row.sections) : null,
-        row.excerpt ? excerptOf(row.excerpt) : null,
+
+        isSearchHit
+          ? highlightedText(
+              row.title,
+              query,
+            )
+          : row.title,
+
+        row.volume &&
+        !row.sections?.length
+          ? el(
+              'span',
+              { class: 'volume' },
+              ` — ${row.volume}`,
+            )
+          : null,
+
+        row.restricted
+          ? el(
+              'span',
+              { class: 'seal' },
+              'SEALED',
+            )
+          : null,
+
+        readable
+          ? el(
+              'span',
+              { class: 'elsewhere' },
+              'ARCANAEUM',
+            )
+          : null,
+
+        row.sections?.length
+          ? sectionChips(
+              row.sections,
+            )
+          : null,
+
+        isSearchHit
+          ? excerptOf(
+              row.excerpt ?? '',
+            )
+          : null,
       ),
+
       ...heldCells(shelved),
-      el('span', { class: 'author' }, row.author),
-      el('span', { class: 'school' }, row.school),
+
+      el(
+        'span',
+        { class: 'author' },
+        isSearchHit
+          ? highlightedText(
+              row.author,
+              query,
+            )
+          : row.author,
+      ),
+
+      el(
+        'span',
+        { class: 'school' },
+        row.school,
+      ),
     );
   }
 
   function render(): void {
     clear(list);
-    selected = Math.max(0, selected);
-    if (found !== null) renderFound(found);
-    else renderShelf();
-    // After the rows, not before: the first frame runs with an empty list and
-    // measures nothing.
+
+    selected = Math.max(
+      0,
+      selected,
+    );
+
+    if (found !== null) {
+      renderFound(found);
+    } else {
+      renderShelf();
+    }
+
+    /**
+     * After the rows, not before: the first frame runs with an empty list and
+     * measures nothing.
+     */
     syncGutter();
   }
 
   /** The shelf the visitor already has, filtered in the browser. */
   function renderShelf(): void {
-    const needle = query.trim().toLowerCase();
-    rows = sorted(shelf.filter((row) => matches(row, needle)));
-    selected = Math.min(selected, Math.max(0, rows.length - 1));
+    const needle =
+      query.trim().toLowerCase();
+
+    rows = sorted(
+      shelf.filter(
+        (row) =>
+          matches(
+            row,
+            needle,
+          ),
+      ),
+    );
+
+    selected = Math.min(
+      selected,
+      Math.max(
+        0,
+        rows.length - 1,
+      ),
+    );
 
     if (rows.length === 0) {
-      status.className = 'results-status';
-      status.textContent = CALL_NUMBER_RE.test(query.trim().toUpperCase())
-        ? 'NOT ON THE OPEN SHELF. PRESS ENTER TO REQUEST IT FROM THE ROLL.'
-        : 'NO VOLUME ON THE OPEN SHELF ANSWERS TO THAT.';
+      status.className =
+        'results-status';
+
+      status.textContent =
+        CALL_NUMBER_RE.test(
+          query
+            .trim()
+            .toUpperCase(),
+        )
+          ? 'NOT ON THE OPEN SHELF. PRESS ENTER TO REQUEST IT FROM THE ROLL.'
+          : 'NO VOLUME ON THE OPEN SHELF ANSWERS TO THAT.';
+
       return;
     }
 
-    status.className = 'results-status';
-    status.textContent = `${rows.length} VOLUME${rows.length === 1 ? '' : 'S'} ON THE SHELF`;
+    status.className =
+      'results-status';
 
-    rows.forEach((row, i) => list.append(el('li', {}, resultButton(row, i))));
+    status.textContent =
+      `${rows.length} VOLUME${
+        rows.length === 1
+          ? ''
+          : 'S'
+      } ON THE SHELF`;
+
+    rows.forEach(
+      (row, i) =>
+        list.append(
+          el(
+            'li',
+            {},
+            resultButton(
+              row,
+              i,
+            ),
+          ),
+        ),
+    );
   }
 
-  /*
+  /**
    * What the archive found, gathered by shelf.
    *
    * A librarian asking for "illusion" is answered by fifteen books across five
@@ -536,15 +873,24 @@ export function catalogueScreen(): Screen {
    * to. Within a shelf the order is the archive's ranking, which weights a hit
    * in the title or the author above one in the body.
    */
-  function renderFound(hits: Row[]): void {
+  function renderFound(
+    hits: Row[],
+  ): void {
     rows = [];
+
     if (hits.length === 0) {
-      status.className = 'results-status';
-      status.textContent = `NOTHING IN THE STACKS ANSWERS TO “${query.trim().toUpperCase()}”.`;
+      status.className =
+        'results-status';
+
+      status.textContent =
+        `NOTHING IN THE STACKS ANSWERS TO “${query
+          .trim()
+          .toUpperCase()}”.`;
+
       return;
     }
 
-    /*
+    /**
      * WHAT THE COLLEGE ACTUALLY HOLDS COMES FIRST.
      *
      * A librarian at the desk with a reader in front of them is not asking
@@ -557,7 +903,7 @@ export function catalogueScreen(): Screen {
      * title the College owns but has entirely lent out still belongs at the top
      * of a librarian's answer, because the answer is "we have it, it is out
      * until Tuesday" and not "we do not have it". Its AVAILABLE cell says ALL
-     * OUT in red and it is not tinted, so the two cases stay distinct inside
+     * OUT in red and it is not tinted, so the two cases stay distinct inside*
      * the group.
      *
      * The rest keep the shelf grouping, which is the other thing a librarian
@@ -565,40 +911,111 @@ export function catalogueScreen(): Screen {
      */
     const atTheCollege: Row[] = [];
     const elsewhere: Row[] = [];
+
     for (const hit of hits) {
-      (lookUp(hit.title, register).holding === null ? elsewhere : atTheCollege).push(hit);
+      (
+        lookUp(
+          hit.title,
+          register,
+        ).holding === null
+          ? elsewhere
+          : atTheCollege
+      ).push(hit);
     }
 
-    const shelves = new Map<string, Row[]>();
+    const shelves =
+      new Map<string, Row[]>();
+
     for (const hit of elsewhere) {
-      const group = shelves.get(hit.school) ?? [];
+      const group =
+        shelves.get(
+          hit.school,
+        ) ?? [];
+
       group.push(hit);
-      shelves.set(hit.school, group);
+      shelves.set(
+        hit.school,
+        group,
+      );
     }
 
-    const groupRow = (name: string, count: number, extra = ''): HTMLElement =>
+    const groupRow = (
+      name: string,
+      count: number,
+      extra = '',
+    ): HTMLElement =>
       el(
         'li',
-        { class: `results-group${extra}` },
-        el('span', { class: 'results-group__name' }, name),
-        el('span', { class: 'results-group__count' }, String(count)),
+        {
+          class:
+            `results-group${extra}`,
+        },
+        el(
+          'span',
+          {
+            class:
+              'results-group__name',
+          },
+          name,
+        ),
+        el(
+          'span',
+          {
+            class:
+              'results-group__count',
+          },
+          String(count),
+        ),
       );
 
-    const place = (row: Row): void => {
-      list.append(el('li', {}, resultButton(row, rows.length)));
+    const place = (
+      row: Row,
+    ): void => {
+      list.append(
+        el(
+          'li',
+          {},
+          resultButton(
+            row,
+            rows.length,
+          ),
+        ),
+      );
+
       rows.push(row);
     };
 
-    status.className = 'results-status results-status--found';
-    const shelfCount = shelves.size + (atTheCollege.length > 0 ? 1 : 0);
-    status.textContent =
-      `${foundTotal}${truncated ? '+' : ''} VOLUME${foundTotal === 1 ? '' : 'S'} ` +
-      `MENTION “${query.trim().toUpperCase()}”` +
-      (atTheCollege.length > 0
-        ? ` · ${atTheCollege.length} ON THE COLLEGE REGISTER`
-        : ` ACROSS ${shelfCount} SHEL${shelfCount === 1 ? 'F' : 'VES'}`);
+    status.className =
+      'results-status results-status--found';
 
-    /*
+    const shelfCount =
+      shelves.size +
+      (atTheCollege.length > 0
+        ? 1
+        : 0);
+
+    status.textContent =
+      `${foundTotal}${
+        truncated ? '+' : ''
+      } VOLUME${
+        foundTotal === 1
+          ? ''
+          : 'S'
+      } ` +
+      `MENTION “${query
+        .trim()
+        .toUpperCase()}”` +
+      (
+        atTheCollege.length > 0
+          ? ` · ${atTheCollege.length} ON THE COLLEGE REGISTER`
+          : ` ACROSS ${shelfCount} SHEL${
+              shelfCount === 1
+                ? 'F'
+                : 'VES'
+            }`
+      );
+
+    /**
      * Sorted INSIDE each group, not across them.
      *
      * The groups are the answer to "where do I walk"; the sort is the answer to
@@ -609,56 +1026,139 @@ export function catalogueScreen(): Screen {
      */
     if (atTheCollege.length > 0) {
       list.append(
-        groupRow('ON THE SHELF AT THE COLLEGE', atTheCollege.length, ' results-group--held'),
+        groupRow(
+          'ON THE SHELF AT THE COLLEGE',
+          atTheCollege.length,
+          ' results-group--held',
+        ),
       );
-      for (const row of sorted(atTheCollege)) place(row);
+
+      for (const row of sorted(
+        atTheCollege,
+      )) {
+        place(row);
+      }
     }
 
-    for (const [name, group] of shelves) {
-      list.append(groupRow(name.toUpperCase(), group.length));
-      for (const row of sorted(group)) place(row);
+    for (const [
+      name,
+      group,
+    ] of shelves) {
+      list.append(
+        groupRow(
+          name.toUpperCase(),
+          group.length,
+        ),
+      );
+
+      for (const row of sorted(
+        group,
+      )) {
+        place(row);
+      }
     }
 
-    selected = Math.min(selected, Math.max(0, rows.length - 1));
-    const buttons = list.querySelectorAll<HTMLElement>('.result');
-    buttons.forEach((b, i) => b.setAttribute('aria-selected', String(i === selected)));
+    selected = Math.min(
+      selected,
+      Math.max(
+        0,
+        rows.length - 1,
+      ),
+    );
+
+    const buttons =
+      list.querySelectorAll<HTMLElement>(
+        '.result',
+      );
+
+    buttons.forEach(
+      (button, i) =>
+        button.setAttribute(
+          'aria-selected',
+          String(
+            i === selected,
+          ),
+        ),
+    );
   }
 
-  function select(index: number, scroll = true): void {
+  function select(
+    index: number,
+    scroll = true,
+  ): void {
     if (rows.length === 0) return;
-    selected = (index + rows.length) % rows.length;
-    const buttons = list.querySelectorAll<HTMLElement>('.result');
-    buttons.forEach((button, i) =>
-      button.setAttribute('aria-selected', String(i === selected)),
+
+    selected =
+      (index + rows.length) %
+      rows.length;
+
+    const buttons =
+      list.querySelectorAll<HTMLElement>(
+        '.result',
+      );
+
+    buttons.forEach(
+      (button, i) =>
+        button.setAttribute(
+          'aria-selected',
+          String(
+            i === selected,
+          ),
+        ),
     );
-    if (scroll) buttons[selected]?.scrollIntoView({ block: 'nearest' });
+
+    if (scroll) {
+      buttons[
+        selected
+      ]?.scrollIntoView({
+        block: 'nearest',
+      });
+    }
+
     play('tick');
   }
 
   /** A typed call number is a request slip handed across the desk. */
-  async function request(callNumber: string): Promise<void> {
-    status.className = 'results-status';
-    status.textContent = `CHECKING THE ROLL FOR ${callNumber}...`;
+  async function request(
+    callNumber: string,
+  ): Promise<void> {
+    status.className =
+      'results-status';
+
+    status.textContent =
+      `CHECKING THE ROLL FOR ${callNumber}...`;
+
     try {
-      const tome = await resolveCallNumber(callNumber);
-      status.className = 'results-status results-status--found';
+      const tome =
+        await resolveCallNumber(
+          callNumber,
+        );
+
+      status.className =
+        'results-status results-status--found';
+
       status.textContent =
         `${tome.call_number} — ${tome.title.toUpperCase()} — ` +
         `${tome.author.toUpperCase()} — ${tome.school.toUpperCase()}`;
     } catch (err) {
-      status.className = 'results-status results-status--error';
-      if (err instanceof ArchiveError) {
+      status.className =
+        'results-status results-status--error';
+
+      if (
+        err instanceof ArchiveError
+      ) {
         status.textContent =
           err.status === 404
             ? `THE ROLL DOES NOT LIST ${callNumber}.`
             : err.message.toUpperCase();
       } else {
-        status.textContent = 'THE ARCHIVE DID NOT ANSWER.';
+        status.textContent =
+          'THE ARCHIVE DID NOT ANSWER.';
       }
     }
   }
 
-  /*
+  /**
    * The register, asked for once.
    *
    * Not awaited by anything: the shelf draws with dashes in both columns and
@@ -666,77 +1166,146 @@ export function catalogueScreen(): Screen {
    * catalogue nothing but two columns of em dashes. `fetchAvailability` never
    * throws.
    */
-  window.addEventListener('resize', syncGutter);
+  window.addEventListener(
+    'resize',
+    syncGutter,
+  );
 
-  void fetchAvailability().then((answer) => {
-    register = answer;
-    render();
-  });
+  void fetchAvailability().then(
+    (answer) => {
+      register = answer;
+      render();
+    },
+  );
 
-  input.addEventListener('input', () => {
-    query = input.value;
-    selected = 0;
-    syncCursor();
-    // The local filter redraws on this keystroke; the archive answers a beat
-    // later. Typing never waits on the network.
-    render();
-    search();
-  });
+  input.addEventListener(
+    'input',
+    () => {
+      query = input.value;
+      selected = 0;
+      syncCursor();
 
-  for (const event of ['click', 'keyup', 'select', 'focus', 'blur']) {
-    input.addEventListener(event, syncCursor);
+      /**
+       * The local filter redraws on this keystroke; the archive answers a beat
+       * later. Typing never waits on the network.
+       */
+      render();
+      search();
+    },
+  );
+
+  for (const event of [
+    'click',
+    'keyup',
+    'select',
+    'focus',
+    'blur',
+  ]) {
+    input.addEventListener(
+      event,
+      syncCursor,
+    );
   }
 
-  // Up and Down drive the list; Left and Right are left to the text caret.
-  function onKeydown(event: KeyboardEvent): void {
+  /** Up and Down drive the list; Left and Right are left to the text caret. */
+  function onKeydown(
+    event: KeyboardEvent,
+  ): void {
     if (event.key === 'ArrowDown') {
       event.preventDefault();
       select(selected + 1);
-    } else if (event.key === 'ArrowUp') {
+    } else if (
+      event.key === 'ArrowUp'
+    ) {
       event.preventDefault();
       select(selected - 1);
-    } else if (event.key === 'Enter') {
+    } else if (
+      event.key === 'Enter'
+    ) {
       event.preventDefault();
-      const typed = query.trim().toUpperCase();
-      if (CALL_NUMBER_RE.test(typed)) {
+
+      const typed =
+        query.trim().toUpperCase();
+
+      if (
+        CALL_NUMBER_RE.test(typed)
+      ) {
         void request(typed);
       }
-    } else if (event.key === 'Escape') {
+    } else if (
+      event.key === 'Escape'
+    ) {
       input.value = '';
       query = '';
       found = null;
-      window.clearTimeout(debounce);
+
+      window.clearTimeout(
+        debounce,
+      );
+
       inFlight?.abort();
+
       syncCursor();
       render();
     }
   }
 
-  element.addEventListener('keydown', onKeydown);
+  element.addEventListener(
+    'keydown',
+    onKeydown,
+  );
 
-  // Anything typed anywhere on this screen belongs in the search field.
-  function onWindowKeydown(event: KeyboardEvent): void {
+  /** Anything typed anywhere on this screen belongs in the search field. */
+  function onWindowKeydown(
+    event: KeyboardEvent,
+  ): void {
     if (event.target === input) return;
-    if (event.metaKey || event.ctrlKey || event.altKey) return;
-    if (event.key.length === 1) input.focus();
+
+    if (
+      event.metaKey ||
+      event.ctrlKey ||
+      event.altKey
+    ) {
+      return;
+    }
+
+    if (event.key.length === 1) {
+      input.focus();
+    }
   }
 
-  window.addEventListener('keydown', onWindowKeydown);
+  window.addEventListener(
+    'keydown',
+    onWindowKeydown,
+  );
 
   queueMicrotask(() => {
     input.focus();
     syncCursor();
   });
+
   void load();
 
   return {
     element,
     title: 'CATALOGUE',
+
     destroy() {
-      window.clearTimeout(debounce);
+      window.clearTimeout(
+        debounce,
+      );
+
       inFlight?.abort();
-      window.removeEventListener('keydown', onWindowKeydown);
-      window.removeEventListener('resize', syncGutter);
+
+      window.removeEventListener(
+        'keydown',
+        onWindowKeydown,
+      );
+
+      window.removeEventListener(
+        'resize',
+        syncGutter,
+      );
     },
   };
 }

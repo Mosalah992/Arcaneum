@@ -229,3 +229,20 @@ html[data-chrome='off'] .chrome-bar {
 
 .hit-counter b { min-width: 9px; font-size: 13px; }
 }
+.footer-kofi {
+  color: #e8a0a0;
+  text-decoration: none;
+  transition:
+    color 120ms ease,
+    text-shadow 120ms ease;
+}
+
+.footer-kofi:hover,
+.footer-kofi:focus-visible {
+  color: #ffd0d0;
+  text-shadow: 0 0 8px rgba(232, 160, 160, 0.45);
+}
+
+.footer-separator {
+  opacity: 0.55;
+}

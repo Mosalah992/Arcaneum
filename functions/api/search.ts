@@ -7,6 +7,12 @@
 // it in the title, so the search happens where the text is.
 
 import { canonicalShelf, SHELVES } from '../../shared/shelves';
+import {
+  SEARCH_MARK_CLOSE,
+  SEARCH_MARK_OPEN,
+  searchTokens,
+  stripSearchMarkers,
+} from '../../shared/search';
 import { fail, json, readOnly, type RequestContext } from './_lib';
 
 /** Two characters is the shortest query worth a round trip. */
@@ -16,18 +22,7 @@ const MAX_QUERY = 96;
 const DEFAULT_LIMIT = 60;
 const MAX_LIMIT = 100;
 
-/**
- * Where a match sits inside the excerpt.
- *
- * SQLite marks the matched run for us, but its markers must not be HTML — the
- * excerpt is user-influenced text on its way to a page, and the renderer in
- * src/lib/markdown.ts escapes for exactly this reason. So the markers are two
- * control characters that cannot occur in the corpus, and the client splits on
- * them and builds elements. Nothing here ever reaches innerHTML.
- */
-const OPEN = '\u0001';
-const CLOSE = '\u0002';
-
+/** A search row before the response sheds its internal snippet markers. */
 interface Hit {
   id: number;
   call_number: string;
@@ -77,16 +72,6 @@ function sectionsOf(body: string): Section[] {
  * sees them: lower-cased, accents folded, split at anything that is not a
  * letter or a digit.
  */
-function wordsOf(text: string): string[] {
-  return (
-    text
-      .normalize('NFD')
-      .replace(/\p{M}+/gu, '')
-      .toLowerCase()
-      .match(/[\p{L}\p{N}]+/gu) ?? []
-  );
-}
-
 const romanMap: Record<string, number> = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 };
 
 function romanValue(token: string): number {
@@ -176,21 +161,21 @@ function sectionsHit(body: string, excerpt: string, tokens: string[]): string[] 
   const sections = sectionsOf(body);
   if (sections.length < 2) return [];
 
-  const inBody = wordsOf(body);
+  const inBody = searchTokens(body);
   const last = tokens[tokens.length - 1];
   const exact = tokens.slice(0, -1).filter((t) => inBody.includes(t));
   const prefixed = inBody.some((w) => w.startsWith(last));
   const hit = sections.map(({ text }) => {
     if (exact.length === 0 && !prefixed) return false;
-    const words = wordsOf(text);
+    const words = searchTokens(text);
     return (
       exact.every((t) => words.includes(t)) && (!prefixed || words.some((w) => w.startsWith(last)))
     );
   });
 
   // The excerpt is `…` + a run of the body + `…`, with the markers dropped in.
-  const run = excerpt.split(OPEN).join('').split(CLOSE).join('').replace(/^…|…$/gu, '');
-  const at = excerpt.includes(OPEN) ? body.indexOf(run) : -1;
+  const run = stripSearchMarkers(excerpt).replace(/^…|…$/gu, '');
+  const at = excerpt.includes(SEARCH_MARK_OPEN) ? body.indexOf(run) : -1;
   if (at >= 0) {
     // The last part that begins before the run; none if the run is preface.
     for (let i = sections.length - 1; i >= 0; i--) {
@@ -251,7 +236,7 @@ export const onRequest = readOnly(async ({ request, env }: RequestContext) => {
     return fail('bad_request', `That is longer than a search: ${MAX_QUERY} characters at most.`, 400);
   }
 
-  const tokens = wordsOf(raw);
+  const tokens = searchTokens(raw);
   const match = toMatchQuery(tokens);
   if (match === null) {
     return fail('bad_request', 'Nothing in that to search for.', 400);
@@ -285,7 +270,7 @@ export const onRequest = readOnly(async ({ request, env }: RequestContext) => {
     (shelf === null ? '' : ' AND t.school = ?') +
     ` ORDER BY score LIMIT ?`;
 
-  const binds: unknown[] = [OPEN, CLOSE, match];
+  const binds: unknown[] = [SEARCH_MARK_OPEN, SEARCH_MARK_CLOSE, match];
   if (requestedVolume !== null) binds.push(`%${requestedVolume}%`);
   if (shelf !== null) binds.push(shelf);
   binds.push(limit);
@@ -303,9 +288,9 @@ export const onRequest = readOnly(async ({ request, env }: RequestContext) => {
       shelf,
       total: results.length,
       truncated: results.length === limit,
-      markers: { open: OPEN, close: CLOSE },
       hits: results.map(({ body, ...h }) => ({
         ...h,
+        excerpt: stripSearchMarkers(h.excerpt),
         restricted: h.restricted === 1,
         readable_online: h.readable_online === 1,
         sections: body === null ? [] : sectionsHit(body, h.excerpt, tokens),

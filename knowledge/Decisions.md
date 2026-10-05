@@ -2,6 +2,13 @@
 
 Record durable changes here in reverse chronological order. Each entry should include the date, decision or finding, reason, and source links. Do not record secrets or temporary chat state.
 
+## 2026-10-05 — Search excerpts cross the API as plain text
+
+- SQLite FTS5 `snippet()` delimiters are internal server-side markers only. Strip them before returning search results so control characters never reach the browser or render as missing-glyph boxes.
+- Tokenize queries with the shared search helper, then highlight plain title, author, and excerpt text at render time with DOM text nodes and inline `<mark class="search-hit">` elements. Never interpret corpus text as HTML.
+- Match FTS behavior in the highlighter: earlier query tokens are whole tokens and the final token is a token prefix. Regex metacharacters and empty queries remain safe.
+- Source: [shared search contract](../shared/search.ts), [search endpoint](../functions/api/search.ts), [DOM highlighter](../src/lib/highlight.ts), [catalogue rendering](../src/screens/catalogue.ts).
+
 ## 2026-09-28 — Catalogue runes belong inside the chrome spacers
 
 - Place decorative rune bands inside the header and footer `.chrome-spacer` elements, with readable 16px glyphs (14px on narrow screens), bright magicka colour, and `aria-hidden`. The former 8px border strips were too small to see.
